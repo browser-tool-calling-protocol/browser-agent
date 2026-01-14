@@ -230,87 +230,60 @@ describe('schema', () => {
   });
 });
 
-describe('BrowserAgent help methods', () => {
+describe('BrowserAgent describe() API', () => {
   let agent: BrowserAgent;
 
   beforeEach(() => {
     agent = new BrowserAgent();
   });
 
-  describe('instance methods', () => {
-    it('help() should return full help text', () => {
-      const help = agent.help();
-      expect(help).toContain('BROWSER TOOL CALLING PROTOCOL');
-      expect(help).toContain('AVAILABLE COMMANDS');
+  describe('instance method', () => {
+    it('describe() should return full description', () => {
+      const desc = agent.describe();
+      expect(desc.agent.name).toBe('btcp-browser-agent');
+      expect(desc.agent.version).toBeDefined();
+      expect(desc.agent.description).toBeDefined();
+      expect(desc.actions).toContain('click');
+      expect(desc.actions).toContain('snapshot');
+      expect(desc.methods).toBeInstanceOf(Array);
+      expect(desc.selectors).toBeInstanceOf(Array);
+      expect(desc.workflow).toBeInstanceOf(Array);
+      expect(desc.quickRef).toContain('BROWSER AGENT');
     });
 
-    it('describeCommand() should return command help', () => {
-      const help = agent.describeCommand('click');
-      expect(help).toContain('ACTION: click');
-      expect(help).toContain('PARAMETERS');
+    it('describe(action) should return specific action info', () => {
+      const desc = agent.describe('click');
+      expect(desc.action).toBeDefined();
+      expect(desc.action?.name).toBe('click');
+      expect(desc.action?.description).toBeDefined();
+      expect(desc.action?.parameters).toBeInstanceOf(Array);
+      expect(desc.action?.returns).toBeDefined();
+      expect(desc.action?.examples).toBeInstanceOf(Array);
     });
 
-    it('getAvailableCommands() should return action list', () => {
-      const commands = agent.getAvailableCommands();
-      expect(commands).toContain('click');
-      expect(commands).toContain('snapshot');
+    it('describe() should return suggestions for unknown action', () => {
+      const desc = agent.describe('clck');
+      expect(desc.action).toBeUndefined();
+      expect(desc.suggestions).toContain('click');
     });
 
-    it('getCommandInfo() should return command schema', () => {
-      const info = agent.getCommandInfo('click');
-      expect(info?.action).toBe('click');
-      expect(info?.parameters).toBeInstanceOf(Array);
-    });
-
-    it('getJSONSchema() should return JSON schema', () => {
-      const schema = agent.getJSONSchema();
-      expect(schema.$schema).toBeDefined();
-      expect(schema.type).toBe('object');
-    });
-
-    it('suggestCommand() should suggest similar actions', () => {
-      const suggestions = agent.suggestCommand('clck');
-      expect(suggestions).toContain('click');
-    });
-
-    it('formatCommandError() should format errors', () => {
-      const message = agent.formatCommandError('click', 'Element not found');
-      expect(message).toContain('ERROR');
-      expect(message).toContain('click');
-    });
-
-    it('getAgentInfo() should return agent metadata', () => {
-      const info = agent.getAgentInfo();
-      expect(info.name).toBe('btcp-browser-agent');
-      expect(info.version).toBeDefined();
-      expect(info.description).toBeDefined();
+    it('describe() should include quick reference for specific action', () => {
+      const desc = agent.describe('snapshot');
+      expect(desc.quickRef).toContain('SNAPSHOT');
+      expect(desc.quickRef).toContain('Parameters');
     });
   });
 
-  describe('static methods', () => {
-    it('BrowserAgent.help() should work without instance', () => {
-      const help = BrowserAgent.help();
-      expect(help).toContain('BROWSER TOOL CALLING PROTOCOL');
+  describe('static method', () => {
+    it('BrowserAgent.describe() should work without instance', () => {
+      const desc = BrowserAgent.describe();
+      expect(desc.agent.name).toBe('btcp-browser-agent');
+      expect(desc.actions).toContain('click');
     });
 
-    it('BrowserAgent.describeCommand() should work without instance', () => {
-      const help = BrowserAgent.describeCommand('snapshot');
-      expect(help).toContain('ACTION: snapshot');
-    });
-
-    it('BrowserAgent.getAvailableCommands() should work without instance', () => {
-      const commands = BrowserAgent.getAvailableCommands();
-      expect(commands).toContain('snapshot');
-    });
-
-    it('BrowserAgent.getJSONSchema() should work without instance', () => {
-      const schema = BrowserAgent.getJSONSchema();
-      expect(schema.$schema).toBeDefined();
-    });
-
-    it('BrowserAgent.getAgentInfo() should work without instance', () => {
-      const info = BrowserAgent.getAgentInfo();
-      expect(info.name).toBe('btcp-browser-agent');
+    it('BrowserAgent.describe(action) should work without instance', () => {
+      const desc = BrowserAgent.describe('snapshot');
+      expect(desc.action?.name).toBe('snapshot');
     });
   });
 });

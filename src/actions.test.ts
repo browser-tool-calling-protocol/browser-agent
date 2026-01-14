@@ -668,10 +668,10 @@ describe('actions', () => {
       expect(response.success).toBe(true);
       if (response.success) {
         expect(response.data.type).toBe('help');
-        expect(response.data.action).toBe('click');
-        expect(response.data.content).toContain('ACTION: click');
-        expect(response.data.content).toContain('PARAMETERS');
-        expect(response.data.content).toContain('selector');
+        expect(response.data.action.name).toBe('click');
+        expect(response.data.quickRef).toContain('CLICK');
+        expect(response.data.quickRef).toContain('Parameters');
+        expect(response.data.quickRef).toContain('selector');
       }
     });
 
@@ -684,9 +684,9 @@ describe('actions', () => {
       expect(response.success).toBe(true);
       if (response.success) {
         expect(response.data.type).toBe('help');
-        expect(response.data.content).toContain('BROWSER TOOL CALLING PROTOCOL');
-        expect(response.data.availableActions).toContain('click');
-        expect(response.data.availableActions).toContain('snapshot');
+        expect(response.data.quickRef).toContain('BROWSER AGENT');
+        expect(response.data.actions).toContain('click');
+        expect(response.data.actions).toContain('snapshot');
       }
     });
 
@@ -699,9 +699,9 @@ describe('actions', () => {
       expect(response.success).toBe(true);
       if (response.success) {
         expect(response.data.type).toBe('help');
-        expect(response.data.error).toContain('Unknown action');
+        // Unknown action returns suggestions
         expect(response.data.suggestions).toContain('click');
-        expect(response.data.hint).toContain('Did you mean');
+        expect(response.data.action).toBeUndefined(); // No action info for unknown
       }
     });
 
@@ -731,8 +731,8 @@ describe('actions', () => {
 
       expect(response.success).toBe(true);
       if (response.success) {
-        expect(response.data.content).toContain('snapshot');
-        expect(response.data.content).toContain('TIPS');
+        expect(response.data.action.name).toBe('snapshot');
+        expect(response.data.action.tips).toBeDefined();
       }
     });
 
@@ -744,8 +744,8 @@ describe('actions', () => {
 
       expect(response.success).toBe(true);
       if (response.success) {
-        expect(response.data.content).toContain('type');
-        expect(response.data.content).toContain('text');
+        expect(response.data.action.name).toBe('type');
+        expect(response.data.action.parameters.some((p: { name: string }) => p.name === 'text')).toBe(true);
       }
     });
   });

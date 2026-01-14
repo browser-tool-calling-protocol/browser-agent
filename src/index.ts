@@ -138,60 +138,15 @@ export { BrowserManager, type ScreencastFrame, type ScreencastOptions } from './
 // Re-export action handlers
 export { executeCommand, setScreencastFrameCallback, toAIFriendlyError } from './actions.js';
 
-// Re-export schema utilities for self-description
-export {
-  type ParameterSchema,
-  type CommandSchema,
-  type AgentSchema,
-  AGENT_SCHEMA,
-  getAvailableActions,
-  getCommandsByCategory,
-  getCommandSchema,
-  getCommandHelp,
-  getFullHelp,
-  getJSONSchema,
-  suggestAction,
-  formatError,
-} from './schema.js';
-
-// Re-export programmatic interfaces for AI code generation
-export {
-  type FunctionParam,
-  type FunctionSignature,
-  type InterfaceDefinition,
-  type CallableFunction,
-  getTypeScriptInterfaces,
-  getFunctionSignatures,
-  getCallableFunctions,
-  getInterfaces,
-  getCompactInterface,
-  getInterfaceString,
-} from './interfaces.js';
+// Re-export unified describe API
+export { type Description, describe } from './describe.js';
 
 // Import for creating the agent
 import { BrowserManager } from './browser.js';
 import { executeCommand, setScreencastFrameCallback } from './actions.js';
 import { parseCommand, serializeResponse, generateCommandId } from './protocol.js';
-import {
-  AGENT_SCHEMA,
-  getAvailableActions,
-  getCommandHelp,
-  getFullHelp,
-  getJSONSchema,
-  getCommandSchema,
-  suggestAction,
-  formatError,
-} from './schema.js';
-import {
-  getInterfaces,
-  getTypeScriptInterfaces,
-  getFunctionSignatures,
-  getCompactInterface,
-  getInterfaceString,
-} from './interfaces.js';
+import { describe, type Description } from './describe.js';
 import type { Command, Response } from './types.js';
-import type { CommandSchema } from './schema.js';
-import type { InterfaceDefinition, FunctionSignature } from './interfaces.js';
 
 /**
  * Configuration options for the BrowserAgent
@@ -556,258 +511,40 @@ export class BrowserAgent {
   }
 
   // ============================================================================
-  // SELF-DESCRIPTION / HELP METHODS
+  // SELF-DESCRIPTION API
   // ============================================================================
 
   /**
-   * Get full help text (similar to --help in CLI tools)
+   * Describe the agent's capabilities - single unified API for AI agents
+   *
+   * @param action Optional action name to get specific documentation
+   * @returns Description object with all needed information
    *
    * @example
    * ```typescript
-   * console.log(agent.help());
-   * // Outputs comprehensive documentation of all available commands
-   * ```
-   */
-  help(): string {
-    return getFullHelp();
-  }
-
-  /**
-   * Get detailed help for a specific command
+   * // Get full API description
+   * const info = agent.describe();
+   * console.log(info.actions);    // ['click', 'snapshot', ...]
+   * console.log(info.methods);    // [{ name: 'click', signature: '...' }, ...]
+   * console.log(info.quickRef);   // Quick reference string
    *
-   * @example
-   * ```typescript
-   * console.log(agent.describeCommand('click'));
-   * // Outputs detailed documentation for the click action
-   * ```
-   */
-  describeCommand(action: string): string {
-    return getCommandHelp(action);
-  }
-
-  /**
-   * Get list of all available actions
+   * // Get specific action help
+   * const clickInfo = agent.describe('click');
+   * console.log(clickInfo.action);  // { name: 'click', parameters: [...] }
    *
-   * @example
-   * ```typescript
-   * const actions = agent.getAvailableCommands();
-   * // ['snapshot', 'click', 'type', 'fill', ...]
+   * // For AI context injection
+   * const ctx = agent.describe().quickRef;
    * ```
    */
-  getAvailableCommands(): string[] {
-    return getAvailableActions();
+  describe(action?: string): Description {
+    return describe(action);
   }
 
   /**
-   * Get schema for a specific command
-   *
-   * @example
-   * ```typescript
-   * const schema = agent.getCommandInfo('click');
-   * // { action: 'click', parameters: [...], examples: [...] }
-   * ```
+   * Describe the agent's capabilities (static version)
    */
-  getCommandInfo(action: string): CommandSchema | undefined {
-    return getCommandSchema(action);
-  }
-
-  /**
-   * Get JSON Schema for all commands (useful for programmatic validation)
-   *
-   * @example
-   * ```typescript
-   * const schema = agent.getJSONSchema();
-   * // Can be used with JSON Schema validators
-   * ```
-   */
-  getJSONSchema(): Record<string, unknown> {
-    return getJSONSchema();
-  }
-
-  /**
-   * Suggest similar actions for an unknown action
-   *
-   * @example
-   * ```typescript
-   * const suggestions = agent.suggestCommand('clck');
-   * // ['click']
-   * ```
-   */
-  suggestCommand(unknownAction: string): string[] {
-    return suggestAction(unknownAction);
-  }
-
-  /**
-   * Format an error with recovery suggestions
-   *
-   * @example
-   * ```typescript
-   * const message = agent.formatError('click', 'Element not found');
-   * // Includes error details and recovery suggestions
-   * ```
-   */
-  formatCommandError(action: string, error: string): string {
-    return formatError(action, error);
-  }
-
-  /**
-   * Get the agent schema (metadata about the agent)
-   */
-  getAgentInfo(): { name: string; version: string; description: string } {
-    return {
-      name: AGENT_SCHEMA.name,
-      version: AGENT_SCHEMA.version,
-      description: AGENT_SCHEMA.description,
-    };
-  }
-
-  // ============================================================================
-  // PROGRAMMATIC INTERFACES (for AI code generation)
-  // ============================================================================
-
-  /**
-   * Get complete interface definition including TypeScript types and function signatures
-   *
-   * @example
-   * ```typescript
-   * const interfaces = agent.getInterfaces();
-   * console.log(interfaces.typescript);  // TypeScript interface definitions
-   * console.log(interfaces.functions);   // Function signatures
-   * console.log(interfaces.usage);       // Usage guide
-   * ```
-   */
-  getInterfaces(): InterfaceDefinition {
-    return getInterfaces();
-  }
-
-  /**
-   * Get TypeScript interface definitions as a string
-   *
-   * @example
-   * ```typescript
-   * const types = agent.getTypeScriptInterfaces();
-   * // Returns: interface ClickCommand { action: 'click'; selector: string; ... }
-   * ```
-   */
-  getTypeScriptInterfaces(): string {
-    return getTypeScriptInterfaces();
-  }
-
-  /**
-   * Get function signatures for all BrowserAgent methods
-   *
-   * @example
-   * ```typescript
-   * const sigs = agent.getFunctionSignatures();
-   * // [{ name: 'click', params: [...], returns: {...} }, ...]
-   * ```
-   */
-  getFunctionSignatures(): FunctionSignature[] {
-    return getFunctionSignatures();
-  }
-
-  /**
-   * Get compact interface for AI context injection
-   *
-   * @example
-   * ```typescript
-   * const compact = agent.getCompactInterface();
-   * // { actions: [...], methods: [...], workflow: [...] }
-   * ```
-   */
-  getCompactInterface(): ReturnType<typeof getCompactInterface> {
-    return getCompactInterface();
-  }
-
-  /**
-   * Get interface as a single string (best for AI context)
-   *
-   * @example
-   * ```typescript
-   * const ctx = agent.getInterfaceString();
-   * // Returns formatted string with all methods and examples
-   * ```
-   */
-  getInterfaceString(): string {
-    return getInterfaceString();
-  }
-
-  // ============================================================================
-  // STATIC HELP METHODS (accessible without instantiation)
-  // ============================================================================
-
-  /**
-   * Get full help text (static version)
-   */
-  static help(): string {
-    return getFullHelp();
-  }
-
-  /**
-   * Get help for a specific command (static version)
-   */
-  static describeCommand(action: string): string {
-    return getCommandHelp(action);
-  }
-
-  /**
-   * Get list of all available actions (static version)
-   */
-  static getAvailableCommands(): string[] {
-    return getAvailableActions();
-  }
-
-  /**
-   * Get JSON Schema for all commands (static version)
-   */
-  static getJSONSchema(): Record<string, unknown> {
-    return getJSONSchema();
-  }
-
-  /**
-   * Get the agent schema (static version)
-   */
-  static getAgentInfo(): { name: string; version: string; description: string } {
-    return {
-      name: AGENT_SCHEMA.name,
-      version: AGENT_SCHEMA.version,
-      description: AGENT_SCHEMA.description,
-    };
-  }
-
-  /**
-   * Get complete interface definition (static version)
-   */
-  static getInterfaces(): InterfaceDefinition {
-    return getInterfaces();
-  }
-
-  /**
-   * Get TypeScript interfaces (static version)
-   */
-  static getTypeScriptInterfaces(): string {
-    return getTypeScriptInterfaces();
-  }
-
-  /**
-   * Get function signatures (static version)
-   */
-  static getFunctionSignatures(): FunctionSignature[] {
-    return getFunctionSignatures();
-  }
-
-  /**
-   * Get compact interface (static version)
-   */
-  static getCompactInterface(): ReturnType<typeof getCompactInterface> {
-    return getCompactInterface();
-  }
-
-  /**
-   * Get interface string (static version)
-   */
-  static getInterfaceString(): string {
-    return getInterfaceString();
+  static describe(action?: string): Description {
+    return describe(action);
   }
 }
 

@@ -232,84 +232,61 @@ describe('interfaces', () => {
       const str = getInterfaceString();
 
       expect(str).toContain('GET HELP');
-      expect(str).toContain('agent.help()');
+      expect(str).toContain('agent.describe()');
     });
   });
 });
 
-describe('BrowserAgent interface methods', () => {
+describe('BrowserAgent describe() API (interfaces)', () => {
   let agent: BrowserAgent;
 
   beforeEach(() => {
     agent = new BrowserAgent();
   });
 
-  describe('instance methods', () => {
-    it('getInterfaces() should return interface definition', () => {
-      const interfaces = agent.getInterfaces();
+  describe('instance method', () => {
+    it('describe() should include method signatures', () => {
+      const desc = agent.describe();
 
-      expect(interfaces.typescript).toBeDefined();
-      expect(interfaces.functions).toBeInstanceOf(Array);
-      expect(interfaces.usage).toBeDefined();
+      expect(desc.methods).toBeInstanceOf(Array);
+      expect(desc.methods.some((m) => m.name === 'click')).toBe(true);
+      expect(desc.methods.some((m) => m.name === 'snapshot')).toBe(true);
     });
 
-    it('getTypeScriptInterfaces() should return type definitions', () => {
-      const types = agent.getTypeScriptInterfaces();
+    it('describe() should include selector formats', () => {
+      const desc = agent.describe();
 
-      expect(types).toContain('interface');
-      expect(types).toContain('ClickCommand');
+      expect(desc.selectors).toBeInstanceOf(Array);
+      expect(desc.selectors.some((s) => s.includes('@e1'))).toBe(true);
     });
 
-    it('getFunctionSignatures() should return signatures', () => {
-      const sigs = agent.getFunctionSignatures();
+    it('describe() should include workflow', () => {
+      const desc = agent.describe();
 
-      expect(sigs).toBeInstanceOf(Array);
-      expect(sigs.some((s) => s.name === 'click')).toBe(true);
+      expect(desc.workflow).toBeInstanceOf(Array);
+      expect(desc.workflow.some((w) => w.includes('snapshot'))).toBe(true);
     });
 
-    it('getCompactInterface() should return compact format', () => {
-      const compact = agent.getCompactInterface();
+    it('describe(action) should include parameter info', () => {
+      const desc = agent.describe('click');
 
-      expect(compact.actions).toContain('click');
-      expect(compact.methods).toBeInstanceOf(Array);
-    });
-
-    it('getInterfaceString() should return string', () => {
-      const str = agent.getInterfaceString();
-
-      expect(str).toContain('BROWSER AGENT INTERFACE');
+      expect(desc.action?.parameters).toBeInstanceOf(Array);
+      expect(desc.action?.parameters.some((p) => p.name === 'selector')).toBe(true);
     });
   });
 
-  describe('static methods', () => {
-    it('BrowserAgent.getInterfaces() should work', () => {
-      const interfaces = BrowserAgent.getInterfaces();
+  describe('static method', () => {
+    it('BrowserAgent.describe() should include methods', () => {
+      const desc = BrowserAgent.describe();
 
-      expect(interfaces.typescript).toBeDefined();
+      expect(desc.methods).toBeInstanceOf(Array);
     });
 
-    it('BrowserAgent.getTypeScriptInterfaces() should work', () => {
-      const types = BrowserAgent.getTypeScriptInterfaces();
+    it('BrowserAgent.describe() should include actions list', () => {
+      const desc = BrowserAgent.describe();
 
-      expect(types).toContain('interface');
-    });
-
-    it('BrowserAgent.getFunctionSignatures() should work', () => {
-      const sigs = BrowserAgent.getFunctionSignatures();
-
-      expect(sigs).toBeInstanceOf(Array);
-    });
-
-    it('BrowserAgent.getCompactInterface() should work', () => {
-      const compact = BrowserAgent.getCompactInterface();
-
-      expect(compact.actions).toBeInstanceOf(Array);
-    });
-
-    it('BrowserAgent.getInterfaceString() should work', () => {
-      const str = BrowserAgent.getInterfaceString();
-
-      expect(str).toContain('AVAILABLE METHODS');
+      expect(desc.actions).toContain('click');
+      expect(desc.actions).toContain('snapshot');
     });
   });
 });
@@ -334,8 +311,7 @@ describe('interface completeness', () => {
       'isVisible',
       'getUrl',
       'getTitle',
-      'help',
-      'describeCommand',
+      'describe',
     ];
 
     for (const method of expectedMethods) {

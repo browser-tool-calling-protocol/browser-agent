@@ -495,36 +495,24 @@ export function getFunctionSignatures(): FunctionSignature[] {
     example: `const title = await agent.getTitle()`,
   });
 
-  // Help methods
+  // Self-description method
   signatures.push({
-    name: 'help',
-    description: 'Get full help documentation',
-    params: [],
-    returns: {
-      type: 'string',
-      description: 'Help text',
-    },
-    async: false,
-    example: `console.log(agent.help())`,
-  });
-
-  signatures.push({
-    name: 'describeCommand',
-    description: 'Get help for a specific action',
+    name: 'describe',
+    description: 'Get API documentation (single unified function)',
     params: [
       {
         name: 'action',
         type: 'string',
-        required: true,
-        description: 'Action name',
+        required: false,
+        description: 'Optional action name for specific documentation',
       },
     ],
     returns: {
-      type: 'string',
-      description: 'Command documentation',
+      type: 'Description',
+      description: 'Complete description object with agent info, actions, methods, selectors, workflow, and quickRef',
     },
     async: false,
-    example: `console.log(agent.describeCommand('click'))`,
+    example: `const info = agent.describe(); // Full API\nconst clickInfo = agent.describe('click'); // Specific action`,
   });
 
   return signatures;
@@ -615,11 +603,11 @@ const visible = await agent.isVisible('#modal');
 // 8. Execute arbitrary JavaScript
 const count = await agent.evaluate<number>('document.querySelectorAll("button").length');
 
-// 9. Get help at any time
-console.log(agent.help());
-console.log(agent.describeCommand('click'));
+// 9. Get help using describe()
+const info = agent.describe();           // Full API documentation
+const clickInfo = agent.describe('click'); // Action-specific help
 
-// 10. Or use inline help
+// 10. Or use inline help with commands
 const helpResponse = await agent.execute({ id: '1', action: 'click', help: true });
 `;
 
@@ -688,8 +676,8 @@ export function getInterfaceString(): string {
     '  await agent.waitFor("#results");',
     '',
     'GET HELP:',
-    '  agent.help()                    // Full documentation',
-    '  agent.describeCommand("click")  // Action-specific help',
+    '  agent.describe()                // Full API documentation',
+    '  agent.describe("click")         // Action-specific help',
     '  { action: "click", help: true } // Inline help',
   ];
 

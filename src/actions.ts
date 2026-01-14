@@ -89,7 +89,7 @@ import type {
   InputEventData,
 } from './types.js';
 import { successResponse, errorResponse } from './protocol.js';
-import { getCommandHelp, getFullHelp, getAvailableActions, suggestAction } from './schema.js';
+import { describe } from './describe.js';
 
 // Screencast frame callback
 let screencastFrameCallback: ((frame: ScreencastFrame) => void) | null = null;
@@ -142,36 +142,12 @@ function getRequiredElement(browser: BrowserManager, selector: string): Element 
  */
 function handleHelpRequest(command: Command): Response {
   const action = command.action;
+  const info = describe(action === 'help' ? undefined : action);
 
-  // Special case: action is 'help' or empty - return full help
-  if (!action || action === 'help') {
-    return successResponse(command.id, {
-      type: 'help',
-      content: getFullHelp(),
-      availableActions: getAvailableActions(),
-    });
-  }
-
-  // Check if action exists
-  const availableActions = getAvailableActions();
-  if (!availableActions.includes(action)) {
-    const suggestions = suggestAction(action);
-    return successResponse(command.id, {
-      type: 'help',
-      error: `Unknown action: "${action}"`,
-      suggestions,
-      hint: suggestions.length > 0
-        ? `Did you mean: ${suggestions.join(', ')}?`
-        : `Use { action: 'help', help: true } to see all available actions.`,
-      availableActions,
-    });
-  }
-
-  // Return help for the specific action
+  // Return help response using describe()
   return successResponse(command.id, {
     type: 'help',
-    action,
-    content: getCommandHelp(action),
+    ...info,
   });
 }
 
