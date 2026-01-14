@@ -84,6 +84,59 @@ const agent = new BrowserAgent({
 - `isVisible(selector)` - Check element visibility
 - `getUrl()` - Get current URL
 - `getTitle()` - Get page title
+- `describe(action?)` - Get API documentation (see Self-Description API)
+
+### Self-Description API
+
+The agent provides a single unified function for AI agents to understand its capabilities:
+
+```typescript
+// Get full API description
+const info = agent.describe();
+console.log(info.actions);    // ['click', 'snapshot', 'type', ...]
+console.log(info.methods);    // [{ name: 'click', signature: '...' }, ...]
+console.log(info.quickRef);   // Quick reference string for context injection
+
+// Get specific action help
+const clickInfo = agent.describe('click');
+console.log(clickInfo.action);  // { name: 'click', parameters: [...], examples: [...] }
+
+// Get suggestions for typos
+const typoInfo = agent.describe('clck');
+console.log(typoInfo.suggestions);  // ['click']
+
+// Works as static method too
+const info = BrowserAgent.describe();
+```
+
+The `Description` object contains:
+- `agent` - Name, version, and description
+- `actions` - List of all available action names
+- `action` - Specific action details (when queried)
+- `suggestions` - Suggestions for unknown actions
+- `methods` - Method signatures with examples
+- `selectors` - Selector format reference
+- `workflow` - Typical workflow steps
+- `quickRef` - Compact reference for AI context injection
+
+### Inline Help
+
+Any command can return documentation instead of executing by setting `help: true`:
+
+```typescript
+// Get help for click action without executing
+const response = await agent.execute({
+  id: 'cmd1',
+  action: 'click',
+  selector: 'button', // Won't be clicked
+  help: true          // Returns documentation instead
+});
+
+console.log(response.data.action);    // { name: 'click', parameters: [...] }
+console.log(response.data.quickRef);  // Quick reference string
+```
+
+This enables AI agents to self-correct by calling the same action with `help: true` when errors occur.
 
 ### Commands
 
@@ -224,6 +277,64 @@ const response = await executeCommand({
   action: 'click',
   selector: 'button'
 }, browser);
+```
+
+## AI Agent Optimization
+
+The agent is designed specifically for AI workflows. Recommended approach:
+
+### Workflow
+
+1. **Get snapshot** - Capture accessibility tree with element refs
+2. **Identify targets** - Use refs like `@e1`, `@e2` from snapshot
+3. **Execute actions** - Use refs for stable element selection
+4. **Re-snapshot** - Refresh view after page changes
+
+```typescript
+// 1. Get initial snapshot
+const { snapshot, refs } = await agent.snapshot({ interactive: true });
+// Returns: "- button 'Submit' [ref=e1]\n- textbox 'Email' [ref=e2]"
+
+// 2. Interact using refs (stable, deterministic)
+await agent.fill('@e2', 'user@example.com');
+await agent.click('@e1');
+
+// 3. Wait for changes and re-snapshot
+await agent.waitFor('#success');
+const updated = await agent.snapshot();
+```
+
+### Selector Formats
+
+| Format | Example | Description |
+|--------|---------|-------------|
+| `@e1` | `@e1` | Element ref (preferred, stable) |
+| `ref=` | `ref=e1` | Alt ref format |
+| `#id` | `#submit` | CSS ID selector |
+| `.class` | `.btn` | CSS class selector |
+| `[attr]` | `[data-testid="x"]` | CSS attribute selector |
+
+### Context Injection
+
+Use `describe().quickRef` for minimal AI context:
+
+```typescript
+const systemPrompt = `You are a browser automation agent.
+${agent.describe().quickRef}`;
+```
+
+### Error Recovery
+
+When actions fail, use inline help to understand correct usage:
+
+```typescript
+try {
+  await agent.execute({ id: '1', action: 'clck', selector: '#btn' });
+} catch (error) {
+  // Get help for similar action
+  const help = await agent.execute({ id: '2', action: 'clck', help: true });
+  console.log(help.data.suggestions); // ['click']
+}
 ```
 
 ## Limitations
