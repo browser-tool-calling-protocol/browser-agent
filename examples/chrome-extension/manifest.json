@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Aspect Browser Agent",
+  "name": "BTCP Browser Agent",
   "version": "1.0.0",
-  "description": "AI browser automation with DOM actions and navigation",
+  "description": "Browser automation with DOM actions and navigation",
 
   "permissions": [
     "activeTab",
@@ -15,14 +15,14 @@
   ],
 
   "background": {
-    "service_worker": "background.js",
+    "service_worker": "dist/background.js",
     "type": "module"
   },
 
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"],
+      "js": ["dist/content.js"],
       "run_at": "document_idle",
       "all_frames": true
     }
@@ -30,6 +30,6 @@
 
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Aspect Agent"
+    "default_title": "BTCP Agent"
   }
 }

@@ -1,178 +1,147 @@
 # Chrome Extension Example
 
-This example demonstrates the clean BackgroundAgent/ContentAgent architecture for browser automation.
+Production-ready TypeScript example using `btcp-browser-agent`.
 
-## Architecture
+## Project Structure
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│  Background Script (Service Worker)                              │
-│  ┌─────────────────────────────────────────────────────────────┐│
-│  │ BackgroundAgent                                              ││
-│  │  - Tab management (newTab, closeTab, switchTab, listTabs)   ││
-│  │  - Navigation (navigate, back, forward, reload)             ││
-│  │  - Screenshots (screenshot)                                  ││
-│  │  - Routes DOM commands → ContentAgent                       ││
-│  └─────────────────────────────────────────────────────────────┘│
-└─────────────────────────────────────────────────────────────────┘
-                              │
-            chrome.tabs.sendMessage
-                              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  Content Script (Per Tab)                                        │
-│  ┌─────────────────────────────────────────────────────────────┐│
-│  │ ContentAgent                                                 ││
-│  │  - DOM snapshot (accessibility tree with refs)              ││
-│  │  - Element interaction (click, type, fill, hover)           ││
-│  │  - DOM queries (getText, getAttribute, isVisible)           ││
-│  └─────────────────────────────────────────────────────────────┘│
-└─────────────────────────────────────────────────────────────────┘
+examples/chrome-extension/
+├── src/
+│   ├── content.ts      # DOM agent + message listener
+│   ├── background.ts   # routes messages
+│   └── popup.ts        # UI using createClient
+├── dist/               # Built output (gitignored)
+├── manifest.json       # Chrome extension manifest
+├── popup.html          # Popup UI
+├── package.json        # Build dependencies
+├── tsconfig.json       # TypeScript config
+└── build.js            # esbuild script
 ```
 
-## Key Concepts
+## Source Files
 
-| Agent | Location | Responsibilities |
-|-------|----------|------------------|
-| **BackgroundAgent** | Background script | Tabs, navigation, screenshots |
-| **ContentAgent** | Content script | DOM operations |
+**src/content.ts** - registers DOM agent and message listener
+```typescript
+import { createContentAgent } from 'btcp-browser-agent/extension';
 
-**No script injection needed** - Content scripts have direct DOM access via Chrome's isolated world.
+const agent = createContentAgent();
+chrome.runtime.onMessage.addListener(agent.handleMessage);
+```
 
-## Files
+**src/background.ts** - routes messages
+```typescript
+import { setupMessageListener } from 'btcp-browser-agent/extension';
+setupMessageListener();
+```
 
-- `manifest.json` - Extension manifest (Manifest V3)
-- `background.js` - BackgroundAgent implementation
-- `content.js` - ContentAgent implementation
-- `popup.html/js` - Extension popup UI
+**src/popup.ts** - sends commands
+```typescript
+import { createClient } from 'btcp-browser-agent/extension';
 
-## Installation
+const client = createClient();
+await client.navigate('https://example.com');
+const { tree } = await client.snapshot();
+await client.click('@ref:5');
+```
+
+## Setup
+
+```bash
+# Install dependencies
+npm install
+
+# Build the extension
+npm run build
+
+# Or watch for changes
+npm run watch
+```
+
+## Load Extension
 
 1. Open `chrome://extensions`
 2. Enable "Developer mode"
 3. Click "Load unpacked"
 4. Select this directory
 
-## Usage
+## Architecture
 
-### Single Tab (Default)
-
-```javascript
-// All commands target the active tab
-await aspectAgent.navigate('https://example.com');
-const snapshot = await aspectAgent.snapshot();
-await aspectAgent.click('@ref:0');
-await aspectAgent.fill('@ref:1', 'hello@example.com');
+```
+Popup ──chrome.runtime.sendMessage──► Background (setupMessageListener)
+                                           │
+                                    chrome.tabs.sendMessage
+                                           ▼
+                                      Content Script (auto-registered)
+                                           │
+                                      ContentAgent → DOM
 ```
 
-### Multi-Tab Operations
+## API Usage
 
-```javascript
-// Open multiple tabs
-const tab1 = await aspectAgent.tabNew({ url: 'https://google.com' });
-const tab2 = await aspectAgent.tabNew({ url: 'https://github.com', active: false });
+```typescript
+import { createClient } from 'btcp-browser-agent/extension';
 
-// Method 1: Use tab() handle for specific tab (no switching needed)
-const tab2Handle = browserAgent.tab(tab2.id);
-await tab2Handle.snapshot();           // Get GitHub page structure
-await tab2Handle.click('@ref:5');      // Click on GitHub
+const client = createClient();
 
-// Method 2: Specify tabId in execute options
-await browserAgent.execute(
-  { id: '1', action: 'getText', selector: 'h1' },
-  { tabId: tab2.id }
-);
+// Navigation
+await client.navigate('https://example.com');
+await client.back();
+await client.forward();
+await client.reload();
 
-// Active tab remains tab1 (Google) - no switching occurred
-const googleSnapshot = await aspectAgent.snapshot();
+// DOM operations
+const { tree } = await client.snapshot();
+await client.click('@ref:5');
+await client.fill('@ref:3', 'hello@example.com');
+await client.type('@ref:3', 'typing slowly', { delay: 50 });
+const text = await client.getText('@ref:5');
+const visible = await client.isVisible('@ref:5');
+
+// Tab management
+const tabs = await client.tabList();
+const newTab = await client.tabNew({ url: 'https://github.com' });
+await client.tabSwitch(newTab.tabId);
+await client.tabClose(newTab.tabId);
+
+// Screenshot
+const base64 = await client.screenshot();
 ```
 
-### Production Usage (with bundler)
+## Command Reference
 
-**Background script:**
-```javascript
-import { BackgroundAgent, setupMessageListener } from '@btcp/extension';
+### Browser Operations (BackgroundAgent)
 
-// Option 1: Auto message routing
-setupMessageListener();
+| Method | Description |
+|--------|-------------|
+| `navigate(url)` | Navigate to URL |
+| `back()` / `forward()` | History navigation |
+| `reload()` | Reload page |
+| `screenshot()` | Capture visible tab |
+| `tabNew()` / `tabClose()` | Tab management |
+| `tabSwitch()` / `tabList()` | Tab switching |
+| `getUrl()` / `getTitle()` | Get page info |
 
-// Option 2: Programmatic control
-const agent = new BackgroundAgent();
-await agent.navigate('https://example.com');
-await agent.screenshot();
-```
+### DOM Operations (ContentAgent)
 
-**Content script:**
-```javascript
-import { createContentAgent } from '@btcp/core';
+| Method | Description |
+|--------|-------------|
+| `snapshot()` | Get accessibility tree with refs |
+| `click(selector)` | Click element |
+| `fill(selector, value)` | Set input value |
+| `type(selector, text)` | Type text with events |
+| `getText(selector)` | Get element text |
+| `isVisible(selector)` | Check visibility |
 
-const agent = createContentAgent();
-await agent.execute({ id: '1', action: 'snapshot' });
-await agent.execute({ id: '2', action: 'click', selector: '@ref:5' });
-```
+## Selectors
 
-## Command Routing
+```typescript
+// Ref from snapshot (recommended)
+await client.click('@ref:5');
 
-| Command Type | Handler | Examples |
-|--------------|---------|----------|
-| **Browser** | BackgroundAgent | `navigate`, `screenshot`, `tabNew` |
-| **DOM** | ContentAgent | `snapshot`, `click`, `fill`, `getText` |
-
-## Available Commands
-
-### BackgroundAgent Commands
-
-| Command | Parameters | Description |
-|---------|------------|-------------|
-| `navigate` | `url, waitUntil?` | Navigate to URL |
-| `back` | - | Go back |
-| `forward` | - | Go forward |
-| `reload` | `bypassCache?` | Reload page |
-| `screenshot` | `format?, quality?` | Capture visible tab |
-| `tabNew` | `url?, active?` | Create new tab |
-| `tabClose` | `tabId?` | Close tab |
-| `tabSwitch` | `tabId` | Switch to tab |
-| `tabList` | - | List all tabs |
-
-### ContentAgent Commands
-
-| Command | Parameters | Description |
-|---------|------------|-------------|
-| `snapshot` | `selector?, maxDepth?` | Get accessibility tree |
-| `click` | `selector` | Click element |
-| `fill` | `selector, value` | Set input value |
-| `type` | `selector, text, clear?` | Type text |
-| `check` | `selector` | Check checkbox |
-| `uncheck` | `selector` | Uncheck checkbox |
-| `select` | `selector, values` | Select option(s) |
-| `hover` | `selector` | Hover over element |
-| `scroll` | `selector?, x?, y?` | Scroll |
-| `getText` | `selector` | Get element text |
-| `isVisible` | `selector` | Check visibility |
-| `wait` | `selector?, timeout?` | Wait for element |
-| `evaluate` | `script` | Execute JavaScript |
-
-## Selector Formats
-
-- `@ref:0` - Element ref from snapshot (recommended)
-- `#id` - CSS ID selector
-- `.class` - CSS class selector
-- `[data-testid="x"]` - Attribute selector
-
-## AI Integration Example
-
-```javascript
-// background.js
-async function runAgent(task) {
-  // 1. Get page snapshot
-  const { data } = await aspectAgent.snapshot();
-
-  // 2. Send to AI with task
-  const aiResponse = await askAI(task, data.tree);
-
-  // 3. Execute AI's command
-  const command = JSON.parse(aiResponse);
-  return aspectAgent.execute(command);
-}
+// CSS selectors
+await client.click('#submit');
+await client.click('.btn-primary');
+await client.click('[data-testid="login"]');
 ```
 
 ## License
