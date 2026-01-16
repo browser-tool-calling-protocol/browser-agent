@@ -23,25 +23,49 @@ import type {
 } from './types.js';
 
 /**
+ * TabHandle - Interface for interacting with a specific tab
+ *
+ * Returned by BrowserAgent.tab(tabId) for tab-specific operations.
+ */
+export interface TabHandle {
+  readonly tabId: number;
+  execute(command: Command): Promise<Response>;
+  snapshot(options?: { selector?: string; maxDepth?: number }): Promise<Response>;
+  click(selector: string): Promise<Response>;
+  fill(selector: string, value: string): Promise<Response>;
+  type(selector: string, text: string, options?: { clear?: boolean }): Promise<Response>;
+  getText(selector: string): Promise<Response>;
+  isVisible(selector: string): Promise<Response>;
+}
+
+/**
  * BrowserAgent - High-level browser automation orchestrator
  *
  * Runs in the extension's background script/service worker.
  * Manages browser-level operations and routes DOM commands to
  * ContentAgent instances running in content scripts.
  *
- * @example
+ * @example Single tab (default - uses activeTabId)
  * ```typescript
- * // In background.ts
+ * const browser = new BrowserAgent();
+ * await browser.navigate('https://example.com');
+ * await browser.execute({ id: '1', action: 'click', selector: '#submit' });
+ * ```
+ *
+ * @example Multi-tab with explicit tabId
+ * ```typescript
  * const browser = new BrowserAgent();
  *
- * // Navigate to a URL
- * await browser.navigate('https://example.com');
+ * // Open two tabs
+ * const tab1 = await browser.newTab({ url: 'https://google.com' });
+ * const tab2 = await browser.newTab({ url: 'https://github.com', active: false });
  *
- * // Take a screenshot
- * const screenshot = await browser.screenshot();
+ * // Interact with specific tabs without switching
+ * await browser.tab(tab1.id).click('#search');
+ * await browser.tab(tab2.id).snapshot();
  *
- * // Execute a DOM command (routed to content script)
- * await browser.execute({ id: '1', action: 'click', selector: '#submit' });
+ * // Or specify tabId in command
+ * await browser.execute({ id: '1', action: 'snapshot' }, { tabId: tab2.id });
  * ```
  */
 export class BrowserAgent {
@@ -55,6 +79,97 @@ export class BrowserAgent {
   private async initActiveTab(): Promise<void> {
     const tab = await this.getActiveTab();
     this.activeTabId = tab?.id ?? null;
+  }
+
+  /**
+   * Get the current active tab ID
+   */
+  getActiveTabId(): number | null {
+    return this.activeTabId;
+  }
+
+  /**
+   * Set the active tab ID (for manual control)
+   */
+  setActiveTabId(tabId: number): void {
+    this.activeTabId = tabId;
+  }
+
+  /**
+   * Get a handle for interacting with a specific tab
+   *
+   * This allows you to send commands to any tab without switching the active tab.
+   *
+   * @example
+   * ```typescript
+   * const tab2Handle = browser.tab(tab2.id);
+   * await tab2Handle.snapshot();
+   * await tab2Handle.click('@ref:5');
+   * ```
+   */
+  tab(tabId: number): TabHandle {
+    const agent = this;
+    let cmdCounter = 0;
+    const genId = () => `tab_${tabId}_${Date.now()}_${cmdCounter++}`;
+
+    return {
+      tabId,
+
+      execute(command: Command): Promise<Response> {
+        return agent.sendToContentAgent(command, tabId);
+      },
+
+      snapshot(options?: { selector?: string; maxDepth?: number }): Promise<Response> {
+        return agent.sendToContentAgent({
+          id: genId(),
+          action: 'snapshot',
+          ...options,
+        } as Command, tabId);
+      },
+
+      click(selector: string): Promise<Response> {
+        return agent.sendToContentAgent({
+          id: genId(),
+          action: 'click',
+          selector,
+        } as Command, tabId);
+      },
+
+      fill(selector: string, value: string): Promise<Response> {
+        return agent.sendToContentAgent({
+          id: genId(),
+          action: 'fill',
+          selector,
+          value,
+        } as Command, tabId);
+      },
+
+      type(selector: string, text: string, options?: { clear?: boolean }): Promise<Response> {
+        return agent.sendToContentAgent({
+          id: genId(),
+          action: 'type',
+          selector,
+          text,
+          ...options,
+        } as Command, tabId);
+      },
+
+      getText(selector: string): Promise<Response> {
+        return agent.sendToContentAgent({
+          id: genId(),
+          action: 'getText',
+          selector,
+        } as Command, tabId);
+      },
+
+      isVisible(selector: string): Promise<Response> {
+        return agent.sendToContentAgent({
+          id: genId(),
+          action: 'isVisible',
+          selector,
+        } as Command, tabId);
+      },
+    };
   }
 
   // ============================================================================
@@ -257,8 +372,21 @@ export class BrowserAgent {
    *
    * Browser-level commands (navigate, screenshot, tabs) are handled here.
    * DOM-level commands are forwarded to the ContentAgent in the target tab.
+   *
+   * @param command - The command to execute
+   * @param options - Optional settings including target tabId
+   *
+   * @example Default (active tab)
+   * ```typescript
+   * await browser.execute({ id: '1', action: 'snapshot' });
+   * ```
+   *
+   * @example Specific tab
+   * ```typescript
+   * await browser.execute({ id: '1', action: 'snapshot' }, { tabId: 123 });
+   * ```
    */
-  async execute(command: Command): Promise<Response> {
+  async execute(command: Command, options?: { tabId?: number }): Promise<Response> {
     try {
       // Extension commands are handled directly by BrowserAgent
       if (this.isExtensionCommand(command)) {
@@ -266,7 +394,7 @@ export class BrowserAgent {
       }
 
       // DOM commands are forwarded to ContentAgent in the target tab
-      return this.sendToContentAgent(command);
+      return this.sendToContentAgent(command, options?.tabId);
     } catch (error) {
       return {
         id: command.id,

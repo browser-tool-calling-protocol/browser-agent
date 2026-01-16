@@ -54,18 +54,36 @@ This example demonstrates the clean BrowserAgent/ContentAgent architecture for b
 
 ## Usage
 
-### From Popup UI
+### Single Tab (Default)
 
 ```javascript
-// BrowserAgent commands
+// All commands target the active tab
 await aspectAgent.navigate('https://example.com');
-await aspectAgent.screenshot();
-await aspectAgent.tabNew({ url: 'https://google.com' });
-
-// DOM commands (routed to ContentAgent)
 const snapshot = await aspectAgent.snapshot();
 await aspectAgent.click('@ref:0');
 await aspectAgent.fill('@ref:1', 'hello@example.com');
+```
+
+### Multi-Tab Operations
+
+```javascript
+// Open multiple tabs
+const tab1 = await aspectAgent.tabNew({ url: 'https://google.com' });
+const tab2 = await aspectAgent.tabNew({ url: 'https://github.com', active: false });
+
+// Method 1: Use tab() handle for specific tab (no switching needed)
+const tab2Handle = browserAgent.tab(tab2.id);
+await tab2Handle.snapshot();           // Get GitHub page structure
+await tab2Handle.click('@ref:5');      // Click on GitHub
+
+// Method 2: Specify tabId in execute options
+await browserAgent.execute(
+  { id: '1', action: 'getText', selector: 'h1' },
+  { tabId: tab2.id }
+);
+
+// Active tab remains tab1 (Google) - no switching occurred
+const googleSnapshot = await aspectAgent.snapshot();
 ```
 
 ### Production Usage (with bundler)

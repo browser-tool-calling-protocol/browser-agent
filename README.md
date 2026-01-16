@@ -129,6 +129,27 @@ const screenshot = await browser.screenshot({ format: 'png' });
 await browser.execute({ id: '1', action: 'click', selector: '#submit' });
 ```
 
+#### Multi-Tab Operations
+
+```typescript
+// Open tabs
+const tab1 = await browser.newTab({ url: 'https://google.com' });
+const tab2 = await browser.newTab({ url: 'https://github.com', active: false });
+
+// Method 1: tab() handle - interact without switching
+const githubTab = browser.tab(tab2.id);
+await githubTab.snapshot();
+await githubTab.click('@ref:5');
+
+// Method 2: Specify tabId in execute
+await browser.execute(
+  { id: '1', action: 'getText', selector: 'h1' },
+  { tabId: tab2.id }
+);
+
+// Active tab stays tab1 (no switching needed)
+```
+
 ### ContentAgent (Content Script)
 
 DOM automation agent that runs in content scripts or web pages.

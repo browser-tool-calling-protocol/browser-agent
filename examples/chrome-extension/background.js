@@ -72,6 +72,32 @@ class BrowserAgent {
     this.activeTabId = tabId;
   }
 
+  /**
+   * Get a handle for interacting with a specific tab without switching
+   *
+   * @example
+   * const tab2 = await browser.newTab({ url: 'https://github.com', active: false });
+   * const handle = browser.tab(tab2.id);
+   * await handle.snapshot();
+   * await handle.click('@ref:5');
+   */
+  tab(tabId) {
+    const agent = this;
+    let cmdCounter = 0;
+    const genId = () => `tab_${tabId}_${Date.now()}_${cmdCounter++}`;
+
+    return {
+      tabId,
+      execute: (command) => agent.sendToContentAgent(command, tabId),
+      snapshot: (options = {}) => agent.sendToContentAgent({ id: genId(), action: 'snapshot', ...options }, tabId),
+      click: (selector) => agent.sendToContentAgent({ id: genId(), action: 'click', selector }, tabId),
+      fill: (selector, value) => agent.sendToContentAgent({ id: genId(), action: 'fill', selector, value }, tabId),
+      type: (selector, text, options = {}) => agent.sendToContentAgent({ id: genId(), action: 'type', selector, text, ...options }, tabId),
+      getText: (selector) => agent.sendToContentAgent({ id: genId(), action: 'getText', selector }, tabId),
+      isVisible: (selector) => agent.sendToContentAgent({ id: genId(), action: 'isVisible', selector }, tabId),
+    };
+  }
+
   // --- Navigation ---
 
   async navigate(url, options = {}) {
@@ -123,12 +149,18 @@ class BrowserAgent {
 
   // --- Command Execution ---
 
-  async execute(command) {
+  /**
+   * Execute a command, optionally targeting a specific tab
+   *
+   * @param command - The command to execute
+   * @param options - Optional { tabId } to target a specific tab
+   */
+  async execute(command, options = {}) {
     try {
       if (this.isExtensionCommand(command)) {
         return this.executeExtensionCommand(command);
       }
-      return this.sendToContentAgent(command);
+      return this.sendToContentAgent(command, options.tabId);
     } catch (error) {
       return { id: command.id, success: false, error: error.message };
     }
