@@ -1,6 +1,6 @@
 # Chrome Extension Example
 
-This example demonstrates the clean BackgroundAgent/ContentAgent architecture for browser automation.
+This example demonstrates the clean BackgroundAgent/ContentAgent architecture for browser automation using BTCP Browser Agent.
 
 ## Architecture
 
@@ -58,56 +58,50 @@ This example demonstrates the clean BackgroundAgent/ContentAgent architecture fo
 
 ```javascript
 // All commands target the active tab
-await aspectAgent.navigate('https://example.com');
-const snapshot = await aspectAgent.snapshot();
-await aspectAgent.click('@ref:0');
-await aspectAgent.fill('@ref:1', 'hello@example.com');
+await btcpAgent.navigate('https://example.com');
+const snapshot = await btcpAgent.snapshot();
+await btcpAgent.click('@ref:0');
+await btcpAgent.fill('@ref:1', 'hello@example.com');
 ```
 
 ### Multi-Tab Operations
 
 ```javascript
 // Open multiple tabs
-const tab1 = await aspectAgent.tabNew({ url: 'https://google.com' });
-const tab2 = await aspectAgent.tabNew({ url: 'https://github.com', active: false });
+const tab1 = await btcpAgent.tabNew({ url: 'https://google.com' });
+const tab2 = await btcpAgent.tabNew({ url: 'https://github.com', active: false });
 
 // Method 1: Use tab() handle for specific tab (no switching needed)
-const tab2Handle = browserAgent.tab(tab2.id);
+const tab2Handle = btcpAgent.tab(tab2.id);
 await tab2Handle.snapshot();           // Get GitHub page structure
 await tab2Handle.click('@ref:5');      // Click on GitHub
 
 // Method 2: Specify tabId in execute options
-await browserAgent.execute(
+await backgroundAgent.execute(
   { id: '1', action: 'getText', selector: 'h1' },
   { tabId: tab2.id }
 );
 
 // Active tab remains tab1 (Google) - no switching occurred
-const googleSnapshot = await aspectAgent.snapshot();
+const googleSnapshot = await btcpAgent.snapshot();
 ```
 
 ### Production Usage (with bundler)
 
-**Background script:**
 ```javascript
-import { BackgroundAgent, setupMessageListener } from '@btcp/extension';
+// content.ts - registers DOM agent
+import 'btcp-browser-agent/extension/content';
 
-// Option 1: Auto message routing
+// background.ts - routes messages
+import { setupMessageListener } from 'btcp-browser-agent/extension';
 setupMessageListener();
 
-// Option 2: Programmatic control
-const agent = new BackgroundAgent();
-await agent.navigate('https://example.com');
-await agent.screenshot();
-```
-
-**Content script:**
-```javascript
-import { createContentAgent } from '@btcp/core';
-
-const agent = createContentAgent();
-await agent.execute({ id: '1', action: 'snapshot' });
-await agent.execute({ id: '2', action: 'click', selector: '@ref:5' });
+// popup.ts - sends commands
+import { createClient } from 'btcp-browser-agent/extension';
+const client = createClient();
+await client.navigate('https://example.com');
+const { tree } = await client.snapshot();
+await client.click('@ref:5');
 ```
 
 ## Command Routing
@@ -164,14 +158,14 @@ await agent.execute({ id: '2', action: 'click', selector: '@ref:5' });
 // background.js
 async function runAgent(task) {
   // 1. Get page snapshot
-  const { data } = await aspectAgent.snapshot();
+  const { data } = await btcpAgent.snapshot();
 
   // 2. Send to AI with task
   const aiResponse = await askAI(task, data.tree);
 
   // 3. Execute AI's command
   const command = JSON.parse(aiResponse);
-  return aspectAgent.execute(command);
+  return btcpAgent.execute(command);
 }
 ```
 

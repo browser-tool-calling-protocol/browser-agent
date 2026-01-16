@@ -1,17 +1,18 @@
 /**
  * Background Service Worker
  *
- * Using BackgroundAgent from @aspect/extension for clean, class-based API.
+ * Using BackgroundAgent from btcp-browser-agent/extension for clean, class-based API.
  *
  * In production with bundler:
- *   import { BackgroundAgent, setupMessageListener } from '@aspect/extension';
+ *   import { setupMessageListener } from 'btcp-browser-agent/extension';
+ *   setupMessageListener();
  *
  * This standalone example implements the same API inline.
  */
 
 // ============================================================================
 // BackgroundAgent - High-level browser orchestrator
-// In production: import { BackgroundAgent } from '@aspect/extension';
+// In production: import { setupMessageListener } from 'btcp-browser-agent/extension';
 // ============================================================================
 
 class BackgroundAgent {
@@ -175,7 +176,7 @@ class BackgroundAgent {
     return new Promise((resolve) => {
       chrome.tabs.sendMessage(
         targetTabId,
-        { type: 'aspect:command', command },
+        { type: 'btcp:command', command },
         (response) => {
           if (chrome.runtime.lastError) {
             resolve({
@@ -288,21 +289,21 @@ class BackgroundAgent {
 
 const backgroundAgent = new BackgroundAgent();
 
-// Set up message routing (equivalent to setupMessageListener() from @aspect/extension)
+// Set up message routing (equivalent to setupMessageListener() from btcp-browser-agent/extension)
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
-  console.log('[Background] Received:', message.type);
+  console.log('[BTCP] Received:', message.type);
 
-  if (message.type !== 'aspect:command') {
+  if (message.type !== 'btcp:command') {
     return false;
   }
 
   backgroundAgent.execute(message.command)
     .then(response => {
-      sendResponse({ type: 'aspect:response', response });
+      sendResponse({ type: 'btcp:response', response });
     })
     .catch(error => {
       sendResponse({
-        type: 'aspect:response',
+        type: 'btcp:response',
         response: { id: message.command.id, success: false, error: error.message }
       });
     });
@@ -321,7 +322,7 @@ function generateCommandId() {
 }
 
 // Expose BackgroundAgent methods with auto-generated IDs
-globalThis.aspectAgent = {
+globalThis.btcpAgent = {
   // Direct BackgroundAgent methods
   navigate: (url, options) => backgroundAgent.execute({ id: generateCommandId(), action: 'navigate', url, ...options }),
   back: () => backgroundAgent.execute({ id: generateCommandId(), action: 'back' }),
@@ -346,4 +347,4 @@ globalThis.aspectAgent = {
   tab: (tabId) => backgroundAgent.tab(tabId),
 };
 
-console.log('[Aspect] BackgroundAgent loaded in background script');
+console.log('[BTCP] BackgroundAgent loaded in background script');

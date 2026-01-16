@@ -1,7 +1,7 @@
 /**
  * Popup Script
  *
- * UI for controlling the Aspect Browser Agent.
+ * UI for controlling the BTCP Browser Agent.
  * Sends commands to background script which routes them appropriately.
  */
 
@@ -23,11 +23,11 @@ async function sendCommand(command) {
     log(`Executing: ${command.action}...`);
 
     const response = await chrome.runtime.sendMessage({
-      type: 'aspect:command',
+      type: 'btcp:command',
       command,
     });
 
-    if (response?.type === 'aspect:response') {
+    if (response?.type === 'btcp:response') {
       log(response.response);
       return response.response;
     } else {

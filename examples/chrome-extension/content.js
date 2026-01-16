@@ -1,18 +1,17 @@
 /**
  * Content Script - Runs in web pages
  *
- * Uses ContentAgent pattern from @aspect/core for DOM operations.
+ * Uses ContentAgent pattern from @btcp/core for DOM operations.
  *
  * In production with bundler:
- *   import { createContentAgent } from '@aspect/core';
- *   const agent = createContentAgent();
+ *   import 'btcp-browser-agent/extension/content';
  *
  * This standalone example implements the same API inline.
  */
 
 // ============================================================================
 // ContentAgent - DOM automation agent
-// In production: import { createContentAgent } from '@aspect/core';
+// In production: import 'btcp-browser-agent/extension/content';
 // ============================================================================
 
 function createContentAgent(doc = document, win = window) {
@@ -365,15 +364,15 @@ const contentAgent = createContentAgent();
 
 // Listen for commands from background script
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
-  if (message.type !== 'aspect:command') return false;
+  if (message.type !== 'btcp:command') return false;
 
   contentAgent.execute(message.command)
     .then(response => {
-      sendResponse({ type: 'aspect:response', response });
+      sendResponse({ type: 'btcp:response', response });
     })
     .catch(error => {
       sendResponse({
-        type: 'aspect:response',
+        type: 'btcp:response',
         response: {
           id: message.command.id,
           success: false,
@@ -385,4 +384,4 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   return true; // Keep channel open for async response
 });
 
-console.log('[Aspect] ContentAgent loaded in content script');
+console.log('[BTCP] ContentAgent loaded in content script');
