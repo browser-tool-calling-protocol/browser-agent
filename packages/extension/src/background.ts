@@ -1,11 +1,15 @@
 /**
  * @aspect/extension - Background Script
  *
- * Runs as service worker, handles:
- * - Navigation (navigate, back, forward, reload)
- * - Tab management (new, close, switch, list)
- * - Screenshots
- * - Forwarding DOM commands to content scripts
+ * Contains BrowserAgent - the high-level orchestrator that runs in the
+ * extension's background/service worker context.
+ *
+ * BrowserAgent manages:
+ * - Tab lifecycle (create, close, switch, list)
+ * - Navigation (goto, back, forward, reload)
+ * - Screenshots (chrome.tabs.captureVisibleTab)
+ * - Session state
+ * - Routing DOM commands to ContentAgents in target tabs
  */
 
 import type {
@@ -15,342 +19,456 @@ import type {
   ExtensionResponse,
   Response,
   TabInfo,
+  ChromeTab,
 } from './types.js';
 
 /**
- * Check if a command is an extension command (handled by background)
+ * BrowserAgent - High-level browser automation orchestrator
+ *
+ * Runs in the extension's background script/service worker.
+ * Manages browser-level operations and routes DOM commands to
+ * ContentAgent instances running in content scripts.
+ *
+ * @example
+ * ```typescript
+ * // In background.ts
+ * const browser = new BrowserAgent();
+ *
+ * // Navigate to a URL
+ * await browser.navigate('https://example.com');
+ *
+ * // Take a screenshot
+ * const screenshot = await browser.screenshot();
+ *
+ * // Execute a DOM command (routed to content script)
+ * await browser.execute({ id: '1', action: 'click', selector: '#submit' });
+ * ```
  */
-function isExtensionCommand(command: Command): command is ExtensionCommand {
-  const extensionActions = [
-    'navigate', 'back', 'forward', 'reload',
-    'getUrl', 'getTitle', 'screenshot',
-    'tabNew', 'tabClose', 'tabSwitch', 'tabList',
-  ];
-  return extensionActions.includes(command.action);
-}
+export class BrowserAgent {
+  private activeTabId: number | null = null;
 
-/**
- * Get the active tab
- */
-function getActiveTab(): Promise<chrome.tabs.Tab | null> {
-  return new Promise((resolve) => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      resolve(tabs[0] || null);
-    });
-  });
-}
+  constructor() {
+    // Initialize active tab on creation
+    this.initActiveTab();
+  }
 
-/**
- * Send command to content script in a tab
- */
-function sendToContentScript(tabId: number, command: Command): Promise<Response> {
-  return new Promise((resolve) => {
-    chrome.tabs.sendMessage(
-      tabId,
-      { type: 'aspect:command', command } satisfies ExtensionMessage,
-      (response) => {
-        if (chrome.runtime.lastError) {
-          resolve({
-            id: command.id,
-            success: false,
-            error: chrome.runtime.lastError.message || 'Failed to send message to tab',
-          });
-        } else {
-          const resp = response as ExtensionResponse;
-          resolve(resp.response);
-        }
-      }
-    );
-  });
-}
+  private async initActiveTab(): Promise<void> {
+    const tab = await this.getActiveTab();
+    this.activeTabId = tab?.id ?? null;
+  }
 
-/**
- * Wait for tab to finish loading
- */
-function waitForTabLoad(tabId: number, timeout = 30000): Promise<void> {
-  return new Promise((resolve, reject) => {
-    const startTime = Date.now();
+  // ============================================================================
+  // TAB MANAGEMENT
+  // ============================================================================
 
-    const checkTab = () => {
-      chrome.tabs.get(tabId, (tab) => {
-        if (chrome.runtime.lastError) {
-          reject(new Error(chrome.runtime.lastError.message));
-          return;
-        }
-
-        if (tab.status === 'complete') {
-          resolve();
-          return;
-        }
-
-        if (Date.now() - startTime > timeout) {
-          reject(new Error('Tab load timeout'));
-          return;
-        }
-
-        setTimeout(checkTab, 100);
+  /**
+   * Get the currently active tab
+   */
+  async getActiveTab(): Promise<ChromeTab | null> {
+    return new Promise((resolve) => {
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        resolve(tabs[0] || null);
       });
+    });
+  }
+
+  /**
+   * List all tabs in the current window
+   */
+  async listTabs(): Promise<TabInfo[]> {
+    const tabs = await new Promise<ChromeTab[]>((resolve) => {
+      chrome.tabs.query({ currentWindow: true }, (t) => resolve(t));
+    });
+
+    return tabs.map((t) => ({
+      id: t.id!,
+      url: t.url,
+      title: t.title,
+      active: t.active,
+      index: t.index,
+    }));
+  }
+
+  /**
+   * Create a new tab
+   */
+  async newTab(options?: { url?: string; active?: boolean }): Promise<TabInfo> {
+    const tab = await new Promise<ChromeTab>((resolve) => {
+      chrome.tabs.create(
+        { url: options?.url, active: options?.active ?? true },
+        (t) => resolve(t)
+      );
+    });
+
+    if (options?.url) {
+      await this.waitForTabLoad(tab.id!);
+    }
+
+    if (options?.active !== false) {
+      this.activeTabId = tab.id!;
+    }
+
+    return {
+      id: tab.id!,
+      url: tab.url,
+      title: tab.title,
+      active: tab.active,
+      index: tab.index,
     };
+  }
 
-    checkTab();
-  });
-}
+  /**
+   * Close a tab
+   */
+  async closeTab(tabId?: number): Promise<void> {
+    const targetId = tabId ?? this.activeTabId;
+    if (!targetId) throw new Error('No tab to close');
 
-/**
- * Execute an extension command
- */
-async function executeExtensionCommand(command: ExtensionCommand): Promise<Response> {
-  try {
-    switch (command.action) {
-      case 'navigate': {
-        const tab = await getActiveTab();
-        if (!tab?.id) throw new Error('No active tab');
+    await new Promise<void>((resolve) => {
+      chrome.tabs.remove(targetId, () => resolve());
+    });
 
-        await new Promise<void>((resolve) => {
-          chrome.tabs.update(tab.id!, { url: command.url }, () => resolve());
-        });
+    // Update active tab if we closed the current one
+    if (targetId === this.activeTabId) {
+      const tab = await this.getActiveTab();
+      this.activeTabId = tab?.id ?? null;
+    }
+  }
 
-        if (command.waitUntil) {
-          await waitForTabLoad(tab.id);
+  /**
+   * Switch to a tab
+   */
+  async switchTab(tabId: number): Promise<void> {
+    await new Promise<void>((resolve) => {
+      chrome.tabs.update(tabId, { active: true }, () => resolve());
+    });
+    this.activeTabId = tabId;
+  }
+
+  // ============================================================================
+  // NAVIGATION
+  // ============================================================================
+
+  /**
+   * Navigate to a URL
+   */
+  async navigate(url: string, options?: { waitUntil?: 'load' | 'domcontentloaded' }): Promise<void> {
+    const tabId = this.activeTabId ?? (await this.getActiveTab())?.id;
+    if (!tabId) throw new Error('No active tab');
+
+    await new Promise<void>((resolve) => {
+      chrome.tabs.update(tabId, { url }, () => resolve());
+    });
+
+    if (options?.waitUntil) {
+      await this.waitForTabLoad(tabId);
+    }
+  }
+
+  /**
+   * Go back in history
+   */
+  async back(): Promise<void> {
+    const tabId = this.activeTabId ?? (await this.getActiveTab())?.id;
+    if (!tabId) throw new Error('No active tab');
+
+    await new Promise<void>((resolve) => {
+      chrome.tabs.goBack(tabId, () => resolve());
+    });
+  }
+
+  /**
+   * Go forward in history
+   */
+  async forward(): Promise<void> {
+    const tabId = this.activeTabId ?? (await this.getActiveTab())?.id;
+    if (!tabId) throw new Error('No active tab');
+
+    await new Promise<void>((resolve) => {
+      chrome.tabs.goForward(tabId, () => resolve());
+    });
+  }
+
+  /**
+   * Reload the current page
+   */
+  async reload(options?: { bypassCache?: boolean }): Promise<void> {
+    const tabId = this.activeTabId ?? (await this.getActiveTab())?.id;
+    if (!tabId) throw new Error('No active tab');
+
+    await new Promise<void>((resolve) => {
+      chrome.tabs.reload(tabId, { bypassCache: options?.bypassCache }, () => resolve());
+    });
+
+    await this.waitForTabLoad(tabId);
+  }
+
+  /**
+   * Get the current URL
+   */
+  async getUrl(): Promise<string> {
+    const tab = await this.getActiveTab();
+    return tab?.url || '';
+  }
+
+  /**
+   * Get the page title
+   */
+  async getTitle(): Promise<string> {
+    const tab = await this.getActiveTab();
+    return tab?.title || '';
+  }
+
+  // ============================================================================
+  // SCREENSHOTS
+  // ============================================================================
+
+  /**
+   * Capture a screenshot of the visible tab
+   */
+  async screenshot(options?: { format?: 'png' | 'jpeg'; quality?: number }): Promise<string> {
+    const format = options?.format || 'png';
+    const quality = options?.quality;
+
+    const dataUrl = await new Promise<string>((resolve, reject) => {
+      chrome.tabs.captureVisibleTab(
+        null,
+        { format, quality },
+        (url) => {
+          if (chrome.runtime.lastError) {
+            reject(new Error(chrome.runtime.lastError.message));
+          } else {
+            resolve(url);
+          }
         }
+      );
+    });
 
-        return {
-          id: command.id,
-          success: true,
-          data: { url: command.url },
-        };
+    // Extract base64 data from data URL
+    return dataUrl.split(',')[1];
+  }
+
+  // ============================================================================
+  // COMMAND EXECUTION
+  // ============================================================================
+
+  /**
+   * Execute a command - routes to appropriate handler
+   *
+   * Browser-level commands (navigate, screenshot, tabs) are handled here.
+   * DOM-level commands are forwarded to the ContentAgent in the target tab.
+   */
+  async execute(command: Command): Promise<Response> {
+    try {
+      // Extension commands are handled directly by BrowserAgent
+      if (this.isExtensionCommand(command)) {
+        return this.executeExtensionCommand(command);
       }
 
-      case 'back': {
-        const tab = await getActiveTab();
-        if (!tab?.id) throw new Error('No active tab');
+      // DOM commands are forwarded to ContentAgent in the target tab
+      return this.sendToContentAgent(command);
+    } catch (error) {
+      return {
+        id: command.id,
+        success: false,
+        error: error instanceof Error ? error.message : String(error),
+      };
+    }
+  }
 
-        await new Promise<void>((resolve) => {
-          chrome.tabs.goBack(tab.id!, () => resolve());
-        });
+  /**
+   * Send a command to the ContentAgent in a specific tab
+   */
+  async sendToContentAgent(command: Command, tabId?: number): Promise<Response> {
+    const targetTabId = tabId ?? this.activeTabId ?? (await this.getActiveTab())?.id;
 
-        return {
-          id: command.id,
-          success: true,
-          data: { navigated: 'back' },
-        };
-      }
+    if (!targetTabId) {
+      return {
+        id: command.id,
+        success: false,
+        error: 'No active tab for DOM command',
+      };
+    }
 
-      case 'forward': {
-        const tab = await getActiveTab();
-        if (!tab?.id) throw new Error('No active tab');
+    return new Promise((resolve) => {
+      chrome.tabs.sendMessage(
+        targetTabId,
+        { type: 'aspect:command', command } satisfies ExtensionMessage,
+        (response) => {
+          if (chrome.runtime.lastError) {
+            resolve({
+              id: command.id,
+              success: false,
+              error: chrome.runtime.lastError.message || 'Failed to send message to tab',
+            });
+          } else {
+            const resp = response as ExtensionResponse;
+            resolve(resp.response);
+          }
+        }
+      );
+    });
+  }
 
-        await new Promise<void>((resolve) => {
-          chrome.tabs.goForward(tab.id!, () => resolve());
-        });
+  // ============================================================================
+  // PRIVATE HELPERS
+  // ============================================================================
 
-        return {
-          id: command.id,
-          success: true,
-          data: { navigated: 'forward' },
-        };
-      }
+  private isExtensionCommand(command: Command): command is ExtensionCommand {
+    const extensionActions = [
+      'navigate', 'back', 'forward', 'reload',
+      'getUrl', 'getTitle', 'screenshot',
+      'tabNew', 'tabClose', 'tabSwitch', 'tabList',
+    ];
+    return extensionActions.includes(command.action);
+  }
 
-      case 'reload': {
-        const tab = await getActiveTab();
-        if (!tab?.id) throw new Error('No active tab');
+  private async executeExtensionCommand(command: ExtensionCommand): Promise<Response> {
+    switch (command.action) {
+      case 'navigate':
+        await this.navigate(command.url, { waitUntil: command.waitUntil });
+        return { id: command.id, success: true, data: { url: command.url } };
 
-        await new Promise<void>((resolve) => {
-          chrome.tabs.reload(tab.id!, { bypassCache: command.bypassCache }, () => resolve());
-        });
+      case 'back':
+        await this.back();
+        return { id: command.id, success: true, data: { navigated: 'back' } };
 
-        await waitForTabLoad(tab.id);
+      case 'forward':
+        await this.forward();
+        return { id: command.id, success: true, data: { navigated: 'forward' } };
 
-        return {
-          id: command.id,
-          success: true,
-          data: { reloaded: true },
-        };
-      }
+      case 'reload':
+        await this.reload({ bypassCache: command.bypassCache });
+        return { id: command.id, success: true, data: { reloaded: true } };
 
       case 'getUrl': {
-        const tab = await getActiveTab();
-        return {
-          id: command.id,
-          success: true,
-          data: { url: tab?.url || '' },
-        };
+        const url = await this.getUrl();
+        return { id: command.id, success: true, data: { url } };
       }
 
       case 'getTitle': {
-        const tab = await getActiveTab();
-        return {
-          id: command.id,
-          success: true,
-          data: { title: tab?.title || '' },
-        };
+        const title = await this.getTitle();
+        return { id: command.id, success: true, data: { title } };
       }
 
       case 'screenshot': {
-        const format = command.format || 'png';
-        const quality = command.quality;
-
-        const dataUrl = await new Promise<string>((resolve, reject) => {
-          chrome.tabs.captureVisibleTab(
-            null,
-            { format, quality },
-            (url) => {
-              if (chrome.runtime.lastError) {
-                reject(new Error(chrome.runtime.lastError.message));
-              } else {
-                resolve(url);
-              }
-            }
-          );
+        const screenshot = await this.screenshot({
+          format: command.format,
+          quality: command.quality,
         });
-
-        // Extract base64 data from data URL
-        const base64 = dataUrl.split(',')[1];
-
-        return {
-          id: command.id,
-          success: true,
-          data: { screenshot: base64, format },
-        };
+        return { id: command.id, success: true, data: { screenshot, format: command.format || 'png' } };
       }
 
       case 'tabNew': {
-        const tab = await new Promise<chrome.tabs.Tab>((resolve) => {
-          chrome.tabs.create(
-            { url: command.url, active: command.active ?? true },
-            (t) => resolve(t)
-          );
-        });
-
-        if (command.url) {
-          await waitForTabLoad(tab.id!);
-        }
-
-        return {
-          id: command.id,
-          success: true,
-          data: { tabId: tab.id, url: tab.url },
-        };
+        const tab = await this.newTab({ url: command.url, active: command.active });
+        return { id: command.id, success: true, data: { tabId: tab.id, url: tab.url } };
       }
 
-      case 'tabClose': {
-        let tabId = command.tabId;
-        if (!tabId) {
-          const tab = await getActiveTab();
-          tabId = tab?.id;
-        }
+      case 'tabClose':
+        await this.closeTab(command.tabId);
+        return { id: command.id, success: true, data: { closed: command.tabId ?? this.activeTabId } };
 
-        if (!tabId) throw new Error('No tab to close');
-
-        await new Promise<void>((resolve) => {
-          chrome.tabs.remove(tabId!, () => resolve());
-        });
-
-        return {
-          id: command.id,
-          success: true,
-          data: { closed: tabId },
-        };
-      }
-
-      case 'tabSwitch': {
-        await new Promise<void>((resolve) => {
-          chrome.tabs.update(command.tabId, { active: true }, () => resolve());
-        });
-
-        return {
-          id: command.id,
-          success: true,
-          data: { switched: command.tabId },
-        };
-      }
+      case 'tabSwitch':
+        await this.switchTab(command.tabId);
+        return { id: command.id, success: true, data: { switched: command.tabId } };
 
       case 'tabList': {
-        const tabs = await new Promise<chrome.tabs.Tab[]>((resolve) => {
-          chrome.tabs.query({ currentWindow: true }, (t) => resolve(t));
-        });
-
-        const tabList: TabInfo[] = tabs.map((t) => ({
-          id: t.id!,
-          url: t.url,
-          title: t.title,
-          active: t.active,
-          index: t.index,
-        }));
-
-        return {
-          id: command.id,
-          success: true,
-          data: { tabs: tabList },
-        };
+        const tabs = await this.listTabs();
+        return { id: command.id, success: true, data: { tabs } };
       }
 
       default:
         throw new Error(`Unknown extension action: ${(command as ExtensionCommand).action}`);
     }
-  } catch (error) {
-    return {
-      id: command.id,
-      success: false,
-      error: error instanceof Error ? error.message : String(error),
-    };
-  }
-}
-
-/**
- * Handle incoming command
- */
-async function handleCommand(command: Command, tabId?: number): Promise<Response> {
-  // Extension commands are handled here
-  if (isExtensionCommand(command)) {
-    return executeExtensionCommand(command);
   }
 
-  // DOM commands are forwarded to content script
-  let targetTabId = tabId;
-  if (!targetTabId) {
-    const tab = await getActiveTab();
-    targetTabId = tab?.id;
-  }
+  private waitForTabLoad(tabId: number, timeout = 30000): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const startTime = Date.now();
 
-  if (!targetTabId) {
-    return {
-      id: command.id,
-      success: false,
-      error: 'No active tab for DOM command',
-    };
-  }
+      const checkTab = () => {
+        chrome.tabs.get(tabId, (tab) => {
+          if (chrome.runtime.lastError) {
+            reject(new Error(chrome.runtime.lastError.message));
+            return;
+          }
 
-  return sendToContentScript(targetTabId, command);
-}
+          if (tab.status === 'complete') {
+            resolve();
+            return;
+          }
 
-/**
- * Listen for messages from popup or external sources
- */
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  const msg = message as ExtensionMessage;
+          if (Date.now() - startTime > timeout) {
+            reject(new Error('Tab load timeout'));
+            return;
+          }
 
-  if (msg.type !== 'aspect:command') {
-    return false;
-  }
+          setTimeout(checkTab, 100);
+        });
+      };
 
-  handleCommand(msg.command, msg.tabId || sender.tab?.id)
-    .then((response) => {
-      sendResponse({ type: 'aspect:response', response } satisfies ExtensionResponse);
-    })
-    .catch((error) => {
-      sendResponse({
-        type: 'aspect:response',
-        response: {
-          id: msg.command.id,
-          success: false,
-          error: error instanceof Error ? error.message : String(error),
-        },
-      } satisfies ExtensionResponse);
+      checkTab();
     });
+  }
+}
 
-  return true;
-});
+// ============================================================================
+// MESSAGE LISTENER SETUP
+// ============================================================================
 
-// Export for programmatic use
-export { handleCommand, executeExtensionCommand, sendToContentScript };
+// Singleton instance for message handling
+let browserAgent: BrowserAgent | null = null;
+
+/**
+ * Get or create the BrowserAgent singleton
+ */
+export function getBrowserAgent(): BrowserAgent {
+  if (!browserAgent) {
+    browserAgent = new BrowserAgent();
+  }
+  return browserAgent;
+}
+
+/**
+ * Set up the message listener for the background script
+ * Call this once in your background.ts to enable command routing
+ */
+export function setupMessageListener(): void {
+  chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+    const msg = message as ExtensionMessage;
+
+    if (msg.type !== 'aspect:command') {
+      return false;
+    }
+
+    const agent = getBrowserAgent();
+
+    // Execute the command (BrowserAgent handles routing to correct tab)
+    agent.execute(msg.command)
+      .then((response) => {
+        sendResponse({ type: 'aspect:response', response } satisfies ExtensionResponse);
+      })
+      .catch((error) => {
+        sendResponse({
+          type: 'aspect:response',
+          response: {
+            id: msg.command.id,
+            success: false,
+            error: error instanceof Error ? error.message : String(error),
+          },
+        } satisfies ExtensionResponse);
+      });
+
+    return true; // Keep channel open for async response
+  });
+}
+
+// Legacy exports for backwards compatibility
+export const handleCommand = (command: Command, _tabId?: number) =>
+  getBrowserAgent().execute(command);
+
+export const executeExtensionCommand = (command: ExtensionCommand) =>
+  getBrowserAgent().execute(command);
+
+export const sendToContentScript = (_tabId: number, command: Command) =>
+  getBrowserAgent().sendToContentAgent(command, _tabId);
