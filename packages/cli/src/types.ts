@@ -35,6 +35,20 @@ export interface CommandResult {
 }
 
 /**
+ * Result of executing multiple commands
+ */
+export interface BatchResult {
+  /** Results for each command in order */
+  results: CommandResult[];
+  /** Whether all commands succeeded */
+  allSucceeded: boolean;
+  /** Index of first failed command (-1 if all succeeded) */
+  firstFailedIndex: number;
+  /** Total number of commands executed */
+  executed: number;
+}
+
+/**
  * Command handler definition
  */
 export interface CommandHandler {
@@ -127,8 +141,13 @@ export interface TerminalConfig {
  * CLI instance interface
  */
 export interface CLI {
-  /** Execute a command string */
+  /** Execute a single command or multiple commands (split by \n) */
   execute(input: string): Promise<CommandResult>;
+  /**
+   * Execute multiple commands (split by \n)
+   * Stops on first error unless continueOnError is true
+   */
+  executeAll(input: string, options?: { continueOnError?: boolean }): Promise<BatchResult>;
   /** Get available commands */
   getCommands(): CommandHandler[];
   /** Get help for a specific command */
