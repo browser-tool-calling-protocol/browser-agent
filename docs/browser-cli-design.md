@@ -26,66 +26,53 @@ agent-browser scroll down 200        # Scroll page
 agent-browser press Enter            # Press key
 ```
 
-## Proposed Architecture
+## Architecture
 
-### Option A: In-Browser Terminal UI (Recommended)
+### In-Browser CLI (Chrome Extension Only)
 
-A terminal-like interface embedded in the Chrome extension that provides CLI experience within the browser.
+Commands are sent directly from the Chrome extension - no external processes or WebSocket bridges needed.
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ BTCP Browser CLI                                        [_][x]│
-├─────────────────────────────────────────────────────────────┤
-│ $ snapshot                                                   │
-│ - button 'Submit' [@ref:1]                                  │
-│ - textbox 'Email' [@ref:2]                                  │
-│ - link 'Sign up' [@ref:3]                                   │
+│ Chrome Extension                                             │
 │                                                              │
-│ $ click @ref:1                                              │
-│ ✓ Clicked element: button 'Submit'                          │
-│                                                              │
-│ $ goto https://github.com                                   │
-│ ✓ Navigated to https://github.com                           │
-│                                                              │
-│ $ _                                                          │
+│  ┌─────────────────────────────────────────────────────────┐│
+│  │ Terminal UI (Popup/Panel)                               ││
+│  │ $ snapshot                                              ││
+│  │ - button 'Submit' [@ref:1]                              ││
+│  │ - textbox 'Email' [@ref:2]                              ││
+│  │                                                          ││
+│  │ $ click @ref:1                                          ││
+│  │ ✓ Clicked element: button 'Submit'                      ││
+│  └─────────────────────────────────────────────────────────┘│
+│                          │                                   │
+│                          ▼                                   │
+│  ┌─────────────────────────────────────────────────────────┐│
+│  │ CLI Parser & Executor (@btcp/cli)                       ││
+│  │ parseCommand() → executeCommand()                       ││
+│  └─────────────────────────────────────────────────────────┘│
+│                          │                                   │
+│                          ▼                                   │
+│  ┌─────────────────────────────────────────────────────────┐│
+│  │ BackgroundAgent (@btcp/extension)                       ││
+│  │ Tab management, navigation, routing                     ││
+│  └─────────────────────────────────────────────────────────┘│
+│                          │                                   │
+│           chrome.tabs.sendMessage()                          │
+│                          ▼                                   │
+│  ┌─────────────────────────────────────────────────────────┐│
+│  │ ContentAgent (@btcp/core)                               ││
+│  │ DOM operations, snapshots, interactions                 ││
+│  └─────────────────────────────────────────────────────────┘│
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**Pros:**
-- Native browser integration
+**Benefits:**
+- Pure browser-native approach
 - No external dependencies
-- Works with existing extension architecture
-- Real-time feedback
-- Perfect for AI agents embedded in browser
-
-**Cons:**
-- Limited to browser extension context
-
-### Option B: Node.js CLI with WebSocket Bridge
-
-A standalone Node.js CLI that communicates with the extension via WebSocket.
-
-```
-Terminal                    Extension
-   │                            │
-   │──── ws://localhost:9222 ──▶│
-   │                            │
-   │◀── JSON responses ─────────│
-```
-
-**Pros:**
-- Traditional CLI experience
-- Works with any terminal
-- Can be automated from external scripts
-
-**Cons:**
-- Requires WebSocket server in extension
-- Additional complexity
-- Requires native messaging host
-
-### Recommendation: Hybrid Approach
-
-Implement **Option A** first (in-browser CLI) as the primary interface, with a clean command parser that can later support Option B.
+- Direct integration with existing @btcp packages
+- Real-time command execution
+- Works entirely within extension context
 
 ## Implementation Plan
 
@@ -441,19 +428,27 @@ $ click @ref:3
 ✓ Clicked: button 'Sign in'
 ```
 
-### Programmatic API
+### Programmatic API (within extension)
 
 ```typescript
+// In popup.ts or background.ts
 import { createCLI } from '@btcp/cli';
 import { BackgroundAgent } from '@btcp/extension';
 
 const agent = new BackgroundAgent();
 const cli = createCLI(agent);
 
-// Execute commands programmatically
+// Execute commands programmatically from extension code
 await cli.execute('goto https://example.com');
 const snapshot = await cli.execute('snapshot');
 await cli.execute('click @ref:1');
+
+// Or use the Client API for structured access
+import { createClient } from '@btcp/extension';
+const client = createClient();
+await client.navigate('https://example.com');
+const result = await client.snapshot();
+await client.click('@ref:1');
 ```
 
 ## Implementation Timeline
@@ -494,12 +489,12 @@ await cli.execute('click @ref:1');
 
 ## Conclusion
 
-This design provides a clean, modular CLI implementation that:
+This design provides a pure in-browser CLI implementation that:
 
 1. **Mimics agent-browser** with similar command syntax
-2. **Integrates seamlessly** with existing @btcp packages
-3. **Provides in-browser terminal** for interactive use
-4. **Supports programmatic API** for AI agents
-5. **Is extensible** for future commands and features
+2. **Runs entirely within Chrome extension** - no external processes
+3. **Integrates seamlessly** with existing @btcp/core and @btcp/extension packages
+4. **Provides terminal UI** in extension popup/panel for interactive use
+5. **Supports programmatic API** for AI agents within the browser
 
-The recommended approach is to start with the core CLI package and command implementations, then add the terminal UI once the underlying infrastructure is solid.
+The implementation starts with the core CLI package (parser, executor, commands), then adds the terminal UI component for the extension.
