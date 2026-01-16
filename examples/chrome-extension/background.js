@@ -1,20 +1,20 @@
 /**
  * Background Service Worker
  *
- * Using BrowserAgent from @aspect/extension for clean, class-based API.
+ * Using BackgroundAgent from @aspect/extension for clean, class-based API.
  *
  * In production with bundler:
- *   import { BrowserAgent, setupMessageListener } from '@aspect/extension';
+ *   import { BackgroundAgent, setupMessageListener } from '@aspect/extension';
  *
  * This standalone example implements the same API inline.
  */
 
 // ============================================================================
-// BrowserAgent - High-level browser orchestrator
-// In production: import { BrowserAgent } from '@aspect/extension';
+// BackgroundAgent - High-level browser orchestrator
+// In production: import { BackgroundAgent } from '@aspect/extension';
 // ============================================================================
 
-class BrowserAgent {
+class BackgroundAgent {
   constructor() {
     this.activeTabId = null;
     this.initActiveTab();
@@ -286,7 +286,7 @@ class BrowserAgent {
 // Singleton instance and message listener setup
 // ============================================================================
 
-const browserAgent = new BrowserAgent();
+const backgroundAgent = new BackgroundAgent();
 
 // Set up message routing (equivalent to setupMessageListener() from @aspect/extension)
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
@@ -296,7 +296,7 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     return false;
   }
 
-  browserAgent.execute(message.command)
+  backgroundAgent.execute(message.command)
     .then(response => {
       sendResponse({ type: 'aspect:response', response });
     })
@@ -320,27 +320,30 @@ function generateCommandId() {
   return `cmd_${Date.now()}_${commandIdCounter++}`;
 }
 
-// Expose BrowserAgent methods with auto-generated IDs
+// Expose BackgroundAgent methods with auto-generated IDs
 globalThis.aspectAgent = {
-  // Direct BrowserAgent methods
-  navigate: (url, options) => browserAgent.execute({ id: generateCommandId(), action: 'navigate', url, ...options }),
-  back: () => browserAgent.execute({ id: generateCommandId(), action: 'back' }),
-  forward: () => browserAgent.execute({ id: generateCommandId(), action: 'forward' }),
-  reload: (options) => browserAgent.execute({ id: generateCommandId(), action: 'reload', ...options }),
-  screenshot: (options) => browserAgent.execute({ id: generateCommandId(), action: 'screenshot', ...options }),
-  tabNew: (options) => browserAgent.execute({ id: generateCommandId(), action: 'tabNew', ...options }),
-  tabClose: (tabId) => browserAgent.execute({ id: generateCommandId(), action: 'tabClose', tabId }),
-  tabSwitch: (tabId) => browserAgent.execute({ id: generateCommandId(), action: 'tabSwitch', tabId }),
-  tabList: () => browserAgent.execute({ id: generateCommandId(), action: 'tabList' }),
+  // Direct BackgroundAgent methods
+  navigate: (url, options) => backgroundAgent.execute({ id: generateCommandId(), action: 'navigate', url, ...options }),
+  back: () => backgroundAgent.execute({ id: generateCommandId(), action: 'back' }),
+  forward: () => backgroundAgent.execute({ id: generateCommandId(), action: 'forward' }),
+  reload: (options) => backgroundAgent.execute({ id: generateCommandId(), action: 'reload', ...options }),
+  screenshot: (options) => backgroundAgent.execute({ id: generateCommandId(), action: 'screenshot', ...options }),
+  tabNew: (options) => backgroundAgent.execute({ id: generateCommandId(), action: 'tabNew', ...options }),
+  tabClose: (tabId) => backgroundAgent.execute({ id: generateCommandId(), action: 'tabClose', tabId }),
+  tabSwitch: (tabId) => backgroundAgent.execute({ id: generateCommandId(), action: 'tabSwitch', tabId }),
+  tabList: () => backgroundAgent.execute({ id: generateCommandId(), action: 'tabList' }),
 
   // DOM commands (routed to ContentAgent)
-  snapshot: (options) => browserAgent.execute({ id: generateCommandId(), action: 'snapshot', ...options }),
-  click: (selector) => browserAgent.execute({ id: generateCommandId(), action: 'click', selector }),
-  type: (selector, text, options) => browserAgent.execute({ id: generateCommandId(), action: 'type', selector, text, ...options }),
-  fill: (selector, value) => browserAgent.execute({ id: generateCommandId(), action: 'fill', selector, value }),
+  snapshot: (options) => backgroundAgent.execute({ id: generateCommandId(), action: 'snapshot', ...options }),
+  click: (selector) => backgroundAgent.execute({ id: generateCommandId(), action: 'click', selector }),
+  type: (selector, text, options) => backgroundAgent.execute({ id: generateCommandId(), action: 'type', selector, text, ...options }),
+  fill: (selector, value) => backgroundAgent.execute({ id: generateCommandId(), action: 'fill', selector, value }),
 
   // Generic execute
-  execute: (command) => browserAgent.execute({ id: generateCommandId(), ...command }),
+  execute: (command) => backgroundAgent.execute({ id: generateCommandId(), ...command }),
+
+  // Expose tab() method for multi-tab support
+  tab: (tabId) => backgroundAgent.tab(tabId),
 };
 
-console.log('[Aspect] BrowserAgent loaded in background script');
+console.log('[Aspect] BackgroundAgent loaded in background script');

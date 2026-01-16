@@ -4,21 +4,21 @@
  * Chrome extension bridge for browser automation.
  *
  * Architecture:
- * - BrowserAgent: Runs in background script, manages tabs/navigation/screenshots
+ * - BackgroundAgent: Runs in background script, manages tabs/navigation/screenshots
  * - ContentAgent: Runs in content scripts, handles DOM operations (from @aspect/core)
  * - Client: API for sending commands from popup or external scripts
  *
  * @example Background script setup:
  * ```typescript
- * import { BrowserAgent, setupMessageListener } from '@aspect/extension';
+ * import { BackgroundAgent, setupMessageListener } from '@aspect/extension';
  *
  * // Set up message routing
  * setupMessageListener();
  *
- * // Or use BrowserAgent directly
- * const browser = new BrowserAgent();
- * await browser.navigate('https://example.com');
- * await browser.screenshot();
+ * // Or use BackgroundAgent directly
+ * const agent = new BackgroundAgent();
+ * await agent.navigate('https://example.com');
+ * await agent.screenshot();
  * ```
  *
  * @example Content script setup:
@@ -50,8 +50,15 @@ import type {
 
 export * from './types.js';
 
-// Re-export BrowserAgent for background script usage
-export { BrowserAgent, getBrowserAgent, setupMessageListener } from './background.js';
+// Re-export BackgroundAgent for background script usage
+export {
+  BackgroundAgent,
+  getBackgroundAgent,
+  setupMessageListener,
+  // Deprecated aliases for backwards compatibility
+  BrowserAgent,
+  getBrowserAgent,
+} from './background.js';
 
 // Re-export ContentAgent for content script usage
 export { createContentAgent, type ContentAgent } from '@aspect/core';

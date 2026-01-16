@@ -25,7 +25,7 @@ import type {
 /**
  * TabHandle - Interface for interacting with a specific tab
  *
- * Returned by BrowserAgent.tab(tabId) for tab-specific operations.
+ * Returned by BackgroundAgent.tab(tabId) for tab-specific operations.
  */
 export interface TabHandle {
   readonly tabId: number;
@@ -39,7 +39,7 @@ export interface TabHandle {
 }
 
 /**
- * BrowserAgent - High-level browser automation orchestrator
+ * BackgroundAgent - High-level browser automation orchestrator
  *
  * Runs in the extension's background script/service worker.
  * Manages browser-level operations and routes DOM commands to
@@ -47,28 +47,28 @@ export interface TabHandle {
  *
  * @example Single tab (default - uses activeTabId)
  * ```typescript
- * const browser = new BrowserAgent();
- * await browser.navigate('https://example.com');
- * await browser.execute({ id: '1', action: 'click', selector: '#submit' });
+ * const agent = new BackgroundAgent();
+ * await agent.navigate('https://example.com');
+ * await agent.execute({ id: '1', action: 'click', selector: '#submit' });
  * ```
  *
  * @example Multi-tab with explicit tabId
  * ```typescript
- * const browser = new BrowserAgent();
+ * const agent = new BackgroundAgent();
  *
  * // Open two tabs
- * const tab1 = await browser.newTab({ url: 'https://google.com' });
- * const tab2 = await browser.newTab({ url: 'https://github.com', active: false });
+ * const tab1 = await agent.newTab({ url: 'https://google.com' });
+ * const tab2 = await agent.newTab({ url: 'https://github.com', active: false });
  *
  * // Interact with specific tabs without switching
- * await browser.tab(tab1.id).click('#search');
- * await browser.tab(tab2.id).snapshot();
+ * await agent.tab(tab1.id).click('#search');
+ * await agent.tab(tab2.id).snapshot();
  *
  * // Or specify tabId in command
- * await browser.execute({ id: '1', action: 'snapshot' }, { tabId: tab2.id });
+ * await agent.execute({ id: '1', action: 'snapshot' }, { tabId: tab2.id });
  * ```
  */
-export class BrowserAgent {
+export class BackgroundAgent {
   private activeTabId: number | null = null;
 
   constructor() {
@@ -545,17 +545,22 @@ export class BrowserAgent {
 // ============================================================================
 
 // Singleton instance for message handling
-let browserAgent: BrowserAgent | null = null;
+let backgroundAgent: BackgroundAgent | null = null;
 
 /**
- * Get or create the BrowserAgent singleton
+ * Get or create the BackgroundAgent singleton
  */
-export function getBrowserAgent(): BrowserAgent {
-  if (!browserAgent) {
-    browserAgent = new BrowserAgent();
+export function getBackgroundAgent(): BackgroundAgent {
+  if (!backgroundAgent) {
+    backgroundAgent = new BackgroundAgent();
   }
-  return browserAgent;
+  return backgroundAgent;
 }
+
+/**
+ * @deprecated Use getBackgroundAgent instead
+ */
+export const getBrowserAgent = getBackgroundAgent;
 
 /**
  * Set up the message listener for the background script
@@ -569,9 +574,9 @@ export function setupMessageListener(): void {
       return false;
     }
 
-    const agent = getBrowserAgent();
+    const agent = getBackgroundAgent();
 
-    // Execute the command (BrowserAgent handles routing to correct tab)
+    // Execute the command (BackgroundAgent handles routing to correct tab)
     agent.execute(msg.command)
       .then((response) => {
         sendResponse({ type: 'aspect:response', response } satisfies ExtensionResponse);
@@ -593,10 +598,15 @@ export function setupMessageListener(): void {
 
 // Legacy exports for backwards compatibility
 export const handleCommand = (command: Command, _tabId?: number) =>
-  getBrowserAgent().execute(command);
+  getBackgroundAgent().execute(command);
 
 export const executeExtensionCommand = (command: ExtensionCommand) =>
-  getBrowserAgent().execute(command);
+  getBackgroundAgent().execute(command);
 
 export const sendToContentScript = (_tabId: number, command: Command) =>
-  getBrowserAgent().sendToContentAgent(command, _tabId);
+  getBackgroundAgent().sendToContentAgent(command, _tabId);
+
+/**
+ * @deprecated Use BackgroundAgent instead
+ */
+export const BrowserAgent = BackgroundAgent;

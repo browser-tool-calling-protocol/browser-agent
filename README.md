@@ -10,7 +10,7 @@ This package provides a clean separation between browser-level and DOM-level ope
 ┌─────────────────────────────────────────────────────────────────┐
 │  Background Script (Extension Service Worker)                    │
 │  ┌─────────────────────────────────────────────────────────────┐│
-│  │ BrowserAgent                                                 ││
+│  │ BackgroundAgent                                              ││
 │  │  - Tab management (create, close, switch, list)             ││
 │  │  - Navigation (goto, back, forward, reload)                 ││
 │  │  - Screenshots (chrome.tabs.captureVisibleTab)              ││
@@ -40,19 +40,19 @@ npm install btcp-browser-agent
 
 ## Quick Start
 
-### Extension Usage (Recommended)
+### Extension Usage
 
 **Background Script:**
 ```typescript
-import { BrowserAgent, setupMessageListener } from 'btcp-browser-agent';
+import { BackgroundAgent, setupMessageListener } from 'btcp-browser-agent/extension';
 
 // Option 1: Just set up message routing
 setupMessageListener();
 
-// Option 2: Use BrowserAgent directly for programmatic control
-const browser = new BrowserAgent();
-await browser.navigate('https://example.com');
-await browser.screenshot();
+// Option 2: Use BackgroundAgent directly for programmatic control
+const agent = new BackgroundAgent();
+await agent.navigate('https://example.com');
+await agent.screenshot();
 ```
 
 **Content Script:**
@@ -101,53 +101,72 @@ await agent.execute({ id: '3', action: 'fill', selector: '@ref:3', value: 'Hello
 
 ## API Reference
 
-### BrowserAgent (Background Script)
+### BackgroundAgent (Extension Background Script)
 
 High-level browser orchestrator that runs in the extension's background script.
 
 ```typescript
-import { BrowserAgent } from 'btcp-browser-agent';
+import { BackgroundAgent } from 'btcp-browser-agent/extension';
 
-const browser = new BrowserAgent();
+const agent = new BackgroundAgent();
 
 // Tab Management
-await browser.newTab({ url: 'https://example.com' });
-await browser.switchTab(tabId);
-await browser.closeTab(tabId);
-const tabs = await browser.listTabs();
+await agent.newTab({ url: 'https://example.com' });
+await agent.switchTab(tabId);
+await agent.closeTab(tabId);
+const tabs = await agent.listTabs();
 
 // Navigation
-await browser.navigate('https://example.com');
-await browser.back();
-await browser.forward();
-await browser.reload();
+await agent.navigate('https://example.com');
+await agent.back();
+await agent.forward();
+await agent.reload();
 
 // Screenshots
-const screenshot = await browser.screenshot({ format: 'png' });
+const screenshot = await agent.screenshot({ format: 'png' });
 
 // Execute commands (routes to ContentAgent for DOM operations)
-await browser.execute({ id: '1', action: 'click', selector: '#submit' });
+await agent.execute({ id: '1', action: 'click', selector: '#submit' });
 ```
 
 #### Multi-Tab Operations
 
 ```typescript
 // Open tabs
-const tab1 = await browser.newTab({ url: 'https://google.com' });
-const tab2 = await browser.newTab({ url: 'https://github.com', active: false });
+const tab1 = await agent.newTab({ url: 'https://google.com' });
+const tab2 = await agent.newTab({ url: 'https://github.com', active: false });
 
 // Method 1: tab() handle - interact without switching
-const githubTab = browser.tab(tab2.id);
+const githubTab = agent.tab(tab2.id);
 await githubTab.snapshot();
 await githubTab.click('@ref:5');
 
 // Method 2: Specify tabId in execute
-await browser.execute(
+await agent.execute(
   { id: '1', action: 'getText', selector: 'h1' },
   { tabId: tab2.id }
 );
 
 // Active tab stays tab1 (no switching needed)
+```
+
+### BrowserAgent (Standalone - Browser Tab)
+
+For use directly in a browser tab with convenience methods:
+
+```typescript
+import { BrowserAgent } from 'btcp-browser-agent';
+
+const agent = new BrowserAgent();
+await agent.launch();
+
+// Convenience methods
+const { snapshot, refs } = await agent.snapshot();
+await agent.click('@e1');
+await agent.fill('@e2', 'Hello World');
+await agent.type('input[name="email"]', 'user@example.com');
+
+await agent.close();
 ```
 
 ### ContentAgent (Content Script)
@@ -231,8 +250,8 @@ btcp-browser-agent/
 │   ├── DOMActions
 │   └── createSnapshot()
 │
-├── @aspect/extension     # BrowserAgent - Browser operations
-│   ├── BrowserAgent
+├── @aspect/extension     # BackgroundAgent - Browser operations
+│   ├── BackgroundAgent
 │   ├── setupMessageListener()
 │   └── createClient()
 │
@@ -241,7 +260,7 @@ btcp-browser-agent/
 
 ## Capabilities Comparison
 
-| Capability | ContentAgent (Standalone) | BrowserAgent (Extension) |
+| Capability | ContentAgent (Standalone) | BackgroundAgent (Extension) |
 |------------|--------------------------|--------------------------|
 | DOM Snapshot | ✅ | ✅ (via ContentAgent) |
 | Element Clicks | ✅ | ✅ (via ContentAgent) |
@@ -253,7 +272,7 @@ btcp-browser-agent/
 
 ## Use Cases
 
-- **Browser Extensions** - Full browser automation with BrowserAgent + ContentAgent
+- **Browser Extensions** - Full browser automation with BackgroundAgent + ContentAgent
 - **Web Applications** - DOM automation with ContentAgent only
 - **Testing Tools** - Automated UI testing
 - **AI Assistants** - Enable AI models to control web pages

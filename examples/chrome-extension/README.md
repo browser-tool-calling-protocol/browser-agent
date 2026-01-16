@@ -1,6 +1,6 @@
 # Chrome Extension Example
 
-This example demonstrates the clean BrowserAgent/ContentAgent architecture for browser automation.
+This example demonstrates the clean BackgroundAgent/ContentAgent architecture for browser automation.
 
 ## Architecture
 
@@ -8,7 +8,7 @@ This example demonstrates the clean BrowserAgent/ContentAgent architecture for b
 ┌─────────────────────────────────────────────────────────────────┐
 │  Background Script (Service Worker)                              │
 │  ┌─────────────────────────────────────────────────────────────┐│
-│  │ BrowserAgent                                                 ││
+│  │ BackgroundAgent                                              ││
 │  │  - Tab management (newTab, closeTab, switchTab, listTabs)   ││
 │  │  - Navigation (navigate, back, forward, reload)             ││
 │  │  - Screenshots (screenshot)                                  ││
@@ -33,7 +33,7 @@ This example demonstrates the clean BrowserAgent/ContentAgent architecture for b
 
 | Agent | Location | Responsibilities |
 |-------|----------|------------------|
-| **BrowserAgent** | Background script | Tabs, navigation, screenshots |
+| **BackgroundAgent** | Background script | Tabs, navigation, screenshots |
 | **ContentAgent** | Content script | DOM operations |
 
 **No script injection needed** - Content scripts have direct DOM access via Chrome's isolated world.
@@ -41,7 +41,7 @@ This example demonstrates the clean BrowserAgent/ContentAgent architecture for b
 ## Files
 
 - `manifest.json` - Extension manifest (Manifest V3)
-- `background.js` - BrowserAgent implementation
+- `background.js` - BackgroundAgent implementation
 - `content.js` - ContentAgent implementation
 - `popup.html/js` - Extension popup UI
 
@@ -90,15 +90,15 @@ const googleSnapshot = await aspectAgent.snapshot();
 
 **Background script:**
 ```javascript
-import { BrowserAgent, setupMessageListener } from '@aspect/extension';
+import { BackgroundAgent, setupMessageListener } from '@aspect/extension';
 
 // Option 1: Auto message routing
 setupMessageListener();
 
 // Option 2: Programmatic control
-const browser = new BrowserAgent();
-await browser.navigate('https://example.com');
-await browser.screenshot();
+const agent = new BackgroundAgent();
+await agent.navigate('https://example.com');
+await agent.screenshot();
 ```
 
 **Content script:**
@@ -114,12 +114,12 @@ await agent.execute({ id: '2', action: 'click', selector: '@ref:5' });
 
 | Command Type | Handler | Examples |
 |--------------|---------|----------|
-| **Browser** | BrowserAgent | `navigate`, `screenshot`, `tabNew` |
+| **Browser** | BackgroundAgent | `navigate`, `screenshot`, `tabNew` |
 | **DOM** | ContentAgent | `snapshot`, `click`, `fill`, `getText` |
 
 ## Available Commands
 
-### BrowserAgent Commands
+### BackgroundAgent Commands
 
 | Command | Parameters | Description |
 |---------|------------|-------------|
