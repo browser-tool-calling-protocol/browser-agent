@@ -76,7 +76,15 @@ export type {
 // Re-export utilities
 export { parseCommand, getFlagString, getFlagNumber, getFlagBool } from './parser.js';
 export { executeCommand } from './executor.js';
-export { formatResult, formatHelp, formatCommandHelp, formatData, formatScreenshot } from './formatter.js';
+export {
+  formatResult,
+  formatHelp,
+  formatCommandHelp,
+  formatData,
+  formatScreenshot,
+  formatErrorWithSuggestions,
+  formatSuccessWithNextSteps,
+} from './formatter.js';
 export { commands, getCommand, getAllCommands } from './commands/index.js';
 export {
   CLIError,
@@ -84,7 +92,18 @@ export {
   InvalidArgumentsError,
   ParseError,
   ExecutionError,
+  ElementNotFoundError,
+  NavigationError,
+  TimeoutError,
 } from './errors.js';
+export {
+  findSimilarCommands,
+  getContextualSuggestion,
+  getNextStepSuggestions,
+  commandCategories,
+  getCommandCategory,
+  workflowSuggestions,
+} from './suggestions.js';
 
 /**
  * Execute a single command line
@@ -102,7 +121,11 @@ async function executeSingle(client: CommandClient, line: string): Promise<Comma
     return await executeCommand(client, command);
   } catch (error) {
     if (error instanceof CLIError) {
-      return { success: false, error: error.message };
+      // Use formatted error with suggestions
+      return {
+        success: false,
+        error: error.toFormattedString(),
+      };
     }
     const message = error instanceof Error ? error.message : String(error);
     return { success: false, error: message };

@@ -7,6 +7,7 @@
 import type { ParsedCommand, CommandResult, CommandClient } from './types.js';
 import { getCommand } from './commands/index.js';
 import { CommandNotFoundError, ExecutionError, CLIError } from './errors.js';
+import { findSimilarCommands, getContextualSuggestion } from './suggestions.js';
 
 /**
  * Execute a parsed command
@@ -18,19 +19,39 @@ export async function executeCommand(
   const handler = getCommand(command.name);
 
   if (!handler) {
-    throw new CommandNotFoundError(command.name);
+    // Find similar commands for suggestion
+    const similar = findSimilarCommands(command.name);
+    throw new CommandNotFoundError(command.name, similar);
   }
 
   try {
-    return await handler.execute(client, command.args, command.flags);
+    const result = await handler.execute(client, command.args, command.flags);
+
+    // Add contextual suggestions on error
+    if (!result.success && result.error) {
+      const suggestion = getContextualSuggestion(command.name, result.error, command.args);
+      if (suggestion) {
+        return {
+          ...result,
+          error: `${result.error}\n\n${suggestion}`,
+        };
+      }
+    }
+
+    return result;
   } catch (error) {
     if (error instanceof CLIError) {
       throw error;
     }
 
-    // Wrap unexpected errors
+    // Wrap unexpected errors with contextual suggestions
     const message = error instanceof Error ? error.message : String(error);
-    throw new ExecutionError(message);
+    const suggestion = getContextualSuggestion(command.name, message, command.args);
+
+    throw new ExecutionError(message, {
+      suggestions: suggestion ? [suggestion] : undefined,
+      command: command.name,
+    });
   }
 }
 

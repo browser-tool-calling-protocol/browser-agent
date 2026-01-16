@@ -134,7 +134,7 @@ export function formatHelp(commands: { name: string; description: string; usage:
 }
 
 /**
- * Format command help
+ * Format command help with detailed information
  */
 export function formatCommandHelp(command: {
   name: string;
@@ -142,12 +142,24 @@ export function formatCommandHelp(command: {
   usage: string;
   examples?: string[];
 }): string {
-  let output = `${command.name} - ${command.description}\n\n`;
-  output += `Usage: ${command.usage}\n`;
+  let output = `${command.name}\n`;
+  output += '─'.repeat(30) + '\n\n';
+  output += `${command.description}\n\n`;
+  output += `Usage:\n  ${command.usage}\n`;
 
   if (command.examples && command.examples.length > 0) {
     output += '\nExamples:\n';
     output += command.examples.map((ex) => `  ${ex}`).join('\n');
+  }
+
+  // Add selector help for commands that use selectors
+  const selectorCommands = ['click', 'type', 'fill', 'clear', 'hover', 'focus', 'check', 'uncheck', 'select', 'scroll', 'wait', 'text'];
+  if (selectorCommands.includes(command.name)) {
+    output += '\n\nSelectors:\n';
+    output += '  @ref:N    Element reference from snapshot\n';
+    output += '  #id       CSS ID selector\n';
+    output += '  .class    CSS class selector\n';
+    output += '  tag       HTML tag name';
   }
 
   return output;
@@ -167,4 +179,42 @@ export function formatScreenshot(dataUrl: string): string {
     return `Screenshot captured (${format}, ${sizeKb} KB)`;
   }
   return 'Screenshot captured';
+}
+
+/**
+ * Format error with suggestions
+ */
+export function formatErrorWithSuggestions(
+  error: string,
+  suggestions?: string[]
+): string {
+  let output = `✗ Error: ${error}`;
+
+  if (suggestions && suggestions.length > 0) {
+    output += '\n\nSuggestions:';
+    for (const suggestion of suggestions) {
+      output += `\n  • ${suggestion}`;
+    }
+  }
+
+  return output;
+}
+
+/**
+ * Format success message with next steps
+ */
+export function formatSuccessWithNextSteps(
+  message: string,
+  nextSteps?: string[]
+): string {
+  let output = `✓ ${message}`;
+
+  if (nextSteps && nextSteps.length > 0) {
+    output += '\n\nNext steps:';
+    for (const step of nextSteps) {
+      output += `\n  ${step}`;
+    }
+  }
+
+  return output;
 }
