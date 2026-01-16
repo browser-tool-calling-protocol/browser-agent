@@ -10,37 +10,25 @@ npm install git+https://github.com/browser-tool-calling-protocol/btcp-browser-ag
 
 ## Chrome Extension Setup
 
-### 1. Background Script
+Three files, minimal setup:
 
-```typescript
-// background.ts
-import { BackgroundAgent, setupMessageListener } from 'btcp-browser-agent/extension';
-
-// Option A: Auto-setup message routing
-setupMessageListener();
-
-// Option B: Programmatic control
-const agent = new BackgroundAgent();
-await agent.navigate('https://example.com');
-await agent.screenshot();
-```
-
-### 2. Content Script
+### 1. Content Script (registers DOM agent)
 
 ```typescript
 // content.ts
-import { createContentAgent } from 'btcp-browser-agent/core';
-
-const agent = createContentAgent();
-
-// Execute commands
-const { data } = await agent.execute({ id: '1', action: 'snapshot' });
-console.log(data.tree);  // Accessibility tree
-
-await agent.execute({ id: '2', action: 'click', selector: '@ref:5' });
+import 'btcp-browser-agent/extension/content';
 ```
 
-### 3. Popup / External Script
+### 2. Background Script (routes messages)
+
+```typescript
+// background.ts
+import { setupMessageListener } from 'btcp-browser-agent/extension';
+
+setupMessageListener();
+```
+
+### 3. Popup (sends commands)
 
 ```typescript
 // popup.ts
@@ -48,13 +36,18 @@ import { createClient } from 'btcp-browser-agent/extension';
 
 const client = createClient();
 
-// High-level API
+// Navigate and interact
 await client.navigate('https://example.com');
-const snapshot = await client.snapshot();
+const { tree } = await client.snapshot();
+console.log(tree);
+// - button 'Submit' [ref=5]
+// - textbox 'Email' [ref=3]
+
+await client.fill('@ref:3', 'user@example.com');
 await client.click('@ref:5');
-await client.fill('@ref:3', 'Hello World');
-const screenshot = await client.screenshot();
 ```
+
+**Flow:** Popup → Background → Content → DOM
 
 ## Standalone Usage (No Extension)
 

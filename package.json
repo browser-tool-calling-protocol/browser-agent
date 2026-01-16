@@ -17,6 +17,14 @@
     "./extension": {
       "types": "./packages/extension/dist/index.d.ts",
       "import": "./packages/extension/dist/index.js"
+    },
+    "./extension/content": {
+      "types": "./packages/extension/dist/content.d.ts",
+      "import": "./packages/extension/dist/content.js"
+    },
+    "./extension/background": {
+      "types": "./packages/extension/dist/background.d.ts",
+      "import": "./packages/extension/dist/background.js"
     }
   },
   "scripts": {
