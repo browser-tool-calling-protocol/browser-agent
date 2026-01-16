@@ -7,9 +7,9 @@ Production-ready TypeScript example using `btcp-browser-agent`.
 ```
 examples/chrome-extension/
 ├── src/
-│   ├── content.ts      # 1 line - registers DOM agent
-│   ├── background.ts   # 2 lines - routes messages
-│   └── popup.ts        # UI logic using createClient
+│   ├── content.ts      # DOM agent + message listener
+│   ├── background.ts   # routes messages
+│   └── popup.ts        # UI using createClient
 ├── dist/               # Built output (gitignored)
 ├── manifest.json       # Chrome extension manifest
 ├── popup.html          # Popup UI
@@ -20,9 +20,19 @@ examples/chrome-extension/
 
 ## Source Files
 
-**src/content.ts** - registers DOM agent (auto message listener)
+**src/content.ts** - registers DOM agent and message listener
 ```typescript
-import 'btcp-browser-agent/extension/content';
+import { createContentAgent } from 'btcp-browser-agent/extension';
+
+const agent = createContentAgent();
+
+chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+  if (message.type !== 'btcp:command') return false;
+  agent.execute(message.command).then(response => {
+    sendResponse({ type: 'btcp:response', response });
+  });
+  return true;
+});
 ```
 
 **src/background.ts** - routes messages

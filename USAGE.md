@@ -16,7 +16,17 @@ Three files, minimal setup:
 
 ```typescript
 // content.ts
-import 'btcp-browser-agent/extension/content';
+import { createContentAgent } from 'btcp-browser-agent/extension';
+
+const agent = createContentAgent();
+
+chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+  if (message.type !== 'btcp:command') return false;
+  agent.execute(message.command).then(response => {
+    sendResponse({ type: 'btcp:response', response });
+  });
+  return true;
+});
 ```
 
 ### 2. Background Script (routes messages)
