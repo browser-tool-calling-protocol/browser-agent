@@ -34,7 +34,7 @@
   ],
   "license": "Apache-2.0",
   "dependencies": {
-    "@aspect/core": "workspace:*"
+    "@aspect/core": "file:../core"
   },
   "devDependencies": {
     "typescript": "^5.3.0"
