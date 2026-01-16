@@ -347,7 +347,6 @@ export class BackgroundAgent {
 
     const dataUrl = await new Promise<string>((resolve, reject) => {
       chrome.tabs.captureVisibleTab(
-        null,
         { format, quality },
         (url) => {
           if (chrome.runtime.lastError) {

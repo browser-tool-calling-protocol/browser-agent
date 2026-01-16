@@ -37,6 +37,7 @@
     "@aspect/core": "file:../core"
   },
   "devDependencies": {
+    "@types/chrome": "^0.0.268",
     "typescript": "^5.3.0"
   }
 }
