@@ -30,6 +30,7 @@ import { createRefMap, createSimpleRefMap } from './ref-map.js';
 import type { Command, Response, RefMap } from './types.js';
 
 export * from './types.js';
+export * from './errors.js';
 export { createSnapshot } from './snapshot.js';
 export { createRefMap, createSimpleRefMap } from './ref-map.js';
 export { DOMActions } from './actions.js';

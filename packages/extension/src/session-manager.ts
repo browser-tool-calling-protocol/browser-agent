@@ -11,11 +11,104 @@ import type {
 } from './session-types.js';
 
 /**
+ * Storage key for session persistence
+ */
+const SESSION_STORAGE_KEY = 'btcp_active_session';
+
+/**
+ * Stored session data
+ */
+interface StoredSessionData {
+  groupId: number;
+  sessionCounter: number;
+  timestamp: number;
+}
+
+/**
  * SessionManager handles Chrome tab group operations and session state
  */
 export class SessionManager {
   private activeSessionGroupId: number | null = null;
   private sessionCounter = 0;
+  private initialized = false;
+
+  constructor() {
+    // Restore session on creation
+    this.restoreSession();
+  }
+
+  /**
+   * Restore session from storage
+   */
+  private async restoreSession(): Promise<void> {
+    if (this.initialized) return;
+
+    try {
+      console.log('[SessionManager] Restoring session from storage...');
+      const result = await chrome.storage.session.get(SESSION_STORAGE_KEY);
+      const data = result[SESSION_STORAGE_KEY] as StoredSessionData | undefined;
+
+      if (data?.groupId) {
+        console.log('[SessionManager] Found stored session:', data);
+
+        // Verify the group still exists
+        try {
+          const group = await chrome.tabGroups.get(data.groupId);
+          console.log('[SessionManager] Group still exists:', group);
+
+          // Restore session state
+          this.activeSessionGroupId = data.groupId;
+          this.sessionCounter = data.sessionCounter;
+
+          console.log('[SessionManager] Session restored successfully');
+        } catch (err) {
+          console.log('[SessionManager] Stored group no longer exists, clearing...');
+          await this.clearStoredSession();
+        }
+      } else {
+        console.log('[SessionManager] No stored session found');
+      }
+    } catch (err) {
+      console.error('[SessionManager] Failed to restore session:', err);
+    } finally {
+      this.initialized = true;
+    }
+  }
+
+  /**
+   * Persist session to storage
+   */
+  private async persistSession(): Promise<void> {
+    if (this.activeSessionGroupId === null) {
+      await this.clearStoredSession();
+      return;
+    }
+
+    const data: StoredSessionData = {
+      groupId: this.activeSessionGroupId,
+      sessionCounter: this.sessionCounter,
+      timestamp: Date.now(),
+    };
+
+    try {
+      await chrome.storage.session.set({ [SESSION_STORAGE_KEY]: data });
+      console.log('[SessionManager] Session persisted:', data);
+    } catch (err) {
+      console.error('[SessionManager] Failed to persist session:', err);
+    }
+  }
+
+  /**
+   * Clear stored session
+   */
+  private async clearStoredSession(): Promise<void> {
+    try {
+      await chrome.storage.session.remove(SESSION_STORAGE_KEY);
+      console.log('[SessionManager] Cleared stored session');
+    } catch (err) {
+      console.error('[SessionManager] Failed to clear stored session:', err);
+    }
+  }
 
   /**
    * Create a new tab group
@@ -87,6 +180,9 @@ export class SessionManager {
     // Set as active session
     this.activeSessionGroupId = groupId;
 
+    // Persist to storage
+    await this.persistSession();
+
     // Get group info
     const group = await chrome.tabGroups.get(groupId);
     console.log('[SessionManager] Group info:', group);
@@ -124,6 +220,8 @@ export class SessionManager {
     // Clear active session if this was the active group
     if (this.activeSessionGroupId === groupId) {
       this.activeSessionGroupId = null;
+      // Clear from storage
+      await this.clearStoredSession();
     }
   }
 

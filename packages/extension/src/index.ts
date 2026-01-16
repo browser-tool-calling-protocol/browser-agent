@@ -117,7 +117,12 @@ export interface Client {
   /**
    * Take a snapshot of the page
    */
-  snapshot(options?: { selector?: string; maxDepth?: number }): Promise<{
+  snapshot(options?: {
+    selector?: string;
+    maxDepth?: number;
+    interactive?: boolean;
+    compact?: boolean;
+  }): Promise<{
     tree: string;
     refs: Record<string, { selector: string; role: string; name?: string }>;
   }>;
@@ -309,6 +314,8 @@ export function createClient(): Client {
         action: 'snapshot',
         selector: options?.selector,
         maxDepth: options?.maxDepth,
+        interactive: options?.interactive,
+        compact: options?.compact,
       });
       assertSuccess(response);
       return response.data as {

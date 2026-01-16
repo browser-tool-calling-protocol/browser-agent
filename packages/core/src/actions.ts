@@ -11,8 +11,17 @@ import type {
   BoundingBox,
   SnapshotData,
   Modifier,
+  ValidateElementResponse,
+  ValidateRefsResponse,
 } from './types.js';
 import { createSnapshot } from './snapshot.js';
+import {
+  DetailedError,
+  createElementNotFoundError,
+  createElementNotCompatibleError,
+  createTimeoutError,
+  createInvalidParametersError,
+} from './errors.js';
 
 /**
  * DOM Actions executor
@@ -37,6 +46,19 @@ export class DOMActions {
       return { id: command.id, success: true, data };
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
+
+      // Include structured error data if available
+      if (error instanceof DetailedError) {
+        return {
+          id: command.id,
+          success: false,
+          error: message,
+          errorCode: error.code,
+          errorContext: error.context,
+          suggestions: error.suggestions,
+        };
+      }
+
       return { id: command.id, success: false, error: message };
     }
   }
@@ -99,6 +121,8 @@ export class DOMActions {
           selector: command.selector,
           maxDepth: command.maxDepth,
           includeHidden: command.includeHidden,
+          interactive: command.interactive,
+          compact: command.compact,
         });
 
       case 'querySelector':
@@ -146,6 +170,15 @@ export class DOMActions {
       case 'evaluate':
         return this.evaluate(command.script, command.args);
 
+      case 'validateElement':
+        return this.validateElement(command.selector, {
+          expectedType: command.expectedType,
+          capabilities: command.capabilities,
+        });
+
+      case 'validateRefs':
+        return this.validateRefs(command.refs);
+
       default:
         throw new Error(`Unknown action: ${(command as Command).action}`);
     }
@@ -156,9 +189,165 @@ export class DOMActions {
   private getElement(selector: string): Element {
     const element = this.queryElement(selector);
     if (!element) {
-      throw new Error(`Element not found: ${selector}`);
+      const isRef = selector.startsWith('@ref:');
+      const similarSelectors = isRef ? [] : this.findSimilarSelectors(selector);
+      const nearbyElements = this.getNearbyInteractiveElements();
+
+      throw createElementNotFoundError(selector, {
+        similarSelectors,
+        nearbyElements: nearbyElements.slice(0, 5),
+        isRef,
+      });
     }
     return element;
+  }
+
+  /**
+   * Find selectors similar to the given selector
+   */
+  private findSimilarSelectors(selector: string): Array<{ selector: string; role: string; name: string }> {
+    const results: Array<{ selector: string; role: string; name: string }> = [];
+
+    try {
+      // Try to extract ID or class from selector
+      const idMatch = selector.match(/#([a-zA-Z0-9_-]+)/);
+      const classMatch = selector.match(/\.([a-zA-Z0-9_-]+)/);
+
+      if (idMatch) {
+        // Look for similar IDs
+        const targetId = idMatch[1].toLowerCase();
+        const allElements = this.document.querySelectorAll('[id]');
+        allElements.forEach(el => {
+          const elId = el.id.toLowerCase();
+          if (elId !== targetId && (elId.includes(targetId) || targetId.includes(elId))) {
+            const role = el.getAttribute('role') || el.tagName.toLowerCase();
+            const name = el.textContent?.trim().substring(0, 30) || el.getAttribute('aria-label') || '';
+            results.push({
+              selector: `#${el.id}`,
+              role,
+              name,
+            });
+          }
+        });
+      }
+
+      if (classMatch && results.length < 3) {
+        // Look for similar classes
+        const targetClass = classMatch[1].toLowerCase();
+        const allElements = this.document.querySelectorAll('[class]');
+        allElements.forEach(el => {
+          const classes = Array.from(el.classList).map(c => c.toLowerCase());
+          const similarClass = classes.find(c => c !== targetClass && (c.includes(targetClass) || targetClass.includes(c)));
+          if (similarClass) {
+            const role = el.getAttribute('role') || el.tagName.toLowerCase();
+            const name = el.textContent?.trim().substring(0, 30) || el.getAttribute('aria-label') || '';
+            results.push({
+              selector: `.${similarClass}`,
+              role,
+              name,
+            });
+          }
+        });
+      }
+    } catch (e) {
+      // Ignore errors in similarity search
+    }
+
+    return results.slice(0, 3);
+  }
+
+  /**
+   * Get nearby interactive elements
+   */
+  private getNearbyInteractiveElements(): Array<{ ref: string; role: string; name: string }> {
+    const results: Array<{ ref: string; role: string; name: string }> = [];
+
+    try {
+      const interactiveSelectors = [
+        'button',
+        'a[href]',
+        'input',
+        'textarea',
+        'select',
+        '[role="button"]',
+        '[role="link"]',
+        '[tabindex]'
+      ];
+
+      const elements = this.document.querySelectorAll(interactiveSelectors.join(','));
+
+      elements.forEach(el => {
+        if (el instanceof HTMLElement) {
+          const style = this.window.getComputedStyle(el);
+          const isVisible = style.display !== 'none' && style.visibility !== 'hidden';
+
+          if (isVisible) {
+            const ref = this.refMap.generateRef(el);
+            const role = el.getAttribute('role') || el.tagName.toLowerCase();
+            const name = el.textContent?.trim().substring(0, 30) ||
+                        el.getAttribute('aria-label') ||
+                        (el as HTMLInputElement).value?.substring(0, 30) ||
+                        (el as HTMLInputElement).placeholder ||
+                        '';
+
+            results.push({ ref, role, name });
+          }
+        }
+      });
+    } catch (e) {
+      // Ignore errors in nearby element search
+    }
+
+    return results.slice(0, 10);
+  }
+
+  /**
+   * Get available actions for an element based on its type
+   */
+  private getAvailableActionsForElement(element: Element): string[] {
+    const actions: string[] = [];
+
+    // All elements can be queried and inspected
+    actions.push('querySelector', 'getText', 'getAttribute', 'getProperty', 'getBoundingBox', 'isVisible');
+
+    // Clickable elements
+    if (
+      element instanceof HTMLButtonElement ||
+      element instanceof HTMLAnchorElement ||
+      element.getAttribute('role') === 'button' ||
+      element.getAttribute('role') === 'link' ||
+      element.hasAttribute('onclick')
+    ) {
+      actions.push('click', 'dblclick', 'hover');
+    }
+
+    // Input elements
+    if (element instanceof HTMLInputElement) {
+      actions.push('fill', 'clear', 'focus', 'blur', 'isEnabled');
+
+      if (element.type === 'checkbox' || element.type === 'radio') {
+        actions.push('check', 'uncheck', 'isChecked');
+      } else {
+        actions.push('type');
+      }
+    }
+
+    // Textarea elements
+    if (element instanceof HTMLTextAreaElement) {
+      actions.push('type', 'fill', 'clear', 'focus', 'blur');
+    }
+
+    // Select elements
+    if (element instanceof HTMLSelectElement) {
+      actions.push('select', 'focus', 'blur');
+    }
+
+    // Focusable elements
+    if (element instanceof HTMLElement) {
+      actions.push('focus', 'blur', 'scroll', 'scrollIntoView', 'press');
+    }
+
+    return actions;
   }
 
   private queryElement(selector: string): Element | null {
@@ -226,7 +415,16 @@ export class DOMActions {
     const element = this.getElement(selector);
 
     if (!(element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement)) {
-      throw new Error('Element is not an input or textarea');
+      const actualType = element.tagName.toLowerCase();
+      const availableActions = this.getAvailableActionsForElement(element);
+
+      throw createElementNotCompatibleError(
+        selector,
+        'type',
+        actualType,
+        ['input', 'textarea'],
+        availableActions
+      );
     }
 
     element.focus();
@@ -256,7 +454,16 @@ export class DOMActions {
     const element = this.getElement(selector);
 
     if (!(element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement)) {
-      throw new Error('Element is not an input or textarea');
+      const actualType = element.tagName.toLowerCase();
+      const availableActions = this.getAvailableActionsForElement(element);
+
+      throw createElementNotCompatibleError(
+        selector,
+        'fill',
+        actualType,
+        ['input', 'textarea'],
+        availableActions
+      );
     }
 
     element.focus();
@@ -283,7 +490,16 @@ export class DOMActions {
     const element = this.getElement(selector);
 
     if (!(element instanceof HTMLInputElement)) {
-      throw new Error('Element is not a checkbox or radio');
+      const actualType = element.tagName.toLowerCase();
+      const availableActions = this.getAvailableActionsForElement(element);
+
+      throw createElementNotCompatibleError(
+        selector,
+        'check',
+        actualType,
+        ['input[type=checkbox]', 'input[type=radio]'],
+        availableActions
+      );
     }
 
     if (!element.checked) {
@@ -297,7 +513,16 @@ export class DOMActions {
     const element = this.getElement(selector);
 
     if (!(element instanceof HTMLInputElement)) {
-      throw new Error('Element is not a checkbox');
+      const actualType = element.tagName.toLowerCase();
+      const availableActions = this.getAvailableActionsForElement(element);
+
+      throw createElementNotCompatibleError(
+        selector,
+        'uncheck',
+        actualType,
+        ['input[type=checkbox]'],
+        availableActions
+      );
     }
 
     if (element.checked) {
@@ -311,7 +536,16 @@ export class DOMActions {
     const element = this.getElement(selector);
 
     if (!(element instanceof HTMLSelectElement)) {
-      throw new Error('Element is not a select');
+      const actualType = element.tagName.toLowerCase();
+      const availableActions = this.getAvailableActionsForElement(element);
+
+      throw createElementNotCompatibleError(
+        selector,
+        'select',
+        actualType,
+        ['select'],
+        availableActions
+      );
     }
 
     const valueArray = Array.isArray(values) ? values : [values];
@@ -358,6 +592,18 @@ export class DOMActions {
     selector: string | undefined,
     options: { x?: number; y?: number; direction?: string; amount?: number }
   ): Promise<{ scrolled: true }> {
+    // Validate parameter combinations
+    const hasXY = options.x !== undefined || options.y !== undefined;
+    const hasDirection = options.direction !== undefined;
+
+    if (hasXY && hasDirection) {
+      throw createInvalidParametersError(
+        'Scroll command has conflicting parameters',
+        ['x/y', 'direction'],
+        'Use either { x, y } for absolute scrolling OR { direction, amount } for relative scrolling, not both'
+      );
+    }
+
     let deltaX = options.x ?? 0;
     let deltaY = options.y ?? 0;
 
@@ -394,6 +640,8 @@ export class DOMActions {
     selector?: string;
     maxDepth?: number;
     includeHidden?: boolean;
+    interactive?: boolean;
+    compact?: boolean;
   }): Promise<SnapshotData> {
     const root = options.selector
       ? this.getElement(options.selector)
@@ -403,6 +651,8 @@ export class DOMActions {
       root,
       maxDepth: options.maxDepth,
       includeHidden: options.includeHidden,
+      interactive: options.interactive,
+      compact: options.compact,
     });
   }
 
@@ -528,9 +778,26 @@ export class DOMActions {
     }
 
     const startTime = Date.now();
+    let lastState: { attached: boolean; visible: boolean; enabled: boolean } | undefined;
 
     while (Date.now() - startTime < timeout) {
       const element = this.queryElement(selector);
+
+      // Track element state for error reporting
+      if (element instanceof HTMLElement) {
+        const style = this.window.getComputedStyle(element);
+        lastState = {
+          attached: true,
+          visible: style.display !== 'none' && style.visibility !== 'hidden',
+          enabled: !(element as HTMLInputElement).disabled,
+        };
+      } else if (element) {
+        lastState = {
+          attached: true,
+          visible: false,
+          enabled: true,
+        };
+      }
 
       let conditionMet = false;
       switch (state) {
@@ -554,6 +821,9 @@ export class DOMActions {
             (element instanceof HTMLElement &&
               this.window.getComputedStyle(element).display === 'none');
           break;
+        case 'enabled':
+          conditionMet = element !== null && !(element as HTMLInputElement).disabled;
+          break;
       }
 
       if (conditionMet) {
@@ -563,13 +833,126 @@ export class DOMActions {
       await this.sleep(100);
     }
 
-    throw new Error(`Timeout waiting for ${selector} to be ${state}`);
+    // Provide detailed timeout error with current state
+    throw createTimeoutError(selector, state, lastState);
   }
 
   private async evaluate(script: string, args?: unknown[]): Promise<{ result: unknown }> {
     const fn = new Function(...(args?.map((_, i) => `arg${i}`) || []), `return (${script})`);
     const result = fn.call(this.window, ...(args || []));
     return { result };
+  }
+
+  /**
+   * Validate element capabilities before attempting an action
+   */
+  private async validateElement(
+    selector: string,
+    options: {
+      expectedType?: 'input' | 'textarea' | 'button' | 'link' | 'select';
+      capabilities?: Array<'clickable' | 'editable' | 'checkable' | 'hoverable'>;
+    } = {}
+  ): Promise<ValidateElementResponse> {
+    const element = this.getElement(selector);
+    const actualRole = element.getAttribute('role') || element.tagName.toLowerCase();
+    const actualType = element instanceof HTMLInputElement ? element.type : undefined;
+
+    // Get element capabilities
+    const capabilities = this.getAvailableActionsForElement(element);
+
+    // Get element state
+    const style = element instanceof HTMLElement ? this.window.getComputedStyle(element) : null;
+    const state = {
+      attached: true,
+      visible: style ? style.display !== 'none' && style.visibility !== 'hidden' : false,
+      enabled: !(element as HTMLInputElement).disabled,
+    };
+
+    // Check type compatibility
+    let compatible = true;
+    let suggestion: string | undefined;
+
+    if (options.expectedType) {
+      const typeMatch =
+        options.expectedType === actualRole ||
+        (options.expectedType === 'input' && element instanceof HTMLInputElement) ||
+        (options.expectedType === 'textarea' && element instanceof HTMLTextAreaElement) ||
+        (options.expectedType === 'button' && element instanceof HTMLButtonElement) ||
+        (options.expectedType === 'link' && element instanceof HTMLAnchorElement) ||
+        (options.expectedType === 'select' && element instanceof HTMLSelectElement);
+
+      if (!typeMatch) {
+        compatible = false;
+        suggestion = `Element is ${actualRole}, not ${options.expectedType}. Available actions: ${capabilities.slice(0, 5).join(', ')}`;
+      }
+    }
+
+    // Check capability requirements
+    if (options.capabilities && compatible) {
+      const capabilityMap: Record<string, boolean> = {
+        clickable:
+          element instanceof HTMLButtonElement ||
+          element instanceof HTMLAnchorElement ||
+          element.getAttribute('role') === 'button' ||
+          element.hasAttribute('onclick'),
+        editable:
+          element instanceof HTMLInputElement ||
+          element instanceof HTMLTextAreaElement,
+        checkable:
+          element instanceof HTMLInputElement &&
+          (element.type === 'checkbox' || element.type === 'radio'),
+        hoverable: element instanceof HTMLElement,
+      };
+
+      for (const cap of options.capabilities) {
+        if (!capabilityMap[cap]) {
+          compatible = false;
+          suggestion = `Element does not support capability: ${cap}. Available actions: ${capabilities.slice(0, 5).join(', ')}`;
+          break;
+        }
+      }
+    }
+
+    return {
+      compatible,
+      actualRole,
+      actualType,
+      capabilities,
+      state,
+      suggestion,
+    };
+  }
+
+  /**
+   * Validate that refs are still valid
+   */
+  private async validateRefs(refs: string[]): Promise<ValidateRefsResponse> {
+    const valid: string[] = [];
+    const invalid: string[] = [];
+    const reasons: Record<string, string> = {};
+
+    for (const ref of refs) {
+      const element = this.refMap.get(ref);
+
+      if (element) {
+        // Check if element is still in the DOM
+        if (this.document.contains(element)) {
+          valid.push(ref);
+        } else {
+          invalid.push(ref);
+          reasons[ref] = 'Element has been removed from the DOM';
+        }
+      } else {
+        invalid.push(ref);
+        reasons[ref] = 'Ref not found. Refs are cleared on each snapshot() call.';
+      }
+    }
+
+    return {
+      valid,
+      invalid,
+      reasons,
+    };
   }
 
   // --- Utilities ---

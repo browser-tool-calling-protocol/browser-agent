@@ -8,7 +8,8 @@
     "activeTab",
     "tabs",
     "tabGroups",
-    "scripting"
+    "scripting",
+    "storage"
   ],
 
   "host_permissions": [
