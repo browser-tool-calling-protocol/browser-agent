@@ -33,11 +33,15 @@
     "./cli/terminal": {
       "types": "./packages/cli/dist/terminal/index.d.ts",
       "import": "./packages/cli/dist/terminal/index.js"
+    },
+    "./grep": {
+      "types": "./packages/grep/dist/index.d.ts",
+      "import": "./packages/grep/dist/index.js"
     }
   },
   "scripts": {
     "build": "npm run build:packages && tsc -p tsconfig.build.json",
-    "build:packages": "tsc -p packages/core/tsconfig.json && tsc -p packages/extension/tsconfig.json && tsc -p packages/cli/tsconfig.json",
+    "build:packages": "tsc -p packages/core/tsconfig.json && tsc -p packages/extension/tsconfig.json && tsc -p packages/cli/tsconfig.json && tsc -p packages/grep/tsconfig.json",
     "clean": "rm -rf dist packages/*/dist",
     "prepare": "npm run build",
     "test": "vitest run",
@@ -47,7 +51,8 @@
   "workspaces": [
     "packages/core",
     "packages/extension",
-    "packages/cli"
+    "packages/cli",
+    "packages/grep"
   ],
   "license": "Apache-2.0",
   "repository": {
