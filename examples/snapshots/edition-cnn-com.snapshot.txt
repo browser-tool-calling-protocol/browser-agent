@@ -1,44 +1,42 @@
 PAGE: http://localhost/ | Breaking News, Latest News and Videos | CNN | viewport=1024x768
-SNAPSHOT: elements=158 refs=39 captured=39/39 quality=high depth=10/10 mode=interactive,compact,landmarks,content-preview
+SNAPSHOT: elements=158 refs=39
 
-BUTTON "Open Menu Icon" @ref:0 (1 non-interactive children filtered)
-LINK "CNN logo" @ref:1 href=https://edition.cnn.com (1 non-interactive children filtered)
-FORM action=https://www.cnn.com/search method=GET
-  SEARCH
-    TEXTBOX "Search" @ref:2
-    BUTTON "Submit" @ref:3
-LINK "User Account Log In Button" @ref:4
-LINK "Live TV" @ref:5 href=https://edition.cnn.com/live-tv
-LINK "Audio" @ref:6 href=https://edition.cnn.com/audio
-LINK "Video" @ref:7 href=https://edition.cnn.com/watch
-LINK "World" @ref:8 href=https://edition.cnn.com/world
-LINK "US Politics" @ref:9 href=https://edition.cnn.com/politics
-LINK "Business" @ref:10 href=https://edition.cnn.com/business
-LINK "Markets" @ref:11 href=https://edition.cnn.com/markets
-LINK "Health" @ref:12 href=https://edition.cnn.com/health
-LINK "Entertainment" @ref:13 href=https://edition.cnn.com/entertainment
-LINK "Tech" @ref:14 href=https://edition.cnn.com/business/tech
-LINK "Style" @ref:15 href=https://edition.cnn.com/style
-LINK "Travel" @ref:16 href=https://edition.cnn.com/travel
-LINK "Sports" @ref:17 href=https://edition.cnn.com/sport
-LINK "Science" @ref:18 href=https://edition.cnn.com/science
-LINK "Climate" @ref:19 href=https://edition.cnn.com/climate
-LINK "Weather" @ref:20 href=https://edition.cnn.com/weather
-LINK "Ukraine-Russia War" @ref:21 href=https://edition.cnn.com/world/europe/ukraine
-LINK "Israel-Hamas War" @ref:22 href=https://edition.cnn.com/world/middleeast/israel
-LINK "Features" @ref:23 href=https://edition.cnn.com/specials
-LINK "Watch" @ref:24 href=https://edition.cnn.com/watch
-LINK "Listen" @ref:25 href=https://edition.cnn.com/audio
-LINK "Games" @ref:26 href=https://edition.cnn.com/games
-LINK "About CNN" @ref:27 href=https://edition.cnn.com/about
-LINK "CNN logo" @ref:28 href=https://edition.cnn.com (1 non-interactive children filtered)
-LINK "Download on Apple App Store" @ref:29 href=https://cnn.onelink.me/PVpf/q9j1odhf (1 non-interactive children filtered)
-LINK "Get it on Google Play" @ref:30 href=https://cnn.onelink.me/PVpf/43qg6lsp (1 non-interactive children filtered)
-LINK "Terms of Use" @ref:31 href=https://edition.cnn.com/terms
-LINK "Privacy Policy" @ref:32 href=https://edition.cnn.com/privacy
-LINK "Manage Cookies" @ref:33 href=#
-LINK "Ad Choices" @ref:34 href=https://edition.cnn.com/ad-choices
-LINK "Accessibility & CC" @ref:35 href=https://edition.cnn.com/accessibility
-LINK "About" @ref:36 href=https://edition.cnn.com/about
-LINK "Newsletters" @ref:37 href=https://edition.cnn.com/newsletters
-LINK "Transcripts" @ref:38 href=https://edition.cnn.com/transcripts
+BUTTON "Open Menu Icon" @ref:0 /nav#pageHeader/div.header__inner/div.header__subnav-mount/div.header__container[1]/div.header__left[1]/button#headerMenuIcon[1]
+LINK "CNN logo" @ref:1 /nav#pageHeader/div.header__inner/div.header__subnav-mount/div.header__container[1]/div.header__left[1]/a
+TEXTBOX "Search" @ref:2 /footer#pageFooter/div.footer__inner/div.search-bar[1]/form.search-bar__form/input.search-bar__input
+BUTTON "Submit" @ref:3 /footer#pageFooter/div.footer__inner/div.search-bar[1]/form.search-bar__form/button.search-bar__submit
+LINK "User Account Log In Button" @ref:4 /footer#pageFooter/div.footer__inner/div#mobile-footer-account-nav[2]/nav/button[3]
+LINK "Live TV" @ref:5 /footer#pageFooter/div.footer__inner/a.footer__live-tv-link[1]
+LINK "Audio" @ref:6 /footer#pageFooter/div.footer__inner/a.footer__audio-link[2]
+LINK "Video" @ref:7 /footer#pageFooter/div.footer__inner/a.footer__video-link[3]
+LINK "World" @ref:8 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[1]/a
+LINK "US Politics" @ref:9 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[2]/a
+LINK "Business" @ref:10 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[3]/a
+LINK "Markets" @ref:11 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[4]/a
+LINK "Health" @ref:12 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[5]/a
+LINK "Entertainment" @ref:13 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[6]/a
+LINK "Tech" @ref:14 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[7]/a
+LINK "Style" @ref:15 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[8]/a
+LINK "Travel" @ref:16 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[9]/a
+LINK "Sports" @ref:17 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[10]/a
+LINK "Science" @ref:18 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[11]/a
+LINK "Climate" @ref:19 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[12]/a
+LINK "Weather" @ref:20 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[13]/a
+LINK "Ukraine-Russia War" @ref:21 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[14]/a
+LINK "Israel-Hamas War" @ref:22 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[15]/a
+LINK "Features" @ref:23 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[16]/a
+LINK "Watch" @ref:24 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[17]/a
+LINK "Listen" @ref:25 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[18]/a
+LINK "Games" @ref:26 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[19]/a
+LINK "About CNN" @ref:27 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[20]/a
+LINK "CNN logo" @ref:28 /footer#pageFooter/div.footer__inner/div.footer__row[4]/div.footer__brand-logo[1]/a
+LINK "Download on Apple App Store" @ref:29 /footer#pageFooter/div.footer__inner/div.footer__app-download/a.footer__app-download-link[1]
+LINK "Get it on Google Play" @ref:30 /footer#pageFooter/div.footer__inner/div.footer__app-download/a.footer__app-download-link[2]
+LINK "Terms of Use" @ref:31 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[1]
+LINK "Privacy Policy" @ref:32 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[2]
+LINK "Manage Cookies" @ref:33 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[3]
+LINK "Ad Choices" @ref:34 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[4]
+LINK "Accessibility & CC" @ref:35 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[5]
+LINK "About" @ref:36 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[6]
+LINK "Newsletters" @ref:37 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[7]
+LINK "Transcripts" @ref:38 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[8]

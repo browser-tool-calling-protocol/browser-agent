@@ -1,110 +1,98 @@
 PAGE: http://localhost/ | Amazon.com: ASUS ROG Swift 32” 4K OLED Gaming Monitor (PG32UCDM) - UHD (3840 x 2160), QD-OLED, 240Hz, 0.03ms, G-SYNC Compatible, Custom Heatsink, Graphene Film, 99% DCI-P3, True 10-bit, 90W USB-C : Electronics | viewport=1024x768
-SNAPSHOT: elements=1288 refs=101 captured=101/101 quality=high depth=10/10 mode=interactive,compact,landmarks,content-preview
+SNAPSHOT: elements=1288 refs=95
 
-LINK @ref:0
-LINK "main content" @ref:1 href=#skippedLink
-LINK "About this item" @ref:2 href=#featurebullets_feature_div
-LINK "Buying options" @ref:3 href=#buybox
-LINK "Videos" @ref:4 href=#va-related-videos-widget_feature_div
-LINK "Reviews" @ref:5 href=#customerReviews
-LINK "Search, option, forward slash" @ref:6 href=javascript:void(0) (1 non-interactive children filtered)
-LINK "Cart, shift, option, c" @ref:7 href=javascript:void(0) (1 non-interactive children filtered)
-LINK "Home, shift, option, h" @ref:8 href=javascript:void(0) (1 non-interactive children filtered)
-LINK "Your orders, shift, option, o" @ref:9 href=javascript:void(0) (1 non-interactive children filtered)
-BUTTON "Add to cart, shift, option, K" @ref:10 (1 non-interactive children filtered)
-BUTTON "Show/hide shortcuts, shift, option, z" @ref:11 (1 non-interactive children filtered)
-LINK "Amazon" @ref:12 href=/ref=nav_logo (3 non-interactive children filtered)
-BUTTON "Deliver to Vietnam" @ref:13 (2 non-interactive children filtered)
-FORM id=nav-search-bar-form action=http://localhost/s/ref=nb_sb_noss method=GET
-  SEARCH "All Select the department you want to search in..." (3 non-interactive children filtered)
-    SEARCHBOX "Search Amazon" @ref:14
-    BUTTON "Agent Search" @ref:15 [type=submit]
-LINK "Choose a language for shopping in Amazon United..." @ref:16 href=/customer-preferences/edit?ie=UTF8&preferencesReturnUrl=%2F&ref_=topnav_lang_ais (1 non-interactive children filtered)
-LINK "Hello, sign in Account & Lists" @ref:17 href=https://www.amazon.com/ap/signin?openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2FASUS-Swift-Gaming-Monitor-PG32UCDM%2Fdp... (2 non-interactive children filtered)
-LINK "Returns & Orders" @ref:18 href=/gp/css/order-history?ref_=nav_orders_first (2 non-interactive children filtered)
-LINK "0 items in cart" @ref:19 href=/gp/cart/view.html?ref_=nav_cart (2 non-interactive children filtered)
-BUTTON "Dismiss" @ref:20 [type=submit]
-BUTTON "Change Address" @ref:21 [type=submit]
-LINK "Sign in" @ref:22 href=https://www.amazon.com/ap/signin?openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2FASUS-Swift-Gaming-Monitor-PG32UCDM%2Fdp... (1 children: 0 shown, 1 hidden by depth limit)
-BUTTON "Open All Categories Menu" @ref:23 href=javascript: void(0) (2 non-interactive children filtered)
-LINK "Click to call our Disability Customer Support l..." @ref:24 href=/gp/help/customer/accessibility
-LINK @ref:25
-BUTTON "Leave feedback on Sponsored ad" @ref:26 (1 non-interactive children filtered)
-FORM action=http://localhost/ method=GET
-  FORM
-BUTTON "Leave feedback on Sponsored ad" @ref:27 (1 children: 0 shown, 1 hidden by depth limit)
-BUTTON @ref:28
-  BUTTON "Share" @ref:29 href=javascript:void(0)
-TAB "VIDEOS" @ref:30 (1 children: 0 shown, 1 hidden by depth limit)
-TAB "IMAGES" @ref:31 (1 children: 0 shown, 1 hidden by depth limit)
-TAB @ref:32 (1 children: 0 shown, 1 hidden by depth limit)
-BUTTON "javascript:void(0)" @ref:33 href=javascript:void(0)
-LINK @ref:34 (3 non-interactive children filtered)
-LINK "Visit the ASUS Store" @ref:35 href=/stores/ASUS/page/02389710-881F-4F25-89E8-F92DEEA14D5A?lp_asin=B0CV26XVMD&ref_=ast_bln&store_ref=bl_ast_dp_brandLogo_sto
-LINK "(889)" @ref:36 href=#averageCustomerReviewsAnchor (1 non-interactive children filtered)
-CHECKBOX @ref:37 [type=checkbox]
-BUTTON @ref:38 (1 non-interactive children filtered)
-LINK "See more product details" @ref:39 href=#productDetails
-FORM action=http://localhost/ method=GET
-  FORM
-LINK "Report an issue with this product or seller" @ref:40 href=# (1 children: 0 shown, 1 hidden by depth limit)
-LINK @ref:41
-LINK "WARNING" @ref:42 href=#
-BUTTON "Leave feedback on Sponsored ad" @ref:43 (1 non-interactive children filtered)
-BUTTON "Back to top" @ref:44 (1 non-interactive children filtered)
-LINK "Careers" @ref:45 href=https://www.amazon.jobs
-LINK "Blog" @ref:46 href=https://blog.aboutamazon.com/?utm_source=gateway&utm_medium=footer
-LINK "About Amazon" @ref:47 href=https://www.aboutamazon.com/?utm_source=gateway&utm_medium=footer
-LINK "Investor Relations" @ref:48 href=https://www.amazon.com/ir
-LINK "Amazon Devices" @ref:49 href=/gp/browse.html?node=2102313011&ref_=footer_devices
-LINK "Amazon Science" @ref:50 href=https://www.amazon.science
-LINK "Sell products on Amazon" @ref:51 href=https://services.amazon.com/sell.html?ld=AZFSSOA&ref_=footer_soa
-LINK "Sell on Amazon Business" @ref:52 href=https://services.amazon.com/amazon-business.html?ld=usb2bunifooter&ref_=footer_b2b
-LINK "Sell apps on Amazon" @ref:53 href=https://developer.amazon.com
-LINK "Become an Affiliate" @ref:54 href=https://affiliate-program.amazon.com/
-LINK "Advertise Your Products" @ref:55 href=https://advertising.amazon.com/?ref=ext_amzn_ftr
-LINK "Self-Publish with Us" @ref:56 href=/gp/seller-account/mm-summary-page.html?ld=AZFooterSelfPublish&topic=200260520&ref_=footer_publishing
-LINK "Host an Amazon Hub" @ref:57 href=https://go.thehub-amazon.com/amazon-hub-locker
-LINK "See More Make Money with Us" @ref:58 href=/b/?node=18190131011&ld=AZUSSOA-seemore&ref_=footer_seemore
-LINK "Amazon Business Card" @ref:59 href=/dp/B07984JN3L?plattr=ACOMFO&ie=UTF-8
-LINK "Shop with Points" @ref:60 href=/gp/browse.html?node=16218619011&ref_=footer_swp
-LINK "Reload Your Balance" @ref:61 href=/dp/B0CHTVMXZJ?th=1?ref_=footer_reload_us
-LINK "Amazon Currency Converter" @ref:62 href=/gp/browse.html?node=388305011&ref_=footer_tfx
-LINK "Amazon and COVID-19" @ref:63 href=/gp/help/customer/display.html?nodeId=GDFU3JS5AL6SYHRD&ref_=footer_covid
-LINK "Your Account" @ref:64 href=https://www.amazon.com/gp/css/homepage.html?ref_=footer_ya
-LINK "Your Orders" @ref:65 href=https://www.amazon.com/gp/css/order-history?ref_=footer_yo
-LINK "Shipping Rates & Policies" @ref:66 href=/gp/help/customer/display.html?nodeId=468520&ref_=footer_shiprates
-LINK "Returns & Replacements" @ref:67 href=/gp/css/returns/homepage.html?ref_=footer_hy_f_4
-LINK "Manage Your Content and Devices" @ref:68 href=/gp/digital/fiona/manage?ref_=footer_myk
-LINK "Help" @ref:69 href=/gp/help/customer/display.html?nodeId=508510&ref_=footer_gw_m_b_he
-LINK "Amazon US Home" @ref:70 href=/?ref_=footer_logo (1 non-interactive children filtered)
-LINK "Amazon MusicStream millionsof songs" @ref:71 href=https://music.amazon.com?ref=dm_aff_amz_com (2 non-interactive children filtered)
-LINK "Amazon AdsReach customerswherever theyspend the..." @ref:72 href=https://advertising.amazon.com/?ref=footer_advtsing_amzn_com (2 non-interactive children filtered)
-LINK "6pmScore dealson fashion brands" @ref:73 href=https://www.6pm.com (2 non-interactive children filtered)
-LINK "AbeBooksBooks, art& collectibles" @ref:74 href=https://www.abebooks.com (2 non-interactive children filtered)
-LINK "ACX Audiobook PublishingMade Easy" @ref:75 href=https://www.acx.com/ (2 non-interactive children filtered)
-LINK "Sell on AmazonStart a Selling Account" @ref:76 href=https://sell.amazon.com/?ld=AZUSSOA-footer-aff&ref_=footer_sell (2 non-interactive children filtered)
-LINK "VeeqoShipping SoftwareInventory Management" @ref:77 href=https://www.veeqo.com/?utm_source=amazon&utm_medium=website&utm_campaign=footer (2 non-interactive children filtered)
-LINK "Amazon BusinessEverything ForYour Business" @ref:78 href=/business?ref_=footer_retail_b2b (2 non-interactive children filtered)
-LINK "AmazonGlobalShip OrdersInternationally" @ref:79 href=/gp/browse.html?node=230659011&ref_=footer_amazonglobal (2 non-interactive children filtered)
-LINK "Amazon Web ServicesScalable CloudComputing Serv..." @ref:80 href=https://aws.amazon.com/what-is-cloud-computing/?sc_channel=EL&sc_campaign=amazonfooter (2 non-interactive children filtered)
-LINK "AudibleListen to Books & OriginalAudio Performa..." @ref:81 href=https://www.audible.com (2 non-interactive children filtered)
-LINK "Box Office MojoFind MovieBox Office Data" @ref:82 href=https://www.boxofficemojo.com/?ref_=amzn_nav_ftr (2 non-interactive children filtered)
-LINK "GoodreadsBook reviews& recommendations" @ref:83 href=https://www.goodreads.com (2 non-interactive children filtered)
-LINK "IMDbMovies, TV& Celebrities" @ref:84 href=https://www.imdb.com (2 non-interactive children filtered)
-LINK "IMDbProGet Info EntertainmentProfessionals Need" @ref:85 href=https://pro.imdb.com?ref_=amzn_nav_ftr (2 non-interactive children filtered)
-LINK "Kindle Direct PublishingIndie Digital & Print P..." @ref:86 href=https://kdp.amazon.com (2 non-interactive children filtered)
-LINK "Prime Video DirectVideo DistributionMade Easy" @ref:87 href=https://videodirect.amazon.com/home/landing (2 non-interactive children filtered)
-LINK "ShopbopDesignerFashion Brands" @ref:88 href=https://www.shopbop.com (2 non-interactive children filtered)
-LINK "Woot!Deals and Shenanigans" @ref:89 href=https://www.woot.com/ (2 non-interactive children filtered)
-LINK "ZapposShoes &Clothing" @ref:90 href=https://www.zappos.com (2 non-interactive children filtered)
-LINK "RingSmart HomeSecurity Systems" @ref:91 href=https://ring.com (2 non-interactive children filtered)
-LINK "eero WiFiStream 4K Videoin Every Room" @ref:92 href=https://eero.com/ (2 non-interactive children filtered)
-LINK "BlinkSmart Securityfor Every Home" @ref:93 href=https://blinkforhome.com/?ref=nav_footer (2 non-interactive children filtered)
-LINK "Neighbors App Real-Time Crime& Safety Alerts" @ref:94 href=https://shop.ring.com/pages/neighbors-app (2 non-interactive children filtered)
-LINK "Amazon Subscription BoxesTop subscription boxes..." @ref:95 href=/gp/browse.html?node=14498690011&ref_=amzn_nav_ftr_swa (2 non-interactive children filtered)
-LINK "PillPackPharmacy Simplified" @ref:96 href=https://www.pillpack.com (2 non-interactive children filtered)
-LINK "Conditions of Use" @ref:97 href=/gp/help/customer/display.html?nodeId=508088&ref_=footer_cou
-LINK "Privacy Notice" @ref:98 href=/gp/help/customer/display.html?nodeId=468496&ref_=footer_privacy
-LINK "Consumer Health Data Privacy Disclosure" @ref:99 href=/gp/help/customer/display.html?ie=UTF8&nodeId=TnACMrGVghHocjL8KB&ref_=footer_consumer_health_data_privacy
-LINK "Your Ads Privacy Choices" @ref:100 href=/privacyprefs?ref_=footer_iba
+LINK "main content" @ref:0 /div#a-page[1]/nav#shortcut-menu/ul[1]/li.nav-assistant-list-item[1]/a.nav-assistant-link
+LINK "About this item" @ref:1 /div#a-page[1]/nav#shortcut-menu/ul[1]/li.nav-assistant-list-item[2]/a.nav-assistant-link
+LINK "Buying options" @ref:2 /div#a-page[1]/nav#shortcut-menu/ul[1]/li.nav-assistant-list-item[5]/a.nav-assistant-link
+LINK "Videos" @ref:3 /div#a-page[1]/nav#shortcut-menu/ul[1]/li.nav-assistant-list-item[7]/a#nav-assist-skip-to-videos
+LINK "Reviews" @ref:4 /div#a-page[1]/nav#shortcut-menu/ul[1]/li.nav-assistant-list-item[8]/a#nav-assist-skip-to-reviews
+LINK "Search, option, forward slash" @ref:5 /div#a-page[1]/nav#shortcut-menu/ul[2]/li.nav-assistant-list-item[1]/a#nav-assist-search
+LINK "Cart, shift, option, c" @ref:6 /div#a-page[1]/nav#shortcut-menu/ul[2]/li.nav-assistant-list-item[2]/a#nav-assist-cart
+LINK "Home, shift, option, h" @ref:7 /div#a-page[1]/nav#shortcut-menu/ul[2]/li.nav-assistant-list-item[3]/a#nav-assist-home
+LINK "Your orders, shift, option, o" @ref:8 /div#a-page[1]/nav#shortcut-menu/ul[2]/li.nav-assistant-list-item[4]/a#nav-assist-your-orders
+BUTTON "Add to cart, shift, option, K" @ref:9 /div#a-page[1]/nav#shortcut-menu/ul[2]/li.nav-assistant-list-item[5]/button#nav-assist-add-to-cart
+BUTTON "Show/hide shortcuts, shift, option, z" @ref:10 /div#a-page[1]/nav#shortcut-menu/ul[2]/li.nav-assistant-list-item[6]/button#nav-assist-show-shortcuts
+LINK "Amazon" @ref:11 /header#navbar-main/div#navbar/div#nav-belt[1]/div.nav-left[1]/div#nav-logo[1]/a#nav-logo-sprites
+BUTTON "Deliver to Vietnam" @ref:12 /div#navbar/div#nav-belt[1]/div.nav-left[1]/div#nav-global-location-slot[2]/span.nav-progressive-attribute/a.nav-a
+SEARCHBOX "Search Amazon" @ref:13 /div#nav-fill-search[2]/div#nav-search/form#nav-search-bar-form/div.nav-fill[2]/div.nav-search-field[1]/input#twotabsearchtextbox
+BUTTON "Agent Search" @ref:14 [type=submit] /div#nav-fill-search[2]/div#nav-search/form#nav-search-bar-form/div.nav-right[3]/span#nav-search-submit-text-agent/input
+LINK "Choose a language for shopping in Amazon United..." @ref:15 /div#navbar/div#nav-belt[1]/div.nav-right[3]/div#nav-tools/div#icp-nav-flyout[1]/a.nav-a
+LINK "Hello, sign in Account & Lists" @ref:16 /div#navbar/div#nav-belt[1]/div.nav-right[3]/div#nav-tools/div#nav-link-accountList[2]/a.nav-a
+LINK "Returns & Orders" @ref:17 /header#navbar-main/div#navbar/div#nav-belt[1]/div.nav-right[3]/div#nav-tools/a#nav-orders[1]
+LINK "0 items in cart" @ref:18 /header#navbar-main/div#navbar/div#nav-belt[1]/div.nav-right[3]/div#nav-tools/a#nav-cart[2]
+BUTTON "Dismiss" @ref:19 [type=submit] /header#navbar-main/div#navbar/div#nav-flyout-iss-anchor[2]/div.nav-coreFlyout[2]/span#a-autoid-29[1]/input
+BUTTON "Change Address" @ref:20 [type=submit] /header#navbar-main/div#navbar/div#nav-flyout-iss-anchor[2]/div.nav-coreFlyout[2]/span#a-autoid-30[2]/input
+LINK "Sign in" @ref:21 /div#nav-flyout-accountList[3]/div.nav-template[2]/div#nav-al-container/div#nav-al-signin[1]/div#nav-flyout-ya-signin/a.nav-action-signin-button
+BUTTON "Open All Categories Menu" @ref:22 /div#a-page[1]/header#navbar-main/div#navbar/div#nav-main[5]/div.nav-left[1]/a#nav-hamburger-menu
+LINK "Click to call our Disability Customer Support l..." @ref:23 /div#nav-main[5]/div.nav-fill[2]/div#nav-xshop-container[2]/div#nav-xshop/ul.nav-ul/a.nav-hidden-aria
+BUTTON @ref:24 /div#dp[1]/div#dp-container/div#ppd[5]/div#leftCol[3]/div#imageBlock_feature_div[1]/span#ssf-primary-widget-desktop
+BUTTON "Share" @ref:25 /div#dp-container/div#ppd[5]/div#leftCol[3]/div#imageBlock_feature_div[1]/span#ssf-primary-widget-desktop/a
+TAB "VIDEOS" @ref:26 /div#leftCol[3]/div#imageBlock_feature_div[1]/div#a-popover-immersiveView[4]/div#iv-tab-view-container/ul/li#ivVideosTabHeading[1]
+TAB "IMAGES" @ref:27 /div#leftCol[3]/div#imageBlock_feature_div[1]/div#a-popover-immersiveView[4]/div#iv-tab-view-container/ul/li#ivImagesTabHeading[3]
+TAB @ref:28 /div#leftCol[3]/div#imageBlock_feature_div[1]/div#a-popover-immersiveView[4]/div#iv-tab-view-container/ul/li#ivDimensionTabHeading[4]
+BUTTON "javascript:void(0)" @ref:29 /div#dp-container/div#ppd[5]/div#leftCol[3]/div#energyEfficiency_feature_div[4]/div#energyEfficiency/a
+LINK @ref:30 /div#dp[1]/div#dp-container/div#ppd[5]/div#leftCol[3]/div#dyrWebIngress_feature_div[5]/div#dyr-ingress-content
+LINK "Visit the ASUS Store" @ref:31 /div#dp[1]/div#dp-container/div#ppd[5]/div#centerCol[4]/div#bylineInfo_feature_div[2]/a#bylineInfo
+LINK "(889)" @ref:32 /div#dp-container/div#ppd[5]/div#centerCol[4]/div[3]/div#averageCustomerReviews/a#acrCustomerReviewLink
+CHECKBOX @ref:33 [type=checkbox] /div#dp-container/div#ppd[5]/div#centerCol[4]/div#twisterPlusWWDesktop[41]/div#twister-plus-feature[2]/input#twister-plus-checkbox[2]
+BUTTON @ref:34 /div#dp[1]/div#dp-container/div#ppd[5]/div#centerCol[4]/div#twisterPlusWWDesktop[41]/div#twister-plus-dp-bg
+LINK "See more product details" @ref:35 /div#dp-container/div#ppd[5]/div#centerCol[4]/div#featurebullets_feature_div[47]/div#feature-bullets/a#seeMoreDetailsLink
+LINK "Report an issue with this product or seller" @ref:36 /div#dp-container/div#ppd[5]/div#centerCol[4]/div#tellAmazon_feature_div[58]/div/a
+LINK "WARNING" @ref:37 /div#a-page[1]/div#dp[1]/div#dp-container/div#legal-1_feature_div[26]/a
+BUTTON "Back to top" @ref:38 /div#a-page[1]/div#navFooter[3]/button#navBackToTop
+LINK "Careers" @ref:39 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[1]/ul/li.nav_first[1]/a.nav_a
+LINK "Blog" @ref:40 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[1]/ul/li[2]/a.nav_a
+LINK "About Amazon" @ref:41 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[1]/ul/li[3]/a.nav_a
+LINK "Investor Relations" @ref:42 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[1]/ul/li[4]/a.nav_a
+LINK "Amazon Devices" @ref:43 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[1]/ul/li[5]/a.nav_a
+LINK "Amazon Science" @ref:44 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[1]/ul/li.nav_last[6]/a.nav_a
+LINK "Sell products on Amazon" @ref:45 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li.nav_first[1]/a.nav_a
+LINK "Sell on Amazon Business" @ref:46 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li[2]/a.nav_a
+LINK "Sell apps on Amazon" @ref:47 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li[3]/a.nav_a
+LINK "Become an Affiliate" @ref:48 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li[4]/a.nav_a
+LINK "Advertise Your Products" @ref:49 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li[5]/a.nav_a
+LINK "Self-Publish with Us" @ref:50 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li[6]/a.nav_a
+LINK "Host an Amazon Hub" @ref:51 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li[7]/a.nav_a
+LINK "See More Make Money with Us" @ref:52 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li.nav_last[8]/a.nav_a
+LINK "Amazon Business Card" @ref:53 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[5]/ul/li.nav_first[1]/a.nav_a
+LINK "Shop with Points" @ref:54 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[5]/ul/li[2]/a.nav_a
+LINK "Reload Your Balance" @ref:55 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[5]/ul/li[3]/a.nav_a
+LINK "Amazon Currency Converter" @ref:56 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[5]/ul/li.nav_last[4]/a.nav_a
+LINK "Amazon and COVID-19" @ref:57 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[7]/ul/li.nav_first[1]/a.nav_a
+LINK "Your Account" @ref:58 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[7]/ul/li[2]/a.nav_a
+LINK "Your Orders" @ref:59 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[7]/ul/li[3]/a.nav_a
+LINK "Shipping Rates & Policies" @ref:60 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[7]/ul/li[4]/a.nav_a
+LINK "Returns & Replacements" @ref:61 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[7]/ul/li[5]/a.nav_a
+LINK "Manage Your Content and Devices" @ref:62 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[7]/ul/li[6]/a.nav_a
+LINK "Help" @ref:63 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[7]/ul/li.nav_last[7]/a.nav_a
+LINK "Amazon US Home" @ref:64 /div#a-page[1]/div#navFooter[3]/div.navFooterLine[3]/div.navFooterLine/a
+LINK "Amazon MusicStream millionsof songs" @ref:65 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[1]/li.navFooterDescItem[1]/a.nav_a
+LINK "Amazon AdsReach customerswherever theyspend the..." @ref:66 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[1]/li.navFooterDescItem[3]/a.nav_a
+LINK "6pmScore dealson fashion brands" @ref:67 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[1]/li.navFooterDescItem[5]/a.nav_a
+LINK "AbeBooksBooks, art& collectibles" @ref:68 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[1]/li.navFooterDescItem[7]/a.nav_a
+LINK "ACX Audiobook PublishingMade Easy" @ref:69 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[1]/li.navFooterDescItem[9]/a.nav_a
+LINK "Sell on AmazonStart a Selling Account" @ref:70 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[1]/li.navFooterDescItem[11]/a.nav_a
+LINK "VeeqoShipping SoftwareInventory Management" @ref:71 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[1]/li.navFooterDescItem[13]/a.nav_a
+LINK "Amazon BusinessEverything ForYour Business" @ref:72 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[2]/li.navFooterDescItem[1]/a.nav_a
+LINK "AmazonGlobalShip OrdersInternationally" @ref:73 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[2]/li.navFooterDescItem[3]/a.nav_a
+LINK "Amazon Web ServicesScalable CloudComputing Serv..." @ref:74 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[2]/li.navFooterDescItem[5]/a.nav_a
+LINK "AudibleListen to Books & OriginalAudio Performa..." @ref:75 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[2]/li.navFooterDescItem[7]/a.nav_a
+LINK "Box Office MojoFind MovieBox Office Data" @ref:76 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[2]/li.navFooterDescItem[9]/a.nav_a
+LINK "GoodreadsBook reviews& recommendations" @ref:77 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[2]/li.navFooterDescItem[11]/a.nav_a
+LINK "IMDbMovies, TV& Celebrities" @ref:78 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[2]/li.navFooterDescItem[13]/a.nav_a
+LINK "IMDbProGet Info EntertainmentProfessionals Need" @ref:79 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[3]/li.navFooterDescItem[1]/a.nav_a
+LINK "Kindle Direct PublishingIndie Digital & Print P..." @ref:80 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[3]/li.navFooterDescItem[3]/a.nav_a
+LINK "Prime Video DirectVideo DistributionMade Easy" @ref:81 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[3]/li.navFooterDescItem[5]/a.nav_a
+LINK "ShopbopDesignerFashion Brands" @ref:82 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[3]/li.navFooterDescItem[7]/a.nav_a
+LINK "Woot!Deals and Shenanigans" @ref:83 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[3]/li.navFooterDescItem[9]/a.nav_a
+LINK "ZapposShoes &Clothing" @ref:84 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[3]/li.navFooterDescItem[11]/a.nav_a
+LINK "RingSmart HomeSecurity Systems" @ref:85 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[3]/li.navFooterDescItem[13]/a.nav_a
+LINK "eero WiFiStream 4K Videoin Every Room" @ref:86 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[4]/li.navFooterDescItem[3]/a.nav_a
+LINK "BlinkSmart Securityfor Every Home" @ref:87 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[4]/li.navFooterDescItem[5]/a.nav_a
+LINK "Neighbors App Real-Time Crime& Safety Alerts" @ref:88 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[4]/li.navFooterDescItem[7]/a.nav_a
+LINK "Amazon Subscription BoxesTop subscription boxes..." @ref:89 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[4]/li.navFooterDescItem[9]/a.nav_a
+LINK "PillPackPharmacy Simplified" @ref:90 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[4]/li.navFooterDescItem[11]/a.nav_a
+LINK "Conditions of Use" @ref:91 /div#a-page[1]/div#navFooter[3]/div.navFooterLine[5]/ul/li.nav_first[1]/a.nav_a
+LINK "Privacy Notice" @ref:92 /div#a-page[1]/div#navFooter[3]/div.navFooterLine[5]/ul/li[2]/a.nav_a
+LINK "Consumer Health Data Privacy Disclosure" @ref:93 /div#a-page[1]/div#navFooter[3]/div.navFooterLine[5]/ul/li[3]/a.nav_a
+LINK "Your Ads Privacy Choices" @ref:94 /div#a-page[1]/div#navFooter[3]/div.navFooterLine[5]/ul/li[4]/a.nav_a
