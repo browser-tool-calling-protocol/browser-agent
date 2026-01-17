@@ -30,6 +30,10 @@ export class DOMActions {
   private document: Document;
   private window: Window;
   private refMap: RefMap;
+  private lastSnapshotData: SnapshotData | null = null;
+  private overlayContainer: HTMLElement | null = null;
+  private scrollListener: (() => void) | null = null;
+  private rafId: number | null = null;
 
   constructor(doc: Document, win: Window, refMap: RefMap) {
     this.document = doc;
@@ -124,6 +128,7 @@ export class DOMActions {
           interactive: command.interactive,
           compact: command.compact,
           all: command.all,
+          format: command.format,
         });
 
       case 'querySelector':
@@ -179,6 +184,12 @@ export class DOMActions {
 
       case 'validateRefs':
         return this.validateRefs(command.refs);
+
+      case 'highlight':
+        return this.highlight();
+
+      case 'clearHighlight':
+        return this.clearHighlight();
 
       default:
         throw new Error(`Unknown action: ${(command as Command).action}`);
@@ -644,19 +655,26 @@ export class DOMActions {
     interactive?: boolean;
     compact?: boolean;
     all?: boolean;
+    format?: 'tree' | 'html';
   }): Promise<SnapshotData> {
     const root = options.selector
       ? this.getElement(options.selector)
       : this.document.body;
 
-    return createSnapshot(this.document, this.refMap, {
+    const snapshotData = createSnapshot(this.document, this.refMap, {
       root,
       maxDepth: options.maxDepth,
       includeHidden: options.includeHidden,
       interactive: options.interactive,
       compact: options.compact,
       all: options.all,
+      format: options.format,
     });
+
+    // Store snapshot data for highlight command
+    this.lastSnapshotData = snapshotData;
+
+    return snapshotData;
   }
 
   private async querySelector(selector: string): Promise<{ found: boolean; ref?: string }> {
@@ -956,6 +974,220 @@ export class DOMActions {
       invalid,
       reasons,
     };
+  }
+
+  /**
+   * Display visual overlay labels for interactive elements
+   */
+  private async highlight(): Promise<{ highlighted: number }> {
+    // Verify snapshot exists
+    if (!this.lastSnapshotData || !this.lastSnapshotData.refs) {
+      throw new Error('No snapshot data available. Please run snapshot() command first.');
+    }
+
+    // Clear any existing highlights
+    this.clearExistingOverlay();
+
+    // Create overlay container with absolute positioning
+    this.overlayContainer = this.document.createElement('div');
+    this.overlayContainer.id = 'btcp-highlight-overlay';
+    this.overlayContainer.style.cssText = `
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999999;
+      contain: layout style paint;
+    `;
+
+    let highlightedCount = 0;
+
+    // Create border overlays and labels for each ref
+    for (const [ref, _refData] of Object.entries(this.lastSnapshotData.refs)) {
+      const element = this.refMap.get(ref);
+
+      // Skip if element no longer exists or is disconnected
+      if (!element || !element.isConnected) {
+        continue;
+      }
+
+      try {
+        // Get current bounding box (element might have moved)
+        const bbox = element.getBoundingClientRect();
+
+        // Skip elements with no dimensions
+        if (bbox.width === 0 && bbox.height === 0) {
+          continue;
+        }
+
+        // Create border overlay
+        const border = this.document.createElement('div');
+        border.className = 'btcp-ref-border';
+        border.dataset.ref = ref;
+        border.style.cssText = `
+          position: absolute;
+          width: ${bbox.width}px;
+          height: ${bbox.height}px;
+          transform: translate3d(${bbox.left + this.window.scrollX}px, ${bbox.top + this.window.scrollY}px, 0);
+          border: 2px solid rgba(59, 130, 246, 0.8);
+          border-radius: 2px;
+          box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.2);
+          pointer-events: none;
+          will-change: transform;
+          contain: layout style paint;
+        `;
+
+        // Create label
+        const label = this.document.createElement('div');
+        label.className = 'btcp-ref-label';
+        label.dataset.ref = ref;
+        // Extract number from ref (e.g., "@ref:5" -> "5")
+        label.textContent = ref.replace('@ref:', '');
+        label.style.cssText = `
+          position: absolute;
+          transform: translate3d(${bbox.left + this.window.scrollX}px, ${bbox.top + this.window.scrollY}px, 0);
+          background: rgba(59, 130, 246, 0.9);
+          color: white;
+          padding: 2px 6px;
+          border-radius: 3px;
+          font-family: monospace;
+          font-size: 11px;
+          font-weight: bold;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+          pointer-events: none;
+          white-space: nowrap;
+          will-change: transform;
+          contain: layout style paint;
+        `;
+
+        this.overlayContainer.appendChild(border);
+        this.overlayContainer.appendChild(label);
+        highlightedCount++;
+      } catch (error) {
+        // Skip elements that throw errors
+        continue;
+      }
+    }
+
+    // Inject overlay into page
+    this.document.body.appendChild(this.overlayContainer);
+
+    // Set up scroll listener with rAF throttling
+    let ticking = false;
+    this.scrollListener = () => {
+      if (!ticking) {
+        this.rafId = this.window.requestAnimationFrame(() => {
+          this.updateHighlightPositions();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // Use passive listener for better scroll performance
+    this.window.addEventListener('scroll', this.scrollListener, { passive: true });
+
+    return { highlighted: highlightedCount };
+  }
+
+  /**
+   * Update highlight positions on scroll (GPU-accelerated)
+   */
+  private updateHighlightPositions(): void {
+    if (!this.overlayContainer || !this.lastSnapshotData) {
+      return;
+    }
+
+    // Batch DOM reads
+    const updates: Array<{ element: HTMLElement; x: number; y: number; width?: number; height?: number }> = [];
+
+    // Read phase - get all bounding boxes first
+    const borders = this.overlayContainer.querySelectorAll('.btcp-ref-border');
+    const labels = this.overlayContainer.querySelectorAll('.btcp-ref-label');
+
+    borders.forEach((borderEl) => {
+      const ref = (borderEl as HTMLElement).dataset.ref;
+      if (!ref) return;
+
+      const element = this.refMap.get(ref);
+      if (!element || !element.isConnected) return;
+
+      const bbox = element.getBoundingClientRect();
+      if (bbox.width === 0 && bbox.height === 0) return;
+
+      updates.push({
+        element: borderEl as HTMLElement,
+        x: bbox.left + this.window.scrollX,
+        y: bbox.top + this.window.scrollY,
+        width: bbox.width,
+        height: bbox.height,
+      });
+    });
+
+    labels.forEach((labelEl) => {
+      const ref = (labelEl as HTMLElement).dataset.ref;
+      if (!ref) return;
+
+      const element = this.refMap.get(ref);
+      if (!element || !element.isConnected) return;
+
+      const bbox = element.getBoundingClientRect();
+      if (bbox.width === 0 && bbox.height === 0) return;
+
+      updates.push({
+        element: labelEl as HTMLElement,
+        x: bbox.left + this.window.scrollX,
+        y: bbox.top + this.window.scrollY,
+      });
+    });
+
+    // Write phase - update transforms
+    updates.forEach(({ element, x, y, width, height }) => {
+      element.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      if (width !== undefined && height !== undefined) {
+        element.style.width = `${width}px`;
+        element.style.height = `${height}px`;
+      }
+    });
+  }
+
+  /**
+   * Remove visual overlay labels
+   */
+  private async clearHighlight(): Promise<{ cleared: true }> {
+    this.clearExistingOverlay();
+    return { cleared: true };
+  }
+
+  /**
+   * Remove existing overlay if it exists
+   */
+  private clearExistingOverlay(): void {
+    // Remove scroll listener
+    if (this.scrollListener) {
+      this.window.removeEventListener('scroll', this.scrollListener);
+      this.scrollListener = null;
+    }
+
+    // Cancel any pending animation frame
+    if (this.rafId !== null) {
+      this.window.cancelAnimationFrame(this.rafId);
+      this.rafId = null;
+    }
+
+    // Remove overlay container
+    if (this.overlayContainer && this.overlayContainer.parentNode) {
+      this.overlayContainer.parentNode.removeChild(this.overlayContainer);
+    }
+    this.overlayContainer = null;
+
+    // Also remove any orphaned overlays
+    const existingOverlay = this.document.getElementById('btcp-highlight-overlay');
+    if (existingOverlay && existingOverlay.parentNode) {
+      existingOverlay.parentNode.removeChild(existingOverlay);
+    }
   }
 
   // --- Utilities ---

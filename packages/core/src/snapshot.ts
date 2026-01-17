@@ -41,6 +41,7 @@ interface SnapshotOptions {
   interactive?: boolean;
   compact?: boolean;
   all?: boolean;
+  format?: 'tree' | 'html';
 }
 
 const TRUNCATE_LIMITS = {
@@ -372,28 +373,41 @@ function getAccessibleName(element: Element): string {
 }
 
 /**
- * Check if element is visible
+ * Check if element or any of its ancestors are hidden
+ * This checks the full ancestor chain for proper visibility detection
  */
-function isVisible(element: Element): boolean {
+function isVisible(element: Element, checkAncestors: boolean = true): boolean {
   const win = element.ownerDocument.defaultView;
   if (!win) return true;
 
   const HTMLElementConstructor = win.HTMLElement;
   if (!(element instanceof HTMLElementConstructor)) return true;
 
+  // Check inline styles first for performance
   const inlineDisplay = element.style.display;
   const inlineVisibility = element.style.visibility;
   if (inlineDisplay === 'none') return false;
   if (inlineVisibility === 'hidden') return false;
 
-  const style = element.ownerDocument.defaultView?.getComputedStyle(element);
-  if (style) {
-    if (style.display === 'none') return false;
-    if (style.visibility === 'hidden') return false;
-    if (style.opacity === '0') return false;
+  // Check computed styles (but be defensive about failures)
+  try {
+    const style = win.getComputedStyle(element);
+    if (style) {
+      if (style.display === 'none') return false;
+      if (style.visibility === 'hidden') return false;
+      if (style.opacity === '0') return false;
+    }
+  } catch (e) {
+    // If getComputedStyle fails (e.g., on intermediate pages), assume visible
+    // This is safer than assuming hidden
   }
 
   if (element.hidden) return false;
+
+  // Check ancestors if requested (for proper visibility detection)
+  if (checkAncestors && element.parentElement) {
+    return isVisible(element.parentElement, true);
+  }
 
   return true;
 }
@@ -640,8 +654,25 @@ export function createSnapshot(
     maxDepth = 50,
     includeHidden = false,
     interactive = true,
-    all = false
+    all = false,
+    format = 'tree'
   } = options;
+
+  // Fast path for HTML format - return raw body HTML without processing
+  if (format === 'html') {
+    const bodyHTML = document.body?.outerHTML || '';
+
+    return {
+      tree: bodyHTML,
+      refs: {},
+      metadata: {
+        totalInteractiveElements: 0,
+        capturedElements: 0,
+        quality: 'high',
+        warnings: ['Raw HTML format - no filtering or ref generation applied']
+      }
+    };
+  }
 
   refMap.clear();
 
@@ -655,7 +686,8 @@ export function createSnapshot(
 
   function collectElements(element: Element, depth: number): void {
     if (depth > maxDepth) return;
-    if (!includeHidden && !isVisible(element)) return;
+    // Only check element-level visibility, not ancestors (we're already traversing the tree)
+    if (!includeHidden && !isVisible(element, false)) return;
 
     elements.push(element);
 
@@ -751,13 +783,32 @@ export function createSnapshot(
 
   const output = [pageHeader, snapshotHeader, '', ...lines].join('\n');
 
+  // Detect problematic page states
+  const warnings: string[] = [];
+  const viewportArea = win.innerWidth * win.innerHeight;
+
+  if (viewportArea === 0) {
+    warnings.push('Viewport not initialized (0x0) - page may be loading or redirecting');
+  }
+
+  if (capturedInteractive === 0 && totalInteractive === 0 && elements.length < 10) {
+    warnings.push('Page appears to be empty or transitional - wait for content to load');
+  }
+
+  if (document.location?.href.includes('RotateCookies') ||
+      document.location?.href.includes('ServiceLogin') ||
+      document.location?.href.includes('/blank')) {
+    warnings.push('Detected intermediate/redirect page - snapshot may not contain meaningful content');
+  }
+
   return {
     tree: output,
     refs,
     metadata: {
       totalInteractiveElements: totalInteractive,
       capturedElements: capturedInteractive,
-      quality: 'high'
+      quality: viewportArea === 0 || capturedInteractive === 0 ? 'low' : capturedInteractive < totalInteractive * 0.5 ? 'medium' : 'high',
+      warnings: warnings.length > 0 ? warnings : undefined
     }
   };
 }

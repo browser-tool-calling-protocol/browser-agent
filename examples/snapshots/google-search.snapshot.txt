@@ -1,0 +1,195 @@
+PAGE: http://localhost/ | hello - Google Search | viewport=1024x768
+SNAPSHOT: elements=2347 refs=192
+
+LINK "here" @ref:0 /a
+LINK "Accessibility help" @ref:1 /a[2]
+LINK "Go to Google Home" @ref:2 /div#searchform/form#tsf/a#logo
+LINK "webhp" @ref:3 /div#searchform/form#tsf/a#_KqRraf7aHOHG1e8PieqD8Ak_1
+COMBOBOX "Search" @ref:4 /div#searchform/form#tsf/textarea#APjFqb
+BUTTON "Clear" @ref:5 /div#searchform/form#tsf
+BUTTON "Search by voice" @ref:6 /div#searchform/form#tsf
+BUTTON "Search by image" @ref:7 /div#searchform/form#tsf
+BUTTON "Search" @ref:8 /div#searchform/form#tsf/button
+BUTTON "Close Choose what you’re giving feedback on" @ref:9 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/div#_KqRraf7aHOHG1e8PieqD8Ak_11
+LISTBOX @ref:10 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/div#shJ2Vb[3]/ul
+OPTION @ref:11 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/li#YMXe[1]
+BUTTON "Delete" @ref:12 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/li#YMXe[1]
+OPTION @ref:13 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/li#d6ItKb[2]/div#fU0xAb
+BUTTON "Word pronunciation" @ref:14 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/li#d6ItKb[2]/div#fU0xAb
+BUTTON "See more" @ref:15 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/li#d6ItKb[2]/div#fU0xAb
+OPTION @ref:16 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/li#JglY8e[3]
+OPTION @ref:17 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/li#JglY8e[3]/div#GTYqfc
+BUTTON "Word pronunciation" @ref:18 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/li#JglY8e[3]/div#GTYqfc
+OPTION @ref:19 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/li#JglY8e[3]/div#GTYqfc
+BUTTON "Word pronunciation" @ref:20 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/li#JglY8e[3]/div#GTYqfc
+BUTTON "Delete" @ref:21 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/li#mitGyb[4]
+OPTION @ref:22 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/div#fU0xAb[7]
+BUTTON "Word pronunciation" @ref:23 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/div#fU0xAb[7]
+BUTTON "See more" @ref:24 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/div#fU0xAb[7]
+OPTION @ref:25 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/div#GTYqfc[8]
+BUTTON "Word pronunciation" @ref:26 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/div#GTYqfc[8]
+OPTION @ref:27 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/div#GTYqfc[8]
+BUTTON "Word pronunciation" @ref:28 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/div#GTYqfc[8]
+OPTION @ref:29 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/li#TN4rFf[5]
+BUTTON "Report inappropriate predictions" @ref:30 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]
+BUTTON "See more" @ref:31 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/div#TWnylf[6]/g-popup#ow17
+MENUITEM "Dismiss" @ref:32 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/div#TWnylf[6]/g-popup#ow17
+OPTION @ref:33 /div#searchform/form#tsf/div#_KqRraf7aHOHG1e8PieqD8Ak_5[3]/div#dh215c[7]
+TEXTBOX @ref:34 [type=hidden] /div#searchform/form#tsf/div#tophf[2]/input[1]
+TEXTBOX @ref:35 [type=hidden] /div#searchform/form#tsf/div#tophf[2]/input[2]
+TEXTBOX @ref:36 [type=hidden] /div#searchform/form#tsf/div#tophf[2]/input[3]
+BUTTON "Search Labs" @ref:37 /div#searchform/header#gb/a
+BUTTON "Google apps" @ref:38 /div#searchform/header#gb/div#gbwa[2]/a
+BUTTON "Google Account: Minh Luc (luk.mink@gmail.com)" @ref:39 /div#searchform/header#gb/a
+LINK "AI Mode" @ref:40 /div#main[3]/div#cnt/div#_KqRraf7aHOHG1e8PieqD8Ak_20/a
+LINK "Images" @ref:41 /div#main[3]/div#cnt/div#_KqRraf7aHOHG1e8PieqD8Ak_20/a
+LINK "Videos" @ref:42 /div#main[3]/div#cnt/div#_KqRraf7aHOHG1e8PieqD8Ak_20/a
+LINK "Short videos" @ref:43 /div#main[3]/div#cnt/div#_KqRraf7aHOHG1e8PieqD8Ak_20/a
+LINK "Shopping" @ref:44 /div#main[3]/div#cnt/div#_KqRraf7aHOHG1e8PieqD8Ak_20/a
+LINK "News" @ref:45 /div#main[3]/div#cnt/div#_KqRraf7aHOHG1e8PieqD8Ak_20/a
+BUTTON "More" @ref:46 /div#main[3]/div#cnt/div#_KqRraf7aHOHG1e8PieqD8Ak_20
+LINK "Web" @ref:47 /div#main[3]/div#cnt/div#_KqRraf7aHOHG1e8PieqD8Ak_20/div#_KqRraf7aHOHG1e8PieqD8Ak_21/div#KqRraf7aHOHG1e8PieqD8Ak__17[1]/a
+LINK "Books" @ref:48 /div#main[3]/div#cnt/div#_KqRraf7aHOHG1e8PieqD8Ak_20/div#_KqRraf7aHOHG1e8PieqD8Ak_21/div#KqRraf7aHOHG1e8PieqD8Ak__18[2]/a
+LINK "Flights" @ref:49 /div#main[3]/div#cnt/div#_KqRraf7aHOHG1e8PieqD8Ak_20/div#_KqRraf7aHOHG1e8PieqD8Ak_21/div#KqRraf7aHOHG1e8PieqD8Ak__20[3]/a
+LINK "Finance" @ref:50 /div#main[3]/div#cnt/div#_KqRraf7aHOHG1e8PieqD8Ak_20/div#_KqRraf7aHOHG1e8PieqD8Ak_21/div#KqRraf7aHOHG1e8PieqD8Ak__21[4]/a
+BUTTON "Tools" @ref:51 /div#main[3]/div#cnt/div#_KqRraf7aHOHG1e8PieqD8Ak_20/div#_KqRraf7aHOHG1e8PieqD8Ak_31[2]/div#hdtb-tls
+BUTTON "Previous" @ref:52 /div#main[3]/div#cnt/div#_KqRraf7aHOHG1e8PieqD8Ak_20
+BUTTON "Next" @ref:53 /div#main[3]/div#cnt/div#_KqRraf7aHOHG1e8PieqD8Ak_20
+BUTTON @ref:54 /div#main[3]/div#cnt/div#top_nav[6]/div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1
+BUTTON "Any time" @ref:55 /div#main[3]/div#cnt/div#top_nav[6]/div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17
+LINK "Any time" @ref:56 /div#top_nav[6]/div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_18/a
+LINK "Past hour" @ref:57 /div#top_nav[6]/div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_18/a
+LINK "Past 24 hours" @ref:58 /div#top_nav[6]/div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_18/a
+LINK "Past week" @ref:59 /div#top_nav[6]/div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_18/a
+LINK "Past month" @ref:60 /div#top_nav[6]/div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_18/a
+LINK "Past year" @ref:61 /div#top_nav[6]/div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_18/a
+BUTTON "Custom range... Customised date range FromTo Go" @ref:62 /div#cnt/div#top_nav[6]/div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_18
+BUTTON @ref:63 /div#cnt/div#top_nav[6]/div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_18
+BUTTON "Close" @ref:64 /div#cnt/div#top_nav[6]/div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_18
+TEXTBOX @ref:65 [type=hidden] /div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_18/form#T3kYXe/input[1]
+TEXTBOX @ref:66 [type=hidden] /div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_18/form#T3kYXe/input[2]
+TEXTBOX @ref:67 [type=hidden] /div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_18/form#T3kYXe/input[3]
+TEXTBOX @ref:68 [type=hidden] /div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_18/form#T3kYXe/input[4]
+TEXTBOX @ref:69 [type=hidden] /div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_18/form#T3kYXe/input#HjtPBb[5]
+TEXTBOX @ref:70 [type=hidden] /div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_18/form#T3kYXe/input[6]
+TEXTBOX "From" @ref:71 /div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_18/form#T3kYXe/input#OouJcb[7]
+TEXTBOX "To" @ref:72 /div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_18/form#T3kYXe/input#rzG2be[8]
+BUTTON "Go" @ref:73 /div#top_nav[6]/div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_18/form#T3kYXe
+BUTTON @ref:74 [type=submit] /div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_18/form#T3kYXe/input[9]
+BUTTON @ref:75 /div#cnt/div#top_nav[6]/div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_18
+BUTTON "All results" @ref:76 /div#main[3]/div#cnt/div#top_nav[6]/div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17
+LINK "All results" @ref:77 /div#top_nav[6]/div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_24/a
+LINK "Verbatim" @ref:78 /div#top_nav[6]/div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17/div#_KqRraf7aHOHG1e8PieqD8Ak_24/a
+LINK "Advanced Search" @ref:79 /div#main[3]/div#cnt/div#top_nav[6]/div#hdtb/div#tn_KqRraf7aHOHG1e8PieqD8Ak_1/div#_KqRraf7aHOHG1e8PieqD8Ak_17
+BUTTON "About this result" @ref:80 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/div
+LINK "Adele - Hello (Official Music Video) YouTube · ..." @ref:81 /div#center_col[1]/div#res[2]/div#search[2]/div#rso/div#ow14/a
+BUTTON "About this result" @ref:82 /div#center_col[1]/div#res[2]/div#search[2]/div#rso/div#ow14/div
+BUTTON "Adele - Hello (Official Music Video) by Adele o..." @ref:83 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/div#ow14
+LINK "Adele - Hello (Official Music Video) YouTube·Ad..." @ref:84 /div#res[2]/div#search[2]/div#rso/div#ow14/div[2]/a[1]
+LINK "YouTube" @ref:85 /div#res[2]/div#search[2]/div#rso/div#ow14/div[2]/a[2]
+LINK "Lionel Richie - Hello (Official Music Video) Yo..." @ref:86 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+BUTTON "About this result" @ref:87 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/div
+LINK "Lionel Richie - Hello (Official Music Video) by..." @ref:88 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+LINK "Hello YouTube · Adele - Topic Dec 21, 2019" @ref:89 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+BUTTON "About this result" @ref:90 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/div
+BUTTON "Hello by Adele - Topic on YouTube. Play on Goog..." @ref:91 /div#cnt/div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso
+LINK "Hello YouTube·Adele - Topic·Dec 21, 2019" @ref:92 /div#center_col[1]/div#res[2]/div#search[2]/div#rso/div[2]/a[1]
+LINK "YouTube" @ref:93 /div#center_col[1]/div#res[2]/div#search[2]/div#rso/div[2]/a[2]
+LINK "Nam Em - HELLO | Sáng tác: Richie Lionel | From..." @ref:94 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+BUTTON "About this result" @ref:95 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/div
+BUTTON "Nam Em - HELLO | Sáng tác: Richie Lionel | From..." @ref:96 /div#cnt/div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso
+LINK "Nam Em - HELLO | Sáng tác: Richie Lionel | From..." @ref:97 /div#center_col[1]/div#res[2]/div#search[2]/div#rso/div[2]/a[1]
+LINK "YouTube" @ref:98 /div#center_col[1]/div#res[2]/div#search[2]/div#rso/div[2]/a[2]
+LINK "View all videos" @ref:99 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+LINK "HELLO | Định nghĩa trong Từ điển tiếng Anh Camb..." @ref:100 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+BUTTON "About this result" @ref:101 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/div
+LINK "Hello – Wikipedia tiếng Việt Wikipedia https://..." @ref:102 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+LINK "Translate this page" @ref:103 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+BUTTON "About this result" @ref:104 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/div
+LINK "Read more" @ref:105 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+LINK "HELLO! - Daily royal, celebrity, fashion, beaut..." @ref:106 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+BUTTON "About this result" @ref:107 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/div
+LINK "hello network hello network https://www.hello.com" @ref:108 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+BUTTON "About this result" @ref:109 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/div
+LINK "Read more" @ref:110 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+LINK "The Best & Fastest WordPress Theme: Hello by El..." @ref:111 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+BUTTON "About this result" @ref:112 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/div
+LINK "Read more" @ref:113 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+LINK "no hello no hello https://nohello.net › ..." @ref:114 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+BUTTON "About this result" @ref:115 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/div
+LINK "Read more" @ref:116 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+LINK "Hello Wikipedia https://en.wikipedia.org › wiki..." @ref:117 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+BUTTON "About this result" @ref:118 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/div
+LINK "Read more" @ref:119 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+LINK "Hello" @ref:120 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+LINK "Hello Products Hello Products https://www.hello..." @ref:121 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+BUTTON "About this result" @ref:122 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/div
+LINK "Read more" @ref:123 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+LINK "www.hello products" @ref:124 /div#rcnt[12]/div#center_col[1]/div#res[2]/div#search[2]/div#rso/a
+LINK "Hello meaning" @ref:125 /div#cnt/div#rcnt[12]/div#center_col[1]/div#botstuff[3]/div#bres[3]/a
+LINK "Hello Song" @ref:126 /div#cnt/div#rcnt[12]/div#center_col[1]/div#botstuff[3]/div#bres[3]/a
+LINK "Hello Hello google" @ref:127 /div#cnt/div#rcnt[12]/div#center_col[1]/div#botstuff[3]/div#bres[3]/a
+LINK "Hello Song how are you" @ref:128 /div#cnt/div#rcnt[12]/div#center_col[1]/div#botstuff[3]/div#bres[3]/a
+LINK "Hello pronunciation" @ref:129 /div#cnt/div#rcnt[12]/div#center_col[1]/div#botstuff[3]/div#bres[3]/a
+LINK "Hello movie" @ref:130 /div#cnt/div#rcnt[12]/div#center_col[1]/div#botstuff[3]/div#bres[3]/a
+LINK "English Hello Song" @ref:131 /div#cnt/div#rcnt[12]/div#center_col[1]/div#botstuff[3]/div#bres[3]/a
+LINK "Hello Hello video" @ref:132 /div#cnt/div#rcnt[12]/div#center_col[1]/div#botstuff[3]/div#bres[3]/a
+LINK "Page 2" @ref:133 /div#cnt/div#rcnt[12]/div#center_col[1]/div#botstuff[3]/table/a
+LINK "Page 3" @ref:134 /div#cnt/div#rcnt[12]/div#center_col[1]/div#botstuff[3]/table/a
+LINK "Page 4" @ref:135 /div#cnt/div#rcnt[12]/div#center_col[1]/div#botstuff[3]/table/a
+LINK "Page 5" @ref:136 /div#cnt/div#rcnt[12]/div#center_col[1]/div#botstuff[3]/table/a
+LINK "Page 6" @ref:137 /div#cnt/div#rcnt[12]/div#center_col[1]/div#botstuff[3]/table/a
+LINK "Page 7" @ref:138 /div#cnt/div#rcnt[12]/div#center_col[1]/div#botstuff[3]/table/a
+LINK "Page 8" @ref:139 /div#cnt/div#rcnt[12]/div#center_col[1]/div#botstuff[3]/table/a
+LINK "Page 9" @ref:140 /div#cnt/div#rcnt[12]/div#center_col[1]/div#botstuff[3]/table/a
+LINK "Page 10" @ref:141 /div#cnt/div#rcnt[12]/div#center_col[1]/div#botstuff[3]/table/a
+LINK "Next" @ref:142 /div#cnt/div#rcnt[12]/div#center_col[1]/div#botstuff[3]/table/a#pnnext
+BUTTON "Close Choose what you’re giving feedback on" @ref:143 /div#rcnt[12]/div#rhs[2]/div#jOAHU/div#uOz6nd[1]/div[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_65
+BUTTON "general feedback" @ref:144 /div#rhs[2]/div#jOAHU/div#uOz6nd[1]/div[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_65/button
+LINK "Hello" @ref:145 /div#cnt/div#rcnt[12]/div#rhs[2]/div#jOAHU/div#uOz6nd[1]/a
+BUTTON @ref:146 /div#cnt/div#rcnt[12]/div#rhs[2]/div#jOAHU/div#uOz6nd[1]/g-popup#ow18
+BUTTON "About this result" @ref:147 /div#rhs[2]/div#jOAHU/div#uOz6nd[1]/g-popup#ow18/div#_KqRraf7aHOHG1e8PieqD8Ak_36[2]/div
+MENUITEM "Share" @ref:148 /div#rcnt[12]/div#rhs[2]/div#jOAHU/div#uOz6nd[1]/g-popup#ow18/div#_KqRraf7aHOHG1e8PieqD8Ak_36[2]
+BUTTON @ref:149 /div#jOAHU/div#uOz6nd[1]/g-popup#ow18/div#_KqRraf7aHOHG1e8PieqD8Ak_36[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_44[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_47
+BUTTON "Close" @ref:150 /div#jOAHU/div#uOz6nd[1]/g-popup#ow18/div#_KqRraf7aHOHG1e8PieqD8Ak_36[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_44[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_47
+LINK "Facebook" @ref:151 /div#uOz6nd[1]/g-popup#ow18/div#_KqRraf7aHOHG1e8PieqD8Ak_36[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_44[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_47/a[1]
+LINK "WhatsApp" @ref:152 /div#uOz6nd[1]/g-popup#ow18/div#_KqRraf7aHOHG1e8PieqD8Ak_36[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_44[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_47/a[2]
+LINK "X" @ref:153 /div#uOz6nd[1]/g-popup#ow18/div#_KqRraf7aHOHG1e8PieqD8Ak_36[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_44[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_47/a[3]
+LINK "Email" @ref:154 /div#uOz6nd[1]/g-popup#ow18/div#_KqRraf7aHOHG1e8PieqD8Ak_36[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_44[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_47/a[4]
+BUTTON "Click to copy link" @ref:155 /div#jOAHU/div#uOz6nd[1]/g-popup#ow18/div#_KqRraf7aHOHG1e8PieqD8Ak_36[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_44[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_47
+TEXTBOX "Share link" @ref:156 [type=url] /div#uOz6nd[1]/g-popup#ow18/div#_KqRraf7aHOHG1e8PieqD8Ak_36[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_44[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_47/input
+BUTTON @ref:157 /div#jOAHU/div#uOz6nd[1]/g-popup#ow18/div#_KqRraf7aHOHG1e8PieqD8Ak_36[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_44[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_47
+MENUITEM "Send feedback" @ref:158 /div#rcnt[12]/div#rhs[2]/div#jOAHU/div#uOz6nd[1]/g-popup#ow18/div#_KqRraf7aHOHG1e8PieqD8Ak_36[2]
+LINK "search" @ref:159 /div#cnt/div#rcnt[12]/div#rhs[2]/div#jOAHU/div#uOz6nd[1]/a
+LINK "6:07 YouTube • Adele Adele - Hello (Official Mu..." @ref:160 /div#rhs[2]/div#jOAHU/div#uLEOKb[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_46[1]/div#_KqRraf7aHOHG1e8PieqD8Ak_34/a
+LINK "search" @ref:161 /div#rcnt[12]/div#rhs[2]/div#jOAHU/div#uLEOKb[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_46[1]/a
+LINK "Full lyrics" @ref:162 /div#rcnt[12]/div#rhs[2]/div#jOAHU/div#uLEOKb[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_46[1]/a
+LINK "Musixmatch ›" @ref:163 /div#rcnt[12]/div#rhs[2]/div#jOAHU/div#uLEOKb[2]/div#_KqRraf7aHOHG1e8PieqD8Ak_46[1]/a
+LINK "Adele" @ref:164 /div#cnt/div#rcnt[12]/div#rhs[2]/div#jOAHU/div#aaLvqc[3]/a
+LINK "25" @ref:165 /div#cnt/div#rcnt[12]/div#rhs[2]/div#jOAHU/div#aaLvqc[3]/a
+LINK "Nhạc Soul" @ref:166 /div#cnt/div#rcnt[12]/div#rhs[2]/div#jOAHU/div#aaLvqc[3]/a[1]
+LINK "Luân chuyển/Độc lập" @ref:167 /div#cnt/div#rcnt[12]/div#rhs[2]/div#jOAHU/div#aaLvqc[3]/a[2]
+LINK "Apple Music" @ref:168 /div#cnt/div#rcnt[12]/div#rhs[2]/div#jOAHU/div#dG0eW[4]/a
+LINK "Deezer" @ref:169 /div#cnt/div#rcnt[12]/div#rhs[2]/div#jOAHU/div#dG0eW[4]/a
+LINK "Spotify" @ref:170 /div#cnt/div#rcnt[12]/div#rhs[2]/div#jOAHU/div#dG0eW[4]/a
+LINK "Hello Leo Moracchioli·2015" @ref:171 /div#cnt/div#rcnt[12]/div#rhs[2]/div#jOAHU/div#AkU20[5]/a
+LINK "Hello Allie Sherlock" @ref:172 /div#cnt/div#rcnt[12]/div#rhs[2]/div#jOAHU/div#AkU20[5]/a
+LINK "Hello Walk off the Earth" @ref:173 /div#cnt/div#rcnt[12]/div#rhs[2]/div#jOAHU/div#AkU20[5]/a
+LINK "Hello Leroy Sanchez" @ref:174 /div#cnt/div#rcnt[12]/div#rhs[2]/div#jOAHU/div#AkU20[5]/a
+LINK "Set Fire to the Rain Adele" @ref:175 /div#cnt/div#rcnt[12]/div#rhs[2]/div#jOAHU/div#PP76df[6]/a
+LINK "Someone Like You Adele" @ref:176 /div#cnt/div#rcnt[12]/div#rhs[2]/div#jOAHU/div#PP76df[6]/a
+LINK "Skyfall Adele" @ref:177 /div#cnt/div#rcnt[12]/div#rhs[2]/div#jOAHU/div#PP76df[6]/a
+LINK "Rolling in the Deep Adele" @ref:178 /div#cnt/div#rcnt[12]/div#rhs[2]/div#jOAHU/div#PP76df[6]/a
+LINK "See more" @ref:179 /div#cnt/div#rcnt[12]/div#rhs[2]/div#jOAHU/div#PP76df[6]/a
+BUTTON "close" @ref:180 /div#main[3]/div#cnt/div#spch[21]/button#spchx
+LINK "Try without personalisation" @ref:181 /div#cnt/div#sfooter[22]/div#footcnt/div#fbarcnt/div#fbar/a
+BUTTON "Hoà Cường Nam, Hòa Cường, Hòa Cường Nam, Hải Ch..." @ref:182 /div#sfooter[22]/div#footcnt/div#fbarcnt/div#fbar/div#CE62Bb/a
+BUTTON @ref:183 /div#footcnt/div#fbarcnt/div#fbar/div#CE62Bb/span/div#_KqRraf7aHOHG1e8PieqD8Ak_43
+BUTTON @ref:184 /div#footcnt/div#fbarcnt/div#fbar/div#CE62Bb/span/div#_KqRraf7aHOHG1e8PieqD8Ak_43
+BUTTON "Update location Can't update your location Lear..." @ref:185 /div#cnt/div#sfooter[22]/div#footcnt/div#fbarcnt/div#fbar/div#CE62Bb
+BUTTON "Learn more" @ref:186 /div#footcnt/div#fbarcnt/div#fbar/div#CE62Bb/span[3]/span
+LINK "Help" @ref:187 /div#sfooter[22]/div#footcnt/div#fbarcnt/div#fbar/span#fsl/a[1]
+LINK "Send feedback" @ref:188 /div#sfooter[22]/div#footcnt/div#fbarcnt/div#fbar/span#fsl/a[2]
+LINK "Privacy" @ref:189 /div#sfooter[22]/div#footcnt/div#fbarcnt/div#fbar/span#fsl/a[3]
+LINK "Terms" @ref:190 /div#sfooter[22]/div#footcnt/div#fbarcnt/div#fbar/span#fsl/a[4]
+BUTTON "Close" @ref:191 /div

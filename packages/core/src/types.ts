@@ -40,7 +40,10 @@ export type CoreAction =
   | 'evaluate'
   // Validation
   | 'validateElement'
-  | 'validateRefs';
+  | 'validateRefs'
+  // Visualization
+  | 'highlight'
+  | 'clearHighlight';
 
 // Base command structure
 export interface BaseCommand {
@@ -144,6 +147,7 @@ export interface SnapshotCommand extends BaseCommand {
   incremental?: boolean;
   baseSnapshot?: SnapshotData;
   all?: boolean;
+  format?: 'tree' | 'html';
 }
 
 export interface QuerySelectorCommand extends BaseCommand {
@@ -296,6 +300,47 @@ export interface ValidateRefsCommand extends BaseCommand {
   refs: string[];
 }
 
+/**
+ * Display visual overlay labels for interactive elements
+ *
+ * Shows reference numbers (@ref:0, @ref:1, etc.) as overlay labels
+ * positioned near each interactive element from the last snapshot.
+ * Labels persist until explicitly cleared.
+ *
+ * @example Highlight elements after snapshot
+ * ```typescript
+ * // Take a snapshot first
+ * await agent.execute({ id: 's1', action: 'snapshot' });
+ *
+ * // Show visual highlights
+ * await agent.execute({ id: 'h1', action: 'highlight' });
+ *
+ * // Labels now visible on page with @ref:0, @ref:1, etc.
+ * // Use the refs to interact with elements
+ * await agent.execute({ id: 'c1', action: 'click', selector: '@ref:5' });
+ *
+ * // Clear highlights when done
+ * await agent.execute({ id: 'ch1', action: 'clearHighlight' });
+ * ```
+ */
+export interface HighlightCommand extends BaseCommand {
+  action: 'highlight';
+}
+
+/**
+ * Remove visual overlay labels
+ *
+ * Clears all highlight overlays from the page.
+ *
+ * @example Clear highlights
+ * ```typescript
+ * await agent.execute({ id: 'ch1', action: 'clearHighlight' });
+ * ```
+ */
+export interface ClearHighlightCommand extends BaseCommand {
+  action: 'clearHighlight';
+}
+
 export type Modifier = 'Alt' | 'Control' | 'Meta' | 'Shift';
 
 // Union of all commands
@@ -329,7 +374,9 @@ export type Command =
   | WaitCommand
   | EvaluateCommand
   | ValidateElementCommand
-  | ValidateRefsCommand;
+  | ValidateRefsCommand
+  | HighlightCommand
+  | ClearHighlightCommand;
 
 // Response types
 export interface SuccessResponse<T = unknown> {

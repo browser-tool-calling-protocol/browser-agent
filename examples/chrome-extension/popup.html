@@ -138,9 +138,11 @@
     <div class="section-title">Quick Actions</div>
     <div class="actions">
       <button id="btnSnapshot">Snapshot</button>
-      <button id="btnScreenshot">Screenshot</button>
+      <button id="btnGetHTML">Get HTML</button>
       <button id="btnGetTabs">List Tabs</button>
       <button id="btnNewTab">New Tab</button>
+      <button id="btnHighlight">Highlight</button>
+      <button id="btnClearHighlight" class="secondary">Clear Highlight</button>
     </div>
   </div>
 
@@ -170,13 +172,16 @@
   </div>
 
   <div class="section">
-    <div class="section-title">Custom Command (JSON)</div>
-    <textarea id="commandJson" placeholder='{ "action": "snapshot" }'></textarea>
+    <div class="section-title">Custom Command (CLI)</div>
+    <textarea id="commandJson" placeholder='snapshot&#10;goto https://example.com&#10;click @ref:0'></textarea>
     <button id="btnExecute">Execute</button>
   </div>
 
   <div class="section">
-    <div class="section-title">Output</div>
+    <div class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
+      <span>Output</span>
+      <button id="btnCopyOutput" style="width: auto; margin: 0; padding: 4px 12px; font-size: 12px;">Copy</button>
+    </div>
     <div class="output" id="output">Ready...</div>
   </div>
 

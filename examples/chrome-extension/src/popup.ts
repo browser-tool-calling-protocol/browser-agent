@@ -2,8 +2,10 @@
  * Popup Script - UI for controlling the browser agent
  */
 import { createClient } from 'btcp-browser-agent/extension';
+import { createCLI } from 'btcp-browser-agent/cli';
 
 const client = createClient();
+const cli = createCLI(client);
 
 // DOM elements
 const output = document.getElementById('output') as HTMLDivElement;
@@ -80,8 +82,21 @@ btnCloseSession.addEventListener('click', async () => {
   }
 });
 
-// Update session UI on load
-updateSessionUI();
+// Initialize popup and update session UI on load
+async function initializePopup() {
+  try {
+    // Ping background to trigger session reconnection if needed
+    await client.popupInitialize();
+    // Then update UI with current session state
+    await updateSessionUI();
+  } catch (e) {
+    console.error('Popup initialization failed:', e);
+    // Still update UI with whatever state exists
+    await updateSessionUI();
+  }
+}
+
+initializePopup();
 
 // Quick actions
 document.getElementById('btnSnapshot')?.addEventListener('click', async () => {
@@ -94,11 +109,11 @@ document.getElementById('btnSnapshot')?.addEventListener('click', async () => {
   }
 });
 
-document.getElementById('btnScreenshot')?.addEventListener('click', async () => {
-  log('Taking screenshot...');
+document.getElementById('btnGetHTML')?.addEventListener('click', async () => {
+  log('Getting page HTML...');
   try {
-    const data = await client.screenshot();
-    log({ screenshot: data.slice(0, 50) + '...' });
+    const data = await client.snapshot({ format: 'html' });
+    log(data.tree);
   } catch (e) {
     log(`Error: ${e}`);
   }
@@ -118,6 +133,32 @@ document.getElementById('btnNewTab')?.addEventListener('click', async () => {
   log('Opening new tab...');
   try {
     const result = await client.tabNew({ url: 'https://example.com' });
+    log(result);
+  } catch (e) {
+    log(`Error: ${e}`);
+  }
+});
+
+document.getElementById('btnHighlight')?.addEventListener('click', async () => {
+  log('Highlighting elements...');
+  try {
+    const result = await client.execute({
+      id: `cmd_${Date.now()}`,
+      action: 'highlight'
+    });
+    log(result);
+  } catch (e) {
+    log(`Error: ${e}`);
+  }
+});
+
+document.getElementById('btnClearHighlight')?.addEventListener('click', async () => {
+  log('Clearing highlights...');
+  try {
+    const result = await client.execute({
+      id: `cmd_${Date.now()}`,
+      action: 'clearHighlight'
+    });
     log(result);
   } catch (e) {
     log(`Error: ${e}`);
@@ -179,15 +220,14 @@ document.getElementById('btnFill')?.addEventListener('click', async () => {
 
 // Custom command
 document.getElementById('btnExecute')?.addEventListener('click', async () => {
-  const json = commandJson.value.trim();
-  if (!json) {
+  const command = commandJson.value.trim();
+  if (!command) {
     log('Enter a command');
     return;
   }
   try {
-    const command = JSON.parse(json);
-    log(`Executing: ${command.action}...`);
-    const result = await client.execute(command);
+    log(`Executing: ${command}...`);
+    const result = await cli.execute(command);
     log(result);
   } catch (e) {
     log(`Error: ${e}`);
@@ -205,6 +245,22 @@ document.getElementById('clickSelector')?.addEventListener('keypress', (e) => {
 
 document.getElementById('fillValue')?.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') document.getElementById('btnFill')?.click();
+});
+
+// Copy output
+document.getElementById('btnCopyOutput')?.addEventListener('click', async () => {
+  try {
+    const text = output.textContent || '';
+    await navigator.clipboard.writeText(text);
+    const btn = document.getElementById('btnCopyOutput') as HTMLButtonElement;
+    const originalText = btn.textContent;
+    btn.textContent = 'Copied!';
+    setTimeout(() => {
+      btn.textContent = originalText;
+    }, 1500);
+  } catch (e) {
+    log(`Copy failed: ${e}`);
+  }
 });
 
 log('Ready');

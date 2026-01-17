@@ -1,98 +1,997 @@
 PAGE: http://localhost/ | Amazon.com: ASUS ROG Swift 32” 4K OLED Gaming Monitor (PG32UCDM) - UHD (3840 x 2160), QD-OLED, 240Hz, 0.03ms, G-SYNC Compatible, Custom Heatsink, Graphene Film, 99% DCI-P3, True 10-bit, 90W USB-C : Electronics | viewport=1024x768
-SNAPSHOT: elements=1288 refs=95
+SNAPSHOT: elements=7582 refs=994
 
 LINK "main content" @ref:0 /div#a-page[1]/nav#shortcut-menu/ul[1]/li.nav-assistant-list-item[1]/a.nav-assistant-link
 LINK "About this item" @ref:1 /div#a-page[1]/nav#shortcut-menu/ul[1]/li.nav-assistant-list-item[2]/a.nav-assistant-link
-LINK "Buying options" @ref:2 /div#a-page[1]/nav#shortcut-menu/ul[1]/li.nav-assistant-list-item[5]/a.nav-assistant-link
-LINK "Videos" @ref:3 /div#a-page[1]/nav#shortcut-menu/ul[1]/li.nav-assistant-list-item[7]/a#nav-assist-skip-to-videos
-LINK "Reviews" @ref:4 /div#a-page[1]/nav#shortcut-menu/ul[1]/li.nav-assistant-list-item[8]/a#nav-assist-skip-to-reviews
-LINK "Search, option, forward slash" @ref:5 /div#a-page[1]/nav#shortcut-menu/ul[2]/li.nav-assistant-list-item[1]/a#nav-assist-search
-LINK "Cart, shift, option, c" @ref:6 /div#a-page[1]/nav#shortcut-menu/ul[2]/li.nav-assistant-list-item[2]/a#nav-assist-cart
-LINK "Home, shift, option, h" @ref:7 /div#a-page[1]/nav#shortcut-menu/ul[2]/li.nav-assistant-list-item[3]/a#nav-assist-home
-LINK "Your orders, shift, option, o" @ref:8 /div#a-page[1]/nav#shortcut-menu/ul[2]/li.nav-assistant-list-item[4]/a#nav-assist-your-orders
-BUTTON "Add to cart, shift, option, K" @ref:9 /div#a-page[1]/nav#shortcut-menu/ul[2]/li.nav-assistant-list-item[5]/button#nav-assist-add-to-cart
-BUTTON "Show/hide shortcuts, shift, option, z" @ref:10 /div#a-page[1]/nav#shortcut-menu/ul[2]/li.nav-assistant-list-item[6]/button#nav-assist-show-shortcuts
-LINK "Amazon" @ref:11 /header#navbar-main/div#navbar/div#nav-belt[1]/div.nav-left[1]/div#nav-logo[1]/a#nav-logo-sprites
-BUTTON "Deliver to Vietnam" @ref:12 /div#navbar/div#nav-belt[1]/div.nav-left[1]/div#nav-global-location-slot[2]/span.nav-progressive-attribute/a.nav-a
-SEARCHBOX "Search Amazon" @ref:13 /div#nav-fill-search[2]/div#nav-search/form#nav-search-bar-form/div.nav-fill[2]/div.nav-search-field[1]/input#twotabsearchtextbox
-BUTTON "Agent Search" @ref:14 [type=submit] /div#nav-fill-search[2]/div#nav-search/form#nav-search-bar-form/div.nav-right[3]/span#nav-search-submit-text-agent/input
-LINK "Choose a language for shopping in Amazon United..." @ref:15 /div#navbar/div#nav-belt[1]/div.nav-right[3]/div#nav-tools/div#icp-nav-flyout[1]/a.nav-a
-LINK "Hello, sign in Account & Lists" @ref:16 /div#navbar/div#nav-belt[1]/div.nav-right[3]/div#nav-tools/div#nav-link-accountList[2]/a.nav-a
-LINK "Returns & Orders" @ref:17 /header#navbar-main/div#navbar/div#nav-belt[1]/div.nav-right[3]/div#nav-tools/a#nav-orders[1]
-LINK "0 items in cart" @ref:18 /header#navbar-main/div#navbar/div#nav-belt[1]/div.nav-right[3]/div#nav-tools/a#nav-cart[2]
-BUTTON "Dismiss" @ref:19 [type=submit] /header#navbar-main/div#navbar/div#nav-flyout-iss-anchor[2]/div.nav-coreFlyout[2]/span#a-autoid-29[1]/input
-BUTTON "Change Address" @ref:20 [type=submit] /header#navbar-main/div#navbar/div#nav-flyout-iss-anchor[2]/div.nav-coreFlyout[2]/span#a-autoid-30[2]/input
-LINK "Sign in" @ref:21 /div#nav-flyout-accountList[3]/div.nav-template[2]/div#nav-al-container/div#nav-al-signin[1]/div#nav-flyout-ya-signin/a.nav-action-signin-button
-BUTTON "Open All Categories Menu" @ref:22 /div#a-page[1]/header#navbar-main/div#navbar/div#nav-main[5]/div.nav-left[1]/a#nav-hamburger-menu
-LINK "Click to call our Disability Customer Support l..." @ref:23 /div#nav-main[5]/div.nav-fill[2]/div#nav-xshop-container[2]/div#nav-xshop/ul.nav-ul/a.nav-hidden-aria
-BUTTON @ref:24 /div#dp[1]/div#dp-container/div#ppd[5]/div#leftCol[3]/div#imageBlock_feature_div[1]/span#ssf-primary-widget-desktop
-BUTTON "Share" @ref:25 /div#dp-container/div#ppd[5]/div#leftCol[3]/div#imageBlock_feature_div[1]/span#ssf-primary-widget-desktop/a
-TAB "VIDEOS" @ref:26 /div#leftCol[3]/div#imageBlock_feature_div[1]/div#a-popover-immersiveView[4]/div#iv-tab-view-container/ul/li#ivVideosTabHeading[1]
-TAB "IMAGES" @ref:27 /div#leftCol[3]/div#imageBlock_feature_div[1]/div#a-popover-immersiveView[4]/div#iv-tab-view-container/ul/li#ivImagesTabHeading[3]
-TAB @ref:28 /div#leftCol[3]/div#imageBlock_feature_div[1]/div#a-popover-immersiveView[4]/div#iv-tab-view-container/ul/li#ivDimensionTabHeading[4]
-BUTTON "javascript:void(0)" @ref:29 /div#dp-container/div#ppd[5]/div#leftCol[3]/div#energyEfficiency_feature_div[4]/div#energyEfficiency/a
-LINK @ref:30 /div#dp[1]/div#dp-container/div#ppd[5]/div#leftCol[3]/div#dyrWebIngress_feature_div[5]/div#dyr-ingress-content
-LINK "Visit the ASUS Store" @ref:31 /div#dp[1]/div#dp-container/div#ppd[5]/div#centerCol[4]/div#bylineInfo_feature_div[2]/a#bylineInfo
-LINK "(889)" @ref:32 /div#dp-container/div#ppd[5]/div#centerCol[4]/div[3]/div#averageCustomerReviews/a#acrCustomerReviewLink
-CHECKBOX @ref:33 [type=checkbox] /div#dp-container/div#ppd[5]/div#centerCol[4]/div#twisterPlusWWDesktop[41]/div#twister-plus-feature[2]/input#twister-plus-checkbox[2]
-BUTTON @ref:34 /div#dp[1]/div#dp-container/div#ppd[5]/div#centerCol[4]/div#twisterPlusWWDesktop[41]/div#twister-plus-dp-bg
-LINK "See more product details" @ref:35 /div#dp-container/div#ppd[5]/div#centerCol[4]/div#featurebullets_feature_div[47]/div#feature-bullets/a#seeMoreDetailsLink
-LINK "Report an issue with this product or seller" @ref:36 /div#dp-container/div#ppd[5]/div#centerCol[4]/div#tellAmazon_feature_div[58]/div/a
-LINK "WARNING" @ref:37 /div#a-page[1]/div#dp[1]/div#dp-container/div#legal-1_feature_div[26]/a
-BUTTON "Back to top" @ref:38 /div#a-page[1]/div#navFooter[3]/button#navBackToTop
-LINK "Careers" @ref:39 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[1]/ul/li.nav_first[1]/a.nav_a
-LINK "Blog" @ref:40 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[1]/ul/li[2]/a.nav_a
-LINK "About Amazon" @ref:41 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[1]/ul/li[3]/a.nav_a
-LINK "Investor Relations" @ref:42 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[1]/ul/li[4]/a.nav_a
-LINK "Amazon Devices" @ref:43 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[1]/ul/li[5]/a.nav_a
-LINK "Amazon Science" @ref:44 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[1]/ul/li.nav_last[6]/a.nav_a
-LINK "Sell products on Amazon" @ref:45 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li.nav_first[1]/a.nav_a
-LINK "Sell on Amazon Business" @ref:46 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li[2]/a.nav_a
-LINK "Sell apps on Amazon" @ref:47 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li[3]/a.nav_a
-LINK "Become an Affiliate" @ref:48 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li[4]/a.nav_a
-LINK "Advertise Your Products" @ref:49 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li[5]/a.nav_a
-LINK "Self-Publish with Us" @ref:50 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li[6]/a.nav_a
-LINK "Host an Amazon Hub" @ref:51 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li[7]/a.nav_a
-LINK "See More Make Money with Us" @ref:52 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li.nav_last[8]/a.nav_a
-LINK "Amazon Business Card" @ref:53 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[5]/ul/li.nav_first[1]/a.nav_a
-LINK "Shop with Points" @ref:54 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[5]/ul/li[2]/a.nav_a
-LINK "Reload Your Balance" @ref:55 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[5]/ul/li[3]/a.nav_a
-LINK "Amazon Currency Converter" @ref:56 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[5]/ul/li.nav_last[4]/a.nav_a
-LINK "Amazon and COVID-19" @ref:57 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[7]/ul/li.nav_first[1]/a.nav_a
-LINK "Your Account" @ref:58 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[7]/ul/li[2]/a.nav_a
-LINK "Your Orders" @ref:59 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[7]/ul/li[3]/a.nav_a
-LINK "Shipping Rates & Policies" @ref:60 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[7]/ul/li[4]/a.nav_a
-LINK "Returns & Replacements" @ref:61 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[7]/ul/li[5]/a.nav_a
-LINK "Manage Your Content and Devices" @ref:62 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[7]/ul/li[6]/a.nav_a
-LINK "Help" @ref:63 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[7]/ul/li.nav_last[7]/a.nav_a
-LINK "Amazon US Home" @ref:64 /div#a-page[1]/div#navFooter[3]/div.navFooterLine[3]/div.navFooterLine/a
-LINK "Amazon MusicStream millionsof songs" @ref:65 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[1]/li.navFooterDescItem[1]/a.nav_a
-LINK "Amazon AdsReach customerswherever theyspend the..." @ref:66 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[1]/li.navFooterDescItem[3]/a.nav_a
-LINK "6pmScore dealson fashion brands" @ref:67 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[1]/li.navFooterDescItem[5]/a.nav_a
-LINK "AbeBooksBooks, art& collectibles" @ref:68 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[1]/li.navFooterDescItem[7]/a.nav_a
-LINK "ACX Audiobook PublishingMade Easy" @ref:69 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[1]/li.navFooterDescItem[9]/a.nav_a
-LINK "Sell on AmazonStart a Selling Account" @ref:70 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[1]/li.navFooterDescItem[11]/a.nav_a
-LINK "VeeqoShipping SoftwareInventory Management" @ref:71 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[1]/li.navFooterDescItem[13]/a.nav_a
-LINK "Amazon BusinessEverything ForYour Business" @ref:72 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[2]/li.navFooterDescItem[1]/a.nav_a
-LINK "AmazonGlobalShip OrdersInternationally" @ref:73 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[2]/li.navFooterDescItem[3]/a.nav_a
-LINK "Amazon Web ServicesScalable CloudComputing Serv..." @ref:74 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[2]/li.navFooterDescItem[5]/a.nav_a
-LINK "AudibleListen to Books & OriginalAudio Performa..." @ref:75 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[2]/li.navFooterDescItem[7]/a.nav_a
-LINK "Box Office MojoFind MovieBox Office Data" @ref:76 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[2]/li.navFooterDescItem[9]/a.nav_a
-LINK "GoodreadsBook reviews& recommendations" @ref:77 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[2]/li.navFooterDescItem[11]/a.nav_a
-LINK "IMDbMovies, TV& Celebrities" @ref:78 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[2]/li.navFooterDescItem[13]/a.nav_a
-LINK "IMDbProGet Info EntertainmentProfessionals Need" @ref:79 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[3]/li.navFooterDescItem[1]/a.nav_a
-LINK "Kindle Direct PublishingIndie Digital & Print P..." @ref:80 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[3]/li.navFooterDescItem[3]/a.nav_a
-LINK "Prime Video DirectVideo DistributionMade Easy" @ref:81 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[3]/li.navFooterDescItem[5]/a.nav_a
-LINK "ShopbopDesignerFashion Brands" @ref:82 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[3]/li.navFooterDescItem[7]/a.nav_a
-LINK "Woot!Deals and Shenanigans" @ref:83 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[3]/li.navFooterDescItem[9]/a.nav_a
-LINK "ZapposShoes &Clothing" @ref:84 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[3]/li.navFooterDescItem[11]/a.nav_a
-LINK "RingSmart HomeSecurity Systems" @ref:85 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[3]/li.navFooterDescItem[13]/a.nav_a
-LINK "eero WiFiStream 4K Videoin Every Room" @ref:86 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[4]/li.navFooterDescItem[3]/a.nav_a
-LINK "BlinkSmart Securityfor Every Home" @ref:87 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[4]/li.navFooterDescItem[5]/a.nav_a
-LINK "Neighbors App Real-Time Crime& Safety Alerts" @ref:88 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[4]/li.navFooterDescItem[7]/a.nav_a
-LINK "Amazon Subscription BoxesTop subscription boxes..." @ref:89 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[4]/li.navFooterDescItem[9]/a.nav_a
-LINK "PillPackPharmacy Simplified" @ref:90 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[4]/li.navFooterDescItem[11]/a.nav_a
-LINK "Conditions of Use" @ref:91 /div#a-page[1]/div#navFooter[3]/div.navFooterLine[5]/ul/li.nav_first[1]/a.nav_a
-LINK "Privacy Notice" @ref:92 /div#a-page[1]/div#navFooter[3]/div.navFooterLine[5]/ul/li[2]/a.nav_a
-LINK "Consumer Health Data Privacy Disclosure" @ref:93 /div#a-page[1]/div#navFooter[3]/div.navFooterLine[5]/ul/li[3]/a.nav_a
-LINK "Your Ads Privacy Choices" @ref:94 /div#a-page[1]/div#navFooter[3]/div.navFooterLine[5]/ul/li[4]/a.nav_a
+LINK "About this item" @ref:2 /div#a-page[1]/nav#shortcut-menu/ul[1]/li.nav-assistant-list-item[3]/a.nav-assistant-link
+LINK "About this item" @ref:3 /div#a-page[1]/nav#shortcut-menu/ul[1]/li.nav-assistant-list-item[4]/a.nav-assistant-link
+LINK "Buying options" @ref:4 /div#a-page[1]/nav#shortcut-menu/ul[1]/li.nav-assistant-list-item[5]/a.nav-assistant-link
+LINK "Compare with similar items" @ref:5 /div#a-page[1]/nav#shortcut-menu/ul[1]/li.nav-assistant-list-item[6]/a#nav-assist-skip-to-compare
+LINK "Videos" @ref:6 /div#a-page[1]/nav#shortcut-menu/ul[1]/li.nav-assistant-list-item[7]/a#nav-assist-skip-to-videos
+LINK "Reviews" @ref:7 /div#a-page[1]/nav#shortcut-menu/ul[1]/li.nav-assistant-list-item[8]/a#nav-assist-skip-to-reviews
+LINK "Search, option, forward slash" @ref:8 /div#a-page[1]/nav#shortcut-menu/ul[2]/li.nav-assistant-list-item[1]/a#nav-assist-search
+LINK "Cart, shift, option, c" @ref:9 /div#a-page[1]/nav#shortcut-menu/ul[2]/li.nav-assistant-list-item[2]/a#nav-assist-cart
+LINK "Home, shift, option, h" @ref:10 /div#a-page[1]/nav#shortcut-menu/ul[2]/li.nav-assistant-list-item[3]/a#nav-assist-home
+LINK "Your orders, shift, option, o" @ref:11 /div#a-page[1]/nav#shortcut-menu/ul[2]/li.nav-assistant-list-item[4]/a#nav-assist-your-orders
+BUTTON "Add to cart, shift, option, K" @ref:12 /div#a-page[1]/nav#shortcut-menu/ul[2]/li.nav-assistant-list-item[5]/button#nav-assist-add-to-cart
+BUTTON "Show/hide shortcuts, shift, option, z" @ref:13 /div#a-page[1]/nav#shortcut-menu/ul[2]/li.nav-assistant-list-item[6]/button#nav-assist-show-shortcuts
+LINK "Amazon" @ref:14 /header#navbar-main/div#navbar/div#nav-belt[1]/div.nav-left[1]/div#nav-logo[1]/a#nav-logo-sprites
+BUTTON "Deliver to Vietnam" @ref:15 /div#navbar/div#nav-belt[1]/div.nav-left[1]/div#nav-global-location-slot[2]/span.nav-progressive-attribute/a.nav-a
+TEXTBOX @ref:16 [type=hidden] /header#navbar-main/div#navbar/div#nav-belt[1]/div.nav-left[1]/div#nav-global-location-slot[2]/input#unifiedLocation1ClickAddress[1]
+TEXTBOX @ref:17 [type=hidden] /header#navbar-main/div#navbar/div#nav-belt[1]/div.nav-left[1]/div#nav-global-location-slot[2]/input#ubbShipTo[2]
+TEXTBOX @ref:18 [type=hidden] /header#navbar-main/div#navbar/div#nav-belt[1]/div.nav-left[1]/div#nav-global-location-slot[2]/input#glowValidationToken[3]
+TEXTBOX @ref:19 [type=hidden] /header#navbar-main/div#navbar/div#nav-belt[1]/div.nav-left[1]/div#nav-global-location-slot[2]/input#glowDestinationType[4]
+COMBOBOX "Select the department you want to search in" @ref:20 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "All Departments" @ref:21 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Arts & Crafts" @ref:22 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Automotive" @ref:23 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Baby" @ref:24 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Beauty & Personal Care" @ref:25 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Books" @ref:26 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Boys' Fashion" @ref:27 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Computers" @ref:28 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Deals" @ref:29 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Digital Music" @ref:30 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Electronics" @ref:31 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Girls' Fashion" @ref:32 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Health & Household" @ref:33 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Home & Kitchen" @ref:34 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Industrial & Scientific" @ref:35 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Kindle Store" @ref:36 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Luggage" @ref:37 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Men's Fashion" @ref:38 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Movies & TV" @ref:39 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Music, CDs & Vinyl" @ref:40 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Pet Supplies" @ref:41 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Prime Video" @ref:42 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Software" @ref:43 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Sports & Outdoors" @ref:44 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Tools & Home Improvement" @ref:45 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Toys & Games" @ref:46 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Video Games" @ref:47 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+OPTION "Women's Fashion" @ref:48 /div#nav-search/form#nav-search-bar-form/div.nav-left[1]/div#nav-search-dropdown-card/div.nav-search-scope/select#searchDropdownBox
+SEARCHBOX "Search Amazon" @ref:49 /div#nav-fill-search[2]/div#nav-search/form#nav-search-bar-form/div.nav-fill[2]/div.nav-search-field[1]/input#twotabsearchtextbox
+BUTTON "Go" @ref:50 [type=submit] /div#nav-search/form#nav-search-bar-form/div.nav-right[3]/div.nav-search-submit/span#nav-search-submit-text/input#nav-search-submit-button
+BUTTON "Agent Search" @ref:51 [type=submit] /div#nav-fill-search[2]/div#nav-search/form#nav-search-bar-form/div.nav-right[3]/span#nav-search-submit-text-agent/input
+LINK "Choose a language for shopping in Amazon United..." @ref:52 /div#navbar/div#nav-belt[1]/div.nav-right[3]/div#nav-tools/div#icp-nav-flyout[1]/a.nav-a
+BUTTON "Expand to Change Language or Country" @ref:53 /div#navbar/div#nav-belt[1]/div.nav-right[3]/div#nav-tools/div#icp-nav-flyout[1]/button.nav-flyout-button
+LINK "Hello, sign in Account & Lists" @ref:54 /div#navbar/div#nav-belt[1]/div.nav-right[3]/div#nav-tools/div#nav-link-accountList[2]/a.nav-a
+BUTTON "Expand Account and Lists" @ref:55 /div#navbar/div#nav-belt[1]/div.nav-right[3]/div#nav-tools/div#nav-link-accountList[2]/button.nav-flyout-button
+LINK "Returns & Orders" @ref:56 /header#navbar-main/div#navbar/div#nav-belt[1]/div.nav-right[3]/div#nav-tools/a#nav-orders[1]
+LINK "0 items in cart" @ref:57 /header#navbar-main/div#navbar/div#nav-belt[1]/div.nav-right[3]/div#nav-tools/a#nav-cart[2]
+BUTTON "Dismiss" @ref:58 [type=submit] /header#navbar-main/div#navbar/div#nav-flyout-iss-anchor[2]/div.nav-coreFlyout[2]/span#a-autoid-29[1]/input
+BUTTON "Change Address" @ref:59 [type=submit] /header#navbar-main/div#navbar/div#nav-flyout-iss-anchor[2]/div.nav-coreFlyout[2]/span#a-autoid-30[2]/input
+LINK "Sign in" @ref:60 /div#nav-flyout-accountList[3]/div.nav-template[2]/div#nav-al-container/div#nav-al-signin[1]/div#nav-flyout-ya-signin/a.nav-action-signin-button
+LINK "New to Amazon? Start here to create an account" @ref:61 /div.nav-template[2]/div#nav-al-container/div#nav-al-signin[1]/div#nav-flyout-ya-signin/div#nav-flyout-ya-newCust/a.nav-a
+LINK "Create a List" @ref:62 /div.nav-template[2]/div#nav-al-container/div#nav-al-wishlist[2]/ul/li[1]/a.nav-link
+LINK "Find a List or Registry" @ref:63 /div.nav-template[2]/div#nav-al-container/div#nav-al-wishlist[2]/ul/li[2]/a.nav-link
+LINK "Account" @ref:64 /div.nav-template[2]/div#nav-al-container/div#nav-al-your-account[3]/ul/li[1]/a.nav-link
+LINK "Orders" @ref:65 /div.nav-template[2]/div#nav-al-container/div#nav-al-your-account[3]/ul/li[2]/a#nav_prefetch_yourorders
+LINK "Recommendations" @ref:66 /div.nav-template[2]/div#nav-al-container/div#nav-al-your-account[3]/ul/li[3]/a.nav-link
+LINK "Browsing History" @ref:67 /div.nav-template[2]/div#nav-al-container/div#nav-al-your-account[3]/ul/li[4]/a.nav-link
+LINK "Your Shopping preferences" @ref:68 /div.nav-template[2]/div#nav-al-container/div#nav-al-your-account[3]/ul/li[5]/a.nav-link
+LINK "Watchlist" @ref:69 /div.nav-template[2]/div#nav-al-container/div#nav-al-your-account[3]/ul/li[6]/a.nav-link
+LINK "Video Purchases & Rentals" @ref:70 /div.nav-template[2]/div#nav-al-container/div#nav-al-your-account[3]/ul/li[7]/a.nav-link
+LINK "Kindle Unlimited" @ref:71 /div.nav-template[2]/div#nav-al-container/div#nav-al-your-account[3]/ul/li[8]/a.nav-link
+LINK "Content & Devices" @ref:72 /div.nav-template[2]/div#nav-al-container/div#nav-al-your-account[3]/ul/li[9]/a.nav-link
+LINK "Subscribe & Save Items" @ref:73 /div.nav-template[2]/div#nav-al-container/div#nav-al-your-account[3]/ul/li[10]/a.nav-link
+LINK "Memberships & Subscriptions" @ref:74 /div.nav-template[2]/div#nav-al-container/div#nav-al-your-account[3]/ul/li[11]/a.nav-link
+LINK "Music Library" @ref:75 /div.nav-template[2]/div#nav-al-container/div#nav-al-your-account[3]/ul/li[12]/a.nav-link
+BUTTON "Open All Categories Menu" @ref:76 /div#a-page[1]/header#navbar-main/div#navbar/div#nav-main[5]/div.nav-left[1]/a#nav-hamburger-menu
+LINK "Today's Deals" @ref:77 /div#nav-xshop-container[2]/div#nav-xshop/ul.nav-ul/li.nav-li[1]/div.nav-div/a.nav-a
+LINK "Prime Video" @ref:78 /div#nav-xshop-container[2]/div#nav-xshop/ul.nav-ul/li.nav-li[2]/div.nav-div/a.nav-a
+LINK "Registry" @ref:79 /div#nav-xshop-container[2]/div#nav-xshop/ul.nav-ul/li.nav-li[3]/div.nav-div/a.nav-a
+LINK "Gift Cards" @ref:80 /div#nav-xshop-container[2]/div#nav-xshop/ul.nav-ul/li.nav-li[4]/div.nav-div/a.nav-a
+LINK "Customer Service" @ref:81 /div#nav-xshop-container[2]/div#nav-xshop/ul.nav-ul/li.nav-li[5]/div.nav-div/a.nav-a
+LINK "Sell" @ref:82 /div#nav-xshop-container[2]/div#nav-xshop/ul.nav-ul/li.nav-li[6]/div.nav-div/a.nav-a
+LINK "Click to call our Disability Customer Support l..." @ref:83 /div#nav-main[5]/div.nav-fill[2]/div#nav-xshop-container[2]/div#nav-xshop/ul.nav-ul/a.nav-hidden-aria
+LINK "Electronics" @ref:84 /div[4]/div/div/ul/li[1]/a
+LINK "Computers & Accessories" @ref:85 /div[4]/div/div/ul/li[3]/a
+LINK "Monitors" @ref:86 /div[4]/div/div/ul/li[5]/a
+TEXTBOX @ref:87 [type=hidden] /div#dp[1]/div#dp-container/div#ppd[5]/div#rightCol[1]/div[1]/input
+TEXTBOX @ref:88 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#desktop-atc-anti-csrf-token[1]
+TEXTBOX @ref:89 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input[2]
+TEXTBOX @ref:90 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input[3]
+TEXTBOX @ref:91 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input[4]
+TEXTBOX @ref:92 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input[5]
+TEXTBOX @ref:93 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input[6]
+TEXTBOX @ref:94 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input[7]
+TEXTBOX @ref:95 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input[8]
+TEXTBOX @ref:96 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#offerListingID[9]
+TEXTBOX @ref:97 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#session-id[10]
+TEXTBOX @ref:98 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#ASIN[11]
+TEXTBOX @ref:99 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#isMerchantExclusive[12]
+TEXTBOX @ref:100 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#merchantID[13]
+TEXTBOX @ref:101 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#isAddon[14]
+TEXTBOX @ref:102 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#nodeID[15]
+TEXTBOX @ref:103 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#sellingCustomerID[16]
+TEXTBOX @ref:104 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#qid[17]
+TEXTBOX @ref:105 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#sr[18]
+TEXTBOX @ref:106 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#storeID[19]
+TEXTBOX @ref:107 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#tagActionCode[20]
+TEXTBOX @ref:108 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#viewID[21]
+TEXTBOX @ref:109 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#rebateId[22]
+TEXTBOX @ref:110 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#ctaDeviceType[23]
+TEXTBOX @ref:111 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#ctaPageType[24]
+TEXTBOX @ref:112 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#usePrimeHandler[25]
+TEXTBOX @ref:113 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#smokeTestEnabled[26]
+TEXTBOX @ref:114 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#rsid[27]
+TEXTBOX @ref:115 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#sourceCustomerOrgListID[28]
+TEXTBOX @ref:116 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input#sourceCustomerOrgListItemID[29]
+TEXTBOX @ref:117 [type=hidden] /div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/form#addToCart/input[30]
+BUTTON "Details" @ref:118 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div[4]/div#amazonGlobal_feature_div[8]/a
+LINK "Estimated Import Charges" @ref:119 /div#desktop_qualifiedBuyBox[4]/div[4]/div#amazonGlobal_feature_div[8]/div#a-popover-NEW_0/table/a
+BUTTON "Deliver to Vietnam" @ref:120 /form#addToCart/div#desktop_qualifiedBuyBox[4]/div[4]/div#deliveryBlockContainer[10]/div[2]/a#contextualIngressPtLink
+TEXTBOX @ref:121 [type=hidden] /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div[8]/div#all-offers-display/input[1]
+TEXTBOX @ref:122 [type=hidden] /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div[8]/div#all-offers-display/input#all-offers-display-params[2]
+TEXTBOX @ref:123 [type=hidden] /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/input
+COMBOBOX "Quantity:" @ref:124 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "1" @ref:125 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "2" @ref:126 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "3" @ref:127 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "4" @ref:128 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "5" @ref:129 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "6" @ref:130 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "7" @ref:131 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "8" @ref:132 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "9" @ref:133 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "10" @ref:134 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "11" @ref:135 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "12" @ref:136 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "13" @ref:137 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "14" @ref:138 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "15" @ref:139 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "16" @ref:140 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "17" @ref:141 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "18" @ref:142 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "19" @ref:143 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "20" @ref:144 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "21" @ref:145 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "22" @ref:146 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "23" @ref:147 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "24" @ref:148 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "25" @ref:149 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "26" @ref:150 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "27" @ref:151 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "28" @ref:152 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "29" @ref:153 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+OPTION "30" @ref:154 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#quantityRelocate_feature_div[11]/div#selectQuantity/select#quantity
+TEXTBOX @ref:155 [type=hidden] /div/div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div[13]/input#twister-plus-price-data-price[1]
+TEXTBOX @ref:156 [type=hidden] /div/div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div[13]/input[2]
+TEXTBOX @ref:157 [type=hidden] /div/div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div[13]/input[3]
+LINK "Details" @ref:158 /form#addToCart/div#desktop_qualifiedBuyBox[4]/div[13]/div#tp_price_update_feature_ww/div#tp_price_row_ww/a
+BUTTON "Add to cart" @ref:159 [type=submit] /form#addToCart/div#desktop_qualifiedBuyBox[4]/div#addToCart_feature_div[16]/span#atc-declarative/span/input#add-to-cart-button
+BUTTON "Buy Now" @ref:160 [type=submit] /form#addToCart/div#desktop_qualifiedBuyBox[4]/div#buyNow_feature_div[17]/div#buyNow/span[2]/input#buy-now-button
+TEXTBOX @ref:161 [type=hidden] /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#buyNow_feature_div[17]/div#buyNow/input[1]
+TEXTBOX @ref:162 [type=hidden] /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#buyNow_feature_div[17]/div#buyNow/input[2]
+TEXTBOX @ref:163 [type=hidden] /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#buyNow_feature_div[17]/div#buyNow/input[3]
+TEXTBOX @ref:164 [type=hidden] /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#buyNow_feature_div[17]/div#buyNow/input[4]
+TEXTBOX @ref:165 [type=hidden] /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#buyNow_feature_div[17]/div#buyNow/input[5]
+LINK "Details" @ref:166 /div/div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div[19]/a#tp_bbm_info_message_details
+BUTTON "Amazon.com" @ref:167 /form#addToCart/div#desktop_qualifiedBuyBox[4]/div#offerDisplayFeatures_desktop[21]/div#offer-display-features/div[3]/a
+BUTTON "30-day refund / replacement" @ref:168 /form#addToCart/div#desktop_qualifiedBuyBox[4]/div#offerDisplayFeatures_desktop[21]/div#offer-display-features/div[6]/a
+LINK "Read full return policy" @ref:169 /div#desktop_qualifiedBuyBox[4]/div#offerDisplayFeatures_desktop[21]/div#offer-display-features/div[6]/div/a
+BUTTON "Product support included" @ref:170 /div#offerDisplayFeatures_desktop[21]/div#offer-display-features/div[15]/div/div[4]/a
+LINK "Learn more" @ref:171 /div#offer-display-features/div[15]/div/div[4]/div/a
+BUTTON "Secure transaction" @ref:172 /div#offerDisplayFeatures_desktop[21]/div#offer-display-features/div[15]/div/div[5]/a
+LINK "Learn more" @ref:173 /div#offer-display-features/div[15]/div/div[5]/div/a
+BUTTON "Ships in product packaging" @ref:174 /div#offerDisplayFeatures_desktop[21]/div#offer-display-features/div[15]/div/div[11]/a
+LINK "Learn more" @ref:175 /div#offer-display-features/div[15]/div/div[11]/div/a
+BUTTON "See more" @ref:176 /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#offerDisplayFeatures_desktop[21]/div#offer-display-features/a
+CHECKBOX "Add a gift receipt for easy returns" @ref:177 [type=checkbox] /div#qualifiedBuybox/form#addToCart/div#desktop_qualifiedBuyBox[4]/div#giftingODF_feature_div[48]/label/input#gift-wrap
+LINK "Add to List" @ref:178 /form#addToCart/div#addToWishlist_feature_div[7]/div#wishlistButtonStack/div#add-to-wishlist-button-group[1]/span#wishListMainButton/a
+LINK "wishlist" @ref:179 /div#qualifiedBuybox/form#addToCart/div#addToWishlist_feature_div[7]/div#wishlistButtonStack/div#atwl-inline[3]/a#atwl-inline-link
+TEXTBOX @ref:180 [type=hidden] /div#buybox/div/div#qualifiedBuybox/form#addToCart/div#addToWishlist_feature_div[7]/input#lists-sp-csrf-form-token
+TEXTBOX @ref:181 [type=hidden] /div/div#qualifiedBuybox/form#addToCart/div#addToWishlist_feature_div[7]/form/input#creator-sp-csrf-form-token
+TEXTBOX @ref:182 [type=hidden] /div#rightCol[1]/div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/input#cartAddressNew[1]
+TEXTBOX @ref:183 [type=hidden] /div#rightCol[1]/div#desktop_buybox[7]/div#buybox/div/div#qualifiedBuybox/input#cartAddressUsed[2]
+TEXTBOX @ref:184 [type=hidden] /div#ppd[5]/div#rightCol[1]/div#olpLinkWidget_feature_div[8]/div#all-offers-display[1]/form/input[1]
+TEXTBOX @ref:185 [type=hidden] /div#ppd[5]/div#rightCol[1]/div#olpLinkWidget_feature_div[8]/div#all-offers-display[1]/form/input#all-offers-display-params[2]
+TEXTBOX @ref:186 /div#dp-container/div#ppd[5]/div#rightCol[1]/div#olpLinkWidget_feature_div[8]/div#dynamic-aod-ingress-box[2]/input#aod-aria-label
+BUTTON "New (4) from $999.00$999.00" @ref:187 /div#dp-container/div#ppd[5]/div#rightCol[1]/div#olpLinkWidget_feature_div[8]/div#dynamic-aod-ingress-box[2]/a#aod-ingress-link
+BUTTON @ref:188 /div#dp[1]/div#dp-container/div#ppd[5]/div#leftCol[3]/div#imageBlock_feature_div[1]/span#ssf-primary-widget-desktop
+BUTTON "Share" @ref:189 /div#dp-container/div#ppd[5]/div#leftCol[3]/div#imageBlock_feature_div[1]/span#ssf-primary-widget-desktop/a
+RADIO @ref:190 [type=submit] /div#imageBlock[1]/div#altImages[1]/ul/li[2]/span#a-autoid-1/input
+RADIO @ref:191 [type=submit] /div#imageBlock[1]/div#altImages[1]/ul/li[3]/span#a-autoid-2/input
+RADIO "16+" @ref:192 [type=submit] /div#imageBlock[1]/div#altImages[1]/ul/li.item[4]/span#a-autoid-3/input
+RADIO "15+" @ref:193 [type=submit] /div#imageBlock[1]/div#altImages[1]/ul/li.item[5]/span#a-autoid-4/input
+RADIO "14+" @ref:194 [type=submit] /div#imageBlock[1]/div#altImages[1]/ul/li.item[6]/span#a-autoid-5/input
+RADIO "13+" @ref:195 [type=submit] /div#imageBlock[1]/div#altImages[1]/ul/li.item[7]/span#a-autoid-6/input
+RADIO "12+" @ref:196 [type=submit] /div#imageBlock[1]/div#altImages[1]/ul/li.item[8]/span#a-autoid-7/input
+RADIO "11+" @ref:197 [type=submit] /div#imageBlock[1]/div#altImages[1]/ul/li.item[9]/span#a-autoid-8/input
+RADIO @ref:198 [type=submit] /div#imageBlock[1]/div#altImages[1]/ul/li.item[10]/span#a-autoid-9/input
+BUTTON "javascript:void(0)" @ref:199 /div#imageBlock[1]/div#main-image-container[1]/div#video-outer-container[1]/div#main-video-container[1]/div[1]/a
+BUTTON "Click to play video" @ref:200 /div#video-outer-container[1]/div#main-video-container[1]/div[2]/div/div/button
+BUTTON "Play" @ref:201 /div#video-outer-container[1]/div#main-video-container[1]/div[2]/div/div/button[1]
+BUTTON "Mute" @ref:202 /div#video-outer-container[1]/div#main-video-container[1]/div[2]/div/div/button
+SLIDER "Volume Level" @ref:203 /div#main-image-container[1]/div#video-outer-container[1]/div#main-video-container[1]/div[2]/div/div
+SLIDER "Scrubber bar" @ref:204 /div#main-image-container[1]/div#video-outer-container[1]/div#main-video-container[1]/div[2]/div/div
+BUTTON "Seek to live, currently behind live" @ref:205 /div#video-outer-container[1]/div#main-video-container[1]/div[2]/div/div/button[2]
+BUTTON "Playback Rate" @ref:206 /div#video-outer-container[1]/div#main-video-container[1]/div[2]/div/div/button
+BUTTON "Chapters" @ref:207 /div#video-outer-container[1]/div#main-video-container[1]/div[2]/div/div/button
+BUTTON "Descriptions" @ref:208 /div#video-outer-container[1]/div#main-video-container[1]/div[2]/div/div/button
+BUTTON "Captions" @ref:209 /div#video-outer-container[1]/div#main-video-container[1]/div[2]/div/div/button
+BUTTON "Audio Track" @ref:210 /div#video-outer-container[1]/div#main-video-container[1]/div[2]/div/div/button
+BUTTON "Fullscreen" @ref:211 /div#video-outer-container[1]/div#main-video-container[1]/div[2]/div/div/button[3]
+BUTTON @ref:212 /div#imageBlock_feature_div[1]/div#imageBlock[1]/div#main-image-container[1]/ul.list/li.item[1]/div#imgTagWrapperId
+LINK "Flash Player" @ref:213 /div#imageBlock_feature_div[1]/div#imageBlock[1]/div#main-image-container[1]/ul.list/li#noFlashContent[4]/a
+LINK "Click to see full view" @ref:214 /div#leftCol[3]/div#imageBlock_feature_div[1]/div#imageBlock[1]/div#image-canvas-caption[2]/span#canvasCaption/a
+TAB "VIDEOS" @ref:215 /div#leftCol[3]/div#imageBlock_feature_div[1]/div#a-popover-immersiveView[4]/div#iv-tab-view-container/ul/li#ivVideosTabHeading[1]
+LINK "VIDEOS" @ref:216 /div#imageBlock_feature_div[1]/div#a-popover-immersiveView[4]/div#iv-tab-view-container/ul/li#ivVideosTabHeading[1]/a
+TAB "360° VIEW" @ref:217 /div#leftCol[3]/div#imageBlock_feature_div[1]/div#a-popover-immersiveView[4]/div#iv-tab-view-container/ul/li#iv360TabHeading[2]
+LINK "360° VIEW" @ref:218 /div#imageBlock_feature_div[1]/div#a-popover-immersiveView[4]/div#iv-tab-view-container/ul/li#iv360TabHeading[2]/a
+TAB "IMAGES" @ref:219 /div#leftCol[3]/div#imageBlock_feature_div[1]/div#a-popover-immersiveView[4]/div#iv-tab-view-container/ul/li#ivImagesTabHeading[3]
+LINK "IMAGES" @ref:220 /div#imageBlock_feature_div[1]/div#a-popover-immersiveView[4]/div#iv-tab-view-container/ul/li#ivImagesTabHeading[3]/a
+TAB @ref:221 /div#leftCol[3]/div#imageBlock_feature_div[1]/div#a-popover-immersiveView[4]/div#iv-tab-view-container/ul/li#ivDimensionTabHeading[4]
+LINK @ref:222 /div#imageBlock_feature_div[1]/div#a-popover-immersiveView[4]/div#iv-tab-view-container/ul/li#ivDimensionTabHeading[4]/a
+BUTTON "javascript:void(0)" @ref:223 /div#ivVideoBlock/div/div/div/div[1]/a
+BUTTON "Click to play video" @ref:224 /div#ivVideoBlock/div/div/div/div[2]/button
+BUTTON "Play" @ref:225 /div#ivVideoBlock/div/div/div/div[2]/button[1]
+BUTTON "Mute" @ref:226 /div#ivVideoBlock/div/div/div/div[2]/button
+SLIDER "Volume Level" @ref:227 /div#ivVideosTab[1]/div#ivVideoBlock/div/div/div/div[2]
+SLIDER "Scrubber bar" @ref:228 /div#ivVideosTab[1]/div#ivVideoBlock/div/div/div/div[2]
+BUTTON "Seek to live, currently behind live" @ref:229 /div#ivVideoBlock/div/div/div/div[2]/button[2]
+BUTTON "Playback Rate" @ref:230 /div#ivVideoBlock/div/div/div/div[2]/button
+BUTTON "Chapters" @ref:231 /div#ivVideoBlock/div/div/div/div[2]/button
+BUTTON "Descriptions" @ref:232 /div#ivVideoBlock/div/div/div/div[2]/button
+BUTTON "Captions" @ref:233 /div#ivVideoBlock/div/div/div/div[2]/button
+BUTTON "Audio Track" @ref:234 /div#ivVideoBlock/div/div/div/div[2]/button
+BUTTON "Fullscreen" @ref:235 /div#ivVideoBlock/div/div/div/div[2]/button[3]
+BUTTON "javascript:void(0)" @ref:236 /div#iv-tab-view-container/div#ivVideosTab[1]/div#ivVideoBlock/div/span/a
+LINK "Email" @ref:237 /div/ul/li[1]/div/span#vse-share-email/a
+LINK "Pinterest" @ref:238 /div/ul/li[2]/div/span#vse-share-pinterest/a
+LINK "Facebook" @ref:239 /div/ul/li[3]/div/span#vse-share-facebook/a
+LINK "X" @ref:240 /div/ul/li[4]/div/span#vse-share-twitter/a
+LINK "Copy Link" @ref:241 /div/ul/li[5]/div/span#vse-share-copy/a
+LINK "See full review" @ref:242 /div#a-popover-immersiveView[4]/div#iv-tab-view-container/div#ivVideosTab[1]/div#ivVideoBlock/div/a#vse-customer-review-link
+LINK "ASUS Computer International Direct" @ref:243 /div#a-popover-immersiveView[4]/div#iv-tab-view-container/div#ivVideosTab[1]/div#ivVideoBlock/div/a
+LINK "ASUS Computer International Direct" @ref:244 /div#a-popover-immersiveView[4]/div#iv-tab-view-container/div#ivVideosTab[1]/div#ivVideoBlock/div/a
+LINK "Click to go to amazon influencer info page" @ref:245 /div#a-popover-immersiveView[4]/div#iv-tab-view-container/div#ivVideosTab[1]/div#ivVideoBlock/div/a
+BUTTON "Zoom In" @ref:246 /div#iv-tab-view-container/div#ivImagesTab[3]/div#ivMain/div#ivStage[1]/div#ivZoom/div#ivZoomIn
+BUTTON "Zoom Out" @ref:247 /div#iv-tab-view-container/div#ivImagesTab[3]/div#ivMain/div#ivStage[1]/div#ivZoom/div#ivZoomOut
+BUTTON "Zoom In On Image" @ref:248 /div#a-popover-immersiveView[4]/div#iv-tab-view-container/div#ivImagesTab[3]/div#ivMain/div#ivStage[1]/div#ivLargeImage
+BUTTON @ref:249 /div#a-popover-immersiveView[4]/div#iv-tab-view-container/div#ivImagesTab[3]/div#ivMain/div#ivThumbColumn[2]/div#ivThumbs[3]
+BUTTON "javascript:void(0)" @ref:250 /div#dp-container/div#ppd[5]/div#leftCol[3]/div#energyEfficiency_feature_div[4]/div#energyEfficiency/a
+LINK @ref:251 /div#dp[1]/div#dp-container/div#ppd[5]/div#leftCol[3]/div#dyrWebIngress_feature_div[5]/div#dyr-ingress-content
+LINK "Visit the ASUS Store" @ref:252 /div#dp[1]/div#dp-container/div#ppd[5]/div#centerCol[4]/div#bylineInfo_feature_div[2]/a#bylineInfo
+BUTTON "4.5 4.5 out of 5 stars" @ref:253 /div#ppd[5]/div#centerCol[4]/div[3]/div#averageCustomerReviews/span#acrPopover/a
+LINK "(889)" @ref:254 /div#dp-container/div#ppd[5]/div#centerCol[4]/div[3]/div#averageCustomerReviews/a#acrCustomerReviewLink
+LINK @ref:255 /div#dp-container/div#ppd[5]/div#centerCol[4]/div#apex_desktop[16]/div[3]/a
+LINK "Learn more" @ref:256 /div#ppd[5]/div#centerCol[4]/div#apex_desktop[16]/div[3]/div/a
+BUTTON "Details" @ref:257 /div#dp-container/div#ppd[5]/div#centerCol[4]/div#apex_desktop[16]/div#amazonGlobal_feature_div[33]/a
+LINK "Estimated Import Charges" @ref:258 /div#centerCol[4]/div#apex_desktop[16]/div#amazonGlobal_feature_div[33]/div#a-popover-NEW_0/table/a
+RADIO "27" OLED QHD 360Hz /* Temporary CSS overrides f..." @ref:259 [type=submit] /div[2]/div/ul/li[1]/span#style_name_1/input
+RADIO "32" OLED 4K 240Hz UHD G-SYNC /* Temporary CSS o..." @ref:260 [type=submit] /div[2]/div/ul/li[2]/span#style_name_2/input
+RADIO "34" Cruved OLED UWQHD 175Hz /* Temporary CSS ov..." @ref:261 [type=submit] /div[2]/div/ul/li[3]/span#style_name_3/input
+RADIO "27" FHD 170Hz G-SYNC Currently unavailable." @ref:262 [type=submit] /div[2]/div/ul/li[4]/span#style_name_0/input
+LINK "←Previous" @ref:263 /div[2]/div/nav/ul/li[1]/a
+LINK "1" @ref:264 /div[2]/div/nav/ul/li[2]/a
+LINK "Next→" @ref:265 /div[2]/div/nav/ul/li[3]/a
+TEXTBOX @ref:266 [type=hidden] /div#dp-container/div#ppd[5]/div#centerCol[4]/div#twisterPlusWWDesktop[41]/div#twister-plus-feature[2]/input#twister-plus-active-cards[1]
+CHECKBOX @ref:267 [type=checkbox] /div#dp-container/div#ppd[5]/div#centerCol[4]/div#twisterPlusWWDesktop[41]/div#twister-plus-feature[2]/input#twister-plus-checkbox[2]
+TEXTBOX @ref:268 [type=hidden] /div#dp[1]/div#dp-container/div#ppd[5]/div#centerCol[4]/div#twisterPlusWWDesktop[41]/input#twister-plus-device-type[1]
+TEXTBOX @ref:269 [type=hidden] /div#dp[1]/div#dp-container/div#ppd[5]/div#centerCol[4]/div#twisterPlusWWDesktop[41]/input#twister-plus-eligible[2]
+TEXTBOX @ref:270 [type=hidden] /div#dp[1]/div#dp-container/div#ppd[5]/div#centerCol[4]/div#twisterPlusWWDesktop[41]/input#ccCardsRendered[3]
+TEXTBOX @ref:271 [type=hidden] /div#dp[1]/div#dp-container/div#ppd[5]/div#centerCol[4]/div#twisterPlusWWDesktop[41]/input#twister-plus-asin[4]
+TEXTBOX @ref:272 [type=hidden] /div#dp[1]/div#dp-container/div#ppd[5]/div#centerCol[4]/div#twisterPlusWWDesktop[41]/input#twister-plus-offer-listing-id[5]
+BUTTON @ref:273 /div#dp[1]/div#dp-container/div#ppd[5]/div#centerCol[4]/div#twisterPlusWWDesktop[41]/div#twister-plus-dp-bg
+BUTTON "Sign in to continue" @ref:274 /div#dp-container/div#ppd[5]/div#centerCol[4]/div[42]/div/a
+LINK "See more product details" @ref:275 /div#dp-container/div#ppd[5]/div#centerCol[4]/div#featurebullets_feature_div[47]/div#feature-bullets/a#seeMoreDetailsLink
+TEXTBOX @ref:276 [type=hidden] /div#ppd[5]/div#centerCol[4]/div#olp_feature_div[56]/div#all-offers-display/form/input[1]
+TEXTBOX @ref:277 [type=hidden] /div#ppd[5]/div#centerCol[4]/div#olp_feature_div[56]/div#all-offers-display/form/input#all-offers-display-params[2]
+LINK "Report an issue with this product or seller" @ref:278 /div#dp-container/div#ppd[5]/div#centerCol[4]/div#tellAmazon_feature_div[58]/div/a
+LINK "ref=vp d cpf substitute widget prsubs pd" @ref:279 /div#ppd[5]/div#centerCol[4]/div#valuePick_feature_div[61]/div#valuePick_container/div#value-pick-ac/a
+LINK "ASUS ProArt Display 15.6” 4K Pen Display (PA169..." @ref:280 /div#centerCol[4]/div#valuePick_feature_div[61]/div#valuePick_container/div#value-pick-ac/div#value-pick-title-row[1]/a#value-pick-title-view
+LINK "1979 ratings" @ref:281 /div#ppd[5]/div#centerCol[4]/div#valuePick_feature_div[61]/div#valuePick_container/div#value-pick-ac/a
+TEXTBOX @ref:282 [type=hidden] /div#a-page[1]/div#dp[1]/div#dp-container/div[14]/div[1]/input
+LINK "Sponsored" @ref:283 /div#dp[1]/div#dp-container/div[14]/div[1]/div[1]/a
+LINK "Start over" @ref:284 /div#dp[1]/div#dp-container/div[14]/div[1]/div[1]/a
+BUTTON "Previous page of related Sponsored Products" @ref:285 /div#a-page[1]/div#dp[1]/div#dp-container/div[14]/div[1]/a#a-autoid-10
+BUTTON "Feedback" @ref:286 /div[14]/div[1]/ol/li[1]/div/a
+LINK ".atc-faceout-container.sp_atc { position: absol..." @ref:287 /div[14]/div[1]/ol/li[1]/div/a[1]
+LINK "4.3 out of 5 stars 576 ratings" @ref:288 /div[14]/div[1]/ol/li[1]/div/a
+LINK "Limited time deal" @ref:289 /div[14]/div[1]/ol/li[1]/div/a[2]
+LINK ".apex-savings-percent {font-weight: 300; color:..." @ref:290 /div[14]/div[1]/ol/li[1]/div/a
+LINK "click" @ref:291 /div[14]/div[1]/ol/li[1]/div/a[3]
+BUTTON "Feedback" @ref:292 /div[14]/div[1]/ol/li[2]/div/a
+LINK ".atc-faceout-container.sp_atc { position: absol..." @ref:293 /div[14]/div[1]/ol/li[2]/div/a[1]
+LINK "4.5 out of 5 stars 267 ratings" @ref:294 /div[14]/div[1]/ol/li[2]/div/a
+LINK "Limited time deal" @ref:295 /div[14]/div[1]/ol/li[2]/div/a[2]
+LINK ".apex-savings-percent {font-weight: 300; color:..." @ref:296 /div[14]/div[1]/ol/li[2]/div/a
+LINK "click" @ref:297 /div[14]/div[1]/ol/li[2]/div/a[3]
+BUTTON "Feedback" @ref:298 /div[14]/div[1]/ol/li[3]/div/a
+LINK ".atc-faceout-container.sp_atc { position: absol..." @ref:299 /div[14]/div[1]/ol/li[3]/div/a[1]
+LINK "4.7 out of 5 stars 19 ratings" @ref:300 /div[14]/div[1]/ol/li[3]/div/a
+LINK "Amazon's Choice" @ref:301 /div[14]/div[1]/ol/li[3]/div/a
+LINK "Ends in 06:09:48 (function(f) {var _np=(window...." @ref:302 /div[14]/div[1]/ol/li[3]/div/a[2]
+LINK ".apex-savings-percent {font-weight: 300; color:..." @ref:303 /div[14]/div[1]/ol/li[3]/div/a
+LINK "click" @ref:304 /div[14]/div[1]/ol/li[3]/div/a[3]
+BUTTON "Feedback" @ref:305 /div[14]/div[1]/ol/li[4]/div/a
+LINK ".atc-faceout-container.sp_atc { position: absol..." @ref:306 /div[14]/div[1]/ol/li[4]/div/a[1]
+LINK "4.3 out of 5 stars 183 ratings" @ref:307 /div[14]/div[1]/ol/li[4]/div/a
+LINK "Limited time deal" @ref:308 /div[14]/div[1]/ol/li[4]/div/a[2]
+LINK ".apex-savings-percent {font-weight: 300; color:..." @ref:309 /div[14]/div[1]/ol/li[4]/div/a
+LINK "click" @ref:310 /div[14]/div[1]/ol/li[4]/div/a[3]
+BUTTON "Feedback" @ref:311 /div[14]/div[1]/ol/li[5]/div/a
+LINK ".atc-faceout-container.sp_atc { position: absol..." @ref:312 /div[14]/div[1]/ol/li[5]/div/a[1]
+LINK "4.4 out of 5 stars 1,262 ratings" @ref:313 /div[14]/div[1]/ol/li[5]/div/a
+LINK "Limited time deal" @ref:314 /div[14]/div[1]/ol/li[5]/div/a[2]
+LINK ".apex-savings-percent {font-weight: 300; color:..." @ref:315 /div[14]/div[1]/ol/li[5]/div/a
+LINK "click" @ref:316 /div[14]/div[1]/ol/li[5]/div/a[3]
+BUTTON "Feedback" @ref:317 /div[14]/div[1]/ol/li[6]/div/a
+LINK ".atc-faceout-container.sp_atc { position: absol..." @ref:318 /div[14]/div[1]/ol/li[6]/div/a[1]
+LINK "4.6 out of 5 stars 86 ratings" @ref:319 /div[14]/div[1]/ol/li[6]/div/a
+LINK "Limited time deal" @ref:320 /div[14]/div[1]/ol/li[6]/div/a[2]
+LINK ".apex-savings-percent {font-weight: 300; color:..." @ref:321 /div[14]/div[1]/ol/li[6]/div/a
+LINK "click" @ref:322 /div[14]/div[1]/ol/li[6]/div/a[3]
+BUTTON "Feedback" @ref:323 /div[14]/div[1]/ol/li[7]/div/a
+LINK ".atc-faceout-container.sp_atc { position: absol..." @ref:324 /div[14]/div[1]/ol/li[7]/div/a[1]
+LINK "4.3 out of 5 stars 2,113 ratings" @ref:325 /div[14]/div[1]/ol/li[7]/div/a
+LINK "Limited time deal" @ref:326 /div[14]/div[1]/ol/li[7]/div/a[2]
+LINK ".apex-savings-percent {font-weight: 300; color:..." @ref:327 /div[14]/div[1]/ol/li[7]/div/a
+LINK "click" @ref:328 /div[14]/div[1]/ol/li[7]/div/a[3]
+BUTTON "Next page of related Sponsored Products" @ref:329 /div#a-page[1]/div#dp[1]/div#dp-container/div[14]/div[1]/a#a-autoid-11
+TEXTBOX @ref:330 [type=hidden] /div#dp[1]/div#dp-container/div[15]/div/div#sp_detail[1]/input
+LINK "Sponsored" @ref:331 /div#dp-container/div[15]/div/div#sp_detail[1]/div#sp_detail_heading[1]/a#sp_detail_feedbackMessage
+LINK "Start over" @ref:332 /div#dp-container/div[15]/div/div#sp_detail[1]/div#sp_detail_heading[1]/a
+BUTTON "Previous page of related Sponsored Products" @ref:333 /div#dp[1]/div#dp-container/div[15]/div/div#sp_detail[1]/a#a-autoid-31
+BUTTON "Feedback" @ref:334 /div/div#sp_detail[1]/ol/li[1]/div#sp_detail_B0FND8BYQS/a
+LINK ".atc-faceout-container.sp_atc { position: absol..." @ref:335 /div/div#sp_detail[1]/ol/li[1]/div#sp_detail_B0FND8BYQS/a#sp_detail_B0FND8BYQS_title[1]
+LINK "5.0 out of 5 stars 3 ratings" @ref:336 /div/div#sp_detail[1]/ol/li[1]/div#sp_detail_B0FND8BYQS/a
+LINK ".apex-savings-percent {font-weight: 300; color:..." @ref:337 /div/div#sp_detail[1]/ol/li[1]/div#sp_detail_B0FND8BYQS/a
+LINK "click" @ref:338 /div/div#sp_detail[1]/ol/li[1]/div#sp_detail_B0FND8BYQS/a[2]
+BUTTON "Feedback" @ref:339 /div/div#sp_detail[1]/ol/li[2]/div#sp_detail_B0BCK1K44F/a
+LINK ".atc-faceout-container.sp_atc { position: absol..." @ref:340 /div/div#sp_detail[1]/ol/li[2]/div#sp_detail_B0BCK1K44F/a#sp_detail_B0BCK1K44F_title[1]
+LINK "3.8 out of 5 stars 158 ratings" @ref:341 /div/div#sp_detail[1]/ol/li[2]/div#sp_detail_B0BCK1K44F/a
+LINK ".apex-savings-percent {font-weight: 300; color:..." @ref:342 /div/div#sp_detail[1]/ol/li[2]/div#sp_detail_B0BCK1K44F/a
+LINK "click" @ref:343 /div/div#sp_detail[1]/ol/li[2]/div#sp_detail_B0BCK1K44F/a[2]
+BUTTON "Feedback" @ref:344 /div/div#sp_detail[1]/ol/li[3]/div#sp_detail_B0FS3LV3WG/a
+LINK ".atc-faceout-container.sp_atc { position: absol..." @ref:345 /div/div#sp_detail[1]/ol/li[3]/div#sp_detail_B0FS3LV3WG/a#sp_detail_B0FS3LV3WG_title[1]
+LINK "4.3 out of 5 stars 13 ratings" @ref:346 /div/div#sp_detail[1]/ol/li[3]/div#sp_detail_B0FS3LV3WG/a
+LINK "$799.99$799.99" @ref:347 /div/div#sp_detail[1]/ol/li[3]/div#sp_detail_B0FS3LV3WG/a
+LINK "click" @ref:348 /div/div#sp_detail[1]/ol/li[3]/div#sp_detail_B0FS3LV3WG/a[2]
+BUTTON "Feedback" @ref:349 /div/div#sp_detail[1]/ol/li[4]/div#sp_detail_B0FR44GCLH/a
+LINK ".atc-faceout-container.sp_atc { position: absol..." @ref:350 /div/div#sp_detail[1]/ol/li[4]/div#sp_detail_B0FR44GCLH/a#sp_detail_B0FR44GCLH_title[1]
+LINK "5.0 out of 5 stars 3 ratings" @ref:351 /div/div#sp_detail[1]/ol/li[4]/div#sp_detail_B0FR44GCLH/a
+LINK "$184.99$184.99" @ref:352 /div/div#sp_detail[1]/ol/li[4]/div#sp_detail_B0FR44GCLH/a
+LINK "click" @ref:353 /div/div#sp_detail[1]/ol/li[4]/div#sp_detail_B0FR44GCLH/a[2]
+BUTTON "Feedback" @ref:354 /div/div#sp_detail[1]/ol/li[5]/div#sp_detail_B0D682HF6R/a
+LINK ".atc-faceout-container.sp_atc { position: absol..." @ref:355 /div/div#sp_detail[1]/ol/li[5]/div#sp_detail_B0D682HF6R/a#sp_detail_B0D682HF6R_title[1]
+LINK "4.4 out of 5 stars 3,140 ratings" @ref:356 /div/div#sp_detail[1]/ol/li[5]/div#sp_detail_B0D682HF6R/a
+LINK "Amazon's Choice" @ref:357 /div/div#sp_detail[1]/ol/li[5]/div#sp_detail_B0D682HF6R/a
+LINK "$499.99$499.99" @ref:358 /div/div#sp_detail[1]/ol/li[5]/div#sp_detail_B0D682HF6R/a
+LINK "click" @ref:359 /div/div#sp_detail[1]/ol/li[5]/div#sp_detail_B0D682HF6R/a[2]
+BUTTON "Feedback" @ref:360 /div/div#sp_detail[1]/ol/li[6]/div#sp_detail_B0D1YBBMYN/a
+LINK ".atc-faceout-container.sp_atc { position: absol..." @ref:361 /div/div#sp_detail[1]/ol/li[6]/div#sp_detail_B0D1YBBMYN/a#sp_detail_B0D1YBBMYN_title[1]
+LINK "4.0 out of 5 stars 491 ratings" @ref:362 /div/div#sp_detail[1]/ol/li[6]/div#sp_detail_B0D1YBBMYN/a
+LINK ".apex-savings-percent {font-weight: 300; color:..." @ref:363 /div/div#sp_detail[1]/ol/li[6]/div#sp_detail_B0D1YBBMYN/a
+LINK "click" @ref:364 /div/div#sp_detail[1]/ol/li[6]/div#sp_detail_B0D1YBBMYN/a[2]
+BUTTON "Feedback" @ref:365 /div/div#sp_detail[1]/ol/li[7]/div#sp_detail_B0FRMND9J6/a
+LINK ".atc-faceout-container.sp_atc { position: absol..." @ref:366 /div/div#sp_detail[1]/ol/li[7]/div#sp_detail_B0FRMND9J6/a#sp_detail_B0FRMND9J6_title[1]
+LINK "4.5 out of 5 stars 608 ratings" @ref:367 /div/div#sp_detail[1]/ol/li[7]/div#sp_detail_B0FRMND9J6/a
+LINK "Amazon's Choice" @ref:368 /div/div#sp_detail[1]/ol/li[7]/div#sp_detail_B0FRMND9J6/a
+LINK "$599.99$599.99" @ref:369 /div/div#sp_detail[1]/ol/li[7]/div#sp_detail_B0FRMND9J6/a
+LINK "click" @ref:370 /div/div#sp_detail[1]/ol/li[7]/div#sp_detail_B0FRMND9J6/a[2]
+LINK "Save $150.00 with coupon" @ref:371 /div/div#sp_detail[1]/ol/li[7]/div#sp_detail_B0FRMND9J6/a
+BUTTON "Next page of related Sponsored Products" @ref:372 /div#dp[1]/div#dp-container/div[15]/div/div#sp_detail[1]/a#a-autoid-32
+BUTTON "Play Video" @ref:373 /div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/button
+BUTTON "Play" @ref:374 /div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/button[1]
+SLIDER "Progress Bar" @ref:375 /div[18]/div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]
+BUTTON "Captions" @ref:376 /div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/button
+MENUITEM "captions settings, opens captions settings dialog" @ref:377 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/ul/li[1]
+BUTTON "Mute" @ref:378 /div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/button[2]
+COMBOBOX "Text Color" @ref:379 /div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select
+OPTION "Text Color White" @ref:380 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[1]
+OPTION "Text Color Black" @ref:381 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[2]
+OPTION "Text Color Red" @ref:382 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[3]
+OPTION "Text Color Green" @ref:383 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[4]
+OPTION "Text Color Blue" @ref:384 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[5]
+OPTION "Text Color Yellow" @ref:385 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[6]
+OPTION "Text Color Magenta" @ref:386 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[7]
+OPTION "Text Color Cyan" @ref:387 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[8]
+COMBOBOX "Text Transparency" @ref:388 /div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select
+OPTION "Text Transparency Opaque" @ref:389 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[1]
+OPTION "Text Transparency Semi-Transparent" @ref:390 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[2]
+COMBOBOX "Background Color" @ref:391 /div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select
+OPTION "Background Color Black" @ref:392 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[1]
+OPTION "Background Color White" @ref:393 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[2]
+OPTION "Background Color Red" @ref:394 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[3]
+OPTION "Background Color Green" @ref:395 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[4]
+OPTION "Background Color Blue" @ref:396 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[5]
+OPTION "Background Color Yellow" @ref:397 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[6]
+OPTION "Background Color Magenta" @ref:398 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[7]
+OPTION "Background Color Cyan" @ref:399 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[8]
+COMBOBOX "Background Transparency" @ref:400 /div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select
+OPTION "Background Transparency Opaque" @ref:401 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[1]
+OPTION "Background Transparency Semi-Transparent" @ref:402 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[2]
+OPTION "Background Transparency Transparent" @ref:403 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[3]
+COMBOBOX "Window Color" @ref:404 /div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select
+OPTION "Window Color Black" @ref:405 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[1]
+OPTION "Window Color White" @ref:406 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[2]
+OPTION "Window Color Red" @ref:407 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[3]
+OPTION "Window Color Green" @ref:408 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[4]
+OPTION "Window Color Blue" @ref:409 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[5]
+OPTION "Window Color Yellow" @ref:410 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[6]
+OPTION "Window Color Magenta" @ref:411 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[7]
+OPTION "Window Color Cyan" @ref:412 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[8]
+COMBOBOX "Window Transparency" @ref:413 /div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select
+OPTION "Window Transparency Transparent" @ref:414 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[1]
+OPTION "Window Transparency Semi-Transparent" @ref:415 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[2]
+OPTION "Window Transparency Opaque" @ref:416 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[3]
+COMBOBOX "Font Size" @ref:417 /div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select
+OPTION "Font Size 50%" @ref:418 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[1]
+OPTION "Font Size 75%" @ref:419 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[2]
+OPTION "Font Size 100%" @ref:420 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[3]
+OPTION "Font Size 125%" @ref:421 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[4]
+OPTION "Font Size 150%" @ref:422 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[5]
+OPTION "Font Size 175%" @ref:423 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[6]
+OPTION "Font Size 200%" @ref:424 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[7]
+OPTION "Font Size 300%" @ref:425 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[8]
+OPTION "Font Size 400%" @ref:426 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[9]
+COMBOBOX "Text Edge Style" @ref:427 /div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select
+OPTION "Text Edge Style None" @ref:428 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[1]
+OPTION "Text Edge Style Raised" @ref:429 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[2]
+OPTION "Text Edge Style Depressed" @ref:430 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[3]
+OPTION "Text Edge Style Uniform" @ref:431 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[4]
+OPTION "Text Edge Style Dropshadow" @ref:432 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[5]
+COMBOBOX "Font Family" @ref:433 /div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select
+OPTION "Font Family Proportional Sans-Serif" @ref:434 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[1]
+OPTION "Font Family Monospace Sans-Serif" @ref:435 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[2]
+OPTION "Font Family Proportional Serif" @ref:436 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[3]
+OPTION "Font Family Monospace Serif" @ref:437 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[4]
+OPTION "Font Family Casual" @ref:438 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[5]
+OPTION "Font Family Script" @ref:439 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[6]
+OPTION "Font Family Small Caps" @ref:440 /div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/select/option[7]
+BUTTON "Reset restore all settings to the default values" @ref:441 /div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/button[1]
+BUTTON "Done" @ref:442 /div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/button[2]
+BUTTON "Close Modal Dialog" @ref:443 /div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]/div[1]/button
+LINK "amzn1.account" @ref:444 /div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]/div#vse-overlay-features[2]/a
+LINK "clark" @ref:445 /div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]/div#vse-overlay-features[2]/a
+LINK "Earns commissions" @ref:446 /div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]/div#vse-overlay-features[2]/a
+LINK "See Full Review" @ref:447 /div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]/div#vse-overlay-features[2]/a
+BUTTON "Play" @ref:448 /div#dp-container/div[18]/div[4]/div/div#vftphero[2]/div#ive-hero-video-player[1]
+BUTTON "Collapse all" @ref:449 (expanded) /div#dp[1]/div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/a
+BUTTON "Summary" @ref:450 (expanded) /div#dp[1]/div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/a
+BUTTON "Other Technical Details" @ref:451 (expanded) /div#dp[1]/div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/a
+BUTTON "4.5 4.5 out of 5 stars" @ref:452 /div#productDetails_db_sections/div.table-padding/table/div#averageCustomerReviews/span#acrPopover/a
+LINK "(889)" @ref:453 /div#prodDetails/div#productDetails_db_sections/div.table-padding/table/div#averageCustomerReviews/a#acrCustomerReviewLink
+LINK "See Top 100 in Electronics" @ref:454 /div#productDetails_db_sections/div.table-padding/table/ul/li[1]/a
+LINK "Computer Monitors" @ref:455 /div#productDetails_db_sections/div.table-padding/table/ul/li[2]/a
+LINK "Click here" @ref:456 /div[18]/div#productDetails_feature_div[7]/div#prodDetails/div/div.table-padding[2]/a
+TEXTBOX @ref:457 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#aapiCsrfToken[1]
+TEXTBOX @ref:458 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#isStateRequired[2]
+TEXTBOX @ref:459 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#isStoreRequired[3]
+TEXTBOX @ref:460 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#aapiEndpoint[4]
+TEXTBOX @ref:461 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#modalHeader[5]
+TEXTBOX @ref:462 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#productCategory[6]
+TEXTBOX @ref:463 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#productImageUrl[7]
+TEXTBOX @ref:464 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#priceSymbol[8]
+TEXTBOX @ref:465 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#priceValue[9]
+TEXTBOX @ref:466 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#productTitle[10]
+TEXTBOX @ref:467 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#currencyOfPreference[11]
+TEXTBOX @ref:468 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#absoluteUrlPrefix[12]
+TEXTBOX @ref:469 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#customerId[13]
+TEXTBOX @ref:470 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#isCustomerLoggedIn[14]
+TEXTBOX @ref:471 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#isCurrentGlOnlineOnly[15]
+TEXTBOX @ref:472 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#asin[16]
+TEXTBOX @ref:473 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#marketplaceId[17]
+TEXTBOX @ref:474 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#countryCode[18]
+TEXTBOX @ref:475 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#lowerPriceInfo[19]
+TEXTBOX @ref:476 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#lowerPriceWhere[20]
+TEXTBOX @ref:477 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#labelPermalink[21]
+TEXTBOX @ref:478 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#labelOnline[22]
+TEXTBOX @ref:479 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#labelOffline[23]
+TEXTBOX @ref:480 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#lowerPriceSignIn[24]
+TEXTBOX @ref:481 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#labelStoreName[25]
+TEXTBOX @ref:482 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#addressCity[26]
+TEXTBOX @ref:483 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#addressState[27]
+TEXTBOX @ref:484 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#selectProvince[28]
+TEXTBOX @ref:485 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#labelDateOfPrice[29]
+TEXTBOX @ref:486 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#labelUrl[30]
+TEXTBOX @ref:487 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#labelPrice[31]
+TEXTBOX @ref:488 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#labelShipping[32]
+TEXTBOX @ref:489 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#submitFeedback[33]
+TEXTBOX @ref:490 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#errorNoType[34]
+TEXTBOX @ref:491 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#errorBadPrice[35]
+TEXTBOX @ref:492 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#errorBadPriceShipping[36]
+TEXTBOX @ref:493 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#errorInvalidUrl[37]
+TEXTBOX @ref:494 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#errorSubmission[38]
+TEXTBOX @ref:495 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#errorEmptyFields[39]
+TEXTBOX @ref:496 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#errorMissingCity[40]
+TEXTBOX @ref:497 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#thankFeedback[41]
+TEXTBOX @ref:498 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#errorEmptyUrl[42]
+TEXTBOX @ref:499 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#offlineStoresList[43]
+TEXTBOX @ref:500 [type=hidden] /div#dp-container/div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/input#statesList[44]
+BUTTON "tell us about a lower price?" @ref:501 /div[18]/div#productDetails_feature_div[7]/div#prodDetails/div.table-padding/div#pricingFeedbackDiv[1]/a
+RADIO "Website (Online)" @ref:502 [type=radio] /div.table-padding/div[2]/div.contentContainer/div#feedbackForm[1]/div#onlineRadioContainer/input#pricingFeedback_onlineRadio
+TEXTBOX "URL *:" @ref:503 [maxlength=500] /div.table-padding/div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/input#onlineUrl
+SPINBUTTON "Price ($) *:" @ref:504 [type=number maxlength=10] /div.table-padding/div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/input#onlinePriceRaw
+SPINBUTTON "Shipping cost ($):" @ref:505 [type=number maxlength=10] /div.table-padding/div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/input#onlineShippingRaw
+COMBOBOX "01 02 03 04 05 06 07 08 09 10 11 12" @ref:506 /div.table-padding/div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar
+COMBOBOX "Select Month" @ref:507 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineMonth
+OPTION @ref:508 /div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineMonth/option#onlineMonthOptionDefault[1]
+OPTION "01" @ref:509 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineMonth
+OPTION "02" @ref:510 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineMonth
+OPTION "03" @ref:511 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineMonth
+OPTION "04" @ref:512 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineMonth
+OPTION "05" @ref:513 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineMonth
+OPTION "06" @ref:514 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineMonth
+OPTION "07" @ref:515 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineMonth
+OPTION "08" @ref:516 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineMonth
+OPTION "09" @ref:517 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineMonth
+OPTION "10" @ref:518 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineMonth
+OPTION "11" @ref:519 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineMonth
+OPTION "12" @ref:520 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineMonth
+BUTTON @ref:521 /div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/span#a-autoid-12/span#a-autoid-12-announce
+COMBOBOX "01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16..." @ref:522 /div.table-padding/div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar
+COMBOBOX "Select Day" @ref:523 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION @ref:524 /div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay/option#onlineDateOptionDefault[1]
+OPTION "01" @ref:525 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "02" @ref:526 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "03" @ref:527 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "04" @ref:528 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "05" @ref:529 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "06" @ref:530 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "07" @ref:531 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "08" @ref:532 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "09" @ref:533 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "10" @ref:534 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "11" @ref:535 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "12" @ref:536 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "13" @ref:537 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "14" @ref:538 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "15" @ref:539 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "16" @ref:540 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "17" @ref:541 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "18" @ref:542 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "19" @ref:543 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "20" @ref:544 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "21" @ref:545 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "22" @ref:546 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "23" @ref:547 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "24" @ref:548 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "25" @ref:549 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "26" @ref:550 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "27" @ref:551 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "28" @ref:552 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "29" @ref:553 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "30" @ref:554 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+OPTION "31" @ref:555 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineDay
+BUTTON @ref:556 /div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/span#a-autoid-13/span#a-autoid-13-announce
+COMBOBOX @ref:557 /div.table-padding/div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar
+COMBOBOX "Select Year" @ref:558 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineYear
+OPTION @ref:559 /div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/select#onlineYear/option#onlineYearOptionDefault
+BUTTON @ref:560 /div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_onlineInput/div#onlineCalendar/span#a-autoid-14/span#a-autoid-14-announce
+RADIO "Store (Offline)" @ref:561 [type=radio] /div.table-padding/div[2]/div.contentContainer/div#feedbackForm[1]/div#offlineRadioContainer/input#pricingFeedback_offlineRadio
+COMBOBOX "Store name *:" @ref:562 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#storeValue[1]/select#offlineStoreName
+OPTION "Enter the store name where you found this product" @ref:563 /div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#storeValue[1]/select#offlineStoreName/option#storeDefaultOption
+BUTTON "Enter the store name where you found this product" @ref:564 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#storeValue[1]/span#offlineStoreNameMain
+TEXTBOX "City *:" @ref:565 [maxlength=100] /div.table-padding/div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/input#offlineCity
+COMBOBOX "State:" @ref:566 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/span#stateValue/select#offlineState
+OPTION "Please select province" @ref:567 /div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/span#stateValue/select#offlineState/option#stateDefaultOption
+BUTTON "Please select province" @ref:568 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/span#stateValue/span#offlineStateMain
+SPINBUTTON "Price ($) *:" @ref:569 [type=number maxlength=10] /div.table-padding/div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/input#offlinePriceRaw
+COMBOBOX "01 02 03 04 05 06 07 08 09 10 11 12" @ref:570 /div.table-padding/div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar
+COMBOBOX "Select Month" @ref:571 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineMonth
+OPTION @ref:572 /div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineMonth/option#offlineMonthOptionDefault[1]
+OPTION "01" @ref:573 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineMonth
+OPTION "02" @ref:574 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineMonth
+OPTION "03" @ref:575 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineMonth
+OPTION "04" @ref:576 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineMonth
+OPTION "05" @ref:577 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineMonth
+OPTION "06" @ref:578 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineMonth
+OPTION "07" @ref:579 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineMonth
+OPTION "08" @ref:580 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineMonth
+OPTION "09" @ref:581 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineMonth
+OPTION "10" @ref:582 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineMonth
+OPTION "11" @ref:583 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineMonth
+OPTION "12" @ref:584 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineMonth
+BUTTON @ref:585 /div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/span#a-autoid-15/span#a-autoid-15-announce
+COMBOBOX "01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16..." @ref:586 /div.table-padding/div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar
+COMBOBOX "Select day" @ref:587 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION @ref:588 /div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay/option#offlineDateOptionDefault[1]
+OPTION "01" @ref:589 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "02" @ref:590 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "03" @ref:591 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "04" @ref:592 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "05" @ref:593 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "06" @ref:594 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "07" @ref:595 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "08" @ref:596 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "09" @ref:597 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "10" @ref:598 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "11" @ref:599 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "12" @ref:600 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "13" @ref:601 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "14" @ref:602 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "15" @ref:603 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "16" @ref:604 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "17" @ref:605 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "18" @ref:606 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "19" @ref:607 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "20" @ref:608 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "21" @ref:609 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "22" @ref:610 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "23" @ref:611 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "24" @ref:612 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "25" @ref:613 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "26" @ref:614 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "27" @ref:615 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "28" @ref:616 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "29" @ref:617 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "30" @ref:618 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+OPTION "31" @ref:619 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineDay
+BUTTON @ref:620 /div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/span#a-autoid-16/span#a-autoid-16-announce
+COMBOBOX @ref:621 /div.table-padding/div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar
+COMBOBOX "Select year" @ref:622 /div[2]/div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineYear
+OPTION @ref:623 /div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/select#offlineYear/option#offlineYearOptionDefault
+BUTTON @ref:624 /div.contentContainer/div#feedbackForm[1]/div#pricingFeedback_offlineInput/div#offlineCalendar/span#a-autoid-17/span#a-autoid-17-announce
+BUTTON "Submit Feedback" @ref:625 [type=submit] /div.contentContainer/div#feedbackForm[1]/div#feedbackFormFinalState/div#pricingFeedback_submit[2]/span#pfw_submit/input
+LINK "sign in" @ref:626 /div#prodDetails/div.table-padding/div[2]/div.contentContainer/div#signUpForm[2]/a
+TEXTBOX @ref:627 [type=hidden] /div#dp-container/div[18]/div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/input
+BUTTON "Previous page" @ref:628 /div#dp-container/div[18]/div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/a#a-autoid-18
+LINK "ref=emc bcc 2 i" @ref:629 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[5]/a
+LINK "ref=emc bcc 2 i" @ref:630 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[5]/a
+LINK "ref=emc bcc 2 i" @ref:631 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[5]/a
+LINK "ref=emc bcc 2 i" @ref:632 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[5]/a
+LINK "Visit this Brand's Amazon store" @ref:633 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[5]/a
+LINK "ref=emc bcc 2 i" @ref:634 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[6]/a
+LINK "ref=emc bcc 2 i" @ref:635 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[6]/a
+LINK "ref=emc bcc 2 i" @ref:636 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[6]/a
+LINK "ref=emc bcc 2 i" @ref:637 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[6]/a
+LINK "Visit this Brand's Amazon store" @ref:638 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[6]/a
+LINK "ref=emc bcc 2 i" @ref:639 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[8]/a
+LINK "ref=emc bcc 2 i" @ref:640 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[8]/a
+LINK "ref=emc bcc 2 i" @ref:641 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[8]/a
+LINK "ref=emc bcc 2 i" @ref:642 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[8]/a
+LINK "Visit this Brand's Amazon store" @ref:643 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[8]/a
+LINK "ref=emc bcc 2 i" @ref:644 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[10]/a
+LINK "ref=emc bcc 2 i" @ref:645 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[10]/a
+LINK "ref=emc bcc 2 i" @ref:646 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[10]/a
+LINK "ref=emc bcc 2 i" @ref:647 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[10]/a
+LINK "Visit this Brand's Amazon store" @ref:648 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[10]/a
+LINK "ref=emc bcc 2 i" @ref:649 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[12]/a
+LINK "ref=emc bcc 2 i" @ref:650 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[12]/a
+LINK "ref=emc bcc 2 i" @ref:651 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[12]/a
+LINK "ref=emc bcc 2 i" @ref:652 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[12]/a
+LINK "Visit this Brand's Amazon store" @ref:653 /div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/ol/li[12]/a
+BUTTON "Next page" @ref:654 /div#dp-container/div[18]/div#aplusBrandStory_feature_div[8]/div#aplus/div#apm-brand-story-carousel[2]/a#a-autoid-19
+BUTTON "javascript:void(0)" @ref:655 /div[18]/div#aplus_feature_div[11]/div#aplus/div/div[1]/a
+BUTTON "Click to play video" @ref:656 /div#aplus/div/div[2]/div/div/button
+BUTTON "Play" @ref:657 /div#aplus/div/div[2]/div/div/button[1]
+BUTTON "Mute" @ref:658 /div#aplus/div/div[2]/div/div/button
+SLIDER "Volume Level" @ref:659 /div#aplus_feature_div[11]/div#aplus/div/div[2]/div/div
+SLIDER "Scrubber bar" @ref:660 /div#aplus_feature_div[11]/div#aplus/div/div[2]/div/div
+BUTTON "Seek to live, currently behind live" @ref:661 /div#aplus/div/div[2]/div/div/button[2]
+BUTTON "Playback Rate" @ref:662 /div#aplus/div/div[2]/div/div/button
+BUTTON "Chapters" @ref:663 /div#aplus/div/div[2]/div/div/button
+BUTTON "Descriptions" @ref:664 /div#aplus/div/div[2]/div/div/button
+BUTTON "Captions" @ref:665 /div#aplus/div/div[2]/div/div/button
+BUTTON "Audio Track" @ref:666 /div#aplus/div/div[2]/div/div/button
+BUTTON "Fullscreen" @ref:667 /div#aplus/div/div[2]/div/div/button[3]
+TEXTBOX @ref:668 [type=hidden] /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/div[1]/input
+BUTTON "Previous page" @ref:669 /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/div[1]/a
+BUTTON "Next page" @ref:670 /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/div[1]/a
+TAB "slide-1" @ref:671 (selected) /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/ul/li[1]
+TAB "slide-2" @ref:672 /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/ul/li[2]
+TAB "slide-3" @ref:673 /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/ul/li[3]
+TAB "slide-4" @ref:674 /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/ul/li[4]
+TEXTBOX @ref:675 [type=hidden] /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/div[1]/input
+BUTTON "Previous page" @ref:676 /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/div[1]/a
+BUTTON "Next page" @ref:677 /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/div[1]/a
+TAB "slide-1" @ref:678 (selected) /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/ul/li[1]
+TAB "slide-2" @ref:679 /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/ul/li[2]
+TAB "slide-3" @ref:680 /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/ul/li[3]
+TEXTBOX @ref:681 [type=hidden] /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/div[1]/input
+BUTTON "Previous page" @ref:682 /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/div[1]/a
+BUTTON "Next page" @ref:683 /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/div[1]/a
+TAB "slide-1" @ref:684 (selected) /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/ul/li[1]
+TAB "slide-2" @ref:685 /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/ul/li[2]
+TAB "slide-3" @ref:686 /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/ul/li[3]
+TEXTBOX @ref:687 [type=hidden] /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/div[1]/input
+BUTTON "Previous page" @ref:688 /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/div[1]/a
+BUTTON "Next page" @ref:689 /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/div[1]/a
+TAB "slide-1" @ref:690 (selected) /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/ul/li[1]
+TAB "slide-2" @ref:691 /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/ul/li[2]
+TAB "slide-3" @ref:692 /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/ul/li[3]
+TAB "slide-4" @ref:693 /div#dp-container/div[18]/div#aplus_feature_div[11]/div#aplus/ul/li[4]
+LINK "WARNING" @ref:694 /div#a-page[1]/div#dp[1]/div#dp-container/div#legal-1_feature_div[26]/a
+TEXTBOX @ref:695 [type=hidden] /div#a-page[1]/div#dp[1]/div#dp-container/div[30]/div#sp_detail2-similar_brands[1]/input
+LINK "Sponsored" @ref:696 /div#dp[1]/div#dp-container/div[30]/div#sp_detail2-similar_brands[1]/div[1]/a
+LINK "Start over" @ref:697 /div#dp[1]/div#dp-container/div[30]/div#sp_detail2-similar_brands[1]/div[1]/a
+BUTTON "Previous page of related Sponsored Products" @ref:698 /div#a-page[1]/div#dp[1]/div#dp-container/div[30]/div#sp_detail2-similar_brands[1]/a#a-autoid-20
+BUTTON "Feedback" @ref:699 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[1]/div/a
+LINK ".atc-faceout-container.sp_atc { position: absol..." @ref:700 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[1]/div/a[1]
+LINK "4.3 out of 5 stars 695 ratings" @ref:701 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[1]/div/a
+LINK "$634.99$634.99" @ref:702 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[1]/div/a
+LINK "click" @ref:703 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[1]/div/a[2]
+BUTTON "Feedback" @ref:704 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[2]/div/a
+LINK ".atc-faceout-container.sp_atc { position: absol..." @ref:705 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[2]/div/a[1]
+LINK "4.4 out of 5 stars 1,915 ratings" @ref:706 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[2]/div/a
+LINK "Amazon's Choice" @ref:707 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[2]/div/a
+LINK ".apex-savings-percent {font-weight: 300; color:..." @ref:708 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[2]/div/a
+LINK "click" @ref:709 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[2]/div/a[2]
+BUTTON "Feedback" @ref:710 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[3]/div/a
+LINK ".atc-faceout-container.sp_atc { position: absol..." @ref:711 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[3]/div/a[1]
+LINK "4.4 out of 5 stars 2,261 ratings" @ref:712 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[3]/div/a
+LINK ".apex-savings-percent {font-weight: 300; color:..." @ref:713 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[3]/div/a
+LINK "click" @ref:714 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[3]/div/a[2]
+BUTTON "Feedback" @ref:715 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[4]/div/a
+LINK ".atc-faceout-container.sp_atc { position: absol..." @ref:716 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[4]/div/a[1]
+LINK "4.2 out of 5 stars 225 ratings" @ref:717 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[4]/div/a
+LINK ".apex-savings-percent {font-weight: 300; color:..." @ref:718 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[4]/div/a
+LINK "click" @ref:719 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[4]/div/a[2]
+BUTTON "Feedback" @ref:720 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[5]/div/a
+LINK ".atc-faceout-container.sp_atc { position: absol..." @ref:721 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[5]/div/a[1]
+LINK "4.4 out of 5 stars 3,140 ratings" @ref:722 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[5]/div/a
+LINK "Amazon's Choice" @ref:723 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[5]/div/a
+LINK "$499.99$499.99" @ref:724 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[5]/div/a
+LINK "click" @ref:725 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[5]/div/a[2]
+BUTTON "Feedback" @ref:726 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[6]/div/a
+LINK ".atc-faceout-container.sp_atc { position: absol..." @ref:727 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[6]/div/a[1]
+LINK "4.6 out of 5 stars 1,257 ratings" @ref:728 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[6]/div/a
+LINK ".apex-savings-percent {font-weight: 300; color:..." @ref:729 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[6]/div/a
+LINK "click" @ref:730 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[6]/div/a[2]
+BUTTON "Feedback" @ref:731 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[7]/div/a
+LINK ".atc-faceout-container.sp_atc { position: absol..." @ref:732 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[7]/div/a[1]
+LINK "4.3 out of 5 stars 1,137 ratings" @ref:733 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[7]/div/a
+LINK "Amazon's Choice" @ref:734 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[7]/div/a
+LINK ".apex-savings-percent {font-weight: 300; color:..." @ref:735 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[7]/div/a
+LINK "click" @ref:736 /div[30]/div#sp_detail2-similar_brands[1]/ol/li[7]/div/a[2]
+BUTTON "Next page of related Sponsored Products" @ref:737 /div#a-page[1]/div#dp[1]/div#dp-container/div[30]/div#sp_detail2-similar_brands[1]/a#a-autoid-21
+TEXTBOX @ref:738 [type=hidden] /div#a-page[1]/div#dp[1]/div#dp-container/div[33]/div/input
+LINK "Start Over" @ref:739 /div#a-page[1]/div#dp[1]/div#dp-container/div[33]/div/a
+BUTTON "Leave feedback on Sponsored ad" @ref:740 /div#a-page[1]/div#dp[1]/div#dp-container/div[33]/div
+BUTTON "Previous page" @ref:741 /div#a-page[1]/div#dp[1]/div#dp-container/div[33]/div/a#a-autoid-22
+LINK "Shop the Store on Amazon ›" @ref:742 /div#dp-container/div[33]/div/ol/li[1]/a
+LINK "B0D9N5ZR43" @ref:743 /div#dp-container/div[33]/div/ol/li[1]/a
+BUTTON "Play Sponsored Video" @ref:744 /div#dp-container/div[33]/div/ol/li[1]/button
+BUTTON "Pause Sponsored Video" @ref:745 /div#dp-container/div[33]/div/ol/li[1]/button[1]
+BUTTON "Mute Sponsored Video" @ref:746 /div#dp-container/div[33]/div/ol/li[1]/button[2]
+LINK "B0D9N5ZR43" @ref:747 /div#dp-container/div[33]/div/ol/li[1]/a
+LINK "B0D9N5ZR43" @ref:748 /div#dp-container/div[33]/div/ol/li[1]/a
+LINK "B0D9N5ZR43" @ref:749 /div#dp-container/div[33]/div/ol/li[1]/a[1]
+LINK "KTC 32 Inch 240Hz Curved Gaming Monitor, 2K 144..." @ref:750 /div#dp-container/div[33]/div/ol/li[1]/a[2]
+LINK "Rated 4.4 out of 5 stars from 1,142 reviews" @ref:751 /div#dp-container/div[33]/div/ol/li[1]/a
+LINK "$256.49$256.49 Typical:$269.99$269.99" @ref:752 /div#dp-container/div[33]/div/ol/li[1]/a
+LINK "Shop the Store on Amazon ›" @ref:753 /div#dp-container/div[33]/div/ol/li[2]/a
+LINK "B0D5QP2LXS" @ref:754 /div#dp-container/div[33]/div/ol/li[2]/a
+BUTTON "Play Sponsored Video" @ref:755 /div#dp-container/div[33]/div/ol/li[2]/button
+BUTTON "Pause Sponsored Video" @ref:756 /div#dp-container/div[33]/div/ol/li[2]/button[1]
+BUTTON "Mute Sponsored Video" @ref:757 /div#dp-container/div[33]/div/ol/li[2]/button[2]
+LINK "B0D5QP2LXS" @ref:758 /div#dp-container/div[33]/div/ol/li[2]/a
+LINK "B0D5QP2LXS" @ref:759 /div#dp-container/div[33]/div/ol/li[2]/a
+LINK "B0D5QP2LXS" @ref:760 /div#dp-container/div[33]/div/ol/li[2]/a[1]
+LINK "KTC 32 inch 240Hz Curved Gaming Monitor 1500R 1..." @ref:761 /div#dp-container/div[33]/div/ol/li[2]/a[2]
+LINK "Rated 4.4 out of 5 stars from 2,297 reviews" @ref:762 /div#dp-container/div[33]/div/ol/li[2]/a
+LINK "$189.99$189.99 List:$229.99$229.99" @ref:763 /div#dp-container/div[33]/div/ol/li[2]/a
+LINK "Shop the Store on Amazon ›" @ref:764 /div#dp-container/div[33]/div/ol/li[3]/a
+LINK "B0B397TB6S" @ref:765 /div#dp-container/div[33]/div/ol/li[3]/a
+BUTTON "Play Sponsored Video" @ref:766 /div#dp-container/div[33]/div/ol/li[3]/button
+BUTTON "Pause Sponsored Video" @ref:767 /div#dp-container/div[33]/div/ol/li[3]/button[1]
+BUTTON "Mute Sponsored Video" @ref:768 /div#dp-container/div[33]/div/ol/li[3]/button[2]
+LINK "B0B397TB6S" @ref:769 /div#dp-container/div[33]/div/ol/li[3]/a
+LINK "B0B397TB6S" @ref:770 /div#dp-container/div[33]/div/ol/li[3]/a
+LINK "B0B397TB6S" @ref:771 /div#dp-container/div[33]/div/ol/li[3]/a[1]
+LINK "KTC 32 inch Curved Gaming Monitor, 2K 180Hz 144..." @ref:772 /div#dp-container/div[33]/div/ol/li[3]/a[2]
+LINK "Rated 4.4 out of 5 stars from 624 reviews" @ref:773 /div#dp-container/div[33]/div/ol/li[3]/a
+LINK "$189.99$189.99 List:$199.99$199.99" @ref:774 /div#dp-container/div[33]/div/ol/li[3]/a
+LINK "Shop the Store on Amazon ›" @ref:775 /div#dp-container/div[33]/div/ol/li[4]/a
+LINK "B0CWCWL81G" @ref:776 /div#dp-container/div[33]/div/ol/li[4]/a
+BUTTON "Play Sponsored Video" @ref:777 /div#dp-container/div[33]/div/ol/li[4]/button
+BUTTON "Pause Sponsored Video" @ref:778 /div#dp-container/div[33]/div/ol/li[4]/button[1]
+BUTTON "Mute Sponsored Video" @ref:779 /div#dp-container/div[33]/div/ol/li[4]/button[2]
+LINK "B0CWCWL81G" @ref:780 /div#dp-container/div[33]/div/ol/li[4]/a
+LINK "B0CWCWL81G" @ref:781 /div#dp-container/div[33]/div/ol/li[4]/a
+LINK "B0CWCWL81G" @ref:782 /div#dp-container/div[33]/div/ol/li[4]/a[1]
+LINK "SANSUI 27 Inch WQHD 2560 x 1440 IPS Gaming Moni..." @ref:783 /div#dp-container/div[33]/div/ol/li[4]/a[2]
+LINK "Rated 4.4 out of 5 stars from 6,084 reviews" @ref:784 /div#dp-container/div[33]/div/ol/li[4]/a
+LINK "Shop the Store on Amazon ›" @ref:785 /div#dp-container/div[33]/div/ol/li[5]/a
+LINK "B0CGMC4MP1" @ref:786 /div#dp-container/div[33]/div/ol/li[5]/a
+BUTTON "Play Sponsored Video" @ref:787 /div#dp-container/div[33]/div/ol/li[5]/button
+BUTTON "Pause Sponsored Video" @ref:788 /div#dp-container/div[33]/div/ol/li[5]/button[1]
+BUTTON "Mute Sponsored Video" @ref:789 /div#dp-container/div[33]/div/ol/li[5]/button[2]
+LINK "B0CGMC4MP1" @ref:790 /div#dp-container/div[33]/div/ol/li[5]/a
+LINK "B0CGMC4MP1" @ref:791 /div#dp-container/div[33]/div/ol/li[5]/a
+LINK "B0CGMC4MP1" @ref:792 /div#dp-container/div[33]/div/ol/li[5]/a[1]
+LINK "KOORUI 27" Gaming Monitor, 200Hz 1ms Fast IPS, ..." @ref:793 /div#dp-container/div[33]/div/ol/li[5]/a[2]
+LINK "Rated 4.4 out of 5 stars from 10,264 reviews" @ref:794 /div#dp-container/div[33]/div/ol/li[5]/a
+LINK "$159.99$159.99 List:$215.99$215.99" @ref:795 /div#dp-container/div[33]/div/ol/li[5]/a
+BUTTON "Next page" @ref:796 /div#a-page[1]/div#dp[1]/div#dp-container/div[33]/div/a#a-autoid-23
+LINK "81 percent of reviews have 5 stars" @ref:797 /div#reviewsMedley/div/div#cm_cr_dp_d_rating_histogram/ul#histogramTable/li[1]/a
+LINK "8 percent of reviews have 4 stars" @ref:798 /div#reviewsMedley/div/div#cm_cr_dp_d_rating_histogram/ul#histogramTable/li[2]/a
+LINK "4 percent of reviews have 3 stars" @ref:799 /div#reviewsMedley/div/div#cm_cr_dp_d_rating_histogram/ul#histogramTable/li[3]/a
+LINK "1 percent of reviews have 2 stars" @ref:800 /div#reviewsMedley/div/div#cm_cr_dp_d_rating_histogram/ul#histogramTable/li[4]/a
+LINK "6 percent of reviews have 1 stars" @ref:801 /div#reviewsMedley/div/div#cm_cr_dp_d_rating_histogram/ul#histogramTable/li[5]/a
+BUTTON "How customer reviews and ratings work" @ref:802 /div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div/div#cm_cr_dp_d_rating_histogram/a
+LINK "Learn more how customers reviews work on Amazon" @ref:803 /div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div/div#cm_cr_dp_d_rating_histogram/a
+TAB "Positive aspect, monitor quality, 155 mentions" @ref:804 /div#a-page[1]/div#dp[1]/div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley
+BUTTON "Monitor quality(155)" @ref:805 /div#dp[1]/div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/button
+TAB "Positive aspect, picture quality, 102 mentions" @ref:806 /div#a-page[1]/div#dp[1]/div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley
+BUTTON "Picture quality(102)" @ref:807 /div#dp[1]/div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/button
+TAB "Positive aspect, color quality, 88 mentions" @ref:808 /div#a-page[1]/div#dp[1]/div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley
+BUTTON "Color quality(88)" @ref:809 /div#dp[1]/div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/button
+TAB "Positive aspect, looks great, 84 mentions" @ref:810 /div#a-page[1]/div#dp[1]/div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley
+BUTTON "Looks great(84)" @ref:811 /div#dp[1]/div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/button
+TAB "Positive aspect, refresh rate, 35 mentions" @ref:812 /div#a-page[1]/div#dp[1]/div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley
+BUTTON "Refresh rate(35)" @ref:813 /div#dp[1]/div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/button
+TAB "Positive aspect, response time, 35 mentions" @ref:814 /div#a-page[1]/div#dp[1]/div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley
+BUTTON "Response time(35)" @ref:815 /div#dp[1]/div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/button
+TAB "Mixed aspect, value for money, 66 mentions" @ref:816 /div#a-page[1]/div#dp[1]/div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley
+BUTTON "Value for money(66)" @ref:817 /div#dp[1]/div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/button
+TAB "Mixed aspect, flickering, 44 mentions" @ref:818 /div#a-page[1]/div#dp[1]/div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley
+BUTTON "Flickering(44)" @ref:819 /div#dp[1]/div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/button
+BUTTON "Close" @ref:820 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_0[1]/button
+LINK "Read more" @ref:821 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_0[1]/a
+LINK "Read more" @ref:822 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_0[1]/a
+LINK "Read more" @ref:823 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_0[1]/a
+LINK "Read more" @ref:824 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_0[1]/a
+BUTTON "Close" @ref:825 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_1[2]/button
+LINK "Read more" @ref:826 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_1[2]/a
+LINK "Read more" @ref:827 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_1[2]/a
+LINK "Read more" @ref:828 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_1[2]/a
+LINK "Read more" @ref:829 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_1[2]/a
+BUTTON "Close" @ref:830 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_2[3]/button
+LINK "Read more" @ref:831 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_2[3]/a
+LINK "Read more" @ref:832 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_2[3]/a
+LINK "Read more" @ref:833 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_2[3]/a
+LINK "Read more" @ref:834 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_2[3]/a
+BUTTON "Close" @ref:835 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_3[4]/button
+LINK "Read more" @ref:836 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_3[4]/a
+LINK "Read more" @ref:837 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_3[4]/a
+LINK "Read more" @ref:838 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_3[4]/a
+LINK "Read more" @ref:839 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_3[4]/a
+BUTTON "Close" @ref:840 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_4[5]/button
+LINK "Read more" @ref:841 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_4[5]/a
+LINK "Read more" @ref:842 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_4[5]/a
+LINK "Read more" @ref:843 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_4[5]/a
+LINK "Read more" @ref:844 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_4[5]/a
+BUTTON "Close" @ref:845 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_5[6]/button
+LINK "Read more" @ref:846 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_5[6]/a
+LINK "Read more" @ref:847 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_5[6]/a
+LINK "Read more" @ref:848 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_5[6]/a
+LINK "Read more" @ref:849 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_5[6]/a
+BUTTON "Close" @ref:850 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_6[7]/button
+LINK "Read more" @ref:851 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_6[7]/a
+LINK "Read more" @ref:852 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_6[7]/a
+LINK "Read more" @ref:853 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_6[7]/a
+LINK "Read more" @ref:854 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_6[7]/a
+BUTTON "Close" @ref:855 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_7[8]/button
+LINK "Read more" @ref:856 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_7[8]/a
+LINK "Read more" @ref:857 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_7[8]/a
+LINK "Read more" @ref:858 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_7[8]/a
+LINK "Read more" @ref:859 /div#dp-container/div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div#rh_controls_aspect_7[8]/a
+LINK "View Image Gallery" @ref:860 /div#customerReviews/div#reviewsMedley/div[1]/div#cr_customers_image_gallery[1]/div#crViewAllImagesLink[2]/a
+BUTTON "Previous Customer image" @ref:861 /div#customerReviews/div#reviewsMedley/div[1]/div#cr_customers_image_gallery[1]/div#crReviewRow[3]/button[1]
+BUTTON "Next Customer image" @ref:862 /div#customerReviews/div#reviewsMedley/div[1]/div#cr_customers_image_gallery[1]/div#crReviewRow[3]/button[2]
+LINK "Amazon Customer" @ref:863 /div#customerReviews/div#reviewsMedley/div[1]/div#cr_customers_image_gallery[1]/div#crReviewRow[3]/a
+TEXTBOX @ref:864 [type=hidden] /div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div/div#cm_cr_carousel_images_section[1]/input
+LINK "See all photos" @ref:865 /div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div/div#cm_cr_carousel_images_section[1]/a
+BUTTON "Previous slide" @ref:866 /div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div/div#cm_cr_carousel_images_section[1]/a#a-autoid-24
+BUTTON @ref:867 /div#reviewsMedley/div/div#cm_cr_carousel_images_section[1]/ol/li[1]/button
+BUTTON @ref:868 /div#reviewsMedley/div/div#cm_cr_carousel_images_section[1]/ol/li[2]/button
+BUTTON @ref:869 /div#reviewsMedley/div/div#cm_cr_carousel_images_section[1]/ol/li[3]/button
+BUTTON @ref:870 /div#reviewsMedley/div/div#cm_cr_carousel_images_section[1]/ol/li[4]/button
+BUTTON @ref:871 /div#reviewsMedley/div/div#cm_cr_carousel_images_section[1]/ol/li[5]/button
+BUTTON @ref:872 /div#reviewsMedley/div/div#cm_cr_carousel_images_section[1]/ol/li[6]/button
+BUTTON @ref:873 /div#reviewsMedley/div/div#cm_cr_carousel_images_section[1]/ol/li[7]/button
+BUTTON @ref:874 /div#reviewsMedley/div/div#cm_cr_carousel_images_section[1]/ol/li[8]/button
+BUTTON @ref:875 /div#reviewsMedley/div/div#cm_cr_carousel_images_section[1]/ol/li[9]/button
+BUTTON @ref:876 /div#reviewsMedley/div/div#cm_cr_carousel_images_section[1]/ol/li[10]/button
+BUTTON @ref:877 /div#reviewsMedley/div/div#cm_cr_carousel_images_section[1]/ol/li[11]/button
+BUTTON @ref:878 /div#reviewsMedley/div/div#cm_cr_carousel_images_section[1]/ol/li[12]/button
+BUTTON "Next slide" @ref:879 /div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div/div#cm_cr_carousel_images_section[1]/a#a-autoid-25
+BUTTON "All photos" @ref:880 /div#customerReviews/div#reviewsMedley/div/div#popovers[2]/div/button
+BUTTON @ref:881 /div#customerReviews/div#reviewsMedley/div/div#popovers[2]/div/button[1]
+BUTTON @ref:882 /div#customerReviews/div#reviewsMedley/div/div#popovers[2]/div/button[2]
+LINK "Amazon Customer" @ref:883 /div#customerReviews/div#reviewsMedley/div/div#popovers[2]/div/a
+BUTTON "More" @ref:884 /div#customerReviews/div#reviewsMedley/div/div#popovers[2]/div/a[1]
+BUTTON "Hide" @ref:885 (expanded) /div#customerReviews/div#reviewsMedley/div/div#popovers[2]/div/a[2]
+BUTTON @ref:886 /div/div#popovers[2]/div/ul/li/button
+BUTTON "Close" @ref:887 /div#customerReviews/div#reviewsMedley/div/div#popovers[2]/div/button
+BUTTON "Close" @ref:888 /div#customerReviews/div#reviewsMedley/div/div#popovers[2]/div/button
+BUTTON "Try again" @ref:889 /div#customerReviews/div#reviewsMedley/div/div#popovers[2]/div/button
+LINK "Culbrelai" @ref:890 /div.card-padding/ul#cm-cr-dp-review-list/li#REHPXV4YYIWZ1[1]/div#REHPXV4YYIWZ1-review-card/div#customer_review-REHPXV4YYIWZ1/a
+LINK "5.0 out of 5 stars Outstanding monitor, with so..." @ref:891 /ul#cm-cr-dp-review-list/li#REHPXV4YYIWZ1[1]/div#REHPXV4YYIWZ1-review-card/div#customer_review-REHPXV4YYIWZ1/h5/a
+LINK "Verified Purchase: Learn more how customers rev..." @ref:892 /div.card-padding/ul#cm-cr-dp-review-list/li#REHPXV4YYIWZ1[1]/div#REHPXV4YYIWZ1-review-card/div#customer_review-REHPXV4YYIWZ1/a
+BUTTON "Read more of this review" @ref:893 /div.card-padding/ul#cm-cr-dp-review-list/li#REHPXV4YYIWZ1[1]/div#REHPXV4YYIWZ1-review-card/div#customer_review-REHPXV4YYIWZ1/a
+LINK "Mark Review As Helpful" @ref:894 /ul#cm-cr-dp-review-list/li#REHPXV4YYIWZ1[1]/div#REHPXV4YYIWZ1-review-card/div#customer_review-REHPXV4YYIWZ1/span#a-autoid-26/a#a-autoid-26-announce
+LINK "Report review by Culbrelai" @ref:895 /ul#cm-cr-dp-review-list/li#REHPXV4YYIWZ1[1]/div#REHPXV4YYIWZ1-review-card/div#customer_review-REHPXV4YYIWZ1/span/a
+LINK "Betti V" @ref:896 /div.card-padding/ul#cm-cr-dp-review-list/li#RJL5RW1IPKJQA[2]/div#RJL5RW1IPKJQA-review-card/div#customer_review-RJL5RW1IPKJQA/a
+LINK "5.0 out of 5 stars This is the one." @ref:897 /ul#cm-cr-dp-review-list/li#RJL5RW1IPKJQA[2]/div#RJL5RW1IPKJQA-review-card/div#customer_review-RJL5RW1IPKJQA/h5/a
+LINK "Verified Purchase: Learn more how customers rev..." @ref:898 /div.card-padding/ul#cm-cr-dp-review-list/li#RJL5RW1IPKJQA[2]/div#RJL5RW1IPKJQA-review-card/div#customer_review-RJL5RW1IPKJQA/a
+BUTTON "Read more of this review" @ref:899 /div.card-padding/ul#cm-cr-dp-review-list/li#RJL5RW1IPKJQA[2]/div#RJL5RW1IPKJQA-review-card/div#customer_review-RJL5RW1IPKJQA/a
+LINK "Mark Review As Helpful" @ref:900 /ul#cm-cr-dp-review-list/li#RJL5RW1IPKJQA[2]/div#RJL5RW1IPKJQA-review-card/div#customer_review-RJL5RW1IPKJQA/span#a-autoid-27/a#a-autoid-27-announce
+LINK "Report review by Betti V" @ref:901 /ul#cm-cr-dp-review-list/li#RJL5RW1IPKJQA[2]/div#RJL5RW1IPKJQA-review-card/div#customer_review-RJL5RW1IPKJQA/span/a
+LINK "Sky Dragon" @ref:902 /div.card-padding/ul#cm-cr-dp-review-list/li#R1IT4ZS3EXXF5Y[3]/div#R1IT4ZS3EXXF5Y-review-card/div/a
+LINK "5.0 out of 5 stars better than being there!" @ref:903 /ul#cm-cr-dp-review-list/li#R1IT4ZS3EXXF5Y[3]/div#R1IT4ZS3EXXF5Y-review-card/div/h5/a
+LINK "Verified Purchase: Learn more how customers rev..." @ref:904 /div.card-padding/ul#cm-cr-dp-review-list/li#R1IT4ZS3EXXF5Y[3]/div#R1IT4ZS3EXXF5Y-review-card/div/a
+BUTTON "Read more of this review" @ref:905 /div.card-padding/ul#cm-cr-dp-review-list/li#R1IT4ZS3EXXF5Y[3]/div#R1IT4ZS3EXXF5Y-review-card/div/a
+LINK "Mark Review As Helpful" @ref:906 /ul#cm-cr-dp-review-list/li#R1IT4ZS3EXXF5Y[3]/div#R1IT4ZS3EXXF5Y-review-card/div/span#a-autoid-28/a#a-autoid-28-announce
+LINK "Report review by Sky Dragon" @ref:907 /ul#cm-cr-dp-review-list/li#R1IT4ZS3EXXF5Y[3]/div#R1IT4ZS3EXXF5Y-review-card/div/span/a
+LINK "See more reviews" @ref:908 /div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div.card-padding/div#reviews-medley-footer[4]/a
+LINK "Translate all reviews to English" @ref:909 /div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/div[1]/span#cr-translate-775967256/a
+LINK "Verified Purchase: Learn more how customers rev..." @ref:910 /div#reviewsMedley/ul#cm-cr-global-review-list/li#R143NGPNO5W0QI[1]/div#R143NGPNO5W0QI-review-card/div/a
+BUTTON "Read more of this review" @ref:911 /div#reviewsMedley/ul#cm-cr-global-review-list/li#R143NGPNO5W0QI[1]/div#R143NGPNO5W0QI-review-card/div/a
+LINK "Report review by Oscar" @ref:912 /ul#cm-cr-global-review-list/li#R143NGPNO5W0QI[1]/div#R143NGPNO5W0QI-review-card/div/span/a
+LINK "Translate review to English" @ref:913 /ul#cm-cr-global-review-list/li#R143NGPNO5W0QI[1]/div#R143NGPNO5W0QI-review-card/div/div#cr-single-translate/a
+LINK "Verified Purchase: Learn more how customers rev..." @ref:914 /div#reviewsMedley/ul#cm-cr-global-review-list/li#R1AO0T27NG62IX[2]/div#R1AO0T27NG62IX-review-card/div/a
+BUTTON "Read more of this review" @ref:915 /div#reviewsMedley/ul#cm-cr-global-review-list/li#R1AO0T27NG62IX[2]/div#R1AO0T27NG62IX-review-card/div/a
+LINK "Report review by Richard" @ref:916 /ul#cm-cr-global-review-list/li#R1AO0T27NG62IX[2]/div#R1AO0T27NG62IX-review-card/div/span/a
+LINK "Verified Purchase: Learn more how customers rev..." @ref:917 /div#reviewsMedley/ul#cm-cr-global-review-list/li#R23JXY1M8M91UT[3]/div#R23JXY1M8M91UT-review-card/div/a
+BUTTON "Read more of this review" @ref:918 /div#reviewsMedley/ul#cm-cr-global-review-list/li#R23JXY1M8M91UT[3]/div#R23JXY1M8M91UT-review-card/div/a
+LINK "Report review by Edwin G." @ref:919 /ul#cm-cr-global-review-list/li#R23JXY1M8M91UT[3]/div#R23JXY1M8M91UT-review-card/div/span/a
+LINK "Translate review to English" @ref:920 /ul#cm-cr-global-review-list/li#R23JXY1M8M91UT[3]/div#R23JXY1M8M91UT-review-card/div/div#cr-single-translate/a
+LINK "Verified Purchase: Learn more how customers rev..." @ref:921 /div#reviewsMedley/ul#cm-cr-global-review-list/li#R27KMCZYN3YGO4[4]/div#R27KMCZYN3YGO4-review-card/div/a
+BUTTON "Read more of this review" @ref:922 /div#reviewsMedley/ul#cm-cr-global-review-list/li#R27KMCZYN3YGO4[4]/div#R27KMCZYN3YGO4-review-card/div/a
+LINK "Report review by Victor Torres" @ref:923 /ul#cm-cr-global-review-list/li#R27KMCZYN3YGO4[4]/div#R27KMCZYN3YGO4-review-card/div/span/a
+LINK "Translate review to English" @ref:924 /ul#cm-cr-global-review-list/li#R27KMCZYN3YGO4[4]/div#R27KMCZYN3YGO4-review-card/div/div#cr-single-translate/a
+LINK "Verified Purchase: Learn more how customers rev..." @ref:925 /div#reviewsMedley/ul#cm-cr-global-review-list/li#R3RC74IWU1Q4CE[5]/div#R3RC74IWU1Q4CE-review-card/div/a
+BUTTON "Read more of this review" @ref:926 /div#reviewsMedley/ul#cm-cr-global-review-list/li#R3RC74IWU1Q4CE[5]/div#R3RC74IWU1Q4CE-review-card/div/a
+LINK "Report review by MJEED ALHRBI" @ref:927 /ul#cm-cr-global-review-list/li#R3RC74IWU1Q4CE[5]/div#R3RC74IWU1Q4CE-review-card/div/span/a
+LINK "See more reviews" @ref:928 /div#customer-reviews_feature_div[36]/div#customerReviews/div#reviewsMedley/ul#cm-cr-global-review-list/div#cr-pagination-footer-0/a
+LINK "View or edit your browsing history" @ref:929 /div#a-page[1]/div#rhf[2]/a
+LINK "View or edit your browsing history" @ref:930 /div#a-page[1]/div#rhf[2]/div#rhf-error[2]/a
+BUTTON "Back to top" @ref:931 /div#a-page[1]/div#navFooter[3]/button#navBackToTop
+LINK "Careers" @ref:932 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[1]/ul/li.nav_first[1]/a.nav_a
+LINK "Blog" @ref:933 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[1]/ul/li[2]/a.nav_a
+LINK "About Amazon" @ref:934 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[1]/ul/li[3]/a.nav_a
+LINK "Investor Relations" @ref:935 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[1]/ul/li[4]/a.nav_a
+LINK "Amazon Devices" @ref:936 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[1]/ul/li[5]/a.nav_a
+LINK "Amazon Science" @ref:937 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[1]/ul/li.nav_last[6]/a.nav_a
+LINK "Sell products on Amazon" @ref:938 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li.nav_first[1]/a.nav_a
+LINK "Sell on Amazon Business" @ref:939 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li[2]/a.nav_a
+LINK "Sell apps on Amazon" @ref:940 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li[3]/a.nav_a
+LINK "Become an Affiliate" @ref:941 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li[4]/a.nav_a
+LINK "Advertise Your Products" @ref:942 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li[5]/a.nav_a
+LINK "Self-Publish with Us" @ref:943 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li[6]/a.nav_a
+LINK "Host an Amazon Hub" @ref:944 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li[7]/a.nav_a
+LINK "See More Make Money with Us" @ref:945 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[3]/ul/li.nav_last[8]/a.nav_a
+LINK "Amazon Business Card" @ref:946 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[5]/ul/li.nav_first[1]/a.nav_a
+LINK "Shop with Points" @ref:947 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[5]/ul/li[2]/a.nav_a
+LINK "Reload Your Balance" @ref:948 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[5]/ul/li[3]/a.nav_a
+LINK "Amazon Currency Converter" @ref:949 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[5]/ul/li.nav_last[4]/a.nav_a
+LINK "Amazon and COVID-19" @ref:950 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[7]/ul/li.nav_first[1]/a.nav_a
+LINK "Your Account" @ref:951 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[7]/ul/li[2]/a.nav_a
+LINK "Your Orders" @ref:952 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[7]/ul/li[3]/a.nav_a
+LINK "Shipping Rates & Policies" @ref:953 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[7]/ul/li[4]/a.nav_a
+LINK "Returns & Replacements" @ref:954 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[7]/ul/li[5]/a.nav_a
+LINK "Manage Your Content and Devices" @ref:955 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[7]/ul/li[6]/a.nav_a
+LINK "Help" @ref:956 /div.navFooterVerticalColumn[1]/div.navFooterVerticalRow/div.navFooterLinkCol[7]/ul/li.nav_last[7]/a.nav_a
+LINK "Amazon US Home" @ref:957 /div#a-page[1]/div#navFooter[3]/div.navFooterLine[3]/div.navFooterLine/a
+LINK "Choose a language for shopping. Current selecti..." @ref:958 /div#a-page[1]/div#navFooter[3]/div.navFooterLine[3]/div.navFooterLine/div#icp-touch-link-language/a
+BUTTON "Expand to Change Language or Country" @ref:959 /div#a-page[1]/div#navFooter[3]/div.navFooterLine[3]/div.navFooterLine/div#icp-touch-link-language/button.nav-arrow
+LINK "$USD - U.S. Dollar" @ref:960 /div#a-page[1]/div#navFooter[3]/div.navFooterLine[3]/div.navFooterLine/a#icp-touch-link-cop[1]
+BUTTON "Choose a country/region for shopping. The curre..." @ref:961 /div#a-page[1]/div#navFooter[3]/div.navFooterLine[3]/div.navFooterLine/a#icp-touch-link-country[2]
+LINK "Amazon MusicStream millionsof songs" @ref:962 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[1]/li.navFooterDescItem[1]/a.nav_a
+LINK "Amazon AdsReach customerswherever theyspend the..." @ref:963 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[1]/li.navFooterDescItem[3]/a.nav_a
+LINK "6pmScore dealson fashion brands" @ref:964 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[1]/li.navFooterDescItem[5]/a.nav_a
+LINK "AbeBooksBooks, art& collectibles" @ref:965 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[1]/li.navFooterDescItem[7]/a.nav_a
+LINK "ACX Audiobook PublishingMade Easy" @ref:966 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[1]/li.navFooterDescItem[9]/a.nav_a
+LINK "Sell on AmazonStart a Selling Account" @ref:967 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[1]/li.navFooterDescItem[11]/a.nav_a
+LINK "VeeqoShipping SoftwareInventory Management" @ref:968 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[1]/li.navFooterDescItem[13]/a.nav_a
+LINK "Amazon BusinessEverything ForYour Business" @ref:969 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[2]/li.navFooterDescItem[1]/a.nav_a
+LINK "AmazonGlobalShip OrdersInternationally" @ref:970 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[2]/li.navFooterDescItem[3]/a.nav_a
+LINK "Amazon Web ServicesScalable CloudComputing Serv..." @ref:971 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[2]/li.navFooterDescItem[5]/a.nav_a
+LINK "AudibleListen to Books & OriginalAudio Performa..." @ref:972 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[2]/li.navFooterDescItem[7]/a.nav_a
+LINK "Box Office MojoFind MovieBox Office Data" @ref:973 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[2]/li.navFooterDescItem[9]/a.nav_a
+LINK "GoodreadsBook reviews& recommendations" @ref:974 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[2]/li.navFooterDescItem[11]/a.nav_a
+LINK "IMDbMovies, TV& Celebrities" @ref:975 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[2]/li.navFooterDescItem[13]/a.nav_a
+LINK "IMDbProGet Info EntertainmentProfessionals Need" @ref:976 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[3]/li.navFooterDescItem[1]/a.nav_a
+LINK "Kindle Direct PublishingIndie Digital & Print P..." @ref:977 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[3]/li.navFooterDescItem[3]/a.nav_a
+LINK "Prime Video DirectVideo DistributionMade Easy" @ref:978 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[3]/li.navFooterDescItem[5]/a.nav_a
+LINK "ShopbopDesignerFashion Brands" @ref:979 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[3]/li.navFooterDescItem[7]/a.nav_a
+LINK "Woot!Deals and Shenanigans" @ref:980 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[3]/li.navFooterDescItem[9]/a.nav_a
+LINK "ZapposShoes &Clothing" @ref:981 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[3]/li.navFooterDescItem[11]/a.nav_a
+LINK "RingSmart HomeSecurity Systems" @ref:982 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[3]/li.navFooterDescItem[13]/a.nav_a
+LINK "eero WiFiStream 4K Videoin Every Room" @ref:983 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[4]/li.navFooterDescItem[3]/a.nav_a
+LINK "BlinkSmart Securityfor Every Home" @ref:984 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[4]/li.navFooterDescItem[5]/a.nav_a
+LINK "Neighbors App Real-Time Crime& Safety Alerts" @ref:985 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[4]/li.navFooterDescItem[7]/a.nav_a
+LINK "Amazon Subscription BoxesTop subscription boxes..." @ref:986 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[4]/li.navFooterDescItem[9]/a.nav_a
+LINK "PillPackPharmacy Simplified" @ref:987 /div#navFooter[3]/div.navFooterLine[4]/div.navFooterMoreOnAmazon/ul[4]/li.navFooterDescItem[11]/a.nav_a
+LINK "Conditions of Use" @ref:988 /div#a-page[1]/div#navFooter[3]/div.navFooterLine[5]/ul/li.nav_first[1]/a.nav_a
+LINK "Privacy Notice" @ref:989 /div#a-page[1]/div#navFooter[3]/div.navFooterLine[5]/ul/li[2]/a.nav_a
+LINK "Consumer Health Data Privacy Disclosure" @ref:990 /div#a-page[1]/div#navFooter[3]/div.navFooterLine[5]/ul/li[3]/a.nav_a
+LINK "Your Ads Privacy Choices" @ref:991 /div#a-page[1]/div#navFooter[3]/div.navFooterLine[5]/ul/li[4]/a.nav_a
+TEXTBOX @ref:992 [type=hidden] /div#a-page[1]/div#be[5]/form/input
+TEXTBOX @ref:993 [type=hidden] /input

@@ -111,6 +111,36 @@ export class SessionManager {
   }
 
   /**
+   * Reconnect to a specific session group
+   * Used when popup detects a stored session that isn't currently active
+   */
+  async reconnectSession(groupId: number): Promise<boolean> {
+    try {
+      console.log('[SessionManager] Attempting to reconnect to session group:', groupId);
+
+      // Verify the group still exists
+      const group = await chrome.tabGroups.get(groupId);
+      console.log('[SessionManager] Group found:', group);
+
+      // Get stored session data for counter
+      const result = await chrome.storage.session.get(SESSION_STORAGE_KEY);
+      const data = result[SESSION_STORAGE_KEY] as StoredSessionData | undefined;
+
+      // Restore session state
+      this.activeSessionGroupId = groupId;
+      this.sessionCounter = data?.sessionCounter ?? this.sessionCounter;
+
+      console.log('[SessionManager] Session reconnected successfully');
+      return true;
+    } catch (err) {
+      console.error('[SessionManager] Failed to reconnect session:', err);
+      // Clear invalid stored session
+      await this.clearStoredSession();
+      return false;
+    }
+  }
+
+  /**
    * Create a new tab group
    */
   async createGroup(options: GroupCreateOptions = {}): Promise<GroupInfo> {

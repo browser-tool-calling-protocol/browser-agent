@@ -1,5 +1,5 @@
 PAGE: http://localhost/ | Rose Mary Woods, Devoted Nixon Secretary, Dies : NPR | viewport=1024x768
-SNAPSHOT: elements=565 refs=143
+SNAPSHOT: elements=1047 refs=221
 
 LINK "Skip to main content" @ref:0 /ul/li[1]/a
 LINK "Keyboard shortcuts for audio player" @ref:1 /ul/li[2]/a
@@ -80,67 +80,145 @@ LINK "Careers" @ref:75 /nav.navigation/section.menu[3]/div.menu__list-wrap/ul.me
 LINK "Press" @ref:76 /nav.navigation/section.menu[3]/div.menu__list-wrap/ul.menu__list/li.menu__item[5]/a
 LINK "Ethics" @ref:77 /nav.navigation/section.menu[3]/div.menu__list-wrap/ul.menu__list/li.menu__item[6]/a
 LINK "Obituaries" @ref:78 /main/div#wrapper[2]/section#main-section/article/h3/a
-LINK "Morning Edition" @ref:79 /main/div#wrapper[2]/section#main-section/article/div#story-meta[3]/a
-BUTTON "Listen· 2:20" @ref:80 /div#wrapper[2]/section#main-section/article/div#headlineaudio[4]/article#res4463533/button[1]
-BUTTON "Playlist" @ref:81 /div#wrapper[2]/section#main-section/article/div#headlineaudio[4]/article#res4463533/button[2]
-BUTTON "Toggle more options" @ref:82 /div#wrapper[2]/section#main-section/article/div#headlineaudio[4]/article#res4463533/button
-BUTTON "Enlarge this image" @ref:83 /div#wrapper[2]/section#main-section/article/div#storytext[5]/div#res111029306/button
-BUTTON "Facebook" @ref:84 /div#wrapper[2]/section#main-section/article/ul/li[1]/button
-BUTTON "Flipboard" @ref:85 /div#wrapper[2]/section#main-section/article/ul/li[2]/button
-BUTTON "Email" @ref:86 /div#wrapper[2]/section#main-section/article/ul/li[3]/button
-LINK "2 police officers relive Jan. 6 through their o..." @ref:87 /div#wrapper[2]/section#main-section/article/aside[1]/article/a#cXLinkIdmkh7i777z7prn3d5
-LINK "Venezuela's Machado says she presented her Nobe..." @ref:88 /div#wrapper[2]/section#main-section/article/aside[1]/article/a#cXLinkIdmkh7i778steu0r2v
-LINK "NPR+ | The News Roundup For October 24, 2025" @ref:89 /div#wrapper[2]/section#main-section/article/aside[1]/article/a#cXLinkIdmkh7i778eatsbvmq
-LINK "House Republicans are investigating Jan. 6. NPR..." @ref:90 /div#wrapper[2]/section#main-section/article/aside[1]/article/a#cXLinkIdmkh7i778lm23riyj
-LINK "NPR+ | The News Roundup For November 14, 2025" @ref:91 /div#wrapper[2]/section#main-section/article/aside[1]/article/a#cXLinkIdmkh7i778717wtpvk
-LINK "NPR+ | The News Roundup For January 9, 2026" @ref:92 /div#wrapper[2]/section#main-section/article/aside[1]/article/a#cXLinkIdmkh7i779kahdox7s
-LINK "claudette colvin obituary montgomery bus civil ..." @ref:93 /section#main-section/article/aside[2]/section[1]/article/a
-LINK "scott adams dilbert dies" @ref:94 /section#main-section/article/aside[2]/section[1]/article/a
-LINK "bob weir grateful dead obituary" @ref:95 /section#main-section/article/aside[2]/section[1]/article/a
-LINK "cia turncoat aldrich ames dies at 84" @ref:96 /section#main-section/article/aside[2]/section[1]/article/a
-LINK "bela tarr filmmaker dead" @ref:97 /section#main-section/article/aside[2]/section[1]/article/a
-LINK "edith renfrow smith pioneer and witness to hist..." @ref:98 /section#main-section/article/aside[2]/section[1]/article/a
-LINK "trump post online minnesota social media ice" @ref:99 /section#main-section/article/aside[2]/section[2]/article/a
-LINK "jan 6 house gop capitol trump" @ref:100 /section#main-section/article/aside[2]/section[2]/article/a
-LINK "a knight of the seven kingdoms review hbo game ..." @ref:101 /section#main-section/article/aside[2]/section[2]/article/a
-LINK "minneapolis insurrection act trump threats" @ref:102 /section#main-section/article/aside[2]/section[2]/article/a
-LINK "verizon outage what happened" @ref:103 /section#main-section/article/aside[2]/section[2]/article/a
-LINK "up first newsletter minneapolis protests venezu..." @ref:104 /section#main-section/article/aside[2]/section[2]/article/a
-LINK "trumprx pharma drug price deals list prices" @ref:105 /section#main-section/article/aside[2]/section[3]/article/a
-LINK "hospice cervical cancer prevention" @ref:106 /section#main-section/article/aside[2]/section[3]/article/a
-LINK "canada cut tariff chinese evs canadian farm pro..." @ref:107 /section#main-section/article/aside[2]/section[3]/article/a
-LINK "greenland denmark nasa grok star trek golden gl..." @ref:108 /section#main-section/article/aside[2]/section[3]/article/a
-LINK "immigration minnesota democrats navigate resist..." @ref:109 /section#main-section/article/aside[2]/section[3]/article/a
-LINK "fema cuts jobs trump" @ref:110 /section#main-section/article/aside[2]/section[3]/article/a
-LINK "Home" @ref:111 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[1]/a
-LINK "News" @ref:112 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[2]/a
-LINK "Culture" @ref:113 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[3]/a
-LINK "Music" @ref:114 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[4]/a
-LINK "Podcasts & Shows" @ref:115 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[5]/a
-LINK "Newsletters" @ref:116 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[1]/a
-LINK "Facebook" @ref:117 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[2]/a
-LINK "Instagram" @ref:118 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[3]/a
-LINK "Press" @ref:119 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[4]/a
-LINK "Public Editor" @ref:120 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[5]/a
-LINK "Corrections" @ref:121 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[6]/a
-LINK "Transcripts" @ref:122 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[7]/a
-LINK "Contact & Help" @ref:123 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[8]/a
-LINK "Overview" @ref:124 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[1]/a
-LINK "Diversity" @ref:125 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[2]/a
-LINK "NPR Network" @ref:126 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[3]/a
-LINK "Accessibility" @ref:127 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[4]/a
-LINK "Ethics" @ref:128 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[5]/a
-LINK "Finances" @ref:129 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[6]/a
-LINK "Support Public Radio" @ref:130 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[1]/a
-LINK "Sponsor NPR" @ref:131 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[2]/a
-LINK "NPR Careers" @ref:132 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[3]/a
-LINK "NPR Shop" @ref:133 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[4]/a
-LINK "NPR Extra" @ref:134 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[5]/a
-LINK "Terms of Use" @ref:135 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[1]/a
-LINK "Privacy" @ref:136 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[2]/a
-LINK "Your Privacy Choices" @ref:137 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[3]/a
-LINK "Text Only" @ref:138 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[4]/a
-LINK "Become an NPR sponsor" @ref:139 /main/div#wrapper[2]/div#main-sidebar/aside#ad-standard-wrap/a
-LINK "Get NPR+" @ref:140 /main/section[2]/a
-LINK "Sign In" @ref:141 /main/section[2]/a
-BUTTON "Close modal" @ref:142 /main/section[2]/button#npr-plus-access__close
+TEXTBOX @ref:79 [type=hidden] /main/div#wrapper[2]/section#main-section/article/input#title4463532[1]
+TEXTBOX @ref:80 [type=hidden] /main/div#wrapper[2]/section#main-section/article/input#shortTitle4463532[2]
+TEXTBOX @ref:81 [type=hidden] /main/div#wrapper[2]/section#main-section/article/input#modelFullUrl4463532[3]
+LINK "Morning Edition" @ref:82 /main/div#wrapper[2]/section#main-section/article/div#story-meta[3]/a
+BUTTON "Listen· 2:20" @ref:83 /div#wrapper[2]/section#main-section/article/div#headlineaudio[4]/article#res4463533/button[1]
+BUTTON "Playlist" @ref:84 /div#wrapper[2]/section#main-section/article/div#headlineaudio[4]/article#res4463533/button[2]
+BUTTON "Toggle more options" @ref:85 /div#wrapper[2]/section#main-section/article/div#headlineaudio[4]/article#res4463533/button
+LINK "Download" @ref:86 /article/div#headlineaudio[4]/article#res4463533/ul/li[1]/a
+BUTTON "Embed" @ref:87 /article/div#headlineaudio[4]/article#res4463533/ul/li[2]/button
+BUTTON @ref:88 /article/div#headlineaudio[4]/article#res4463533/ul/li[2]/button.btn-close
+TEXTBOX "Embed" @ref:89 /div#headlineaudio[4]/article#res4463533/ul/li[2]/label/input
+BUTTON "Enlarge this image" @ref:90 /div#wrapper[2]/section#main-section/article/div#storytext[5]/div#res111029306/button
+BUTTON "Facebook" @ref:91 /div#wrapper[2]/section#main-section/article/ul/li[1]/button
+BUTTON "Flipboard" @ref:92 /div#wrapper[2]/section#main-section/article/ul/li[2]/button
+BUTTON "Email" @ref:93 /div#wrapper[2]/section#main-section/article/ul/li[3]/button
+LINK "2 police officers relive Jan. 6 through their o..." @ref:94 /div#wrapper[2]/section#main-section/article/aside[1]/article/a#cXLinkIdmkh7i777z7prn3d5
+LINK "NPR Investigation: January 6, 2021" @ref:95 /section#main-section/article/aside[1]/article/h5/a#cXLinkIdmkh7i777uhg12w6k
+LINK "2 police officers relive Jan. 6 through their o..." @ref:96 /section#main-section/article/aside[1]/article/h4/a#cXLinkIdmkh7i778nvq3iw4f
+LINK "Venezuela's Machado says she presented her Nobe..." @ref:97 /div#wrapper[2]/section#main-section/article/aside[1]/article/a#cXLinkIdmkh7i778steu0r2v
+LINK "Politics" @ref:98 /section#main-section/article/aside[1]/article/h5/a#cXLinkIdmkh7i778dtnhrs2b
+LINK "Venezuela's Machado says she presented her Nobe..." @ref:99 /section#main-section/article/aside[1]/article/h4/a#cXLinkIdmkh7i778mk02q9fc
+LINK "NPR+ | The News Roundup For October 24, 2025" @ref:100 /div#wrapper[2]/section#main-section/article/aside[1]/article/a#cXLinkIdmkh7i778eatsbvmq
+LINK "NPR+ | The News Roundup For October 24, 2025" @ref:101 /section#main-section/article/aside[1]/article/h4/a#cXLinkIdmkh7i778s092j0uk
+LINK "House Republicans are investigating Jan. 6. NPR..." @ref:102 /div#wrapper[2]/section#main-section/article/aside[1]/article/a#cXLinkIdmkh7i778lm23riyj
+LINK "Investigations" @ref:103 /section#main-section/article/aside[1]/article/h5/a#cXLinkIdmkh7i778owydaowv
+LINK "House Republicans are investigating Jan. 6. NPR..." @ref:104 /section#main-section/article/aside[1]/article/h4/a#cXLinkIdmkh7i778v02jcv5n
+LINK "NPR+ | The News Roundup For November 14, 2025" @ref:105 /div#wrapper[2]/section#main-section/article/aside[1]/article/a#cXLinkIdmkh7i778717wtpvk
+LINK "NPR+ | The News Roundup For November 14, 2025" @ref:106 /section#main-section/article/aside[1]/article/h4/a#cXLinkIdmkh7i779i4igybi0
+LINK "NPR+ | The News Roundup For January 9, 2026" @ref:107 /div#wrapper[2]/section#main-section/article/aside[1]/article/a#cXLinkIdmkh7i779kahdox7s
+LINK "NPR+ | The News Roundup For January 9, 2026" @ref:108 /section#main-section/article/aside[1]/article/h4/a#cXLinkIdmkh7i779676idjeh
+LINK "claudette colvin obituary montgomery bus civil ..." @ref:109 /section#main-section/article/aside[2]/section[1]/article/a
+LINK "Obituaries" @ref:110 /article/aside[2]/section[1]/article/h5/a
+LINK "Claudette Colvin, who refused to move seats on ..." @ref:111 /article/aside[2]/section[1]/article/h4/a
+LINK "scott adams dilbert dies" @ref:112 /section#main-section/article/aside[2]/section[1]/article/a
+LINK "Obituaries" @ref:113 /article/aside[2]/section[1]/article/h5/a
+LINK "Scott Adams, the controversial cartoonist behin..." @ref:114 /article/aside[2]/section[1]/article/h4/a
+LINK "bob weir grateful dead obituary" @ref:115 /section#main-section/article/aside[2]/section[1]/article/a
+LINK "Obituaries" @ref:116 /article/aside[2]/section[1]/article/h5/a
+LINK "Bob Weir, guitarist and founding member of the ..." @ref:117 /article/aside[2]/section[1]/article/h4/a
+LINK "cia turncoat aldrich ames dies at 84" @ref:118 /section#main-section/article/aside[2]/section[1]/article/a
+LINK "Obituaries" @ref:119 /article/aside[2]/section[1]/article/h5/a
+LINK "CIA turncoat Aldrich Ames, who sold U.S. secret..." @ref:120 /article/aside[2]/section[1]/article/h4/a
+LINK "bela tarr filmmaker dead" @ref:121 /section#main-section/article/aside[2]/section[1]/article/a
+LINK "Obituaries" @ref:122 /article/aside[2]/section[1]/article/h5/a
+LINK "Hungarian filmmaker Béla Tarr — known for bleak..." @ref:123 /article/aside[2]/section[1]/article/h4/a
+LINK "edith renfrow smith pioneer and witness to hist..." @ref:124 /section#main-section/article/aside[2]/section[1]/article/a
+LINK "Obituaries" @ref:125 /article/aside[2]/section[1]/article/h5/a
+LINK "Edith Renfrow Smith, pioneer and witness to his..." @ref:126 /article/aside[2]/section[1]/article/h4/a
+LINK "trump post online minnesota social media ice" @ref:127 /section#main-section/article/aside[2]/section[2]/article/a
+LINK "Politics" @ref:128 /article/aside[2]/section[2]/article/h5/a
+LINK "Minnesota shows what happens when governing and..." @ref:129 /article/aside[2]/section[2]/article/h4/a
+LINK "jan 6 house gop capitol trump" @ref:130 /section#main-section/article/aside[2]/section[2]/article/a
+LINK "Investigations" @ref:131 /article/aside[2]/section[2]/article/h5/a
+LINK "House Republicans are investigating Jan. 6. NPR..." @ref:132 /article/aside[2]/section[2]/article/h4/a
+LINK "a knight of the seven kingdoms review hbo game ..." @ref:133 /section#main-section/article/aside[2]/section[2]/article/a
+LINK "Pop Culture Happy Hour" @ref:134 /article/aside[2]/section[2]/article/h5/a
+LINK "'A Knight of the Seven Kingdoms' is 'Game of Th..." @ref:135 /article/aside[2]/section[2]/article/h4/a
+LINK "minneapolis insurrection act trump threats" @ref:136 /section#main-section/article/aside[2]/section[2]/article/a
+LINK "Explainer" @ref:137 /article/aside[2]/section[2]/article/h5/a
+LINK "Trump threatened to invoke the Insurrection Act..." @ref:138 /article/aside[2]/section[2]/article/h4/a
+LINK "verizon outage what happened" @ref:139 /section#main-section/article/aside[2]/section[2]/article/a
+LINK "Business" @ref:140 /article/aside[2]/section[2]/article/h5/a
+LINK "Verizon just had a big outage. Here's what we know" @ref:141 /article/aside[2]/section[2]/article/h4/a
+LINK "up first newsletter minneapolis protests venezu..." @ref:142 /section#main-section/article/aside[2]/section[2]/article/a
+LINK "Up First Newsletter" @ref:143 /article/aside[2]/section[2]/article/h5/a
+LINK "Trump threatens military action in Minneapolis...." @ref:144 /article/aside[2]/section[2]/article/h4/a
+LINK "trumprx pharma drug price deals list prices" @ref:145 /section#main-section/article/aside[2]/section[3]/article/a
+LINK "Health" @ref:146 /article/aside[2]/section[3]/article/h5/a
+LINK "Trump struck deals with 16 drug companies. But ..." @ref:147 /article/aside[2]/section[3]/article/h4/a
+LINK "hospice cervical cancer prevention" @ref:148 /section#main-section/article/aside[2]/section[3]/article/a
+LINK "Global Health" @ref:149 /article/aside[2]/section[3]/article/h5/a
+LINK "This hospice has a bold new mission: saving lives" @ref:150 /article/aside[2]/section[3]/article/h4/a
+LINK "canada cut tariff chinese evs canadian farm pro..." @ref:151 /section#main-section/article/aside[2]/section[3]/article/a
+LINK "Business" @ref:152 /article/aside[2]/section[3]/article/h5/a
+LINK "Canada agrees to cut tariff on Chinese EVs in r..." @ref:153 /article/aside[2]/section[3]/article/h4/a
+LINK "greenland denmark nasa grok star trek golden gl..." @ref:154 /section#main-section/article/aside[2]/section[3]/article/a
+LINK "The NPR news quiz" @ref:155 /article/aside[2]/section[3]/article/h5/a
+LINK "What do eggs, Grok and Greenland have in common..." @ref:156 /article/aside[2]/section[3]/article/h4/a
+LINK "immigration minnesota democrats navigate resist..." @ref:157 /section#main-section/article/aside[2]/section[3]/article/a
+LINK "Politics" @ref:158 /article/aside[2]/section[3]/article/h5/a
+LINK "With limited political power, Minnesota Democra..." @ref:159 /article/aside[2]/section[3]/article/h4/a
+LINK "fema cuts jobs trump" @ref:160 /section#main-section/article/aside[2]/section[3]/article/a
+LINK "Climate" @ref:161 /article/aside[2]/section[3]/article/h5/a
+LINK "FEMA is getting rid of thousands of workers in ..." @ref:162 /article/aside[2]/section[3]/article/h4/a
+LINK "Home" @ref:163 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[1]/a
+LINK "News" @ref:164 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[2]/a
+LINK "Culture" @ref:165 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[3]/a
+LINK "Music" @ref:166 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[4]/a
+LINK "Podcasts & Shows" @ref:167 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[5]/a
+LINK "Newsletters" @ref:168 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[1]/a
+LINK "Facebook" @ref:169 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[2]/a
+LINK "Instagram" @ref:170 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[3]/a
+LINK "Press" @ref:171 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[4]/a
+LINK "Public Editor" @ref:172 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[5]/a
+LINK "Corrections" @ref:173 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[6]/a
+LINK "Transcripts" @ref:174 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[7]/a
+LINK "Contact & Help" @ref:175 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[8]/a
+LINK "Overview" @ref:176 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[1]/a
+LINK "Diversity" @ref:177 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[2]/a
+LINK "NPR Network" @ref:178 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[3]/a
+LINK "Accessibility" @ref:179 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[4]/a
+LINK "Ethics" @ref:180 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[5]/a
+LINK "Finances" @ref:181 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[6]/a
+LINK "Support Public Radio" @ref:182 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[1]/a
+LINK "Sponsor NPR" @ref:183 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[2]/a
+LINK "NPR Careers" @ref:184 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[3]/a
+LINK "NPR Shop" @ref:185 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[4]/a
+LINK "NPR Extra" @ref:186 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[5]/a
+LINK "Terms of Use" @ref:187 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[1]/a
+LINK "Privacy" @ref:188 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[2]/a
+LINK "Your Privacy Choices" @ref:189 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[3]/a
+LINK "Text Only" @ref:190 /div#wrapper[2]/section#main-section/footer#npr-footer/ul/li[4]/a
+LINK "Become an NPR sponsor" @ref:191 /main/div#wrapper[2]/div#main-sidebar/aside#ad-standard-wrap/a
+LINK "Get NPR+" @ref:192 /main/section[2]/a
+LINK "Sign In" @ref:193 /main/section[2]/a
+BUTTON "Close modal" @ref:194 /main/section[2]/button#npr-plus-access__close
+BUTTON "Cookies Settings" @ref:195 /div#onetrust-consent-sdk[5]/div#onetrust-banner-sdk[2]/div#onetrust-button-group-parent[2]/div#onetrust-button-group/button#onetrust-pc-btn-handler[1]
+BUTTON "Accept All Cookies" @ref:196 /div#onetrust-consent-sdk[5]/div#onetrust-banner-sdk[2]/div#onetrust-button-group-parent[2]/div#onetrust-button-group/button#onetrust-accept-btn-handler[2]
+BUTTON "Close" @ref:197 /div#onetrust-consent-sdk[5]/div#onetrust-banner-sdk[2]/div#onetrust-close-btn-container[2]/button
+BUTTON "Close preference center" @ref:198 /div#onetrust-consent-sdk[5]/div#onetrust-pc-sdk[3]/button#close-pc-btn-handler
+BUTTON "Allow All" @ref:199 /div#onetrust-consent-sdk[5]/div#onetrust-pc-sdk[3]/div#ot-pc-content[2]/button
+BUTTON "Strictly Necessary or Essential Cookies Always ..." @ref:200 /div#onetrust-consent-sdk[5]/div#onetrust-pc-sdk[3]/div#ot-pc-content[2]/section/button
+BUTTON "Performance and Analytics Cookies" @ref:201 /div#onetrust-consent-sdk[5]/div#onetrust-pc-sdk[3]/div#ot-pc-content[2]/section/button
+SWITCH "Performance and Analytics Cookies" @ref:202 [type=checkbox] (checked) /div#onetrust-consent-sdk[5]/div#onetrust-pc-sdk[3]/div#ot-pc-content[2]/section/input#ot-group-id-C0002
+BUTTON "Functional Cookies" @ref:203 /div#onetrust-consent-sdk[5]/div#onetrust-pc-sdk[3]/div#ot-pc-content[2]/section/button
+SWITCH "Functional Cookies" @ref:204 [type=checkbox] (checked) /div#onetrust-consent-sdk[5]/div#onetrust-pc-sdk[3]/div#ot-pc-content[2]/section/input#ot-group-id-C0003
+BUTTON "Targeting and Sponsor Cookies" @ref:205 /div#onetrust-consent-sdk[5]/div#onetrust-pc-sdk[3]/div#ot-pc-content[2]/section/button
+SWITCH "Targeting and Sponsor Cookies" @ref:206 [type=checkbox] (checked) /div#onetrust-consent-sdk[5]/div#onetrust-pc-sdk[3]/div#ot-pc-content[2]/section/input#ot-group-id-C0004
+BUTTON "Back" @ref:207 /div#onetrust-consent-sdk[5]/div#onetrust-pc-sdk[3]/section#ot-pc-lst/div#ot-pc-hdr/div#ot-lst-title[1]/button
+TEXTBOX "Cookie list search" @ref:208 /div#onetrust-consent-sdk[5]/div#onetrust-pc-sdk[3]/section#ot-pc-lst/div#ot-pc-hdr/input#vendor-search-handler
+BUTTON "Filter" @ref:209 /div#onetrust-consent-sdk[5]/div#onetrust-pc-sdk[3]/section#ot-pc-lst/div#ot-pc-hdr/button#filter-btn-handler
+BUTTON "Clear" @ref:210 /div#onetrust-pc-sdk[3]/section#ot-pc-lst/div#ot-pc-hdr/section#ot-fltr-modal/div#ot-fltr-cnt/button#clear-filters-handler
+CHECKBOX "checkbox label" @ref:211 [type=checkbox] /div#onetrust-pc-sdk[3]/section#ot-pc-lst/div#ot-pc-hdr/section#ot-fltr-modal/div#ot-fltr-cnt/input#chkbox-id
+BUTTON "Apply" @ref:212 /div#onetrust-pc-sdk[3]/section#ot-pc-lst/div#ot-pc-hdr/section#ot-fltr-modal/div#ot-fltr-cnt/button#filter-apply-handler[1]
+BUTTON "Cancel" @ref:213 /div#onetrust-pc-sdk[3]/section#ot-pc-lst/div#ot-pc-hdr/section#ot-fltr-modal/div#ot-fltr-cnt/button#filter-cancel-handler[2]
+CHECKBOX "checkbox label" @ref:214 [type=checkbox] /div#onetrust-pc-sdk[3]/section#ot-pc-lst/section#ot-lst-cnt/div#ot-sel-blk[1]/div#ot-selall-hostcntr[1]/input
+CHECKBOX "checkbox label" @ref:215 [type=checkbox] /div#onetrust-pc-sdk[3]/section#ot-pc-lst/section#ot-lst-cnt/div#ot-sel-blk[1]/div#ot-selall-vencntr[2]/input
+CHECKBOX "checkbox label" @ref:216 [type=checkbox] /div#onetrust-pc-sdk[3]/section#ot-pc-lst/section#ot-lst-cnt/div#ot-sel-blk[1]/div#ot-selall-licntr[3]/input#select-all-vendor-leg-handler
+BUTTON "Reject All" @ref:217 /div#onetrust-consent-sdk[5]/div#onetrust-pc-sdk[3]/button[1]
+BUTTON "Confirm My Choices" @ref:218 /div#onetrust-consent-sdk[5]/div#onetrust-pc-sdk[3]/button[2]
+LINK "Powered by OneTrust Opens in a new Tab" @ref:219 /div#onetrust-consent-sdk[5]/div#onetrust-pc-sdk[3]/a
+TEXTBOX @ref:220 /textarea#g-recaptcha-response-100000

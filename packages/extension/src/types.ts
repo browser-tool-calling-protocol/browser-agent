@@ -27,7 +27,8 @@ export type ExtensionAction =
   | 'groupAddTabs'
   | 'groupRemoveTabs'
   | 'groupGet'
-  | 'sessionGetCurrent';
+  | 'sessionGetCurrent'
+  | 'popupInitialize';
 
 // Base extension command
 export interface ExtensionBaseCommand {
@@ -88,6 +89,10 @@ export interface TabListCommand extends ExtensionBaseCommand {
   action: 'tabList';
 }
 
+export interface PopupInitializeCommand extends ExtensionBaseCommand {
+  action: 'popupInitialize';
+}
+
 // Union of extension commands
 export type ExtensionCommand =
   | NavigateCommand
@@ -101,6 +106,7 @@ export type ExtensionCommand =
   | TabCloseCommand
   | TabSwitchCommand
   | TabListCommand
+  | PopupInitializeCommand
   | SessionCommand;
 
 // Combined command type (core + extension)
@@ -119,16 +125,29 @@ export type {
 } from './session-types.js';
 
 // Message types for extension communication
-export interface ExtensionMessage {
+export interface ExtensionCommandMessage {
   type: 'btcp:command';
   command: Command;
   tabId?: number;
 }
 
-export interface ExtensionResponse {
+export interface ExtensionPingMessage {
+  type: 'btcp:ping';
+}
+
+export type ExtensionMessage = ExtensionCommandMessage | ExtensionPingMessage;
+
+export interface ExtensionResponseMessage {
   type: 'btcp:response';
   response: Response;
 }
+
+export interface ExtensionPongResponse {
+  type: 'btcp:pong';
+  ready: boolean;
+}
+
+export type ExtensionResponse = ExtensionResponseMessage | ExtensionPongResponse;
 
 // Tab info
 export interface TabInfo {

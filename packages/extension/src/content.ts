@@ -9,6 +9,7 @@ import { createContentAgent, type ContentAgent, type Command as CoreCommand, typ
 import type { ExtensionMessage, ExtensionResponse, Command } from './types.js';
 
 let agent: ContentAgent | null = null;
+let isContentScriptReady = false;
 
 /**
  * Get or create the ContentAgent instance for this page
@@ -16,9 +17,14 @@ let agent: ContentAgent | null = null;
 function getContentAgent(): ContentAgent {
   if (!agent) {
     agent = createContentAgent(document, window);
+    isContentScriptReady = true;
+    console.log('[ContentScript] Agent initialized');
   }
   return agent;
 }
+
+// Initialize agent immediately
+getContentAgent();
 
 /**
  * Check if a command is a core DOM command
@@ -73,6 +79,12 @@ async function handleCommand(command: Command): Promise<Response> {
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   const msg = message as ExtensionMessage;
 
+  // Handle ping messages for heartbeat
+  if (msg.type === 'btcp:ping') {
+    sendResponse({ type: 'btcp:pong', ready: isContentScriptReady } satisfies ExtensionResponse);
+    return true;
+  }
+
   if (msg.type !== 'btcp:command') {
     return false;
   }
@@ -112,6 +124,29 @@ window.addEventListener('message', async (event) => {
     type: 'btcp:response',
     response,
   } satisfies ExtensionResponse, '*');
+});
+
+/**
+ * Lifecycle event listeners for session keep-alive
+ */
+
+// Detect page visibility changes
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) {
+    console.log('[ContentScript] Page became visible, checking connection...');
+  }
+});
+
+// Detect freeze/resume events (Chrome 68+)
+document.addEventListener('freeze', () => {
+  console.log('[ContentScript] Page frozen');
+});
+
+document.addEventListener('resume', () => {
+  console.log('[ContentScript] Page resumed, re-initializing agent...');
+  // Re-initialize agent to ensure fresh state
+  agent = null;
+  getContentAgent();
 });
 
 // Export for programmatic use

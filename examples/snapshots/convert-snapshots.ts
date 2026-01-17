@@ -47,8 +47,8 @@ function processFile(htmlPath: string) {
   const snapshot = createSnapshot(document, refMap, {
     interactive: true,
     compact: true,
-    maxDepth: 10,
-    includeHidden: false,
+    maxDepth: 50,
+    includeHidden: true,
   });
   const duration = performance.now() - start;
 

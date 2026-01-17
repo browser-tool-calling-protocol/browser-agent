@@ -72,11 +72,15 @@ export interface TabHandle {
 export class BackgroundAgent {
   private activeTabId: number | null = null;
   private sessionManager: SessionManager;
+  private heartbeatInterval: number | null = null;
+  private readonly HEARTBEAT_INTERVAL = 30000; // 30 seconds
 
   constructor() {
     this.sessionManager = new SessionManager();
     // Initialize active tab on creation
     this.initActiveTab();
+    // Start heartbeat to keep session tabs alive
+    this.startHeartbeat();
   }
 
   private async initActiveTab(): Promise<void> {
@@ -493,12 +497,39 @@ export class BackgroundAgent {
       };
     }
 
+    // Try sending with automatic retry and recovery
+    return this.sendMessageWithRetry(targetTabId, command);
+  }
+
+  /**
+   * Send message with automatic content script re-injection on failure
+   */
+  private async sendMessageWithRetry(
+    tabId: number,
+    command: Command,
+    retries = 1
+  ): Promise<Response> {
     return new Promise((resolve) => {
       chrome.tabs.sendMessage(
-        targetTabId,
+        tabId,
         { type: 'btcp:command', command } satisfies ExtensionMessage,
-        (response) => {
+        { frameId: 0 }, // Target only the main frame, not iframes
+        async (response) => {
           if (chrome.runtime.lastError) {
+            // Content script not responding - try re-injection
+            if (retries > 0) {
+              console.log(`[Recovery] Re-injecting content script into tab ${tabId}`);
+              const success = await this.reinjectContentScript(tabId);
+
+              if (success) {
+                // Wait briefly for content script to initialize
+                await new Promise(r => setTimeout(r, 500));
+                // Retry the command
+                resolve(this.sendMessageWithRetry(tabId, command, retries - 1));
+                return;
+              }
+            }
+
             resolve({
               id: command.id,
               success: false,
@@ -506,11 +537,95 @@ export class BackgroundAgent {
             });
           } else {
             const resp = response as ExtensionResponse;
-            resolve(resp.response);
+            if (resp.type === 'btcp:response') {
+              resolve(resp.response);
+            } else {
+              resolve({
+                id: command.id,
+                success: false,
+                error: 'Invalid response type',
+              });
+            }
           }
         }
       );
     });
+  }
+
+  /**
+   * Re-inject content script into a tab (for recovery from frozen state)
+   */
+  private async reinjectContentScript(tabId: number): Promise<boolean> {
+    try {
+      // Check if tab is ready for injection
+      const tab = await chrome.tabs.get(tabId);
+      if (!tab.url || tab.url.startsWith('chrome://') || tab.url.startsWith('chrome-extension://')) {
+        return false; // Can't inject into chrome:// or extension pages
+      }
+
+      // Execute content script
+      await chrome.scripting.executeScript({
+        target: { tabId },
+        files: ['content.js'],
+      });
+
+      console.log(`[Recovery] Successfully re-injected content script into tab ${tabId}`);
+      return true;
+    } catch (error) {
+      console.error(`[Recovery] Failed to re-inject content script:`, error);
+      return false;
+    }
+  }
+
+  /**
+   * Start heartbeat to monitor session tabs
+   */
+  private startHeartbeat(): void {
+    this.heartbeatInterval = setInterval(() => {
+      this.pingSessionTabs();
+    }, this.HEARTBEAT_INTERVAL) as unknown as number;
+  }
+
+  /**
+   * Stop heartbeat (for cleanup)
+   * Note: Currently not called as service workers are terminated by Chrome
+   * Could be used if explicit cleanup is needed in the future
+   */
+  // @ts-expect-error - Unused but kept for potential future use
+  private _stopHeartbeat(): void {
+    if (this.heartbeatInterval) {
+      clearInterval(this.heartbeatInterval);
+      this.heartbeatInterval = null;
+    }
+  }
+
+  /**
+   * Ping all session tabs to check health
+   */
+  private async pingSessionTabs(): Promise<void> {
+    try {
+      const tabs = await this.listTabs().catch(() => []);
+
+      for (const tab of tabs) {
+        chrome.tabs.sendMessage(
+          tab.id,
+          { type: 'btcp:ping' } satisfies ExtensionMessage,
+          { frameId: 0 }, // Target only the main frame, not iframes
+          (response) => {
+            if (chrome.runtime.lastError) {
+              console.log(`[Heartbeat] Tab ${tab.id} unresponsive, will re-inject on next command`);
+            } else {
+              const resp = response as ExtensionResponse;
+              if (resp.type === 'btcp:pong' && !resp.ready) {
+                console.log(`[Heartbeat] Tab ${tab.id} content script not ready`);
+              }
+            }
+          }
+        );
+      }
+    } catch (error) {
+      // Silently ignore errors during heartbeat (e.g., no active session)
+    }
   }
 
   // ============================================================================
@@ -524,7 +639,7 @@ export class BackgroundAgent {
       'tabNew', 'tabClose', 'tabSwitch', 'tabList',
       'groupCreate', 'groupUpdate', 'groupDelete', 'groupList',
       'groupAddTabs', 'groupRemoveTabs', 'groupGet',
-      'sessionGetCurrent',
+      'sessionGetCurrent', 'popupInitialize',
     ];
     return extensionActions.includes(command.action);
   }
@@ -627,6 +742,32 @@ export class BackgroundAgent {
       case 'sessionGetCurrent': {
         const session = await this.sessionManager.getCurrentSession();
         return { id: command.id, success: true, data: { session } };
+      }
+
+      case 'popupInitialize': {
+        console.log('[BackgroundAgent] Popup initializing, checking for session reconnection...');
+
+        // Check if we have a stored session but no active connection
+        const sessionGroupId = this.sessionManager.getActiveSessionGroupId();
+
+        if (sessionGroupId === null) {
+          // Try to reconnect from storage
+          const result = await chrome.storage.session.get('btcp_active_session');
+          const stored = result['btcp_active_session'] as { groupId?: number } | undefined;
+
+          if (stored?.groupId) {
+            console.log('[BackgroundAgent] Found stored session, attempting reconnection...');
+            const reconnected = await this.sessionManager.reconnectSession(stored.groupId);
+
+            return {
+              id: command.id,
+              success: true,
+              data: { initialized: true, reconnected },
+            };
+          }
+        }
+
+        return { id: command.id, success: true, data: { initialized: true, reconnected: false } };
       }
 
       default:

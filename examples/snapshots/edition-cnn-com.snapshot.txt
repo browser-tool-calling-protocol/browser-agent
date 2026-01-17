@@ -1,42 +1,562 @@
 PAGE: http://localhost/ | Breaking News, Latest News and Videos | CNN | viewport=1024x768
-SNAPSHOT: elements=158 refs=39
+SNAPSHOT: elements=3389 refs=559
 
-BUTTON "Open Menu Icon" @ref:0 /nav#pageHeader/div.header__inner/div.header__subnav-mount/div.header__container[1]/div.header__left[1]/button#headerMenuIcon[1]
-LINK "CNN logo" @ref:1 /nav#pageHeader/div.header__inner/div.header__subnav-mount/div.header__container[1]/div.header__left[1]/a
-TEXTBOX "Search" @ref:2 /footer#pageFooter/div.footer__inner/div.search-bar[1]/form.search-bar__form/input.search-bar__input
-BUTTON "Submit" @ref:3 /footer#pageFooter/div.footer__inner/div.search-bar[1]/form.search-bar__form/button.search-bar__submit
-LINK "User Account Log In Button" @ref:4 /footer#pageFooter/div.footer__inner/div#mobile-footer-account-nav[2]/nav/button[3]
-LINK "Live TV" @ref:5 /footer#pageFooter/div.footer__inner/a.footer__live-tv-link[1]
-LINK "Audio" @ref:6 /footer#pageFooter/div.footer__inner/a.footer__audio-link[2]
-LINK "Video" @ref:7 /footer#pageFooter/div.footer__inner/a.footer__video-link[3]
-LINK "World" @ref:8 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[1]/a
-LINK "US Politics" @ref:9 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[2]/a
-LINK "Business" @ref:10 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[3]/a
-LINK "Markets" @ref:11 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[4]/a
-LINK "Health" @ref:12 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[5]/a
-LINK "Entertainment" @ref:13 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[6]/a
-LINK "Tech" @ref:14 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[7]/a
-LINK "Style" @ref:15 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[8]/a
-LINK "Travel" @ref:16 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[9]/a
-LINK "Sports" @ref:17 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[10]/a
-LINK "Science" @ref:18 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[11]/a
-LINK "Climate" @ref:19 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[12]/a
-LINK "Weather" @ref:20 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[13]/a
-LINK "Ukraine-Russia War" @ref:21 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[14]/a
-LINK "Israel-Hamas War" @ref:22 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[15]/a
-LINK "Features" @ref:23 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[16]/a
-LINK "Watch" @ref:24 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[17]/a
-LINK "Listen" @ref:25 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[18]/a
-LINK "Games" @ref:26 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[19]/a
-LINK "About CNN" @ref:27 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[20]/a
-LINK "CNN logo" @ref:28 /footer#pageFooter/div.footer__inner/div.footer__row[4]/div.footer__brand-logo[1]/a
-LINK "Download on Apple App Store" @ref:29 /footer#pageFooter/div.footer__inner/div.footer__app-download/a.footer__app-download-link[1]
-LINK "Get it on Google Play" @ref:30 /footer#pageFooter/div.footer__inner/div.footer__app-download/a.footer__app-download-link[2]
-LINK "Terms of Use" @ref:31 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[1]
-LINK "Privacy Policy" @ref:32 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[2]
-LINK "Manage Cookies" @ref:33 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[3]
-LINK "Ad Choices" @ref:34 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[4]
-LINK "Accessibility & CC" @ref:35 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[5]
-LINK "About" @ref:36 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[6]
-LINK "Newsletters" @ref:37 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[7]
-LINK "Transcripts" @ref:38 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[8]
+RADIO "Bad" @ref:0 [type=radio] /header.header__wrapper-outer/div.header__wrapper-inner/div#ad-feedback__modal-overlay[1]/form/input#ad-feedback__0-bad
+RADIO "Not Good" @ref:1 [type=radio] /header.header__wrapper-outer/div.header__wrapper-inner/div#ad-feedback__modal-overlay[1]/form/input#ad-feedback__0-not-good
+RADIO "Okay" @ref:2 [type=radio] /header.header__wrapper-outer/div.header__wrapper-inner/div#ad-feedback__modal-overlay[1]/form/input#ad-feedback__0-okay
+RADIO "Good" @ref:3 [type=radio] /header.header__wrapper-outer/div.header__wrapper-inner/div#ad-feedback__modal-overlay[1]/form/input#ad-feedback__0-good
+RADIO "Great" @ref:4 [type=radio] /header.header__wrapper-outer/div.header__wrapper-inner/div#ad-feedback__modal-overlay[1]/form/input#ad-feedback__0-great
+CHECKBOX "Toggle Button" @ref:5 [type=checkbox] /header.header__wrapper-outer/div.header__wrapper-inner/div#ad-feedback__modal-overlay[1]/form/label/input
+CHECKBOX "Video player was slow to load content" @ref:6 [type=checkbox] /header.header__wrapper-outer/div.header__wrapper-inner/div#ad-feedback__modal-overlay[1]/form/label[1]/input
+CHECKBOX "Video content never loaded" @ref:7 [type=checkbox] /header.header__wrapper-outer/div.header__wrapper-inner/div#ad-feedback__modal-overlay[1]/form/label[2]/input
+CHECKBOX "Ad froze or did not finish loading" @ref:8 [type=checkbox] /header.header__wrapper-outer/div.header__wrapper-inner/div#ad-feedback__modal-overlay[1]/form/label[3]/input
+CHECKBOX "Video content did not start after ad" @ref:9 [type=checkbox] /header.header__wrapper-outer/div.header__wrapper-inner/div#ad-feedback__modal-overlay[1]/form/label[4]/input
+CHECKBOX "Audio on ad was too loud" @ref:10 [type=checkbox] /header.header__wrapper-outer/div.header__wrapper-inner/div#ad-feedback__modal-overlay[1]/form/label[5]/input
+CHECKBOX "Other issues" @ref:11 [type=checkbox] /header.header__wrapper-outer/div.header__wrapper-inner/div#ad-feedback__modal-overlay[1]/form/label[6]/input
+CHECKBOX "Ad never loaded" @ref:12 [type=checkbox] /header.header__wrapper-outer/div.header__wrapper-inner/div#ad-feedback__modal-overlay[1]/form/label[1]/input
+CHECKBOX "Ad prevented/slowed the page from loading" @ref:13 [type=checkbox] /header.header__wrapper-outer/div.header__wrapper-inner/div#ad-feedback__modal-overlay[1]/form/label[2]/input
+CHECKBOX "Content moved around while ad loaded" @ref:14 [type=checkbox] /header.header__wrapper-outer/div.header__wrapper-inner/div#ad-feedback__modal-overlay[1]/form/label[3]/input
+CHECKBOX "Ad was repetitive to ads I've seen previously" @ref:15 [type=checkbox] /header.header__wrapper-outer/div.header__wrapper-inner/div#ad-feedback__modal-overlay[1]/form/label[4]/input
+CHECKBOX "Other issues" @ref:16 [type=checkbox] /header.header__wrapper-outer/div.header__wrapper-inner/div#ad-feedback__modal-overlay[1]/form/label[5]/input
+TEXTBOX @ref:17 /header.header__wrapper-outer/div.header__wrapper-inner/div#ad-feedback__modal-overlay[1]/form/textarea
+BUTTON "Cancel" @ref:18 /header.header__wrapper-outer/div.header__wrapper-inner/div#ad-feedback__modal-overlay[1]/form/button#ad-feedback__cancel[1]
+BUTTON "Submit" @ref:19 (disabled) /header.header__wrapper-outer/div.header__wrapper-inner/div#ad-feedback__modal-overlay[1]/form/button#ad-feedback__submit[2]
+BUTTON "Open Menu Icon" @ref:20 /nav#pageHeader/div.header__inner/div.header__subnav-mount/div.header__container[1]/div.header__left[1]/button#headerMenuIcon[1]
+BUTTON "Close Menu Icon" @ref:21 /nav#pageHeader/div.header__inner/div.header__subnav-mount/div.header__container[1]/div.header__left[1]/button#headerCloseIcon[2]
+LINK "CNN logo" @ref:22 /nav#pageHeader/div.header__inner/div.header__subnav-mount/div.header__container[1]/div.header__left[1]/a
+LINK "US" @ref:23 /div.header__container[1]/div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-item[1]/a.header__nav-item-link
+LINK "World" @ref:24 /div.header__container[1]/div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-item[2]/a.header__nav-item-link
+LINK "Politics" @ref:25 /div.header__container[1]/div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-item[3]/a.header__nav-item-link
+LINK "Business" @ref:26 /div.header__container[1]/div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-item[4]/a.header__nav-item-link
+LINK "Health" @ref:27 /div.header__container[1]/div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-item[5]/a.header__nav-item-link
+LINK "Entertainment" @ref:28 /div.header__container[1]/div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-item[6]/a.header__nav-item-link
+LINK "Style" @ref:29 /div.header__container[1]/div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-item[7]/a.header__nav-item-link
+LINK "Travel" @ref:30 /div.header__container[1]/div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-item[8]/a.header__nav-item-link
+LINK "Sports" @ref:31 /div.header__container[1]/div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-item[9]/a.header__nav-item-link
+LINK "Science" @ref:32 /div.header__container[1]/div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-item[10]/a.header__nav-item-link
+LINK "Climate" @ref:33 /div.header__container[1]/div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-item[11]/a.header__nav-item-link
+LINK "Weather" @ref:34 /div.header__container[1]/div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-item[12]/a.header__nav-item-link
+LINK "Ukraine-Russia War" @ref:35 /div.header__container[1]/div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-item[13]/a.header__nav-item-link
+LINK "Israel-Hamas War" @ref:36 /div.header__container[1]/div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-item[14]/a.header__nav-item-link
+LINK "Games" @ref:37 /div.header__container[1]/div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-item[15]/a.header__nav-item-link
+LINK "US" @ref:38 /div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-more[16]/div.header__nav-item-dropdown/a[1]
+LINK "World" @ref:39 /div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-more[16]/div.header__nav-item-dropdown/a[2]
+LINK "Politics" @ref:40 /div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-more[16]/div.header__nav-item-dropdown/a[3]
+LINK "Business" @ref:41 /div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-more[16]/div.header__nav-item-dropdown/a[4]
+LINK "Health" @ref:42 /div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-more[16]/div.header__nav-item-dropdown/a[5]
+LINK "Entertainment" @ref:43 /div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-more[16]/div.header__nav-item-dropdown/a[6]
+LINK "Style" @ref:44 /div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-more[16]/div.header__nav-item-dropdown/a[7]
+LINK "Travel" @ref:45 /div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-more[16]/div.header__nav-item-dropdown/a[8]
+LINK "Sports" @ref:46 /div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-more[16]/div.header__nav-item-dropdown/a[9]
+LINK "Science" @ref:47 /div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-more[16]/div.header__nav-item-dropdown/a[10]
+LINK "Climate" @ref:48 /div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-more[16]/div.header__nav-item-dropdown/a[11]
+LINK "Weather" @ref:49 /div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-more[16]/div.header__nav-item-dropdown/a[12]
+LINK "Ukraine-Russia War" @ref:50 /div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-more[16]/div.header__nav-item-dropdown/a[13]
+LINK "Israel-Hamas War" @ref:51 /div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-more[16]/div.header__nav-item-dropdown/a[14]
+LINK "Games" @ref:52 /div.header__left[1]/nav.header__nav/div.header__nav-container/div.header__nav-more[16]/div.header__nav-item-dropdown/a[15]
+LINK "Watch" @ref:53 /nav#pageHeader/div.header__inner/div.header__subnav-mount/div.header__container[1]/div.header__right[2]/a.header__video-link[1]
+LINK "Listen" @ref:54 /nav#pageHeader/div.header__inner/div.header__subnav-mount/div.header__container[1]/div.header__right[2]/a.header__audio-link[2]
+LINK "Live TV" @ref:55 /nav#pageHeader/div.header__inner/div.header__subnav-mount/div.header__container[1]/div.header__right[2]/a.header__live-tv-link[3]
+BUTTON "Search Icon" @ref:56 /nav#pageHeader/div.header__inner/div.header__subnav-mount/div.header__container[1]/div.header__right[2]/button#headerSearchIcon[1]
+LINK "Subscribe Button" @ref:57 /nav#pageHeader/div.header__inner/div.header__subnav-mount/div.header__container[1]/div.header__right[2]/button#headerSubscribeButton[2]
+BUTTON "User Account Nav Button" @ref:58 /div.header__subnav-mount/div.header__container[1]/div.header__right[2]/div#desktop-header-account-nav/nav/button[1]
+LINK "User Account Log In Button" @ref:59 /div.header__subnav-mount/div.header__container[1]/div.header__right[2]/div#desktop-header-account-nav/nav/button[2]
+LINK "User Account Log In Button" @ref:60 /div.header__subnav-mount/div.header__container[1]/div.header__right[2]/div#desktop-header-account-nav/nav/button[3]
+LINK "Settings" @ref:61 /div.header__right[2]/div#desktop-header-account-nav/nav/ul/li[1]/a
+LINK "Newsletters" @ref:62 /div.header__right[2]/div#desktop-header-account-nav/nav/ul/li[2]/a
+LINK "Topics you follow" @ref:63 /div.header__right[2]/div#desktop-header-account-nav/nav/ul/li[3]/a
+LINK "Sign out" @ref:64 /div.header__right[2]/div#desktop-header-account-nav/nav/ul/li[4]/a
+LINK "log in" @ref:65 /div.header__subnav-mount/div.header__container[1]/div.header__right[2]/div#desktop-header-account-nav/nav/a
+TEXTBOX "Search" @ref:66 /div.header__subnav-mount/div#headerSubNav[2]/div.header__container/div.search-bar[1]/form.search-bar__form/input.search-bar__input
+BUTTON "Submit" @ref:67 /div.header__subnav-mount/div#headerSubNav[2]/div.header__container/div.search-bar[1]/form.search-bar__form/button.search-bar__submit
+BUTTON "User Account Nav Button" @ref:68 /div.header__subnav-mount/div#headerSubNav[2]/div.header__container/div#mobile-header-account-nav[2]/nav/button[1]
+LINK "User Account Log In Button" @ref:69 /div.header__subnav-mount/div#headerSubNav[2]/div.header__container/div#mobile-header-account-nav[2]/nav/button[2]
+LINK "User Account Log In Button" @ref:70 /div.header__subnav-mount/div#headerSubNav[2]/div.header__container/div#mobile-header-account-nav[2]/nav/button[3]
+LINK "Settings" @ref:71 /div.header__container/div#mobile-header-account-nav[2]/nav/ul/li[1]/a
+LINK "Newsletters" @ref:72 /div.header__container/div#mobile-header-account-nav[2]/nav/ul/li[2]/a
+LINK "Topics you follow" @ref:73 /div.header__container/div#mobile-header-account-nav[2]/nav/ul/li[3]/a
+LINK "Sign out" @ref:74 /div.header__container/div#mobile-header-account-nav[2]/nav/ul/li[4]/a
+LINK "log in" @ref:75 /div.header__subnav-mount/div#headerSubNav[2]/div.header__container/div#mobile-header-account-nav[2]/nav/a
+LINK "Live TV" @ref:76 /nav#pageHeader/div.header__inner/div.header__subnav-mount/div#headerSubNav[2]/div.header__container/a.header__live-tv-link[1]
+LINK "Listen" @ref:77 /nav#pageHeader/div.header__inner/div.header__subnav-mount/div#headerSubNav[2]/div.header__container/a.header__audio-link[2]
+LINK "Watch" @ref:78 /nav#pageHeader/div.header__inner/div.header__subnav-mount/div#headerSubNav[2]/div.header__container/a.header__video-link[3]
+LINK "US Edition Link" @ref:79 /div.header__subnav-mount/div#headerSubNav[2]/div.header__container/nav.header__editionizer[1]/div.header__editionizer-item[2]/a.header__editionizer-link
+LINK "International Edition Link" @ref:80 /div.header__subnav-mount/div#headerSubNav[2]/div.header__container/nav.header__editionizer[1]/div.header__editionizer-item[3]/a.header__editionizer-link
+LINK "Arabic Edition Link" @ref:81 /div.header__subnav-mount/div#headerSubNav[2]/div.header__container/nav.header__editionizer[1]/div.header__editionizer-item[4]/a.header__editionizer-link
+LINK "Español Edition Link" @ref:82 /div.header__subnav-mount/div#headerSubNav[2]/div.header__container/nav.header__editionizer[1]/div.header__editionizer-item[5]/a.header__editionizer-link
+LINK "US" @ref:83 /div#headerSubNav[2]/div.header__container/nav.header__editionizer[1]/ul.header__editionizer-menu/li.header__editionizer-item[1]/a.header__editionizer-link
+LINK "International" @ref:84 /div#headerSubNav[2]/div.header__container/nav.header__editionizer[1]/ul.header__editionizer-menu/li.header__editionizer-item[2]/a.header__editionizer-link
+LINK "Arabic" @ref:85 /div#headerSubNav[2]/div.header__container/nav.header__editionizer[1]/ul.header__editionizer-menu/li.header__editionizer-item[3]/a.header__editionizer-link
+LINK "Español" @ref:86 /div#headerSubNav[2]/div.header__container/nav.header__editionizer[1]/ul.header__editionizer-menu/li.header__editionizer-item[4]/a.header__editionizer-link
+LINK "World" @ref:87 /div#headerSubNav[2]/div.header__container/nav[2]/ul/li[1]/a
+LINK "World Africa" @ref:88 /nav[2]/ul/li[1]/ul/li[1]/a
+LINK "World Americas" @ref:89 /nav[2]/ul/li[1]/ul/li[2]/a
+LINK "World Asia" @ref:90 /nav[2]/ul/li[1]/ul/li[3]/a
+LINK "World Australia" @ref:91 /nav[2]/ul/li[1]/ul/li[4]/a
+LINK "World China" @ref:92 /nav[2]/ul/li[1]/ul/li[5]/a
+LINK "World Europe" @ref:93 /nav[2]/ul/li[1]/ul/li[6]/a
+LINK "World India" @ref:94 /nav[2]/ul/li[1]/ul/li[7]/a
+LINK "World Middle East" @ref:95 /nav[2]/ul/li[1]/ul/li[8]/a
+LINK "World United Kingdom" @ref:96 /nav[2]/ul/li[1]/ul/li[9]/a
+LINK "US Politics" @ref:97 /div#headerSubNav[2]/div.header__container/nav[2]/ul/li[2]/a
+LINK "US Politics Trump" @ref:98 /nav[2]/ul/li[2]/ul/li[1]/a
+LINK "US Politics Facts First" @ref:99 /nav[2]/ul/li[2]/ul/li[2]/a
+LINK "US Politics CNN Polls" @ref:100 /nav[2]/ul/li[2]/ul/li[3]/a
+LINK "US Politics 2025 Elections" @ref:101 /nav[2]/ul/li[2]/ul/li[4]/a
+LINK "US Politics Redistricting Tracker" @ref:102 /nav[2]/ul/li[2]/ul/li[5]/a
+LINK "Business" @ref:103 /div#headerSubNav[2]/div.header__container/nav[2]/ul/li[3]/a
+LINK "Business Tech" @ref:104 /nav[2]/ul/li[3]/ul/li[1]/a
+LINK "Business Media" @ref:105 /nav[2]/ul/li[3]/ul/li[2]/a
+LINK "Business Calculators" @ref:106 /nav[2]/ul/li[3]/ul/li[3]/a
+LINK "Business Videos" @ref:107 /nav[2]/ul/li[3]/ul/li[4]/a
+LINK "Markets" @ref:108 /div#headerSubNav[2]/div.header__container/nav[2]/ul/li[4]/a
+LINK "Markets Pre-markets" @ref:109 /nav[2]/ul/li[4]/ul/li[1]/a
+LINK "Markets After-Hours" @ref:110 /nav[2]/ul/li[4]/ul/li[2]/a
+LINK "Markets Fear & Greed" @ref:111 /nav[2]/ul/li[4]/ul/li[3]/a
+LINK "Markets Investing" @ref:112 /nav[2]/ul/li[4]/ul/li[4]/a
+LINK "Markets Markets Now" @ref:113 /nav[2]/ul/li[4]/ul/li[5]/a
+LINK "Markets Nightcap" @ref:114 /nav[2]/ul/li[4]/ul/li[6]/a
+LINK "Health" @ref:115 /div#headerSubNav[2]/div.header__container/nav[2]/ul/li[5]/a
+LINK "Health Life, But Better" @ref:116 /nav[2]/ul/li[5]/ul/li[1]/a
+LINK "Health Fitness" @ref:117 /nav[2]/ul/li[5]/ul/li[2]/a
+LINK "Health Food" @ref:118 /nav[2]/ul/li[5]/ul/li[3]/a
+LINK "Health Sleep" @ref:119 /nav[2]/ul/li[5]/ul/li[4]/a
+LINK "Health Mindfulness" @ref:120 /nav[2]/ul/li[5]/ul/li[5]/a
+LINK "Health Relationships" @ref:121 /nav[2]/ul/li[5]/ul/li[6]/a
+LINK "Entertainment" @ref:122 /div#headerSubNav[2]/div.header__container/nav[2]/ul/li[6]/a
+LINK "Entertainment Movies" @ref:123 /nav[2]/ul/li[6]/ul/li[1]/a
+LINK "Entertainment Television" @ref:124 /nav[2]/ul/li[6]/ul/li[2]/a
+LINK "Entertainment Celebrity" @ref:125 /nav[2]/ul/li[6]/ul/li[3]/a
+LINK "Tech" @ref:126 /div#headerSubNav[2]/div.header__container/nav[2]/ul/li[7]/a
+LINK "Tech Innovate" @ref:127 /nav[2]/ul/li[7]/ul/li[1]/a
+LINK "Tech Foreseeable Future" @ref:128 /nav[2]/ul/li[7]/ul/li[2]/a
+LINK "Tech Mission: Ahead" @ref:129 /nav[2]/ul/li[7]/ul/li[3]/a
+LINK "Tech Work Transformed" @ref:130 /nav[2]/ul/li[7]/ul/li[4]/a
+LINK "Tech Innovative Cities" @ref:131 /nav[2]/ul/li[7]/ul/li[5]/a
+LINK "Style" @ref:132 /div#headerSubNav[2]/div.header__container/nav[2]/ul/li[8]/a
+LINK "Style Arts" @ref:133 /nav[2]/ul/li[8]/ul/li[1]/a
+LINK "Style Design" @ref:134 /nav[2]/ul/li[8]/ul/li[2]/a
+LINK "Style Fashion" @ref:135 /nav[2]/ul/li[8]/ul/li[3]/a
+LINK "Style Architecture" @ref:136 /nav[2]/ul/li[8]/ul/li[4]/a
+LINK "Style Luxury" @ref:137 /nav[2]/ul/li[8]/ul/li[5]/a
+LINK "Style Beauty" @ref:138 /nav[2]/ul/li[8]/ul/li[6]/a
+LINK "Style Video" @ref:139 /nav[2]/ul/li[8]/ul/li[7]/a
+LINK "Travel" @ref:140 /div#headerSubNav[2]/div.header__container/nav[2]/ul/li[9]/a
+LINK "Travel Destinations" @ref:141 /nav[2]/ul/li[9]/ul/li[1]/a
+LINK "Travel Food & Drink" @ref:142 /nav[2]/ul/li[9]/ul/li[2]/a
+LINK "Travel Stay" @ref:143 /nav[2]/ul/li[9]/ul/li[3]/a
+LINK "Travel News" @ref:144 /nav[2]/ul/li[9]/ul/li[4]/a
+LINK "Travel Videos" @ref:145 /nav[2]/ul/li[9]/ul/li[5]/a
+LINK "Sports" @ref:146 /div#headerSubNav[2]/div.header__container/nav[2]/ul/li[10]/a
+LINK "Sports Football" @ref:147 /nav[2]/ul/li[10]/ul/li[1]/a
+LINK "Sports Tennis" @ref:148 /nav[2]/ul/li[10]/ul/li[2]/a
+LINK "Sports Golf" @ref:149 /nav[2]/ul/li[10]/ul/li[3]/a
+LINK "Sports Motorsport" @ref:150 /nav[2]/ul/li[10]/ul/li[4]/a
+LINK "Sports US Sports" @ref:151 /nav[2]/ul/li[10]/ul/li[5]/a
+LINK "Sports Olympics" @ref:152 /nav[2]/ul/li[10]/ul/li[6]/a
+LINK "Sports Climbing" @ref:153 /nav[2]/ul/li[10]/ul/li[7]/a
+LINK "Sports Esports" @ref:154 /nav[2]/ul/li[10]/ul/li[8]/a
+LINK "Sports Hockey" @ref:155 /nav[2]/ul/li[10]/ul/li[9]/a
+LINK "Science" @ref:156 /div#headerSubNav[2]/div.header__container/nav[2]/ul/li[11]/a
+LINK "Science Space" @ref:157 /nav[2]/ul/li[11]/ul/li[1]/a
+LINK "Science Life" @ref:158 /nav[2]/ul/li[11]/ul/li[2]/a
+LINK "Science Unearthed" @ref:159 /nav[2]/ul/li[11]/ul/li[3]/a
+LINK "Climate" @ref:160 /div#headerSubNav[2]/div.header__container/nav[2]/ul/li[12]/a
+LINK "Climate Solutions" @ref:161 /nav[2]/ul/li[12]/ul/li[1]/a
+LINK "Climate Weather" @ref:162 /nav[2]/ul/li[12]/ul/li[2]/a
+LINK "Weather" @ref:163 /div#headerSubNav[2]/div.header__container/nav[2]/ul/li[13]/a
+LINK "Weather Video" @ref:164 /nav[2]/ul/li[13]/ul/li[1]/a
+LINK "Weather Climate" @ref:165 /nav[2]/ul/li[13]/ul/li[2]/a
+LINK "Ukraine-Russia War" @ref:166 /div#headerSubNav[2]/div.header__container/nav[2]/ul/li[14]/a
+LINK "Israel-Hamas War" @ref:167 /div#headerSubNav[2]/div.header__container/nav[2]/ul/li[15]/a
+LINK "Features" @ref:168 /div#headerSubNav[2]/div.header__container/nav[2]/ul/li[16]/a
+LINK "Features As Equals" @ref:169 /nav[2]/ul/li[16]/ul/li[1]/a
+LINK "Features Call to Earth" @ref:170 /nav[2]/ul/li[16]/ul/li[2]/a
+LINK "Features Freedom Project" @ref:171 /nav[2]/ul/li[16]/ul/li[3]/a
+LINK "Features Impact Your World" @ref:172 /nav[2]/ul/li[16]/ul/li[4]/a
+LINK "Features Inside Africa" @ref:173 /nav[2]/ul/li[16]/ul/li[5]/a
+LINK "Features CNN Heroes" @ref:174 /nav[2]/ul/li[16]/ul/li[6]/a
+LINK "Watch" @ref:175 /div#headerSubNav[2]/div.header__container/nav[2]/ul/li[17]/a
+LINK "Watch Live TV" @ref:176 /nav[2]/ul/li[17]/ul/li[1]/a
+LINK "Watch CNN Fast" @ref:177 /nav[2]/ul/li[17]/ul/li[2]/a
+LINK "Watch Shows A-Z" @ref:178 /nav[2]/ul/li[17]/ul/li[3]/a
+LINK "Watch CNN10" @ref:179 /nav[2]/ul/li[17]/ul/li[4]/a
+LINK "Watch CNN Max" @ref:180 /nav[2]/ul/li[17]/ul/li[5]/a
+LINK "Watch CNN TV Schedules" @ref:181 /nav[2]/ul/li[17]/ul/li[6]/a
+LINK "Listen" @ref:182 /div#headerSubNav[2]/div.header__container/nav[2]/ul/li[18]/a
+LINK "Listen CNN 5 Things" @ref:183 /nav[2]/ul/li[18]/ul/li[1]/a
+LINK "Listen Chasing Life with Dr. Sanjay Gupta" @ref:184 /nav[2]/ul/li[18]/ul/li[2]/a
+LINK "Listen The Assignment with Audie Cornish" @ref:185 /nav[2]/ul/li[18]/ul/li[3]/a
+LINK "Listen One Thing" @ref:186 /nav[2]/ul/li[18]/ul/li[4]/a
+LINK "Listen Tug of War" @ref:187 /nav[2]/ul/li[18]/ul/li[5]/a
+LINK "Listen CNN Political Briefing" @ref:188 /nav[2]/ul/li[18]/ul/li[6]/a
+LINK "Listen The Axe Files" @ref:189 /nav[2]/ul/li[18]/ul/li[7]/a
+LINK "Listen All There Is with Anderson Cooper" @ref:190 /nav[2]/ul/li[18]/ul/li[8]/a
+LINK "Listen All CNN Audio podcasts" @ref:191 /nav[2]/ul/li[18]/ul/li[9]/a
+LINK "Games" @ref:192 /div#headerSubNav[2]/div.header__container/nav[2]/ul/li[19]/a
+LINK "Games Daily Crossword" @ref:193 /nav[2]/ul/li[19]/ul/li[1]/a
+LINK "Games Jumble Crossword" @ref:194 /nav[2]/ul/li[19]/ul/li[2]/a
+LINK "Games Photo Shuffle" @ref:195 /nav[2]/ul/li[19]/ul/li[3]/a
+LINK "Games Sudoblock" @ref:196 /nav[2]/ul/li[19]/ul/li[4]/a
+LINK "Games Sudoku" @ref:197 /nav[2]/ul/li[19]/ul/li[5]/a
+LINK "Games 5 Things Quiz" @ref:198 /nav[2]/ul/li[19]/ul/li[6]/a
+LINK "About CNN" @ref:199 /div#headerSubNav[2]/div.header__container/nav[2]/ul/li[20]/a
+LINK "About CNN Photos" @ref:200 /nav[2]/ul/li[20]/ul/li[1]/a
+LINK "About CNN Investigations" @ref:201 /nav[2]/ul/li[20]/ul/li[2]/a
+LINK "About CNN CNN Profiles" @ref:202 /nav[2]/ul/li[20]/ul/li[3]/a
+LINK "About CNN CNN Leadership" @ref:203 /nav[2]/ul/li[20]/ul/li[4]/a
+LINK "About CNN CNN Newsletters" @ref:204 /nav[2]/ul/li[20]/ul/li[5]/a
+LINK "About CNN Work for CNN" @ref:205 /nav[2]/ul/li[20]/ul/li[6]/a
+LINK "Visit us on Facebook" @ref:206 /div#headerSubNav[2]/div.header__container/div.header__social-links[3]/ul/li[1]/a
+LINK "Visit us on X" @ref:207 /div#headerSubNav[2]/div.header__container/div.header__social-links[3]/ul/li[2]/a
+LINK "Visit us on Instagram" @ref:208 /div#headerSubNav[2]/div.header__container/div.header__social-links[3]/ul/li[3]/a
+LINK "Visit us on TikTok" @ref:209 /div#headerSubNav[2]/div.header__container/div.header__social-links[3]/ul/li[4]/a
+LINK "Visit us on LinkedIn" @ref:210 /div#headerSubNav[2]/div.header__container/div.header__social-links[3]/ul/li[5]/a
+LINK "CIA director in Venezuela" @ref:211 /section/section.tabcontent/div.container/ul/li.card[1]/a
+LINK "Viktor Orbán" @ref:212 /section/section.tabcontent/div.container/ul/li.card[2]/a
+LINK "Lull in nuclear tests" @ref:213 /section/section.tabcontent/div.container/ul/li.card[3]/a
+LINK "Video Trump’s eating habits 3:13" @ref:214 /section/section.tabcontent/div.container/ul/li.card[4]/a
+LINK "Basketball and gambling" @ref:215 /section/section.tabcontent/div.container/ul/li.card[5]/a
+LINK "Tourism in Bangladesh" @ref:216 /section/section.tabcontent/div.container/ul/li.card[6]/a
+LINK "How to find your style" @ref:217 /section/section.tabcontent/div.container/ul/li.card[7]/a
+LINK "new pope conclave day two 05 08 25" @ref:218 /section[3]/section/section.tabcontent/a
+LINK "function imageLoadError(img) { const fallbackIm..." @ref:219 /section/section.tabcontent/div.container[1]/ul/li.card[1]/a[1]
+LINK "911 transcripts and incident report reveal wher..." @ref:220 /section/section.tabcontent/div.container[1]/ul/li.card[1]/a[2]
+LINK "Catch up Trump threatens to invoke a rarely-use..." @ref:221 /section/section.tabcontent/div.container[1]/ul/li.card[2]/a
+LINK "Analysis Minneapolis is becoming a critical tes..." @ref:222 /section/section.tabcontent/div.container[1]/ul/li.card[3]/a
+LINK "The White House" @ref:223 /section/section.tabcontent/div.container[2]/ul/li.card[1]/a[1]
+LINK "Venezuela’s Machado gave Trump her Nobel prize...." @ref:224 /section/section.tabcontent/div.container[2]/ul/li.card[1]/a[2]
+LINK "CIA director traveled to Venezuela to meet with..." @ref:225 /section/section.tabcontent/div.container[2]/ul/li.card[2]/a
+LINK "Why the Trump administration is holding million..." @ref:226 /section/section.tabcontent/div.container[2]/ul/li.card[3]/a
+LINK "Trump floats tariffs on countries opposed to US..." @ref:227 /section[3]/section/section.tabcontent/div.container[1]/a
+LINK "• Live Updates Live Updates CNN" @ref:228 /section[3]/section/section.tabcontent/div.container[1]/div.card[1]/a[1]
+LINK "• Live Updates Live Updates Live Updates The US..." @ref:229 /section[3]/section/section.tabcontent/div.container[1]/div.card[1]/a[2]
+LINK "• CNN Poll CNN Poll CNN Poll Majority of Americ..." @ref:230 /section[3]/section/section.tabcontent/div.container[1]/div.card[2]/a
+LINK "Judge deals blow to the Trump Justice Departmen..." @ref:231 /section[3]/section/section.tabcontent/div.container[1]/div.card[3]/a
+LINK "• Video 2:01 MAHSA/AFP/Middle East Images/Getty..." @ref:232 /section/section.tabcontent/div.container[2]/ul/li.card[1]/a[1]
+LINK "Video Angha: In US-Iran tensions, ‘next 48 to 7..." @ref:233 /section/section.tabcontent/div.container[2]/ul/li.card[1]/a[2]
+LINK "• Video 1:32 CNN" @ref:234 /section/section.tabcontent/div.container[2]/ul/li.card[2]/a[1]
+LINK "Video CNN political director breaks down the po..." @ref:235 /section/section.tabcontent/div.container[2]/ul/li.card[2]/a[2]
+LINK "• Video 6:52 CNN" @ref:236 /section/section.tabcontent/div.container[2]/ul/li.card[3]/a[1]
+LINK "Video ‘Sloppy’: Journalist went through ICE’s h..." @ref:237 /section/section.tabcontent/div.container[2]/ul/li.card[3]/a[2]
+BUTTON "Exit Playback" @ref:238 /li.card/div.card--media-large/div/div/div#overlay-root/button
+BUTTON "Cast, not connected" @ref:239 /li.card/div.card--media-large/div/div/div#overlay-root/button
+BUTTON "Play" @ref:240 /li.card/div.card--media-large/div/div/div#overlay-root/button
+SLIDER @ref:241 [type=range] (disabled) /li.card/div.card--media-large/div/div/div#overlay-root/input
+BUTTON "Play" @ref:242 /li.card/div.card--media-large/div/div/div#overlay-root/button
+BUTTON "Volume 0%" @ref:243 /li.card/div.card--media-large/div/div/div#overlay-root/button
+BUTTON "Audio and Subtitle Settings" @ref:244 /li.card/div.card--media-large/div/div/div#overlay-root/button[1]
+BUTTON "Full Screen" @ref:245 /li.card/div.card--media-large/div/div/div#overlay-root/button[2]
+LINK "Learn More" @ref:246 /li.card/div.card--media-large/div/div/div#overlay-root/a
+BUTTON "Close audio and subtitles menu" @ref:247 /div.card--media-large/div/div/div#overlay-root/div#menuContainer_2ed4c/button
+RADIO "Off" @ref:248 /div/div#overlay-root/div#menuContainer_2ed4c/ul/li/button
+RADIO "English" @ref:249 /div/div#overlay-root/div#menuContainer_2ed4c/ul/li/button
+BUTTON "Caption Styling Settings" @ref:250 /div.card--media-large/div/div/div#overlay-root/div#menuContainer_2ed4c/button
+LINK "CNN" @ref:251 /section.tabcontent/div.container[1]/ul/li.card/div.card--media-large/a
+LINK "Video Catch up on today’s global news" @ref:252 /section/section.tabcontent/div.container[1]/ul/li.card/a
+LINK "Md Zakir Hossain/iStock Editorial/Getty Images" @ref:253 /section/section.tabcontent/div.container[2]/ul/li.card[1]/a[1]
+LINK "It’s home to the world’s longest natural sea be..." @ref:254 /section/section.tabcontent/div.container[2]/ul/li.card[1]/a[2]
+LINK "• Video 18:17 Travel Nevada" @ref:255 /section/section.tabcontent/div.container[2]/ul/li.card[2]/a[1]
+LINK "Video Is this man going to die live on Netflix?..." @ref:256 /section/section.tabcontent/div.container[2]/ul/li.card[2]/a[2]
+LINK "Yosef Garfinkel" @ref:257 /section/section.tabcontent/div.container[2]/ul/li.card[3]/a[1]
+LINK "These ancient designs may be the first evidence..." @ref:258 /section/section.tabcontent/div.container[2]/ul/li.card[3]/a[2]
+LINK "Sunny Celeste/imageBROKER/Shutterstock" @ref:259 /section/section.tabcontent/div.container[2]/ul/li.card[4]/a[1]
+LINK "Leonardo da Vinci’s DNA may be hiding in his ar..." @ref:260 /section/section.tabcontent/div.container[2]/ul/li.card[4]/a[2]
+LINK "• Video 1:08 Youtube/@dhammacetiya" @ref:261 /section/section.tabcontent/div.container[2]/ul/li.card[5]/a[1]
+LINK "Video Why Buddhist monks and their dog are walk..." @ref:262 /section/section.tabcontent/div.container[2]/ul/li.card[5]/a[2]
+LINK "Marton Monus/picture-alliance/dpa/AP" @ref:263 /section/section.tabcontent/div.container/ul/li.card[1]/a[1]
+LINK "Rightwingers of the world unite to endorse Orbá..." @ref:264 /section/section.tabcontent/div.container/ul/li.card[1]/a[2]
+LINK "On the verge of strikes in Iran, the US held of..." @ref:265 /section/section.tabcontent/div.container/ul/li.card[2]/a
+LINK "At least 7 killed in Uganda election violence" @ref:266 /section/section.tabcontent/div.container/ul/li.card[3]/a
+LINK "Canada’s leader patches things up with China as..." @ref:267 /section/section.tabcontent/div.container/ul/li.card[4]/a
+LINK "Video Hundreds evacuated after fire in Seoul 0:25" @ref:268 /section/section.tabcontent/div.container/ul/li.card[5]/a
+LINK "Mother of Elon Musk’s son sues his xAI over AI-..." @ref:269 /section/section.tabcontent/div.container/ul/li.card[6]/a
+LINK "Britta Pedersen/picture alliance/Getty Images" @ref:270 /section/section.tabcontent/div.container/ul/li.card[1]/a[1]
+LINK "‘As far as I’m concerned, this regime has falle..." @ref:271 /section/section.tabcontent/div.container/ul/li.card[1]/a[2]
+LINK "Dia Dipasupil/WireImage/Getty Images" @ref:272 /section/section.tabcontent/div.container/ul/li.card[2]/a[1]
+LINK "Jennifer Lawrence says she lost out on Tarantin..." @ref:273 /section/section.tabcontent/div.container/ul/li.card[2]/a[2]
+LINK "Richard Shotwell/Invision/AP" @ref:274 /section/section.tabcontent/div.container/ul/li.card[3]/a[1]
+LINK "Pamela Anderson felt ‘yucky’ sitting close to ‘..." @ref:275 /section/section.tabcontent/div.container/ul/li.card[3]/a[2]
+LINK "Richard Tsong-Taatarii/Star Tribune/AP" @ref:276 /section/section.tabcontent/div.container/ul/li.card[1]/a[1]
+LINK "How the unrest of 2020 cast a long shadow on Mi..." @ref:277 /section/section.tabcontent/div.container/ul/li.card[1]/a[2]
+LINK "Tyrone Siu/Reuters" @ref:278 /section/section.tabcontent/div.container/ul/li.card[2]/a[1]
+LINK "The Minneapolis mayor told ICE to leave his cit..." @ref:279 /section/section.tabcontent/div.container/ul/li.card[2]/a[2]
+LINK "Sarah Rudd" @ref:280 /section[3]/section/section.tabcontent/div.container/div.card/a[1]
+LINK "A 4-year-old died of flu complications. Her mot..." @ref:281 /section[3]/section/section.tabcontent/div.container/div.card/a[2]
+LINK "Touchstone/Kobal/Shutterstock" @ref:282 /section/section.tabcontent/div.container/ul/li.card[1]/a[1]
+LINK "How to actually find your personal style in 2026" @ref:283 /section/section.tabcontent/div.container/ul/li.card[1]/a[2]
+LINK "Roger Kisby/2026GG/Penske Media/Getty Images" @ref:284 /section/section.tabcontent/div.container/ul/li.card[2]/a[1]
+LINK "Why men are setting aside their sneakers in 2026" @ref:285 /section/section.tabcontent/div.container/ul/li.card[2]/a[2]
+LINK "• Video 3:13 cnn" @ref:286 /section/section.tabcontent/div.container/ul/li.card[1]/a[1]
+LINK "Video RFK Jr.: Trump has the most ‘unhinged’ ea..." @ref:287 /section/section.tabcontent/div.container/ul/li.card[1]/a[2]
+LINK "• Analysis Analysis Francis Chung/Politico/Bloo..." @ref:288 /section/section.tabcontent/div.container/ul/li.card[2]/a[1]
+LINK "Analysis Dolls, pencils, backyard chickens and ..." @ref:289 /section/section.tabcontent/div.container/ul/li.card[2]/a[2]
+LINK "Mark Schiefelbein/AP/File" @ref:290 /section/section.tabcontent/div.container/ul/li.card[3]/a[1]
+LINK "Pentagon moves to turn independent military out..." @ref:291 /section/section.tabcontent/div.container/ul/li.card[3]/a[2]
+LINK "David Paul Morris/Bloomberg/Getty Images" @ref:292 /section/section.tabcontent/div.container/ul/li.card[1]/a[1]
+LINK "Trump’s affordability pledge strikes directly a..." @ref:293 /section/section.tabcontent/div.container/ul/li.card[1]/a[2]
+LINK "William Volcov/Brazil Photo Pres/Shutterstock" @ref:294 /section/section.tabcontent/div.container/ul/li.card[2]/a[1]
+LINK "Americans are paying more than ever for cars. C..." @ref:295 /section/section.tabcontent/div.container/ul/li.card[2]/a[2]
+LINK "skynesher/E+/Getty Images" @ref:296 /section/section.tabcontent/div.container/ul/li.card[3]/a[1]
+LINK "When a credit report can hurt your chances of b..." @ref:297 /section/section.tabcontent/div.container/ul/li.card[3]/a[2]
+LINK "Rick Egan/Pool/The Salt Lake Tribune" @ref:298 /section/section.tabcontent/div.container/ul/li.card/a[1]
+LINK "Alleged Charlie Kirk assassin Tyler Robinson’s ..." @ref:299 /section/section.tabcontent/div.container/ul/li.card/a[2]
+LINK "• Analysis Analysis Steven King/Icon Sportswire..." @ref:300 /section/section.tabcontent/div.container/ul/li.card/a[1]
+LINK "Analysis Money is flowing freely in college ath..." @ref:301 /section/section.tabcontent/div.container/ul/li.card/a[2]
+LINK "Edwin Tan/E+/Getty Images" @ref:302 /section/section.tabcontent/div.container/ul/li.card/a[1]
+LINK "Financial stress may be as bad for the heart as..." @ref:303 /section/section.tabcontent/div.container/ul/li.card/a[2]
+LINK "Lexi Critchett/Bloomberg/Getty Images" @ref:304 /section/section.tabcontent/div.container/ul/li.card/a[1]
+LINK "Trump and northeastern governors push for massi..." @ref:305 /section/section.tabcontent/div.container/ul/li.card/a[2]
+LINK "Roger Harris/Science Photo Library RF/Getty Images" @ref:306 /section/section.tabcontent/div.container/ul/li.card/a[1]
+LINK "Fossil analysis changes what paleontologists kn..." @ref:307 /section/section.tabcontent/div.container/ul/li.card/a[2]
+LINK "Wales News Service" @ref:308 /section/section.tabcontent/div.container/ul/li.card/a[1]
+LINK "Two-star Michelin restaurant receives one-star ..." @ref:309 /section/section.tabcontent/div.container/ul/li.card/a[2]
+LINK "• Video 1:12 Wrecktangle Pizza" @ref:310 /section/section.tabcontent/div.container/ul/li.card[1]/a[1]
+LINK "Video Crowd confronts federal agents at MN pizz..." @ref:311 /section/section.tabcontent/div.container/ul/li.card[1]/a[2]
+LINK "• Video 0:38 Obtained by CNN" @ref:312 /section/section.tabcontent/div.container/ul/li.card[2]/a[1]
+LINK "Video Law enforcement use flash bang to enter h..." @ref:313 /section/section.tabcontent/div.container/ul/li.card[2]/a[2]
+LINK "• Video 1:32 CNN" @ref:314 /section/section.tabcontent/div.container/ul/li.card[3]/a[1]
+LINK "Video CNN Poll: Majority call Trump’s first yea..." @ref:315 /section/section.tabcontent/div.container/ul/li.card[3]/a[2]
+LINK "• Video 0:41 Reuters" @ref:316 /section/section.tabcontent/div.container/ul/li.card[4]/a[1]
+LINK "Video Machado gave Trump her Nobel prize medal ..." @ref:317 /section/section.tabcontent/div.container/ul/li.card[4]/a[2]
+LINK "• Video 1:18 CNN" @ref:318 /section/section.tabcontent/div.container/ul/li.card[5]/a[1]
+LINK "Video We went to the ‘Mom Dance Party’ 1:18" @ref:319 /section/section.tabcontent/div.container/ul/li.card[5]/a[2]
+LINK "• Video 1:15 The White House" @ref:320 /section/section.tabcontent/div.container/ul/li.card[6]/a[1]
+LINK "Video See Kimmel’s offer to Trump after Machado..." @ref:321 /section/section.tabcontent/div.container/ul/li.card[6]/a[2]
+LINK "• Video 0:25 Reuters" @ref:322 /section/section.tabcontent/div.container/ul/li.card[7]/a[1]
+LINK "Video Hundreds evacuated after fire in Seoul 0:25" @ref:323 /section/section.tabcontent/div.container/ul/li.card[7]/a[2]
+LINK "• Video 1:07 Korean Central TV" @ref:324 /section/section.tabcontent/div.container/ul/li.card[8]/a[1]
+LINK "Video North Korea takes a cue from Hollywood 1:07" @ref:325 /section/section.tabcontent/div.container/ul/li.card[8]/a[2]
+LINK "• Video 0:18 New York State Police" @ref:326 /section/section.tabcontent/div.container/ul/li.card[9]/a[1]
+LINK "Video Several hospitalized after multi-car cras..." @ref:327 /section/section.tabcontent/div.container/ul/li.card[9]/a[2]
+LINK "• Video 1:22 CNN" @ref:328 /section/section.tabcontent/div.container/ul/li.card[10]/a[1]
+LINK "Video CNN on scene as tear gas deployed in Minn..." @ref:329 /section/section.tabcontent/div.container/ul/li.card[10]/a[2]
+LINK "• Video 0:50 Todd Pomerleau" @ref:330 /section/section.tabcontent/div.container/ul/li.card[11]/a[1]
+LINK "Video Student who was mistakenly deported accep..." @ref:331 /section/section.tabcontent/div.container/ul/li.card[11]/a[2]
+LINK "• Video 1:46 Reuters" @ref:332 /section/section.tabcontent/div.container/ul/li.card[12]/a[1]
+LINK "Video Trump to use private military contractors..." @ref:333 /section/section.tabcontent/div.container/ul/li.card[12]/a[2]
+LINK "• Video 1:08 Youtube/@dhammacetiya" @ref:334 /section/section.tabcontent/div.container/ul/li.card[13]/a[1]
+LINK "Video Why Buddhist monks and their dog are walk..." @ref:335 /section/section.tabcontent/div.container/ul/li.card[13]/a[2]
+LINK "• Video 0:35 Getty Images" @ref:336 /section/section.tabcontent/div.container/ul/li.card[14]/a[1]
+LINK "Video Palestinian activist Mahmoud Khalil faces..." @ref:337 /section/section.tabcontent/div.container/ul/li.card[14]/a[2]
+LINK "• Video 1:03 Reuters" @ref:338 /section/section.tabcontent/div.container/ul/li.card[15]/a[1]
+LINK "Video More European troops head to Greenland as..." @ref:339 /section/section.tabcontent/div.container/ul/li.card[15]/a[2]
+LINK "• Video 1:18 Metropolitan Detention Center Bern..." @ref:340 /section/section.tabcontent/div.container/ul/li.card[16]/a[1]
+LINK "Video Director Timothy Busfield appears in cour..." @ref:341 /section/section.tabcontent/div.container/ul/li.card[16]/a[2]
+LINK "• Video 2:04 CNN" @ref:342 /section/section.tabcontent/div.container/ul/li.card[17]/a[1]
+LINK "Video Buildings collapse over tents in Gaza ami..." @ref:343 /section/section.tabcontent/div.container/ul/li.card[17]/a[2]
+LINK "• Video 3:05 CNN" @ref:344 /section/section.tabcontent/div.container/ul/li.card[18]/a[1]
+LINK "Video Trump threatens to invoke insurrection ac..." @ref:345 /section/section.tabcontent/div.container/ul/li.card[18]/a[2]
+LINK "• Video 1:48 Bryce Urbany/CNN" @ref:346 /section/section.tabcontent/div.container/ul/li.card[19]/a[1]
+LINK "Video Can you buy a longer, healthier life? 1:48" @ref:347 /section/section.tabcontent/div.container/ul/li.card[19]/a[2]
+LINK "• Video 1:08 Andriy Sadovyi, Mayor of Lviv" @ref:348 /section/section.tabcontent/div.container/ul/li.card[20]/a[1]
+LINK "Video Woman in Ukraine carries on working after..." @ref:349 /section/section.tabcontent/div.container/ul/li.card[20]/a[2]
+LINK "• Video 1:09 CNN File" @ref:350 /section/section.tabcontent/div.container/ul/li.card[21]/a[1]
+LINK "Video Why Japan’s Prime Minister may skip sumo ..." @ref:351 /section/section.tabcontent/div.container/ul/li.card[21]/a[2]
+LINK "• Video 1:29 CNN" @ref:352 /section/section.tabcontent/div.container/ul/li.card[22]/a[1]
+LINK "Video People line up for fast-growing Atlanta c..." @ref:353 /section/section.tabcontent/div.container/ul/li.card[22]/a[2]
+LINK "• Video 0:28 Reuters" @ref:354 /section/section.tabcontent/div.container/ul/li.card[23]/a[1]
+LINK "Video Cars swept out to sea in Australian flood..." @ref:355 /section/section.tabcontent/div.container/ul/li.card[23]/a[2]
+LINK "• Video 0:29 CNN" @ref:356 /section/section.tabcontent/div.container/ul/li.card[24]/a[1]
+LINK "Video Minneapolis mayor says city tensions are ..." @ref:357 /section/section.tabcontent/div.container/ul/li.card[24]/a[2]
+LINK "• Video 0:58 NASA Via YouTube" @ref:358 /section/section.tabcontent/div.container/ul/li.card[25]/a[1]
+LINK "Video NASA SpaceX Crew-11 returns to earth 0:58" @ref:359 /section/section.tabcontent/div.container/ul/li.card[25]/a[2]
+LINK "Call to Earth Show all" @ref:360 /section[3]/section/section.tabcontent/div.container/a
+LINK "Getty Images" @ref:361 /section/section.tabcontent/div.container/ul/li.card[1]/a[1]
+LINK "He brought over 600 water bodies back to life. ..." @ref:362 /section/section.tabcontent/div.container/ul/li.card[1]/a[2]
+LINK "Deshakalyan Chowdhury/AFP/Getty Images" @ref:363 /section/section.tabcontent/div.container/ul/li.card[2]/a[1]
+LINK "Labeled ‘husband eaters’ after tiger attacks, t..." @ref:364 /section/section.tabcontent/div.container/ul/li.card[2]/a[2]
+LINK "Northcrest Developments" @ref:365 /section/section.tabcontent/div.container/ul/li.card[3]/a[1]
+LINK "Inside the abandoned airport being transformed ..." @ref:366 /section/section.tabcontent/div.container/ul/li.card[3]/a[2]
+LINK "One Ocean Foundation" @ref:367 /section/section.tabcontent/div.container/ul/li.card[4]/a[1]
+LINK "First mission to bottom of deep-sea canyon reve..." @ref:368 /section/section.tabcontent/div.container/ul/li.card[4]/a[2]
+LINK "Gareth Cattermole/Getty Images" @ref:369 /section[3]/section/section.tabcontent/div.container/div.card/a[1]
+LINK "Lee Byung-hun didn’t plan for global domination..." @ref:370 /section[3]/section/section.tabcontent/div.container/div.card/a[2]
+LINK "Worried Greenlanders fear for future as Trump t..." @ref:371 /section/section.tabcontent/div.container/ul/li.card[1]/a
+LINK "Japan and the Philippines sign a new defense pa..." @ref:372 /section/section.tabcontent/div.container/ul/li.card[2]/a
+LINK "4 questions that will be answered in the NFL pl..." @ref:373 /section/section.tabcontent/div.container/ul/li.card[3]/a
+LINK "Prehistoric wolf’s gut frozen in time reveals a..." @ref:374 /section/section.tabcontent/div.container/ul/li.card[4]/a
+LINK "How killing time at a laundromat set Lily Zhang..." @ref:375 /section/section.tabcontent/div.container/ul/li.card[5]/a
+LINK "Ariana Grande will reunite with ‘Wicked’ costar..." @ref:376 /section/section.tabcontent/div.container/ul/li.card[6]/a
+LINK "Horses really can smell our fear, new study finds" @ref:377 /section/section.tabcontent/div.container/ul/li.card[7]/a
+TEXTBOX "Search" @ref:378 /footer#pageFooter/div.footer__inner/div.search-bar[1]/form.search-bar__form/input.search-bar__input
+BUTTON "Submit" @ref:379 /footer#pageFooter/div.footer__inner/div.search-bar[1]/form.search-bar__form/button.search-bar__submit
+LINK "Subscribe Button" @ref:380 /footer#pageFooter/div.footer__inner/button#footerSubscribeButtonMobile
+BUTTON "User Account Nav Button" @ref:381 /footer#pageFooter/div.footer__inner/div#mobile-footer-account-nav[2]/nav/button[1]
+LINK "User Account Log In Button" @ref:382 /footer#pageFooter/div.footer__inner/div#mobile-footer-account-nav[2]/nav/button[2]
+LINK "User Account Log In Button" @ref:383 /footer#pageFooter/div.footer__inner/div#mobile-footer-account-nav[2]/nav/button[3]
+LINK "Settings" @ref:384 /div.footer__inner/div#mobile-footer-account-nav[2]/nav/ul/li[1]/a
+LINK "Newsletters" @ref:385 /div.footer__inner/div#mobile-footer-account-nav[2]/nav/ul/li[2]/a
+LINK "Topics you follow" @ref:386 /div.footer__inner/div#mobile-footer-account-nav[2]/nav/ul/li[3]/a
+LINK "Sign out" @ref:387 /div.footer__inner/div#mobile-footer-account-nav[2]/nav/ul/li[4]/a
+LINK "log in" @ref:388 /footer#pageFooter/div.footer__inner/div#mobile-footer-account-nav[2]/nav/a
+LINK "Live TV" @ref:389 /footer#pageFooter/div.footer__inner/a.footer__live-tv-link[1]
+LINK "Audio" @ref:390 /footer#pageFooter/div.footer__inner/a.footer__audio-link[2]
+LINK "Video" @ref:391 /footer#pageFooter/div.footer__inner/a.footer__video-link[3]
+LINK "World" @ref:392 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[1]/a
+LINK "World Africa" @ref:393 /nav/ul/li[1]/ul/li[1]/a
+LINK "World Americas" @ref:394 /nav/ul/li[1]/ul/li[2]/a
+LINK "World Asia" @ref:395 /nav/ul/li[1]/ul/li[3]/a
+LINK "World Australia" @ref:396 /nav/ul/li[1]/ul/li[4]/a
+LINK "World China" @ref:397 /nav/ul/li[1]/ul/li[5]/a
+LINK "World Europe" @ref:398 /nav/ul/li[1]/ul/li[6]/a
+LINK "World India" @ref:399 /nav/ul/li[1]/ul/li[7]/a
+LINK "World Middle East" @ref:400 /nav/ul/li[1]/ul/li[8]/a
+LINK "World United Kingdom" @ref:401 /nav/ul/li[1]/ul/li[9]/a
+LINK "US Politics" @ref:402 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[2]/a
+LINK "US Politics Trump" @ref:403 /nav/ul/li[2]/ul/li[1]/a
+LINK "US Politics Facts First" @ref:404 /nav/ul/li[2]/ul/li[2]/a
+LINK "US Politics CNN Polls" @ref:405 /nav/ul/li[2]/ul/li[3]/a
+LINK "US Politics 2025 Elections" @ref:406 /nav/ul/li[2]/ul/li[4]/a
+LINK "US Politics Redistricting Tracker" @ref:407 /nav/ul/li[2]/ul/li[5]/a
+LINK "Business" @ref:408 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[3]/a
+LINK "Business Tech" @ref:409 /nav/ul/li[3]/ul/li[1]/a
+LINK "Business Media" @ref:410 /nav/ul/li[3]/ul/li[2]/a
+LINK "Business Calculators" @ref:411 /nav/ul/li[3]/ul/li[3]/a
+LINK "Business Videos" @ref:412 /nav/ul/li[3]/ul/li[4]/a
+LINK "Markets" @ref:413 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[4]/a
+LINK "Markets Pre-markets" @ref:414 /nav/ul/li[4]/ul/li[1]/a
+LINK "Markets After-Hours" @ref:415 /nav/ul/li[4]/ul/li[2]/a
+LINK "Markets Fear & Greed" @ref:416 /nav/ul/li[4]/ul/li[3]/a
+LINK "Markets Investing" @ref:417 /nav/ul/li[4]/ul/li[4]/a
+LINK "Markets Markets Now" @ref:418 /nav/ul/li[4]/ul/li[5]/a
+LINK "Markets Nightcap" @ref:419 /nav/ul/li[4]/ul/li[6]/a
+LINK "Health" @ref:420 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[5]/a
+LINK "Health Life, But Better" @ref:421 /nav/ul/li[5]/ul/li[1]/a
+LINK "Health Fitness" @ref:422 /nav/ul/li[5]/ul/li[2]/a
+LINK "Health Food" @ref:423 /nav/ul/li[5]/ul/li[3]/a
+LINK "Health Sleep" @ref:424 /nav/ul/li[5]/ul/li[4]/a
+LINK "Health Mindfulness" @ref:425 /nav/ul/li[5]/ul/li[5]/a
+LINK "Health Relationships" @ref:426 /nav/ul/li[5]/ul/li[6]/a
+LINK "Entertainment" @ref:427 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[6]/a
+LINK "Entertainment Movies" @ref:428 /nav/ul/li[6]/ul/li[1]/a
+LINK "Entertainment Television" @ref:429 /nav/ul/li[6]/ul/li[2]/a
+LINK "Entertainment Celebrity" @ref:430 /nav/ul/li[6]/ul/li[3]/a
+LINK "Tech" @ref:431 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[7]/a
+LINK "Tech Innovate" @ref:432 /nav/ul/li[7]/ul/li[1]/a
+LINK "Tech Foreseeable Future" @ref:433 /nav/ul/li[7]/ul/li[2]/a
+LINK "Tech Mission: Ahead" @ref:434 /nav/ul/li[7]/ul/li[3]/a
+LINK "Tech Work Transformed" @ref:435 /nav/ul/li[7]/ul/li[4]/a
+LINK "Tech Innovative Cities" @ref:436 /nav/ul/li[7]/ul/li[5]/a
+LINK "Style" @ref:437 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[8]/a
+LINK "Style Arts" @ref:438 /nav/ul/li[8]/ul/li[1]/a
+LINK "Style Design" @ref:439 /nav/ul/li[8]/ul/li[2]/a
+LINK "Style Fashion" @ref:440 /nav/ul/li[8]/ul/li[3]/a
+LINK "Style Architecture" @ref:441 /nav/ul/li[8]/ul/li[4]/a
+LINK "Style Luxury" @ref:442 /nav/ul/li[8]/ul/li[5]/a
+LINK "Style Beauty" @ref:443 /nav/ul/li[8]/ul/li[6]/a
+LINK "Style Video" @ref:444 /nav/ul/li[8]/ul/li[7]/a
+LINK "Travel" @ref:445 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[9]/a
+LINK "Travel Destinations" @ref:446 /nav/ul/li[9]/ul/li[1]/a
+LINK "Travel Food & Drink" @ref:447 /nav/ul/li[9]/ul/li[2]/a
+LINK "Travel Stay" @ref:448 /nav/ul/li[9]/ul/li[3]/a
+LINK "Travel News" @ref:449 /nav/ul/li[9]/ul/li[4]/a
+LINK "Travel Videos" @ref:450 /nav/ul/li[9]/ul/li[5]/a
+LINK "Sports" @ref:451 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[10]/a
+LINK "Sports Football" @ref:452 /nav/ul/li[10]/ul/li[1]/a
+LINK "Sports Tennis" @ref:453 /nav/ul/li[10]/ul/li[2]/a
+LINK "Sports Golf" @ref:454 /nav/ul/li[10]/ul/li[3]/a
+LINK "Sports Motorsport" @ref:455 /nav/ul/li[10]/ul/li[4]/a
+LINK "Sports US Sports" @ref:456 /nav/ul/li[10]/ul/li[5]/a
+LINK "Sports Olympics" @ref:457 /nav/ul/li[10]/ul/li[6]/a
+LINK "Sports Climbing" @ref:458 /nav/ul/li[10]/ul/li[7]/a
+LINK "Sports Esports" @ref:459 /nav/ul/li[10]/ul/li[8]/a
+LINK "Sports Hockey" @ref:460 /nav/ul/li[10]/ul/li[9]/a
+LINK "Science" @ref:461 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[11]/a
+LINK "Science Space" @ref:462 /nav/ul/li[11]/ul/li[1]/a
+LINK "Science Life" @ref:463 /nav/ul/li[11]/ul/li[2]/a
+LINK "Science Unearthed" @ref:464 /nav/ul/li[11]/ul/li[3]/a
+LINK "Climate" @ref:465 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[12]/a
+LINK "Climate Solutions" @ref:466 /nav/ul/li[12]/ul/li[1]/a
+LINK "Climate Weather" @ref:467 /nav/ul/li[12]/ul/li[2]/a
+LINK "Weather" @ref:468 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[13]/a
+LINK "Weather Video" @ref:469 /nav/ul/li[13]/ul/li[1]/a
+LINK "Weather Climate" @ref:470 /nav/ul/li[13]/ul/li[2]/a
+LINK "Ukraine-Russia War" @ref:471 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[14]/a
+LINK "Israel-Hamas War" @ref:472 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[15]/a
+LINK "Features" @ref:473 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[16]/a
+LINK "Features As Equals" @ref:474 /nav/ul/li[16]/ul/li[1]/a
+LINK "Features Call to Earth" @ref:475 /nav/ul/li[16]/ul/li[2]/a
+LINK "Features Freedom Project" @ref:476 /nav/ul/li[16]/ul/li[3]/a
+LINK "Features Impact Your World" @ref:477 /nav/ul/li[16]/ul/li[4]/a
+LINK "Features Inside Africa" @ref:478 /nav/ul/li[16]/ul/li[5]/a
+LINK "Features CNN Heroes" @ref:479 /nav/ul/li[16]/ul/li[6]/a
+LINK "Watch" @ref:480 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[17]/a
+LINK "Watch Featured" @ref:481 /nav/ul/li[17]/ul/li[1]/a
+LINK "Watch Shows & Films" @ref:482 /nav/ul/li[17]/ul/li[2]/a
+LINK "Watch Network TV" @ref:483 /nav/ul/li[17]/ul/li[3]/a
+LINK "Watch Clips" @ref:484 /nav/ul/li[17]/ul/li[4]/a
+LINK "Watch CNN Headlines" @ref:485 /nav/ul/li[17]/ul/li[5]/a
+LINK "Watch CNN Shorts" @ref:486 /nav/ul/li[17]/ul/li[6]/a
+LINK "Watch TV Shows A-Z" @ref:487 /nav/ul/li[17]/ul/li[7]/a
+LINK "Watch CNN 10" @ref:488 /nav/ul/li[17]/ul/li[8]/a
+LINK "Watch CNN Max" @ref:489 /nav/ul/li[17]/ul/li[9]/a
+LINK "Watch TV Schedule" @ref:490 /nav/ul/li[17]/ul/li[10]/a
+LINK "Listen" @ref:491 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[18]/a
+LINK "Listen CNN 5 Things" @ref:492 /nav/ul/li[18]/ul/li[1]/a
+LINK "Listen Chasing Life with Dr. Sanjay Gupta" @ref:493 /nav/ul/li[18]/ul/li[2]/a
+LINK "Listen The Assignment with Audie Cornish" @ref:494 /nav/ul/li[18]/ul/li[3]/a
+LINK "Listen One Thing" @ref:495 /nav/ul/li[18]/ul/li[4]/a
+LINK "Listen Tug of War" @ref:496 /nav/ul/li[18]/ul/li[5]/a
+LINK "Listen CNN Political Briefing" @ref:497 /nav/ul/li[18]/ul/li[6]/a
+LINK "Listen The Axe Files" @ref:498 /nav/ul/li[18]/ul/li[7]/a
+LINK "Listen All There Is with Anderson Cooper" @ref:499 /nav/ul/li[18]/ul/li[8]/a
+LINK "Listen All CNN Audio podcasts" @ref:500 /nav/ul/li[18]/ul/li[9]/a
+LINK "Games" @ref:501 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[19]/a
+LINK "Games Daily Crossword" @ref:502 /nav/ul/li[19]/ul/li[1]/a
+LINK "Games Jumble Crossword" @ref:503 /nav/ul/li[19]/ul/li[2]/a
+LINK "Games Photo Shuffle" @ref:504 /nav/ul/li[19]/ul/li[3]/a
+LINK "Games Sudoblock" @ref:505 /nav/ul/li[19]/ul/li[4]/a
+LINK "Games Sudoku" @ref:506 /nav/ul/li[19]/ul/li[5]/a
+LINK "Games 5 Things Quiz" @ref:507 /nav/ul/li[19]/ul/li[6]/a
+LINK "About CNN" @ref:508 /div.footer__inner/div.footer__subnav[3]/nav/ul/li[20]/a
+LINK "About CNN Photos" @ref:509 /nav/ul/li[20]/ul/li[1]/a
+LINK "About CNN Investigations" @ref:510 /nav/ul/li[20]/ul/li[2]/a
+LINK "About CNN CNN Profiles" @ref:511 /nav/ul/li[20]/ul/li[3]/a
+LINK "About CNN CNN Leadership" @ref:512 /nav/ul/li[20]/ul/li[4]/a
+LINK "About CNN CNN Newsletters" @ref:513 /nav/ul/li[20]/ul/li[5]/a
+LINK "About CNN Work for CNN" @ref:514 /nav/ul/li[20]/ul/li[6]/a
+LINK "CNN logo" @ref:515 /footer#pageFooter/div.footer__inner/div.footer__row[4]/div.footer__brand-logo[1]/a
+LINK "Video" @ref:516 /footer#pageFooter/div.footer__inner/div.footer__row[4]/div.footer__right[2]/a.footer__video-link[1]
+LINK "Audio" @ref:517 /footer#pageFooter/div.footer__inner/div.footer__row[4]/div.footer__right[2]/a.footer__audio-link[2]
+LINK "Live TV" @ref:518 /footer#pageFooter/div.footer__inner/div.footer__row[4]/div.footer__right[2]/a.footer__live-tv-link[3]
+LINK "Subscribe Button" @ref:519 /footer#pageFooter/div.footer__inner/div.footer__row[4]/div.footer__right[2]/button#footerSubscribeButtonDesktop
+BUTTON "User Account Nav Button" @ref:520 /div.footer__inner/div.footer__row[4]/div.footer__right[2]/div#desktop-footer-account-nav[1]/nav/button[1]
+LINK "User Account Log In Button" @ref:521 /div.footer__inner/div.footer__row[4]/div.footer__right[2]/div#desktop-footer-account-nav[1]/nav/button[2]
+LINK "User Account Log In Button" @ref:522 /div.footer__inner/div.footer__row[4]/div.footer__right[2]/div#desktop-footer-account-nav[1]/nav/button[3]
+LINK "Settings" @ref:523 /div.footer__right[2]/div#desktop-footer-account-nav[1]/nav/ul/li[1]/a
+LINK "Newsletters" @ref:524 /div.footer__right[2]/div#desktop-footer-account-nav[1]/nav/ul/li[2]/a
+LINK "Topics you follow" @ref:525 /div.footer__right[2]/div#desktop-footer-account-nav[1]/nav/ul/li[3]/a
+LINK "Sign out" @ref:526 /div.footer__right[2]/div#desktop-footer-account-nav[1]/nav/ul/li[4]/a
+LINK "log in" @ref:527 /div.footer__inner/div.footer__row[4]/div.footer__right[2]/div#desktop-footer-account-nav[1]/nav/a
+LINK "Visit us on Facebook" @ref:528 /div.footer__row[4]/div.footer__right[2]/div.footer__social-and-app[2]/ul/li[1]/a
+LINK "Visit us on X" @ref:529 /div.footer__row[4]/div.footer__right[2]/div.footer__social-and-app[2]/ul/li[2]/a
+LINK "Visit us on Instagram" @ref:530 /div.footer__row[4]/div.footer__right[2]/div.footer__social-and-app[2]/ul/li[3]/a
+LINK "Visit us on TikTok" @ref:531 /div.footer__row[4]/div.footer__right[2]/div.footer__social-and-app[2]/ul/li[4]/a
+LINK "Visit us on LinkedIn" @ref:532 /div.footer__row[4]/div.footer__right[2]/div.footer__social-and-app[2]/ul/li[5]/a
+LINK "Download on Apple App Store" @ref:533 /div.footer__inner/div.footer__row[4]/div.footer__right[2]/div.footer__social-and-app[2]/div.footer__app-download[2]/a.footer__app-download-link[1]
+LINK "Get it on Google Play" @ref:534 /div.footer__inner/div.footer__row[4]/div.footer__right[2]/div.footer__social-and-app[2]/div.footer__app-download[2]/a.footer__app-download-link[2]
+LINK "Download on Apple App Store" @ref:535 /footer#pageFooter/div.footer__inner/div.footer__app-download/a.footer__app-download-link[1]
+LINK "Get it on Google Play" @ref:536 /footer#pageFooter/div.footer__inner/div.footer__app-download/a.footer__app-download-link[2]
+LINK "Terms of Use" @ref:537 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[1]
+LINK "Privacy Policy" @ref:538 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[2]
+LINK "Manage Cookies" @ref:539 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[3]
+LINK "Ad Choices" @ref:540 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[4]
+LINK "Accessibility & CC" @ref:541 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[5]
+LINK "About" @ref:542 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[6]
+LINK "Newsletters" @ref:543 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[7]
+LINK "Transcripts" @ref:544 /footer#pageFooter/div.footer__inner/nav.footer__links/a.footer__link[8]
+BUTTON "Close preference center" @ref:545 /div#onetrust-consent-sdk[3]/div#onetrust-pc-sdk[2]/button#close-pc-btn-handler
+LINK "https://www.cnn.com/privacy" @ref:546 /div#onetrust-consent-sdk[3]/div#onetrust-pc-sdk[2]/div#ot-pc-content[2]/section/p#ot-desc-id-BG2362/a
+BUTTON "Back" @ref:547 /div#onetrust-consent-sdk[3]/div#onetrust-pc-sdk[2]/section#ot-pc-lst/div#ot-pc-hdr/div#ot-lst-title[1]/button
+TEXTBOX "Cookie list search" @ref:548 /div#onetrust-consent-sdk[3]/div#onetrust-pc-sdk[2]/section#ot-pc-lst/div#ot-pc-hdr/input#vendor-search-handler
+BUTTON "Filter Cookie List" @ref:549 /div#onetrust-consent-sdk[3]/div#onetrust-pc-sdk[2]/section#ot-pc-lst/div#ot-pc-hdr/button#filter-btn-handler
+BUTTON "Clear" @ref:550 /div#onetrust-pc-sdk[2]/section#ot-pc-lst/div#ot-pc-hdr/section#ot-fltr-modal/div#ot-fltr-cnt/button#clear-filters-handler
+CHECKBOX "checkbox label" @ref:551 [type=checkbox] /div#ot-pc-hdr/section#ot-fltr-modal/div#ot-fltr-cnt/ul/li/input#chkbox-id
+BUTTON "Apply" @ref:552 /div#onetrust-pc-sdk[2]/section#ot-pc-lst/div#ot-pc-hdr/section#ot-fltr-modal/div#ot-fltr-cnt/button#filter-apply-handler[1]
+BUTTON "Cancel" @ref:553 /div#onetrust-pc-sdk[2]/section#ot-pc-lst/div#ot-pc-hdr/section#ot-fltr-modal/div#ot-fltr-cnt/button#filter-cancel-handler[2]
+CHECKBOX "checkbox label" @ref:554 [type=checkbox] /div#onetrust-pc-sdk[2]/section#ot-pc-lst/section#ot-lst-cnt/div#ot-sel-blk[1]/div#ot-selall-hostcntr[1]/input
+CHECKBOX "checkbox label" @ref:555 [type=checkbox] /div#onetrust-pc-sdk[2]/section#ot-pc-lst/section#ot-lst-cnt/div#ot-sel-blk[1]/div#ot-selall-vencntr[2]/input
+CHECKBOX "checkbox label" @ref:556 [type=checkbox] /div#onetrust-pc-sdk[2]/section#ot-pc-lst/section#ot-lst-cnt/div#ot-sel-blk[1]/div#ot-selall-licntr[3]/input#select-all-vendor-leg-handler
+BUTTON "Close" @ref:557 /div#onetrust-consent-sdk[3]/div#onetrust-pc-sdk[2]/button
+LINK "Powered by OneTrust Opens in a new Tab" @ref:558 /div#onetrust-consent-sdk[3]/div#onetrust-pc-sdk[2]/a

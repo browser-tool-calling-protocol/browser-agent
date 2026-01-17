@@ -122,6 +122,7 @@ export interface Client {
     maxDepth?: number;
     interactive?: boolean;
     compact?: boolean;
+    format?: 'tree' | 'html';
   }): Promise<{
     tree: string;
     refs: Record<string, { selector: string; role: string; name?: string }>;
@@ -228,6 +229,11 @@ export interface Client {
    * Get current active session
    */
   sessionGetCurrent(): Promise<{ session: import('./session-types.js').SessionInfo | null }>;
+
+  /**
+   * Initialize popup (triggers session reconnection check)
+   */
+  popupInitialize(): Promise<{ initialized: boolean; reconnected: boolean }>;
 }
 
 let commandIdCounter = 0;
@@ -253,7 +259,16 @@ export function createClient(): Client {
             });
           } else {
             const resp = response as ExtensionResponse;
-            resolve(resp.response);
+            if (resp.type === 'btcp:response') {
+              resolve(resp.response);
+            } else {
+              // Unexpected pong response
+              resolve({
+                id: command.id,
+                success: false,
+                error: 'Unexpected response type',
+              });
+            }
           }
         }
       );
@@ -316,6 +331,7 @@ export function createClient(): Client {
         maxDepth: options?.maxDepth,
         interactive: options?.interactive,
         compact: options?.compact,
+        format: options?.format,
       });
       assertSuccess(response);
       return response.data as {
@@ -499,6 +515,15 @@ export function createClient(): Client {
       } as any);
       assertSuccess(response);
       return response.data as { session: import('./session-types.js').SessionInfo | null };
+    },
+
+    async popupInitialize() {
+      const response = await sendCommand({
+        id: generateCommandId(),
+        action: 'popupInitialize',
+      } as any);
+      assertSuccess(response);
+      return response.data as { initialized: boolean; reconnected: boolean };
     },
   };
 }
