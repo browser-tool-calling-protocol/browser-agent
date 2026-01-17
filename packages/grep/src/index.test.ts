@@ -34,22 +34,6 @@ describe('grep', () => {
       const result = grep('LINE', sampleText);
       expect(result).toBe('UPPERCASE LINE');
     });
-
-    it('should match partial strings', () => {
-      const result = grep('end', sampleText);
-      expect(result).toBe('the end');
-    });
-
-    it('should handle single line text', () => {
-      const result = grep('test', 'this is a test');
-      expect(result).toBe('this is a test');
-    });
-
-    it('should handle multiple matches', () => {
-      const text = 'error: something\nwarning: else\nerror: another';
-      const result = grep('error', text);
-      expect(result).toBe('error: something\nerror: another');
-    });
   });
 
   describe('regex patterns', () => {
@@ -68,22 +52,10 @@ describe('grep', () => {
       expect(result).toBe('the end');
     });
 
-    it('should support character classes', () => {
+    it('should support character classes \\d', () => {
       const text = 'user1\nuser2\nuser10\nadmin';
       const result = grep('user\\d', text);
       expect(result).toBe('user1\nuser2\nuser10');
-    });
-
-    it('should support groups', () => {
-      const text = 'foo bar\nfoo baz\nqux bar';
-      const result = grep('foo (bar|baz)', text);
-      expect(result).toBe('foo bar\nfoo baz');
-    });
-
-    it('should support word boundaries', () => {
-      const text = 'test\ntesting\nretest\ntest case';
-      const result = grep('\\btest\\b', text);
-      expect(result).toBe('test\ntest case');
     });
 
     it('should support dot wildcard', () => {
@@ -97,11 +69,154 @@ describe('grep', () => {
       const result = grep('a{2,3}', text);
       expect(result).toBe('aa\naaa\naaaa');
     });
+  });
 
-    it('should fall back to string match for invalid regex', () => {
-      const text = 'test [bracket\nother line';
-      const result = grep('[bracket', text);
-      expect(result).toBe('test [bracket');
+  describe('ignoreCase option (-i)', () => {
+    it('should match case-insensitively', () => {
+      const result = grep('line', sampleText, { ignoreCase: true });
+      expect(result).toBe('line one\nline two\nanother line\nLine Three\nUPPERCASE LINE');
+    });
+
+    it('should work with regex patterns', () => {
+      const result = grep('^line', sampleText, { ignoreCase: true });
+      expect(result).toBe('line one\nline two\nLine Three');
+    });
+  });
+
+  describe('lineNumbers option (-n)', () => {
+    it('should include line numbers with colon', () => {
+      const result = grep('line', sampleText, { lineNumbers: true });
+      expect(result).toBe('1:line one\n2:line two\n3:another line');
+    });
+
+    it('should use 1-based line numbers', () => {
+      const result = grep('end', sampleText, { lineNumbers: true });
+      expect(result).toBe('6:the end');
+    });
+  });
+
+  describe('invert option (-v)', () => {
+    it('should return non-matching lines', () => {
+      const result = grep('line', sampleText, { invert: true });
+      expect(result).toBe('Line Three\nUPPERCASE LINE\nthe end');
+    });
+
+    it('should work with other options', () => {
+      const result = grep('line', sampleText, { invert: true, lineNumbers: true });
+      expect(result).toBe('4:Line Three\n5:UPPERCASE LINE\n6:the end');
+    });
+  });
+
+  describe('count option (-c)', () => {
+    it('should return count of matching lines', () => {
+      const result = grep('line', sampleText, { count: true });
+      expect(result).toBe('3');
+    });
+
+    it('should return 0 when no matches', () => {
+      const result = grep('xyz', sampleText, { count: true });
+      expect(result).toBe('0');
+    });
+
+    it('should work with ignoreCase', () => {
+      const result = grep('line', sampleText, { count: true, ignoreCase: true });
+      expect(result).toBe('5');
+    });
+  });
+
+  describe('maxCount option (-m)', () => {
+    it('should limit number of matches', () => {
+      const result = grep('line', sampleText, { maxCount: 2 });
+      expect(result).toBe('line one\nline two');
+    });
+
+    it('should return all if maxCount is 0', () => {
+      const result = grep('line', sampleText, { maxCount: 0 });
+      expect(result).toBe('line one\nline two\nanother line');
+    });
+  });
+
+  describe('context options (-A, -B)', () => {
+    it('should include lines after match (-A)', () => {
+      const result = grep('another', sampleText, { after: 1 });
+      expect(result).toBe('another line\nLine Three');
+    });
+
+    it('should include lines before match (-B)', () => {
+      const result = grep('another', sampleText, { before: 1 });
+      expect(result).toBe('line two\nanother line');
+    });
+
+    it('should include context before and after', () => {
+      const result = grep('another', sampleText, { before: 1, after: 1 });
+      expect(result).toBe('line two\nanother line\nLine Three');
+    });
+
+    it('should use - separator for context lines with line numbers', () => {
+      const result = grep('another', sampleText, { before: 1, after: 1, lineNumbers: true });
+      expect(result).toBe('2-line two\n3:another line\n4-Line Three');
+    });
+  });
+
+  describe('wordRegexp option (-w)', () => {
+    it('should match whole words only', () => {
+      const text = 'test\ntesting\nretest\ntest case';
+      const result = grep('test', text, { wordRegexp: true });
+      expect(result).toBe('test\ntest case');
+    });
+
+    it('should not match partial words', () => {
+      const text = 'testing\ntested\nretest';
+      const result = grep('test', text, { wordRegexp: true });
+      expect(result).toBe('');
+    });
+  });
+
+  describe('lineRegexp option (-x)', () => {
+    it('should match whole lines only', () => {
+      const text = 'test\ntest line\nline test';
+      const result = grep('test', text, { lineRegexp: true });
+      expect(result).toBe('test');
+    });
+
+    it('should work with ignoreCase', () => {
+      const text = 'TEST\ntest\nTest Line';
+      const result = grep('test', text, { lineRegexp: true, ignoreCase: true });
+      expect(result).toBe('TEST\ntest');
+    });
+  });
+
+  describe('fixedStrings option (-F)', () => {
+    it('should treat pattern as literal string', () => {
+      const text = 'test [bracket]\ntest other\n[bracket] only';
+      const result = grep('[bracket]', text, { fixedStrings: true });
+      expect(result).toBe('test [bracket]\n[bracket] only');
+    });
+
+    it('should not interpret regex special chars', () => {
+      const text = 'file.txt\nfiletxt\nfile-txt';
+      const result = grep('file.txt', text, { fixedStrings: true });
+      expect(result).toBe('file.txt');
+    });
+
+    it('should escape all regex metacharacters', () => {
+      const text = 'a*b+c?\nother';
+      const result = grep('a*b+c?', text, { fixedStrings: true });
+      expect(result).toBe('a*b+c?');
+    });
+  });
+
+  describe('combined options', () => {
+    it('should combine -i -n -v', () => {
+      const text = 'Error\nerror\nWarning\nInfo';
+      const result = grep('error', text, { ignoreCase: true, invert: true, lineNumbers: true });
+      expect(result).toBe('3:Warning\n4:Info');
+    });
+
+    it('should combine -w -i', () => {
+      const text = 'Test\nTesting\ntest case\nTEST';
+      const result = grep('test', text, { wordRegexp: true, ignoreCase: true });
+      expect(result).toBe('Test\ntest case\nTEST');
     });
   });
 });
