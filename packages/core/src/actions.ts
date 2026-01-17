@@ -645,7 +645,7 @@ export class DOMActions {
     interactive?: boolean;
     compact?: boolean;
     all?: boolean;
-    grep?: string;
+    grep?: string | { pattern: string; ignoreCase?: boolean; invert?: boolean; fixedStrings?: boolean };
   }): Promise<SnapshotData> {
     const root = options.selector
       ? this.getElement(options.selector)
