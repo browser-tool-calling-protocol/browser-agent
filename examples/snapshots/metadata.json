@@ -3,98 +3,84 @@
     "filename": "amazon-com-detail",
     "htmlFile": "amazon-com-detail.html",
     "snapshotFile": "amazon-com-detail.snapshot.txt",
-    "generatedAt": "2026-01-17T13:03:29.493Z",
+    "generatedAt": "2026-01-17T13:36:08.489Z",
     "stats": {
       "elementCount": 103,
       "refCount": 95,
       "outputSize": 8282,
-      "generationTime": 3922
-    },
-    "url": "http://localhost/",
-    "title": "Amazon.com: ASUS ROG Swift 32” 4K OLED Gaming Monitor (PG32UCDM) - UHD (3840 x 2160), QD-OLED, 240Hz, 0.03ms, G-SYNC Compatible, Custom Heatsink, Graphene Film, 99% DCI-P3, True 10-bit, 90W USB-C : Electronics"
+      "generationTime": 3855
+    }
   },
   {
     "filename": "amazon-com",
     "htmlFile": "amazon-com.html",
     "snapshotFile": "amazon-com.snapshot.txt",
-    "generatedAt": "2026-01-17T13:03:31.180Z",
+    "generatedAt": "2026-01-17T13:36:09.467Z",
     "stats": {
       "elementCount": 31,
       "refCount": 21,
       "outputSize": 2335,
-      "generationTime": 583
-    },
-    "url": "http://localhost/",
-    "title": "Amazon.com : gaming"
+      "generationTime": 466
+    }
   },
   {
     "filename": "edition-cnn-com",
     "htmlFile": "edition-cnn-com.html",
     "snapshotFile": "edition-cnn-com.snapshot.txt",
-    "generatedAt": "2026-01-17T13:03:38.217Z",
+    "generatedAt": "2026-01-17T13:36:14.179Z",
     "stats": {
       "elementCount": 43,
       "refCount": 39,
       "outputSize": 2583,
-      "generationTime": 4177
-    },
-    "url": "http://localhost/",
-    "title": "Breaking News, Latest News and Videos | CNN"
+      "generationTime": 3355
+    }
   },
   {
     "filename": "github-com-microsoft-vscode",
     "htmlFile": "github-com-microsoft-vscode.html",
     "snapshotFile": "github-com-microsoft-vscode.snapshot.txt",
-    "generatedAt": "2026-01-17T13:03:38.905Z",
+    "generatedAt": "2026-01-17T13:36:14.488Z",
     "stats": {
       "elementCount": 37,
       "refCount": 35,
       "outputSize": 2114,
-      "generationTime": 195
-    },
-    "url": "http://localhost/",
-    "title": "microsoft/vscode: Visual Studio Code"
+      "generationTime": 124
+    }
   },
   {
     "filename": "npr-org-templates",
     "htmlFile": "npr-org-templates.html",
     "snapshotFile": "npr-org-templates.snapshot.txt",
-    "generatedAt": "2026-01-17T13:03:40.490Z",
+    "generatedAt": "2026-01-17T13:36:15.693Z",
     "stats": {
       "elementCount": 145,
       "refCount": 143,
       "outputSize": 10137,
-      "generationTime": 1099
-    },
-    "url": "http://localhost/",
-    "title": "Rose Mary Woods, Devoted Nixon Secretary, Dies : NPR"
+      "generationTime": 1009
+    }
   },
   {
     "filename": "stackoverflow-com",
     "htmlFile": "stackoverflow-com.html",
     "snapshotFile": "stackoverflow-com.snapshot.txt",
-    "generatedAt": "2026-01-17T13:03:42.597Z",
+    "generatedAt": "2026-01-17T13:36:17.092Z",
     "stats": {
       "elementCount": 224,
       "refCount": 210,
       "outputSize": 21312,
-      "generationTime": 998
-    },
-    "url": "http://localhost/",
-    "title": "Send attachments with PHP Mail()? - Stack Overflow"
+      "generationTime": 927
+    }
   },
   {
     "filename": "test-all-mode",
     "htmlFile": "test-all-mode.html",
     "snapshotFile": "test-all-mode.snapshot.txt",
-    "generatedAt": "2026-01-17T13:03:42.639Z",
+    "generatedAt": "2026-01-17T13:36:17.110Z",
     "stats": {
       "elementCount": 6,
       "refCount": 2,
       "outputSize": 339,
-      "generationTime": 27
-    },
-    "url": "http://localhost/",
-    "title": "Test All Mode - Images, Headings, and Text"
+      "generationTime": 11
+    }
   }
 ]
