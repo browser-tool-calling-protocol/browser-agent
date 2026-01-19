@@ -155,12 +155,21 @@ export interface GrepOptions {
   fixedStrings?: boolean;
 }
 
+/**
+ * Snapshot mode determines what content to capture
+ */
+export type SnapshotMode = 'interactive' | 'outline' | 'content';
+
+/**
+ * Snapshot output format
+ */
+export type SnapshotFormat = 'tree' | 'html' | 'markdown';
+
 export interface SnapshotCommand extends BaseCommand {
   action: 'snapshot';
   selector?: Selector;
   maxDepth?: number;
   includeHidden?: boolean;
-  interactive?: boolean;
   compact?: boolean;
   minDepth?: number;
   samplingStrategy?: 'importance' | 'balanced' | 'depth-first';
@@ -168,10 +177,28 @@ export interface SnapshotCommand extends BaseCommand {
   landmarks?: boolean;
   incremental?: boolean;
   baseSnapshot?: SnapshotData;
-  all?: boolean;
-  format?: 'tree' | 'html';
+  /**
+   * Snapshot mode:
+   * - 'interactive': Find clickable elements (default)
+   * - 'outline': Understand page structure with xpaths + metadata
+   * - 'content': Extract text content from sections
+   */
+  mode?: SnapshotMode;
+  /**
+   * Output format:
+   * - 'tree': Flat accessibility tree (default)
+   * - 'html': Raw HTML
+   * - 'markdown': Markdown formatted content
+   */
+  format?: SnapshotFormat;
   /** Filter output lines - simple string or full grep options */
   grep?: string | GrepOptions;
+  /** Max chars per section in content mode */
+  maxLength?: number;
+  /** Include links as [text](url) in markdown format */
+  includeLinks?: boolean;
+  /** Include images as ![alt](src) in markdown format */
+  includeImages?: boolean;
 }
 
 export interface QuerySelectorCommand extends BaseCommand {
