@@ -57,11 +57,7 @@ interface SnapshotOptions {
   root?: Element;
   maxDepth?: number;
   includeHidden?: boolean;
-  /** @deprecated Use mode: 'interactive' instead */
-  interactive?: boolean;
   compact?: boolean;
-  /** @deprecated Use mode instead */
-  all?: boolean;
   /**
    * Snapshot mode:
    * - 'interactive': Find clickable elements (default)
@@ -1439,15 +1435,13 @@ export function createSnapshot(
     root = document.body,
     maxDepth = 50,
     includeHidden = false,
-    interactive = true,
-    all = false,
-    mode,
+    mode = 'interactive',
     format = 'tree',
     grep: grepPattern
   } = options;
 
   // Dispatch based on mode
-  const effectiveMode = mode || (all ? 'all' : (interactive ? 'interactive' : 'interactive'));
+  const effectiveMode = mode;
 
   if (effectiveMode === 'outline') {
     return createOutlineSnapshot(document, refMap, { ...options, root });
@@ -1509,11 +1503,11 @@ export function createSnapshot(
 
     if (isInteractiveElement) totalInteractive++;
 
-    // Skip non-interactive in interactive mode
-    if (interactive && !isInteractiveElement) continue;
+    // Skip non-interactive elements in interactive mode
+    if (!isInteractiveElement) continue;
 
-    // Skip elements without role in non-all mode
-    if (!all && !role) continue;
+    // Skip elements without role
+    if (!role) continue;
 
     const name = getAccessibleName(element);
 

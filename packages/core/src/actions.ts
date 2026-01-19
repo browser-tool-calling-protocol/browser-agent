@@ -140,9 +140,7 @@ export class DOMActions {
           selector: command.selector,
           maxDepth: command.maxDepth,
           includeHidden: command.includeHidden,
-          interactive: command.interactive,
           compact: command.compact,
-          all: command.all,
           mode: command.mode,
           format: command.format,
           grep: command.grep,
@@ -672,9 +670,7 @@ export class DOMActions {
     selector?: string;
     maxDepth?: number;
     includeHidden?: boolean;
-    interactive?: boolean;
     compact?: boolean;
-    all?: boolean;
     mode?: 'interactive' | 'outline' | 'content';
     format?: 'tree' | 'html' | 'markdown';
     grep?: string | { pattern: string; ignoreCase?: boolean; invert?: boolean; fixedStrings?: boolean };
@@ -690,9 +686,7 @@ export class DOMActions {
       root,
       maxDepth: options.maxDepth,
       includeHidden: options.includeHidden,
-      interactive: options.interactive,
       compact: options.compact,
-      all: options.all,
       mode: options.mode,
       format: options.format,
       grep: options.grep,

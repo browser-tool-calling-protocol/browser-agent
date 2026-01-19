@@ -170,8 +170,6 @@ export interface SnapshotCommand extends BaseCommand {
   selector?: Selector;
   maxDepth?: number;
   includeHidden?: boolean;
-  /** @deprecated Use mode: 'interactive' instead */
-  interactive?: boolean;
   compact?: boolean;
   minDepth?: number;
   samplingStrategy?: 'importance' | 'balanced' | 'depth-first';
@@ -179,8 +177,6 @@ export interface SnapshotCommand extends BaseCommand {
   landmarks?: boolean;
   incremental?: boolean;
   baseSnapshot?: SnapshotData;
-  /** @deprecated Use mode instead */
-  all?: boolean;
   /**
    * Snapshot mode:
    * - 'interactive': Find clickable elements (default)
