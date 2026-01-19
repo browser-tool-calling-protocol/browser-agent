@@ -172,9 +172,8 @@ export class SessionManager {
 
     console.log('[SessionManager] Creating group with tabs:', targetTabIds);
 
-    // Get the window for the tab (must be a normal window)
-    const tabs = await chrome.tabs.query({ windowId: chrome.windows.WINDOW_ID_CURRENT });
-    const targetTab = tabs.find(t => targetTabIds.includes(t.id!));
+    // Get the tab details to find its window
+    const targetTab = await chrome.tabs.get(targetTabIds[0]);
 
     if (!targetTab || !targetTab.windowId) {
       console.error('[SessionManager] Could not find valid window for tab');
