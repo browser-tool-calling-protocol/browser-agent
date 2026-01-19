@@ -9,21 +9,21 @@
  * @example Extension usage
  * ```typescript
  * // background.ts
- * import { BackgroundAgent, setupMessageListener } from 'btcp-browser-agent/extension';
+ * import { BackgroundAgent, setupMessageListener } from '@btcp/browser-agent/extension';
  * setupMessageListener();
  *
  * // content.ts
- * import { createContentAgent } from 'btcp-browser-agent/core';
+ * import { createContentAgent } from '@btcp/browser-agent/core';
  * const agent = createContentAgent();
  *
  * // popup.ts
- * import { createClient } from 'btcp-browser-agent/extension';
+ * import { createClient } from '@btcp/browser-agent/extension';
  * const client = createClient();
  * ```
  *
  * @example Standalone usage (no extension)
  * ```typescript
- * import { createContentAgent } from 'btcp-browser-agent';
+ * import { createContentAgent } from '@btcp/browser-agent';
  * const agent = createContentAgent();
  * await agent.execute({ id: '1', action: 'snapshot' });
  * ```

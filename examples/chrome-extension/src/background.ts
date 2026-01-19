@@ -5,7 +5,7 @@
  * - BackgroundAgent for browser operations (tabs, navigation, screenshots)
  * - Message routing to ContentAgent in tabs
  */
-import { setupMessageListener } from 'btcp-browser-agent/extension';
+import { setupMessageListener } from '@btcp/browser-agent/extension';
 
 setupMessageListener();
 

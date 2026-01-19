@@ -1,50 +1,74 @@
-# BTCP Browser Agent
+# @btcp/browser-agent
 
-Browser Tool Calling Protocol - A browser-native implementation for AI agents to interact with web pages using native browser APIs.
+Give AI agents the power to see and control any browser.
 
-## Architecture
+A lightweight foundation for building AI systems that need browser access — automation, testing, web agents, or any browser-based workflow.
 
-This package provides a clean separation between browser-level and DOM-level operations:
+## Why This Package?
+
+AI agents struggle with browsers because:
+- Raw HTML is too noisy (thousands of nodes)
+- CSS selectors break when layouts change
+- No stable way to reference elements across turns
+
+**Browser Agent solves this with smart snapshots:**
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│  Background Script (Extension Service Worker)                    │
-│  ┌─────────────────────────────────────────────────────────────┐│
-│  │ BackgroundAgent                                              ││
-│  │  - Tab management (create, close, switch, list)             ││
-│  │  - Navigation (goto, back, forward, reload)                 ││
-│  │  - Screenshots (chrome.tabs.captureVisibleTab)              ││
-│  │  - Routes DOM commands → ContentAgent                       ││
-│  └─────────────────────────────────────────────────────────────┘│
-└─────────────────────────────────────────────────────────────────┘
-                              │
-            chrome.tabs.sendMessage
-                              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  Content Script (Per Tab)                                        │
-│  ┌─────────────────────────────────────────────────────────────┐│
-│  │ ContentAgent                                                 ││
-│  │  - DOM snapshot (accessibility tree)                        ││
-│  │  - Element interaction (click, type, fill, hover)           ││
-│  │  - DOM queries (getText, getAttribute, isVisible)           ││
-│  │  - Keyboard/mouse events                                    ││
-│  └─────────────────────────────────────────────────────────────┘│
-└─────────────────────────────────────────────────────────────────┘
+BUTTON "Submit" [@ref:0]
+TEXTBOX "Email" [required] [@ref:1]
+LINK "Forgot password?" [@ref:2]
 ```
+
+One command gives your agent a clean, semantic view of any page. Stable `@ref` markers let it interact without fragile selectors.
+
+## Features
+
+- **Smart Snapshots** - Accessibility tree format optimized for AI comprehension
+- **Stable Element Refs** - `@ref:N` markers that survive DOM changes within a session
+- **Full Browser Control** - Navigation, tabs, screenshots, keyboard/mouse
+- **46 DOM Actions** - Click, type, fill, scroll, hover, and more
+- **Two Modes** - Chrome extension (full control) or standalone (same-origin)
+
+## Quick Example
+
+```typescript
+import { createClient } from '@btcp/browser-agent/extension';
+
+const agent = createClient();
+
+// Navigate and understand the page
+await agent.navigate('https://example.com');
+const snapshot = await agent.snapshot();
+// Returns: BUTTON "Login" [@ref:0], TEXTBOX "Email" [@ref:1], ...
+
+// Interact using refs - no CSS selectors needed
+await agent.fill('@ref:1', 'user@example.com');
+await agent.click('@ref:0');
+```
+
+## Use Cases
+
+- **AI Assistants** - Let LLMs browse the web and complete tasks for users
+- **Browser Agents** - Foundation for autonomous web agents that research, navigate, and act
+- **Automated Testing** - Reliable UI tests with stable element refs that don't break on layout changes
+- **Web Automation** - Form filling, data extraction, multi-step workflow automation
+- **Web Scraping** - Extract structured data with semantic understanding of page content
 
 ## Installation
 
 ```bash
-npm install btcp-browser-agent
+npm install @btcp/browser-agent
 ```
 
-## Quick Start
+## Usage Modes
 
-### Extension Usage
+### Extension Mode (Full Browser Control)
+
+For Chrome extensions with cross-origin access, tab management, and screenshots.
 
 **Background Script:**
 ```typescript
-import { BackgroundAgent, setupMessageListener } from 'btcp-browser-agent/extension';
+import { BackgroundAgent, setupMessageListener } from '@btcp/browser-agent/extension';
 
 // Option 1: Just set up message routing
 setupMessageListener();
@@ -57,7 +81,7 @@ await agent.screenshot();
 
 **Content Script:**
 ```typescript
-import { createContentAgent } from 'btcp-browser-agent';
+import { createContentAgent } from '@btcp/browser-agent';
 
 const agent = createContentAgent();
 
@@ -71,7 +95,7 @@ await agent.execute({ id: '2', action: 'click', selector: '@ref:5' });
 
 **Popup (sending commands via messaging):**
 ```typescript
-import { createClient } from 'btcp-browser-agent';
+import { createClient } from '@btcp/browser-agent';
 
 const client = createClient();
 
@@ -82,12 +106,12 @@ await client.click('@ref:5');
 const screenshot = await client.screenshot();
 ```
 
-### Standalone Usage (No Extension)
+### Standalone Mode (No Extension)
 
 For use directly in a web page (limited to same-origin, no tab management):
 
 ```typescript
-import { createContentAgent } from 'btcp-browser-agent';
+import { createContentAgent } from '@btcp/browser-agent';
 
 const agent = createContentAgent();
 
@@ -106,7 +130,7 @@ await agent.execute({ id: '3', action: 'fill', selector: '@ref:3', value: 'Hello
 High-level browser orchestrator that runs in the extension's background script.
 
 ```typescript
-import { BackgroundAgent } from 'btcp-browser-agent/extension';
+import { BackgroundAgent } from '@btcp/browser-agent/extension';
 
 const agent = new BackgroundAgent();
 
@@ -150,31 +174,12 @@ await agent.execute(
 // Active tab stays tab1 (no switching needed)
 ```
 
-### BrowserAgent (Standalone - Browser Tab)
-
-For use directly in a browser tab with convenience methods:
-
-```typescript
-import { BrowserAgent } from 'btcp-browser-agent';
-
-const agent = new BrowserAgent();
-await agent.launch();
-
-// Convenience methods
-const { snapshot, refs } = await agent.snapshot();
-await agent.click('@e1');
-await agent.fill('@e2', 'Hello World');
-await agent.type('input[name="email"]', 'user@example.com');
-
-await agent.close();
-```
-
 ### ContentAgent (Content Script)
 
 DOM automation agent that runs in content scripts or web pages.
 
 ```typescript
-import { createContentAgent } from 'btcp-browser-agent';
+import { createContentAgent } from '@btcp/browser-agent';
 
 const agent = createContentAgent();
 
@@ -234,11 +239,40 @@ The `snapshot` action returns element references for stable selection:
 
 ```typescript
 const { data } = await agent.execute({ id: '1', action: 'snapshot' });
-// data.tree: "- button 'Submit' [ref=5]\n- textbox 'Email' [ref=3]"
-// data.refs: { '5': { role: 'button', name: 'Submit' }, ... }
+// data.tree: "BUTTON 'Submit' [@ref:5]\nTEXTBOX 'Email' [@ref:3]"
 
 // Use refs in subsequent commands
 await agent.execute({ id: '2', action: 'click', selector: '@ref:5' });
+```
+
+## Architecture
+
+The package provides a clean separation between browser-level and DOM-level operations:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  Background Script (Extension Service Worker)                    │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ BackgroundAgent                                              ││
+│  │  - Tab management (create, close, switch, list)             ││
+│  │  - Navigation (goto, back, forward, reload)                 ││
+│  │  - Screenshots (chrome.tabs.captureVisibleTab)              ││
+│  │  - Routes DOM commands → ContentAgent                       ││
+│  └─────────────────────────────────────────────────────────────┘│
+└─────────────────────────────────────────────────────────────────┘
+                              │
+            chrome.tabs.sendMessage
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  Content Script (Per Tab)                                        │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ ContentAgent                                                 ││
+│  │  - DOM snapshot (accessibility tree)                        ││
+│  │  - Element interaction (click, type, fill, hover)           ││
+│  │  - DOM queries (getText, getAttribute, isVisible)           ││
+│  │  - Keyboard/mouse events                                    ││
+│  └─────────────────────────────────────────────────────────────┘│
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ## Package Structure
@@ -255,27 +289,20 @@ btcp-browser-agent/
 │   ├── setupMessageListener()
 │   └── createClient()
 │
-└── btcp-browser-agent    # Main package - re-exports both
+└── @btcp/browser-agent   # Main package - re-exports both
 ```
 
 ## Capabilities Comparison
 
 | Capability | ContentAgent (Standalone) | BackgroundAgent (Extension) |
 |------------|--------------------------|--------------------------|
-| DOM Snapshot | ✅ | ✅ (via ContentAgent) |
-| Element Clicks | ✅ | ✅ (via ContentAgent) |
-| Form Filling | ✅ | ✅ (via ContentAgent) |
-| Cross-origin | ❌ Same-origin only | ✅ Any page |
-| Tab Management | ❌ | ✅ |
-| Navigation | ❌ | ✅ |
-| Screenshots | ❌ | ✅ |
-
-## Use Cases
-
-- **Browser Extensions** - Full browser automation with BackgroundAgent + ContentAgent
-- **Web Applications** - DOM automation with ContentAgent only
-- **Testing Tools** - Automated UI testing
-- **AI Assistants** - Enable AI models to control web pages
+| DOM Snapshot | Yes | Yes (via ContentAgent) |
+| Element Clicks | Yes | Yes (via ContentAgent) |
+| Form Filling | Yes | Yes (via ContentAgent) |
+| Cross-origin | Same-origin only | Any page |
+| Tab Management | No | Yes |
+| Navigation | No | Yes |
+| Screenshots | No | Yes |
 
 ## License
 

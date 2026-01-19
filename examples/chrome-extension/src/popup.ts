@@ -1,8 +1,8 @@
 /**
  * Popup Script - UI for controlling the browser agent
  */
-import { createClient } from 'btcp-browser-agent/extension';
-import { createCLI } from 'btcp-browser-agent/cli';
+import { createClient } from '@btcp/browser-agent/extension';
+import { createCLI } from '@btcp/browser-agent/cli';
 import { runGoogleGithubScenario } from './scenario-google-github';
 
 const client = createClient();

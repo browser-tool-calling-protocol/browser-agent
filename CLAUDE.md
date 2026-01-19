@@ -217,14 +217,14 @@ The package exports multiple entry points:
 
 ```typescript
 // Main re-exports (convenience)
-import { createContentAgent } from 'btcp-browser-agent';
+import { createContentAgent } from '@btcp/browser-agent';
 
 // Direct package imports (preferred for clarity)
-import { createContentAgent } from 'btcp-browser-agent/core';
-import { BackgroundAgent, createClient } from 'btcp-browser-agent/extension';
-import { createCLI } from 'btcp-browser-agent/cli';
+import { createContentAgent } from '@btcp/browser-agent/core';
+import { BackgroundAgent, createClient } from '@btcp/browser-agent/extension';
+import { createCLI } from '@btcp/browser-agent/cli';
 
 // Extension-specific entry points
-import 'btcp-browser-agent/extension/content';    // Content script setup
-import 'btcp-browser-agent/extension/background'; // Background script setup
+import '@btcp/browser-agent/extension/content';    // Content script setup
+import '@btcp/browser-agent/extension/background'; // Background script setup
 ```

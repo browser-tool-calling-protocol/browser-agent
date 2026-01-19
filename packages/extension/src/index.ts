@@ -265,14 +265,14 @@ function isBackgroundContext(): boolean {
  *
  * @example Popup usage:
  * ```typescript
- * import { createClient } from 'btcp-browser-agent/extension';
+ * import { createClient } from '@btcp/browser-agent/extension';
  * const client = createClient();
  * await client.navigate('https://example.com');
  * ```
  *
  * @example Background script usage:
  * ```typescript
- * import { createClient } from 'btcp-browser-agent/extension';
+ * import { createClient } from '@btcp/browser-agent/extension';
  * const client = createClient();
  * // Works the same way - commands go directly to BackgroundAgent
  * await client.navigate('https://example.com');

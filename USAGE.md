@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-npm install btcp-browser-agent
+npm install @btcp/browser-agent
 # or from git
 npm install git+https://github.com/browser-tool-calling-protocol/btcp-browser-agent.git
 ```
@@ -16,7 +16,7 @@ Three files, minimal setup:
 
 ```typescript
 // content.ts
-import { createContentAgent } from 'btcp-browser-agent/extension';
+import { createContentAgent } from '@btcp/browser-agent/extension';
 
 const agent = createContentAgent();
 chrome.runtime.onMessage.addListener(agent.handleMessage);
@@ -26,7 +26,7 @@ chrome.runtime.onMessage.addListener(agent.handleMessage);
 
 ```typescript
 // background.ts
-import { setupMessageListener } from 'btcp-browser-agent/extension';
+import { setupMessageListener } from '@btcp/browser-agent/extension';
 
 setupMessageListener();
 ```
@@ -35,7 +35,7 @@ setupMessageListener();
 
 ```typescript
 // popup.ts
-import { createClient } from 'btcp-browser-agent/extension';
+import { createClient } from '@btcp/browser-agent/extension';
 
 const client = createClient();
 
@@ -55,7 +55,7 @@ await client.click('@ref:5');
 ## Standalone Usage (No Extension)
 
 ```typescript
-import { createContentAgent } from 'btcp-browser-agent';
+import { createContentAgent } from '@btcp/browser-agent';
 
 const agent = createContentAgent();
 

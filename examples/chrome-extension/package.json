@@ -10,7 +10,7 @@
     "demo:scenario": "tsx tests/scenario-google-to-github-star.ts"
   },
   "dependencies": {
-    "btcp-browser-agent": "file:../.."
+    "@btcp/browser-agent": "file:../.."
   },
   "devDependencies": {
     "@types/chrome": "^0.0.268",

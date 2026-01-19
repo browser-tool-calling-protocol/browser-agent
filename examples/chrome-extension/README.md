@@ -1,6 +1,6 @@
 # Chrome Extension Example
 
-Production-ready TypeScript example using `btcp-browser-agent`.
+Production-ready TypeScript example using `@btcp/browser-agent`.
 
 ## Project Structure
 
@@ -22,7 +22,7 @@ examples/chrome-extension/
 
 **src/content.ts** - registers DOM agent and message listener
 ```typescript
-import { createContentAgent } from 'btcp-browser-agent/extension';
+import { createContentAgent } from '@btcp/browser-agent/extension';
 
 const agent = createContentAgent();
 chrome.runtime.onMessage.addListener(agent.handleMessage);
@@ -30,13 +30,13 @@ chrome.runtime.onMessage.addListener(agent.handleMessage);
 
 **src/background.ts** - routes messages
 ```typescript
-import { setupMessageListener } from 'btcp-browser-agent/extension';
+import { setupMessageListener } from '@btcp/browser-agent/extension';
 setupMessageListener();
 ```
 
 **src/popup.ts** - sends commands
 ```typescript
-import { createClient } from 'btcp-browser-agent/extension';
+import { createClient } from '@btcp/browser-agent/extension';
 
 const client = createClient();
 await client.navigate('https://example.com');
@@ -79,7 +79,7 @@ Popup ──chrome.runtime.sendMessage──► Background (setupMessageListener
 ## API Usage
 
 ```typescript
-import { createClient } from 'btcp-browser-agent/extension';
+import { createClient } from '@btcp/browser-agent/extension';
 
 const client = createClient();
 
