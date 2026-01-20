@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>BTCP Remote Control</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      width: 350px;
+      padding: 16px;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      margin: 0;
+      background: #fafafa;
+    }
+    h1 {
+      font-size: 16px;
+      margin: 0 0 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h1 svg {
+      width: 20px;
+      height: 20px;
+    }
+    .status-bar {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ef4444;
+    }
+    .status-text {
+      font-weight: 500;
+      color: #374151;
+    }
+    .section {
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #374151;
+      font-size: 13px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    input[type="text"]:disabled {
+      background: #f3f4f6;
+      color: #6b7280;
+    }
+    button {
+      width: 100%;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-connect {
+      background: #2563eb;
+      color: white;
+    }
+    .btn-connect:hover {
+      background: #1d4ed8;
+    }
+    .btn-connect:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+    }
+    .btn-disconnect {
+      background: #ef4444;
+      color: white;
+      display: none;
+    }
+    .btn-disconnect:hover {
+      background: #dc2626;
+    }
+    .log-container {
+      background: #1f2937;
+      border-radius: 8px;
+      padding: 12px;
+      height: 150px;
+      overflow-y: auto;
+      font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+      font-size: 11px;
+      color: #d1d5db;
+    }
+    .instructions {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 16px;
+      font-size: 12px;
+      color: #1e40af;
+    }
+    .instructions strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+    .instructions code {
+      background: #dbeafe;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+      <path d="M2 17l10 5 10-5"/>
+      <path d="M2 12l10 5 10-5"/>
+    </svg>
+    BTCP Remote Control
+  </h1>
+
+  <div class="status-bar">
+    <span class="status-dot" id="statusDot"></span>
+    <span class="status-text" id="statusText">Disconnected</span>
+  </div>
+
+  <div class="instructions">
+    <strong>Quick Start:</strong>
+    1. Run <code>npm run server</code> in the remote-control example directory<br>
+    2. Click Connect below<br>
+    3. Your browser is now remotely controllable!
+  </div>
+
+  <div class="section">
+    <div class="section-title">Server URL</div>
+    <input type="text" id="serverUrl" value="http://localhost:8080" placeholder="http://localhost:8080">
+    <button class="btn-connect" id="btnConnect">Connect</button>
+    <button class="btn-disconnect" id="btnDisconnect">Disconnect</button>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Activity Log</div>
+    <div class="log-container" id="logOutput"></div>
+  </div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
