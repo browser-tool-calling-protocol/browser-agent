@@ -589,6 +589,14 @@ export class BackgroundAgent {
               success: false,
               error: chrome.runtime.lastError.message || 'Failed to send message to tab',
             });
+          } else if (!response) {
+            // Response is undefined but no lastError - return success with empty data
+            // so the agent can continue gracefully
+            resolve({
+              id: command.id,
+              success: true,
+              data: { message: 'No response from content script - page may be unresponsive' },
+            });
           } else {
             const resp = response as ExtensionResponse;
             if (resp.type === 'btcp:response') {
