@@ -131,6 +131,14 @@ export interface SessionGetCurrentCommand extends ExtensionBaseCommand {
 }
 
 /**
+ * Command to use an existing tab group as the active session
+ */
+export interface SessionUseGroupCommand extends ExtensionBaseCommand {
+  action: 'sessionUseGroup';
+  groupId: number;
+}
+
+/**
  * Union type of all session-related commands
  */
 export type SessionCommand =
@@ -141,4 +149,5 @@ export type SessionCommand =
   | GroupAddTabsCommand
   | GroupRemoveTabsCommand
   | GroupGetCommand
-  | SessionGetCurrentCommand;
+  | SessionGetCurrentCommand
+  | SessionUseGroupCommand;
