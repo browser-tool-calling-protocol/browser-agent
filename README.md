@@ -242,6 +242,38 @@ const { data } = await agent.execute({ action: 'snapshot' });
 await agent.execute({ action: 'click', selector: '@ref:5' });
 ```
 
+### Script Injection
+
+Inject custom JavaScript into the page's main world and communicate with it:
+
+```typescript
+// Inject a helper script
+await client.scriptInject(`
+  window.addEventListener('message', (e) => {
+    if (e.data?.type === 'btcp:script-command') {
+      const { commandId, payload } = e.data;
+      // Handle command and respond
+      window.postMessage({
+        type: 'btcp:script-ack',
+        commandId,
+        result: { /* your data */ }
+      }, '*');
+    }
+  });
+`, { scriptId: 'helper' });
+
+// Send commands to injected script
+const result = await client.scriptSend(
+  { action: 'getData', id: '123' },
+  { scriptId: 'helper' }
+);
+```
+
+**Why script injection?**
+- Access page-level APIs (fetch with page cookies, window globals)
+- Interact with page frameworks (React state, etc.)
+- Execute code with full page context
+
 ## Architecture
 
 The package provides a clean separation between browser-level and DOM-level operations:
