@@ -28,6 +28,7 @@ export type ExtensionAction =
   | 'groupRemoveTabs'
   | 'groupGet'
   | 'sessionGetCurrent'
+  | 'sessionUseGroup'
   | 'popupInitialize'
   | 'scriptInject'
   | 'scriptSend';

@@ -88,318 +88,71 @@ export interface RemoteAgentEvents {
 
 /**
  * Get all browser tool definitions for BTCP registration
+ *
+ * Minimal toolset following Unix philosophy - each tool does one thing well.
+ * Advanced operations can be done via browser_evaluate.
  */
 export function getBrowserToolDefinitions(): BTCPToolDefinition[] {
   return [
-    // Navigation tools
     {
       name: 'browser_navigate',
-      description: 'Navigate to a URL in the current tab',
+      description: 'Navigate to a URL',
       inputSchema: {
         type: 'object',
         properties: {
           url: { type: 'string', description: 'The URL to navigate to' },
-          waitUntil: {
-            type: 'string',
-            enum: ['load', 'domcontentloaded'],
-            description: 'Wait until page load event (default: load)',
-          },
         },
         required: ['url'],
       },
     },
     {
-      name: 'browser_back',
-      description: 'Go back in browser history',
-      inputSchema: { type: 'object', properties: {} },
-    },
-    {
-      name: 'browser_forward',
-      description: 'Go forward in browser history',
-      inputSchema: { type: 'object', properties: {} },
-    },
-    {
-      name: 'browser_reload',
-      description: 'Reload the current page',
-      inputSchema: {
-        type: 'object',
-        properties: {
-          bypassCache: { type: 'boolean', description: 'Bypass browser cache' },
-        },
-      },
-    },
-
-    // DOM interaction tools
-    {
       name: 'browser_snapshot',
-      description:
-        'Get accessibility tree snapshot of the page. Returns a text representation with element refs (@ref:N) that can be used in other commands.',
+      description: 'Get page snapshot as accessibility tree with element refs (@ref:N). Use refs in click/type commands.',
       inputSchema: {
         type: 'object',
-        properties: {
-          selector: { type: 'string', description: 'CSS selector to scope the snapshot' },
-          maxDepth: { type: 'number', description: 'Maximum tree depth to traverse' },
-          mode: {
-            type: 'string',
-            enum: ['interactive', 'outline', 'content'],
-            description: 'Snapshot mode: interactive (actionable elements), outline (structure), content (text)',
-          },
-        },
+        properties: {},
       },
     },
     {
       name: 'browser_click',
-      description: 'Click an element by CSS selector or element ref (@ref:N from snapshot)',
+      description: 'Click an element using @ref:N from snapshot',
       inputSchema: {
         type: 'object',
         properties: {
-          selector: { type: 'string', description: 'CSS selector or @ref:N' },
+          ref: { type: 'string', description: 'Element reference from snapshot (e.g., @ref:5)' },
         },
-        required: ['selector'],
+        required: ['ref'],
       },
     },
     {
       name: 'browser_type',
-      description: 'Type text into an input element (appends to existing value)',
+      description: 'Type text into an element',
       inputSchema: {
         type: 'object',
         properties: {
-          selector: { type: 'string', description: 'CSS selector or @ref:N' },
+          ref: { type: 'string', description: 'Element reference from snapshot' },
           text: { type: 'string', description: 'Text to type' },
-          clear: { type: 'boolean', description: 'Clear existing value before typing' },
         },
-        required: ['selector', 'text'],
+        required: ['ref', 'text'],
       },
     },
     {
-      name: 'browser_fill',
-      description: 'Fill an input element (replaces existing value)',
+      name: 'browser_screenshot',
+      description: 'Capture a screenshot of the page',
       inputSchema: {
         type: 'object',
-        properties: {
-          selector: { type: 'string', description: 'CSS selector or @ref:N' },
-          value: { type: 'string', description: 'Value to fill' },
-        },
-        required: ['selector', 'value'],
-      },
-    },
-    {
-      name: 'browser_select',
-      description: 'Select an option from a dropdown',
-      inputSchema: {
-        type: 'object',
-        properties: {
-          selector: { type: 'string', description: 'CSS selector or @ref:N of the select element' },
-          value: { type: 'string', description: 'Option value to select' },
-        },
-        required: ['selector', 'value'],
-      },
-    },
-    {
-      name: 'browser_check',
-      description: 'Check a checkbox or radio button',
-      inputSchema: {
-        type: 'object',
-        properties: {
-          selector: { type: 'string', description: 'CSS selector or @ref:N' },
-        },
-        required: ['selector'],
-      },
-    },
-    {
-      name: 'browser_uncheck',
-      description: 'Uncheck a checkbox',
-      inputSchema: {
-        type: 'object',
-        properties: {
-          selector: { type: 'string', description: 'CSS selector or @ref:N' },
-        },
-        required: ['selector'],
-      },
-    },
-    {
-      name: 'browser_hover',
-      description: 'Hover over an element',
-      inputSchema: {
-        type: 'object',
-        properties: {
-          selector: { type: 'string', description: 'CSS selector or @ref:N' },
-        },
-        required: ['selector'],
+        properties: {},
       },
     },
     {
       name: 'browser_scroll',
-      description: 'Scroll the page or an element',
+      description: 'Scroll the page',
       inputSchema: {
         type: 'object',
         properties: {
-          selector: { type: 'string', description: 'CSS selector or @ref:N (optional, scrolls window if omitted)' },
-          x: { type: 'number', description: 'Horizontal scroll amount in pixels' },
-          y: { type: 'number', description: 'Vertical scroll amount in pixels' },
+          direction: { type: 'string', enum: ['up', 'down'], description: 'Scroll direction' },
         },
-      },
-    },
-    {
-      name: 'browser_getText',
-      description: 'Get text content of an element',
-      inputSchema: {
-        type: 'object',
-        properties: {
-          selector: { type: 'string', description: 'CSS selector or @ref:N' },
-        },
-        required: ['selector'],
-      },
-    },
-    {
-      name: 'browser_getAttribute',
-      description: 'Get an attribute value from an element',
-      inputSchema: {
-        type: 'object',
-        properties: {
-          selector: { type: 'string', description: 'CSS selector or @ref:N' },
-          attribute: { type: 'string', description: 'Attribute name to get' },
-        },
-        required: ['selector', 'attribute'],
-      },
-    },
-    {
-      name: 'browser_isVisible',
-      description: 'Check if an element is visible',
-      inputSchema: {
-        type: 'object',
-        properties: {
-          selector: { type: 'string', description: 'CSS selector or @ref:N' },
-        },
-        required: ['selector'],
-      },
-    },
-
-    // Screenshot tool
-    {
-      name: 'browser_screenshot',
-      description: 'Capture a screenshot of the visible tab',
-      inputSchema: {
-        type: 'object',
-        properties: {
-          format: { type: 'string', enum: ['png', 'jpeg'], description: 'Image format' },
-          quality: { type: 'number', description: 'JPEG quality (0-100)' },
-        },
-      },
-    },
-
-    // Tab management tools
-    {
-      name: 'browser_tab_new',
-      description: 'Open a new tab',
-      inputSchema: {
-        type: 'object',
-        properties: {
-          url: { type: 'string', description: 'URL to open (optional)' },
-          active: { type: 'boolean', description: 'Make the new tab active (default: true)' },
-        },
-      },
-    },
-    {
-      name: 'browser_tab_close',
-      description: 'Close a tab',
-      inputSchema: {
-        type: 'object',
-        properties: {
-          tabId: { type: 'number', description: 'Tab ID to close (optional, closes active tab if omitted)' },
-        },
-      },
-    },
-    {
-      name: 'browser_tab_switch',
-      description: 'Switch to a different tab',
-      inputSchema: {
-        type: 'object',
-        properties: {
-          tabId: { type: 'number', description: 'Tab ID to switch to' },
-        },
-        required: ['tabId'],
-      },
-    },
-    {
-      name: 'browser_tab_list',
-      description: 'List all tabs in the current session',
-      inputSchema: { type: 'object', properties: {} },
-    },
-
-    // Keyboard tools
-    {
-      name: 'browser_press',
-      description: 'Press a keyboard key (e.g., Enter, Tab, Escape)',
-      inputSchema: {
-        type: 'object',
-        properties: {
-          key: { type: 'string', description: 'Key to press (e.g., "Enter", "Tab", "Escape", "ArrowDown")' },
-          selector: { type: 'string', description: 'Optional element to focus before pressing' },
-        },
-        required: ['key'],
-      },
-    },
-
-    // Script injection tools
-    {
-      name: 'browser_script_inject',
-      description:
-        "Inject JavaScript code into the page's main world. The script can listen for commands via btcp:script-command messages and respond with btcp:script-ack.",
-      inputSchema: {
-        type: 'object',
-        properties: {
-          code: { type: 'string', description: 'JavaScript code to inject' },
-          scriptId: {
-            type: 'string',
-            description: 'Unique identifier for this script (default: "default"). Used to target with script_send.',
-          },
-        },
-        required: ['code'],
-      },
-    },
-    {
-      name: 'browser_script_send',
-      description:
-        'Send a command to an injected script and wait for acknowledgment. The injected script should listen for btcp:script-command and respond with btcp:script-ack.',
-      inputSchema: {
-        type: 'object',
-        properties: {
-          payload: {
-            type: 'object',
-            description: 'Payload to send to the script. Typically includes an "action" field.',
-          },
-          scriptId: { type: 'string', description: 'Target script ID (default: "default")' },
-          timeout: { type: 'number', description: 'Timeout in milliseconds (default: 30000)' },
-        },
-        required: ['payload'],
-      },
-    },
-
-    // Wait tools
-    {
-      name: 'browser_wait',
-      description: 'Wait for a specified duration or condition',
-      inputSchema: {
-        type: 'object',
-        properties: {
-          ms: { type: 'number', description: 'Milliseconds to wait' },
-          selector: { type: 'string', description: 'Wait for this selector to appear' },
-          timeout: { type: 'number', description: 'Max wait time for selector (default: 30000)' },
-        },
-      },
-    },
-
-    // Evaluate tool
-    {
-      name: 'browser_evaluate',
-      description: 'Evaluate JavaScript expression in the page context and return the result',
-      inputSchema: {
-        type: 'object',
-        properties: {
-          expression: { type: 'string', description: 'JavaScript expression to evaluate' },
-        },
-        required: ['expression'],
+        required: ['direction'],
       },
     },
   ];
@@ -416,42 +169,31 @@ export function mapToolToCommand(
   toolName: string,
   args: Record<string, unknown>
 ): Command {
-  // Remove 'browser_' prefix and convert to action
-  const actionMap: Record<string, string> = {
-    browser_navigate: 'navigate',
-    browser_back: 'back',
-    browser_forward: 'forward',
-    browser_reload: 'reload',
-    browser_snapshot: 'snapshot',
-    browser_click: 'click',
-    browser_type: 'type',
-    browser_fill: 'fill',
-    browser_select: 'select',
-    browser_check: 'check',
-    browser_uncheck: 'uncheck',
-    browser_hover: 'hover',
-    browser_scroll: 'scroll',
-    browser_getText: 'getText',
-    browser_getAttribute: 'getAttribute',
-    browser_isVisible: 'isVisible',
-    browser_screenshot: 'screenshot',
-    browser_tab_new: 'tabNew',
-    browser_tab_close: 'tabClose',
-    browser_tab_switch: 'tabSwitch',
-    browser_tab_list: 'tabList',
-    browser_press: 'press',
-    browser_script_inject: 'scriptInject',
-    browser_script_send: 'scriptSend',
-    browser_wait: 'wait',
-    browser_evaluate: 'evaluate',
-  };
+  switch (toolName) {
+    case 'browser_navigate':
+      return { action: 'navigate', url: args.url as string };
 
-  const action = actionMap[toolName];
-  if (!action) {
-    throw new Error(`Unknown tool: ${toolName}`);
+    case 'browser_snapshot':
+      return { action: 'snapshot' };
+
+    case 'browser_click':
+      return { action: 'click', selector: args.ref as string };
+
+    case 'browser_type':
+      return { action: 'type', selector: args.ref as string, text: args.text as string };
+
+    case 'browser_screenshot':
+      return { action: 'screenshot' };
+
+    case 'browser_scroll': {
+      const direction = args.direction as string;
+      const amount = direction === 'down' ? 500 : -500;
+      return { action: 'scroll', y: amount };
+    }
+
+    default:
+      throw new Error(`Unknown tool: ${toolName}`);
   }
-
-  return { action, ...args } as Command;
 }
 
 /**
@@ -582,19 +324,59 @@ export function createRemoteAgent(config: RemoteAgentConfig): RemoteAgent {
 
   /**
    * Ensure a session exists, creating one if needed
+   *
+   * This checks in order:
+   * 1. Current active session
+   * 2. Persistent session from storage (reconnects if found)
+   * 3. Existing BTCP tab groups (reconnects to first one found)
+   * 4. Creates a new session if none found (respects maxSession limit)
    */
   async function ensureSession(): Promise<void> {
+    // 1. Check if there's an active session
     const sessionResult = await backgroundAgent.execute({ action: 'sessionGetCurrent' });
 
     if (sessionResult.success && sessionResult.data) {
       const session = (sessionResult.data as { session?: { groupId?: number } }).session;
       if (session?.groupId) {
+        log('Active session found:', session.groupId);
         return; // Session already exists
       }
     }
 
-    // Create a new session with a tab
-    log('No active session, creating one automatically...');
+    // 2. Try to reconnect via popup initialize (handles persistent session check)
+    log('No active session, trying to reconnect to existing session...');
+    const initResult = await backgroundAgent.execute({ action: 'popupInitialize' });
+
+    if (initResult.success && initResult.data) {
+      const initData = initResult.data as { reconnected?: boolean };
+      if (initData.reconnected) {
+        log('Reconnected to existing session');
+        return;
+      }
+    }
+
+    // 3. Check for existing BTCP tab groups and try to use one
+    const groupsResult = await backgroundAgent.execute({ action: 'groupList' });
+    if (groupsResult.success && groupsResult.data) {
+      const groups = groupsResult.data as Array<{ id: number; title?: string }>;
+      const btcpGroup = groups.find(g => g.title?.startsWith('BTCP'));
+
+      if (btcpGroup) {
+        log('Found existing BTCP tab group, setting it as active session:', btcpGroup.id);
+        const useResult = await backgroundAgent.execute({
+          action: 'sessionUseGroup',
+          groupId: btcpGroup.id,
+        });
+        if (useResult.success) {
+          log('Successfully using existing BTCP group as session');
+          return;
+        }
+        log('Failed to use existing BTCP group:', useResult.error);
+      }
+    }
+
+    // 4. Create a new session (will fail if maxSession limit reached)
+    log('No existing session found, creating one automatically...');
     const groupResult = await backgroundAgent.execute({
       action: 'groupCreate',
       title: 'BTCP Session',
@@ -622,20 +404,8 @@ export function createRemoteAgent(config: RemoteAgentConfig): RemoteAgent {
     emit('toolCall', name, args);
 
     try {
-      // Auto-create session if needed for commands that require it
-      const sessionRequiredTools = [
-        'browser_navigate', 'browser_tab_new', 'browser_tab_close',
-        'browser_tab_switch', 'browser_tab_list', 'browser_snapshot',
-        'browser_click', 'browser_type', 'browser_fill', 'browser_select',
-        'browser_check', 'browser_uncheck', 'browser_hover', 'browser_scroll',
-        'browser_getText', 'browser_getAttribute', 'browser_isVisible',
-        'browser_press', 'browser_wait', 'browser_evaluate',
-        'browser_script_inject', 'browser_script_send',
-      ];
-
-      if (sessionRequiredTools.includes(name)) {
-        await ensureSession();
-      }
+      // Auto-ensure session for all browser tools (session management is internal)
+      await ensureSession();
 
       // Map tool to command and execute
       const command = mapToolToCommand(name, args);

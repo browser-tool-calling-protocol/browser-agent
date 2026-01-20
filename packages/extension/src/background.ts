@@ -701,7 +701,7 @@ export class BackgroundAgent {
       'tabNew', 'tabClose', 'tabSwitch', 'tabList',
       'groupCreate', 'groupUpdate', 'groupDelete', 'groupList',
       'groupAddTabs', 'groupRemoveTabs', 'groupGet',
-      'sessionGetCurrent', 'popupInitialize',
+      'sessionGetCurrent', 'sessionUseGroup', 'popupInitialize',
     ];
     return extensionActions.includes(command.action);
   }
@@ -804,6 +804,18 @@ export class BackgroundAgent {
       case 'sessionGetCurrent': {
         const session = await this.sessionManager.getCurrentSession();
         return { id: command.id, success: true, data: { session } };
+      }
+
+      case 'sessionUseGroup': {
+        const used = await this.sessionManager.useExistingGroupAsSession(command.groupId);
+        if (!used) {
+          return {
+            id: command.id,
+            success: false,
+            error: `Failed to use group ${command.groupId} as session. Group may not exist.`,
+          };
+        }
+        return { id: command.id, success: true, data: { groupId: command.groupId, used: true } };
       }
 
       case 'popupInitialize': {

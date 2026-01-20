@@ -45,9 +45,7 @@ import type {
   ExtensionMessage,
   ExtensionResponse,
   Response,
-  TabInfo,
 } from './types.js';
-import type { GroupColor } from './session-types.js';
 
 // Import for local use (and re-export below)
 import {
@@ -188,131 +186,25 @@ export interface Client {
    */
   isVisible(selector: string): Promise<boolean>;
 
-  // --- Tabs ---
-
   /**
    * Take a screenshot
    */
   screenshot(options?: { format?: 'png' | 'jpeg'; quality?: number }): Promise<string>;
 
   /**
-   * Open a new tab
+   * Wait for a selector to appear
    */
-  tabNew(options?: { url?: string; active?: boolean }): Promise<{ tabId: number; url?: string }>;
+  wait(options?: { selector?: string; timeout?: number }): Promise<Response>;
 
   /**
-   * Close a tab
+   * Press a key
    */
-  tabClose(tabId?: number): Promise<Response>;
+  press(key: string, options?: { selector?: string }): Promise<Response>;
 
   /**
-   * Switch to a tab
+   * Evaluate JavaScript in the page context
    */
-  tabSwitch(tabId: number): Promise<Response>;
-
-  /**
-   * List all tabs
-   */
-  tabList(): Promise<TabInfo[]>;
-
-  // --- Tab Groups & Sessions ---
-
-  /**
-   * Create a new tab group
-   */
-  groupCreate(options?: {
-    tabIds?: number[];
-    title?: string;
-    color?: string;
-    collapsed?: boolean;
-  }): Promise<{ group: import('./session-types.js').GroupInfo }>;
-
-  /**
-   * Update a tab group
-   */
-  groupUpdate(
-    groupId: number,
-    options: { title?: string; color?: string; collapsed?: boolean }
-  ): Promise<{ group: import('./session-types.js').GroupInfo }>;
-
-  /**
-   * Delete a tab group (closes all tabs)
-   */
-  groupDelete(groupId: number): Promise<Response>;
-
-  /**
-   * List all tab groups
-   */
-  groupList(): Promise<import('./session-types.js').GroupInfo[]>;
-
-  /**
-   * Add tabs to a group
-   */
-  groupAddTabs(groupId: number, tabIds: number[]): Promise<Response>;
-
-  /**
-   * Remove tabs from their group
-   */
-  groupRemoveTabs(tabIds: number[]): Promise<Response>;
-
-  /**
-   * Get a specific tab group
-   */
-  groupGet(groupId: number): Promise<{ group: import('./session-types.js').GroupInfo }>;
-
-  /**
-   * Get current active session
-   */
-  sessionGetCurrent(): Promise<{ session: import('./session-types.js').SessionInfo | null }>;
-
-  /**
-   * Initialize popup (triggers session reconnection check)
-   */
-  popupInitialize(): Promise<{ initialized: boolean; reconnected: boolean }>;
-
-  // --- Script Injection ---
-
-  /**
-   * Inject a script into the page's main world
-   *
-   * The script runs in the page context (not the content script isolated world),
-   * allowing access to page-level APIs like window, fetch interceptors, etc.
-   *
-   * @example
-   * ```typescript
-   * await client.scriptInject(`
-   *   window.addEventListener('message', (event) => {
-   *     if (event.data?.type !== 'btcp:script-command') return;
-   *     if (event.data.scriptId !== 'helper') return;
-   *     const { commandId, payload } = event.data;
-   *     // Handle and ack
-   *     window.postMessage({ type: 'btcp:script-ack', commandId, result: { ok: true } }, '*');
-   *   });
-   * `, { scriptId: 'helper' });
-   * ```
-   */
-  scriptInject(
-    code: string,
-    options?: { scriptId?: string }
-  ): Promise<{ scriptId: string; injected: boolean }>;
-
-  /**
-   * Send a command to an injected script and wait for acknowledgment
-   *
-   * @example
-   * ```typescript
-   * const result = await client.scriptSend(
-   *   { action: 'getData', selector: '.items' },
-   *   { scriptId: 'helper', timeout: 5000 }
-   * );
-   * console.log(result); // { items: [...] }
-   * ```
-   */
-  scriptSend(
-    payload: unknown,
-    options?: { scriptId?: string; timeout?: number }
-  ): Promise<unknown>;
-
+  evaluate(expression: string): Promise<unknown>;
 }
 
 let commandIdCounter = 0;
@@ -520,7 +412,6 @@ export function createClient(): Client {
       return (response.data as { visible: boolean }).visible;
     },
 
-    // Tabs
     async screenshot(options) {
       const response = await sendCommand({
         id: generateCommandId(),
@@ -532,151 +423,30 @@ export function createClient(): Client {
       return (response.data as { screenshot: string }).screenshot;
     },
 
-    async tabNew(options) {
-      const response = await sendCommand({
-        id: generateCommandId(),
-        action: 'tabNew',
-        url: options?.url,
-        active: options?.active,
-      });
-      assertSuccess(response);
-      return response.data as { tabId: number; url?: string };
-    },
-
-    async tabClose(tabId) {
+    async wait(options) {
       return sendCommand({
         id: generateCommandId(),
-        action: 'tabClose',
-        tabId,
-      });
-    },
-
-    async tabSwitch(tabId) {
-      return sendCommand({
-        id: generateCommandId(),
-        action: 'tabSwitch',
-        tabId,
-      });
-    },
-
-    async tabList() {
-      const response = await sendCommand({
-        id: generateCommandId(),
-        action: 'tabList',
-      });
-      assertSuccess(response);
-      return (response.data as { tabs: TabInfo[] }).tabs;
-    },
-
-    // Tab Groups & Sessions
-    async groupCreate(options) {
-      const response = await sendCommand({
-        id: generateCommandId(),
-        action: 'groupCreate',
-        tabIds: options?.tabIds,
-        title: options?.title,
-        color: options?.color as GroupColor | undefined,
-        collapsed: options?.collapsed,
-      });
-      assertSuccess(response);
-      return response.data as { group: import('./session-types.js').GroupInfo };
-    },
-
-    async groupUpdate(groupId, options) {
-      const response = await sendCommand({
-        id: generateCommandId(),
-        action: 'groupUpdate',
-        groupId,
-        title: options.title,
-        color: options.color as GroupColor | undefined,
-        collapsed: options.collapsed,
-      });
-      assertSuccess(response);
-      return response.data as { group: import('./session-types.js').GroupInfo };
-    },
-
-    async groupDelete(groupId) {
-      return sendCommand({
-        id: generateCommandId(),
-        action: 'groupDelete',
-        groupId,
-      } as any);
-    },
-
-    async groupList() {
-      const response = await sendCommand({
-        id: generateCommandId(),
-        action: 'groupList',
-      } as any);
-      assertSuccess(response);
-      return (response.data as { groups: import('./session-types.js').GroupInfo[] }).groups;
-    },
-
-    async groupAddTabs(groupId, tabIds) {
-      return sendCommand({
-        id: generateCommandId(),
-        action: 'groupAddTabs',
-        groupId,
-        tabIds,
-      } as any);
-    },
-
-    async groupRemoveTabs(tabIds) {
-      return sendCommand({
-        id: generateCommandId(),
-        action: 'groupRemoveTabs',
-        tabIds,
-      } as any);
-    },
-
-    async groupGet(groupId) {
-      const response = await sendCommand({
-        id: generateCommandId(),
-        action: 'groupGet',
-        groupId,
-      } as any);
-      assertSuccess(response);
-      return response.data as { group: import('./session-types.js').GroupInfo };
-    },
-
-    async sessionGetCurrent() {
-      const response = await sendCommand({
-        id: generateCommandId(),
-        action: 'sessionGetCurrent',
-      } as any);
-      assertSuccess(response);
-      return response.data as { session: import('./session-types.js').SessionInfo | null };
-    },
-
-    async popupInitialize() {
-      const response = await sendCommand({
-        id: generateCommandId(),
-        action: 'popupInitialize',
-      } as any);
-      assertSuccess(response);
-      return response.data as { initialized: boolean; reconnected: boolean };
-    },
-
-    // Script Injection
-    async scriptInject(code, options) {
-      const response = await sendCommand({
-        id: generateCommandId(),
-        action: 'scriptInject',
-        code,
-        scriptId: options?.scriptId,
-      } as any);
-      assertSuccess(response);
-      return response.data as { scriptId: string; injected: boolean };
-    },
-
-    async scriptSend(payload, options) {
-      const response = await sendCommand({
-        id: generateCommandId(),
-        action: 'scriptSend',
-        payload,
-        scriptId: options?.scriptId,
+        action: 'wait',
+        selector: options?.selector,
         timeout: options?.timeout,
-      } as any);
+      });
+    },
+
+    async press(key, options) {
+      return sendCommand({
+        id: generateCommandId(),
+        action: 'press',
+        key,
+        selector: options?.selector,
+      });
+    },
+
+    async evaluate(expression) {
+      const response = await sendCommand({
+        id: generateCommandId(),
+        action: 'evaluate',
+        script: expression,
+      });
       assertSuccess(response);
       return (response.data as { result: unknown }).result;
     },

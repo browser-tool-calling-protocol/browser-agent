@@ -25,14 +25,35 @@ interface StoredSessionData {
 }
 
 /**
+ * Options for SessionManager
+ */
+export interface SessionManagerOptions {
+  /**
+   * Maximum number of sessions allowed (default: 1)
+   * When limit is reached, new session creation will fail
+   */
+  maxSession?: number;
+
+  /**
+   * Maximum number of open tabs per session (default: 1)
+   * When limit is reached, oldest tabs will be closed
+   */
+  maxOpenTab?: number;
+}
+
+/**
  * SessionManager handles Chrome tab group operations and session state
  */
 export class SessionManager {
   private activeSessionGroupId: number | null = null;
   private sessionCounter = 0;
   private initialized = false;
+  private maxSession: number;
+  private maxOpenTab: number;
 
-  constructor() {
+  constructor(options: SessionManagerOptions = {}) {
+    this.maxSession = options.maxSession ?? 1;
+    this.maxOpenTab = options.maxOpenTab ?? 1;
     // Restore session on creation
     this.restoreSession();
   }
@@ -145,6 +166,16 @@ export class SessionManager {
    */
   async createGroup(options: GroupCreateOptions = {}): Promise<GroupInfo> {
     console.log('[SessionManager] createGroup called with options:', options);
+
+    // Check if we can create a new session
+    const canCreate = await this.canCreateSession();
+    if (!canCreate) {
+      const count = await this.getSessionCount();
+      throw new Error(
+        `Maximum session limit reached (${count}/${this.maxSession}). ` +
+        `Close an existing session before creating a new one.`
+      );
+    }
 
     const {
       tabIds = [],
@@ -324,6 +355,115 @@ export class SessionManager {
   }
 
   /**
+   * Get the maximum number of sessions allowed
+   */
+  getMaxSession(): number {
+    return this.maxSession;
+  }
+
+  /**
+   * Get the maximum number of open tabs per session
+   */
+  getMaxOpenTab(): number {
+    return this.maxOpenTab;
+  }
+
+  /**
+   * Enforce the tab limit in the active session
+   * Closes oldest tabs if the limit is exceeded
+   */
+  async enforceTabLimit(): Promise<void> {
+    if (this.activeSessionGroupId === null) {
+      return;
+    }
+
+    try {
+      // Get all tabs in the session
+      const tabs = await chrome.tabs.query({ groupId: this.activeSessionGroupId });
+
+      if (tabs.length <= this.maxOpenTab) {
+        return; // Within limit
+      }
+
+      // Sort by index (lower index = older tab position)
+      tabs.sort((a, b) => (a.index ?? 0) - (b.index ?? 0));
+
+      // Close excess tabs (oldest first)
+      const tabsToClose = tabs.slice(0, tabs.length - this.maxOpenTab);
+      console.log(`[SessionManager] Closing ${tabsToClose.length} excess tabs to enforce limit of ${this.maxOpenTab}`);
+
+      for (const tab of tabsToClose) {
+        if (tab.id) {
+          try {
+            await chrome.tabs.remove(tab.id);
+          } catch (err) {
+            console.error('[SessionManager] Failed to close tab:', err);
+          }
+        }
+      }
+    } catch (err) {
+      console.error('[SessionManager] Failed to enforce tab limit:', err);
+    }
+  }
+
+  /**
+   * Get the count of existing BTCP sessions by checking:
+   * 1. Persistent session from storage
+   * 2. Current active session
+   * 3. Existing tab groups (BTCP prefixed)
+   */
+  async getSessionCount(): Promise<number> {
+    // If we have an active session, that counts as 1
+    if (this.activeSessionGroupId !== null) {
+      try {
+        // Verify the group still exists
+        await chrome.tabGroups.get(this.activeSessionGroupId);
+        return 1;
+      } catch {
+        // Group no longer exists, clear it
+        this.activeSessionGroupId = null;
+      }
+    }
+
+    // Check if there's a persistent session in storage
+    try {
+      const result = await chrome.storage.session.get(SESSION_STORAGE_KEY);
+      const data = result[SESSION_STORAGE_KEY] as StoredSessionData | undefined;
+
+      if (data?.groupId) {
+        // Verify the stored group still exists
+        try {
+          await chrome.tabGroups.get(data.groupId);
+          return 1;
+        } catch {
+          // Group no longer exists, clear storage
+          await this.clearStoredSession();
+        }
+      }
+    } catch (err) {
+      console.error('[SessionManager] Failed to check persistent session:', err);
+    }
+
+    // Count existing BTCP tab groups
+    try {
+      const groups = await chrome.tabGroups.query({});
+      const btcpGroups = groups.filter(g => g.title?.startsWith('BTCP'));
+      return btcpGroups.length;
+    } catch (err) {
+      console.error('[SessionManager] Failed to count tab groups:', err);
+      return 0;
+    }
+  }
+
+  /**
+   * Check if a new session can be created based on maxSession limit
+   */
+  async canCreateSession(): Promise<boolean> {
+    const count = await this.getSessionCount();
+    return count < this.maxSession;
+  }
+
+  /**
    * Set the active session group ID
    */
   setActiveSessionGroupId(groupId: number | null): void {
@@ -331,7 +471,32 @@ export class SessionManager {
   }
 
   /**
+   * Use an existing tab group as the active session
+   * This validates the group exists and sets it as active with persistence
+   */
+  async useExistingGroupAsSession(groupId: number): Promise<boolean> {
+    try {
+      // Verify the group exists
+      const group = await chrome.tabGroups.get(groupId);
+      console.log('[SessionManager] Using existing group as session:', group);
+
+      // Set as active session
+      this.activeSessionGroupId = groupId;
+
+      // Persist to storage
+      await this.persistSession();
+
+      console.log('[SessionManager] Existing group set as active session');
+      return true;
+    } catch (err) {
+      console.error('[SessionManager] Failed to use existing group as session:', err);
+      return false;
+    }
+  }
+
+  /**
    * Add a tab to the active session (if one exists)
+   * Automatically enforces the tab limit after adding
    */
   async addTabToActiveSession(tabId: number): Promise<boolean> {
     if (this.activeSessionGroupId === null) {
@@ -340,6 +505,8 @@ export class SessionManager {
 
     try {
       await this.addTabsToGroup(this.activeSessionGroupId, [tabId]);
+      // Enforce tab limit after adding
+      await this.enforceTabLimit();
       return true;
     } catch (error) {
       // Group may no longer exist
@@ -375,10 +542,11 @@ let sessionManagerInstance: SessionManager | null = null;
 
 /**
  * Get the singleton SessionManager instance
+ * @param options Options for the SessionManager (only used on first call)
  */
-export function getSessionManager(): SessionManager {
+export function getSessionManager(options?: SessionManagerOptions): SessionManager {
   if (!sessionManagerInstance) {
-    sessionManagerInstance = new SessionManager();
+    sessionManagerInstance = new SessionManager(options);
   }
   return sessionManagerInstance;
 }
