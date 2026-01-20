@@ -91,7 +91,7 @@ export async function runGoogleGithubDemo(sessionId: string): Promise<void> {
   console.log('');
 
   try {
-    // Step 1: Navigate to Google
+    // Step 1: Navigate to Google (session auto-created if needed)
     logInfo('[1/10] Navigating to Google...');
     await callTool(sessionId, 'browser_navigate', { url: 'https://www.google.com' });
     logSuccess('Loaded Google');

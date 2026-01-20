@@ -350,8 +350,9 @@ export class BackgroundAgent {
 
   /**
    * Navigate to a URL (only in session tabs)
+   * Always waits for page to be idle before returning.
    */
-  async navigate(url: string, options?: { waitUntil?: 'load' | 'domcontentloaded' }): Promise<void> {
+  async navigate(url: string, _options?: { waitUntil?: 'load' | 'domcontentloaded' }): Promise<void> {
     const tabId = this.activeTabId ?? (await this.getActiveTab())?.id;
     if (!tabId) throw new Error('No active tab');
 
@@ -365,19 +366,19 @@ export class BackgroundAgent {
       chrome.tabs.update(tabId, { url }, () => resolve());
     });
 
-    if (options?.waitUntil) {
-      await this.waitForTabLoad(tabId);
+    // Always wait for tab to load and become idle
+    await this.waitForTabLoad(tabId);
+    await this.waitForIdle(tabId);
 
-      // Clear refs and highlights after navigation completes
-      try {
-        await this.sendToContentAgent({
-          id: `nav_clear_${Date.now()}`,
-          action: 'clearHighlight'
-        }, tabId);
-      } catch (error) {
-        // Ignore errors - content script might not be ready yet
-        console.log('[BackgroundAgent] Failed to clear highlights after navigation:', error);
-      }
+    // Clear refs and highlights after navigation completes
+    try {
+      await this.sendToContentAgent({
+        id: `nav_clear_${Date.now()}`,
+        action: 'clearHighlight'
+      }, tabId);
+    } catch (error) {
+      // Ignore errors - content script might not be ready yet
+      console.log('[BackgroundAgent] Failed to clear highlights after navigation:', error);
     }
   }
 
@@ -832,6 +833,47 @@ export class BackgroundAgent {
 
       checkTab();
     });
+  }
+
+  /**
+   * Wait for the page to become idle (no pending network requests or JS execution)
+   * Uses requestIdleCallback in the content script to detect when the browser is idle.
+   */
+  private async waitForIdle(tabId: number, timeout = 10000): Promise<void> {
+    const startTime = Date.now();
+
+    // Poll until the page reports idle or timeout
+    while (Date.now() - startTime < timeout) {
+      try {
+        const results = await chrome.scripting.executeScript({
+          target: { tabId, frameIds: [0] }, // Only inject into main frame
+          func: () => {
+            return new Promise<boolean>((resolve) => {
+              // Use requestIdleCallback to detect when browser is idle
+              if ('requestIdleCallback' in window) {
+                requestIdleCallback(
+                  () => resolve(true),
+                  { timeout: 1000 }
+                );
+              } else {
+                // Fallback: wait a short period
+                setTimeout(() => resolve(true), 500);
+              }
+            });
+          },
+        });
+
+        if (results?.[0]?.result) {
+          return;
+        }
+      } catch (error) {
+        // Content script may not be ready yet, wait and retry
+        await new Promise(resolve => setTimeout(resolve, 200));
+      }
+    }
+
+    // Timeout reached, continue anyway
+    console.log('[BackgroundAgent] waitForIdle timeout reached, continuing');
   }
 }
 

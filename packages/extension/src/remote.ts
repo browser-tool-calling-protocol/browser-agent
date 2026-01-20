@@ -581,6 +581,34 @@ export function createRemoteAgent(config: RemoteAgentConfig): RemoteAgent {
   }
 
   /**
+   * Ensure a session exists, creating one if needed
+   */
+  async function ensureSession(): Promise<void> {
+    const sessionResult = await backgroundAgent.execute({ action: 'sessionGetCurrent' });
+
+    if (sessionResult.success && sessionResult.data) {
+      const session = (sessionResult.data as { session?: { groupId?: number } }).session;
+      if (session?.groupId) {
+        return; // Session already exists
+      }
+    }
+
+    // Create a new session with a tab
+    log('No active session, creating one automatically...');
+    const groupResult = await backgroundAgent.execute({
+      action: 'groupCreate',
+      title: 'BTCP Session',
+      color: 'blue',
+    });
+
+    if (!groupResult.success) {
+      throw new Error(`Failed to create session: ${groupResult.error}`);
+    }
+
+    log('Session created:', groupResult.data);
+  }
+
+  /**
    * Handle incoming tool call request
    */
   async function handleToolCall(request: {
@@ -594,6 +622,21 @@ export function createRemoteAgent(config: RemoteAgentConfig): RemoteAgent {
     emit('toolCall', name, args);
 
     try {
+      // Auto-create session if needed for commands that require it
+      const sessionRequiredTools = [
+        'browser_navigate', 'browser_tab_new', 'browser_tab_close',
+        'browser_tab_switch', 'browser_tab_list', 'browser_snapshot',
+        'browser_click', 'browser_type', 'browser_fill', 'browser_select',
+        'browser_check', 'browser_uncheck', 'browser_hover', 'browser_scroll',
+        'browser_getText', 'browser_getAttribute', 'browser_isVisible',
+        'browser_press', 'browser_wait', 'browser_evaluate',
+        'browser_script_inject', 'browser_script_send',
+      ];
+
+      if (sessionRequiredTools.includes(name)) {
+        await ensureSession();
+      }
+
       // Map tool to command and execute
       const command = mapToolToCommand(name, args);
       const response = await backgroundAgent.execute(command);
