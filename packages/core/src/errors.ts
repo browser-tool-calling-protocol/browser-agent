@@ -5,6 +5,8 @@
  * actionable suggestions to help AI agents self-correct.
  */
 
+import type { WaitResult } from './assertions.js';
+
 /**
  * Machine-readable error codes for programmatic error handling
  */
@@ -38,6 +40,9 @@ export enum ErrorCode {
 
   /** Network or navigation error */
   NAVIGATION_ERROR = 'NAVIGATION_ERROR',
+
+  /** Action verification failed after completion */
+  VERIFICATION_FAILED = 'VERIFICATION_FAILED',
 }
 
 /**
@@ -292,5 +297,84 @@ export function createInvalidParametersError(
       conflictingParams,
     },
     [suggestion]
+  );
+}
+
+/**
+ * Helper function to create verification error with assertion details
+ *
+ * @param action - The action that failed verification (e.g., 'fill', 'type', 'check')
+ * @param waitResult - The result from waitForAssertion
+ * @param selector - Optional selector for the element
+ *
+ * @example
+ * ```typescript
+ * const result = await waitForAssertion(
+ *   () => assertValueEquals(element, value)
+ * );
+ *
+ * if (!result.success) {
+ *   throw createVerificationError('fill', result, selector);
+ * }
+ * ```
+ */
+export function createVerificationError(
+  action: string,
+  waitResult: WaitResult,
+  selector?: string
+): DetailedError {
+  const { result, elapsed, attempts } = waitResult;
+
+  const suggestions: string[] = [];
+
+  // Add context-specific suggestions based on the assertion
+  if (result.description.includes('value')) {
+    suggestions.push(
+      'The element value may have been modified by event handlers.',
+      'Check for input masking, formatting, or validation that transforms the value.'
+    );
+  }
+
+  if (result.description.includes('checked')) {
+    suggestions.push(
+      'The checkbox/radio state may be controlled by JavaScript.',
+      'Verify the element is not disabled or read-only.'
+    );
+  }
+
+  if (result.description.includes('selected')) {
+    suggestions.push(
+      'Some options may not exist in the select element.',
+      'Use snapshot() to verify available option values.'
+    );
+  }
+
+  if (result.description.includes('origin')) {
+    suggestions.push(
+      'The page may have redirected to a different domain.',
+      'Check for authentication redirects or HTTPS upgrades.'
+    );
+  }
+
+  suggestions.push(
+    `Verification waited ${elapsed}ms with ${attempts} attempts.`
+  );
+
+  const message = selector
+    ? `${action} verification failed for ${selector}: ${result.description}`
+    : `${action} verification failed: ${result.description}`;
+
+  return new DetailedError(
+    ErrorCode.VERIFICATION_FAILED,
+    message,
+    {
+      selector,
+      expected: result.expected,
+      actual: result.actual,
+      elapsed,
+      attempts,
+      ...result.context,
+    },
+    suggestions
   );
 }

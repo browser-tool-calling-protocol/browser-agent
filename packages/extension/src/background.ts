@@ -22,6 +22,7 @@ import type {
   ChromeTab,
 } from './types.js';
 import { SessionManager } from './session-manager.js';
+import { assertUrlOrigin, createVerificationError } from '@btcp/core';
 
 // Command ID counter for auto-generated IDs
 let bgCommandIdCounter = 0;
@@ -351,6 +352,7 @@ export class BackgroundAgent {
   /**
    * Navigate to a URL (only in session tabs)
    * Always waits for page to be idle before returning.
+   * Verifies navigation completed to the expected origin.
    */
   async navigate(url: string, _options?: { waitUntil?: 'load' | 'domcontentloaded' }): Promise<void> {
     const tabId = this.activeTabId ?? (await this.getActiveTab())?.id;
@@ -369,6 +371,27 @@ export class BackgroundAgent {
     // Always wait for tab to load and become idle
     await this.waitForTabLoad(tabId);
     await this.waitForIdle(tabId);
+
+    // Verify navigation completed to the expected origin
+    const tab = await chrome.tabs.get(tabId);
+    const finalUrl = tab.url || '';
+
+    // Use assertion module for origin verification
+    const result = assertUrlOrigin(finalUrl, url);
+    if (!result.success) {
+      // Only throw for actual origin mismatches, not URL parsing errors
+      if (result.context?.error) {
+        // URL parsing failed (e.g., chrome:// pages) - skip verification
+        console.log('[BackgroundAgent] Skipping URL verification for special page:', finalUrl);
+      } else {
+        throw createVerificationError('navigate', {
+          success: false,
+          elapsed: 0,
+          attempts: 1,
+          result,
+        });
+      }
+    }
 
     // Clear refs and highlights after navigation completes
     try {
@@ -594,9 +617,9 @@ export class BackgroundAgent {
         return false; // Can't inject into chrome:// or extension pages
       }
 
-      // Execute content script
+      // Execute content script (main frame only)
       await chrome.scripting.executeScript({
-        target: { tabId },
+        target: { tabId, frameIds: [0] },
         files: ['content.js'],
       });
 

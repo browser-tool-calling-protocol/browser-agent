@@ -21,7 +21,17 @@ import {
   createElementNotCompatibleError,
   createTimeoutError,
   createInvalidParametersError,
+  createVerificationError,
 } from './errors.js';
+import {
+  assertConnected,
+  assertValueContains,
+  assertValueEquals,
+  assertChecked,
+  assertSelected,
+  waitForAssertion,
+  type ActionResult,
+} from './assertions.js';
 
 // Command ID counter for auto-generated IDs
 let commandIdCounter = 0;
@@ -403,7 +413,7 @@ export class DOMActions {
   private async click(
     selector: string,
     options: { button?: 'left' | 'right' | 'middle'; clickCount?: number; modifiers?: Modifier[] } = {}
-  ): Promise<{ clicked: true }> {
+  ): Promise<ActionResult & { connected: boolean }> {
     const element = this.getElement(selector);
     const { button = 'left', clickCount = 1, modifiers = [] } = options;
 
@@ -428,20 +438,24 @@ export class DOMActions {
       element.dispatchEvent(new MouseEvent('click', eventInit));
     }
 
-    return { clicked: true };
+    // Check if element is still connected (graceful - doesn't throw)
+    // Element may be intentionally removed by click handlers (e.g., modal close, navigation)
+    const connectionResult = assertConnected(element);
+
+    return { success: true, error: null, connected: connectionResult.success };
   }
 
-  private async dblclick(selector: string): Promise<{ clicked: true }> {
+  private async dblclick(selector: string): Promise<ActionResult> {
     const element = this.getElement(selector);
     element.dispatchEvent(new MouseEvent('dblclick', { bubbles: true, cancelable: true }));
-    return { clicked: true };
+    return { success: true, error: null };
   }
 
   private async type(
     selector: string,
     text: string,
     options: { delay?: number; clear?: boolean } = {}
-  ): Promise<{ typed: true }> {
+  ): Promise<ActionResult> {
     const element = this.getElement(selector);
 
     if (!(element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement)) {
@@ -477,10 +491,21 @@ export class DOMActions {
     }
 
     element.dispatchEvent(new Event('change', { bubbles: true }));
-    return { typed: true };
+
+    // Wait for verification that value contains typed text
+    const result = await waitForAssertion(
+      () => assertValueContains(element, text),
+      { timeout: 1000, interval: 50 }
+    );
+
+    if (!result.success) {
+      throw createVerificationError('type', result, selector);
+    }
+
+    return { success: true, error: null };
   }
 
-  private async fill(selector: string, value: string): Promise<{ filled: true }> {
+  private async fill(selector: string, value: string): Promise<ActionResult> {
     const element = this.getElement(selector);
 
     if (!(element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement)) {
@@ -501,10 +526,20 @@ export class DOMActions {
     element.dispatchEvent(new Event('input', { bubbles: true }));
     element.dispatchEvent(new Event('change', { bubbles: true }));
 
-    return { filled: true };
+    // Wait for verification that value equals expected
+    const result = await waitForAssertion(
+      () => assertValueEquals(element, value),
+      { timeout: 1000, interval: 50 }
+    );
+
+    if (!result.success) {
+      throw createVerificationError('fill', result, selector);
+    }
+
+    return { success: true, error: null };
   }
 
-  private async clear(selector: string): Promise<{ cleared: true }> {
+  private async clear(selector: string): Promise<ActionResult> {
     const element = this.getElement(selector);
 
     if (element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement) {
@@ -513,10 +548,10 @@ export class DOMActions {
       element.dispatchEvent(new Event('change', { bubbles: true }));
     }
 
-    return { cleared: true };
+    return { success: true, error: null };
   }
 
-  private async check(selector: string): Promise<{ checked: true }> {
+  private async check(selector: string): Promise<ActionResult> {
     const element = this.getElement(selector);
 
     if (!(element instanceof HTMLInputElement)) {
@@ -536,10 +571,20 @@ export class DOMActions {
       element.click();
     }
 
-    return { checked: true };
+    // Wait for verification that element is checked
+    const result = await waitForAssertion(
+      () => assertChecked(element, true),
+      { timeout: 1000, interval: 50 }
+    );
+
+    if (!result.success) {
+      throw createVerificationError('check', result, selector);
+    }
+
+    return { success: true, error: null };
   }
 
-  private async uncheck(selector: string): Promise<{ unchecked: true }> {
+  private async uncheck(selector: string): Promise<ActionResult> {
     const element = this.getElement(selector);
 
     if (!(element instanceof HTMLInputElement)) {
@@ -559,10 +604,20 @@ export class DOMActions {
       element.click();
     }
 
-    return { unchecked: true };
+    // Wait for verification that element is unchecked
+    const result = await waitForAssertion(
+      () => assertChecked(element, false),
+      { timeout: 1000, interval: 50 }
+    );
+
+    if (!result.success) {
+      throw createVerificationError('uncheck', result, selector);
+    }
+
+    return { success: true, error: null };
   }
 
-  private async select(selector: string, values: string | string[]): Promise<{ selected: string[] }> {
+  private async select(selector: string, values: string | string[]): Promise<ActionResult & { values: string[] }> {
     const element = this.getElement(selector);
 
     if (!(element instanceof HTMLSelectElement)) {
@@ -586,42 +641,52 @@ export class DOMActions {
 
     element.dispatchEvent(new Event('change', { bubbles: true }));
 
-    return { selected: valueArray };
+    // Wait for verification that expected options are selected
+    const result = await waitForAssertion(
+      () => assertSelected(element, valueArray),
+      { timeout: 1000, interval: 50 }
+    );
+
+    if (!result.success) {
+      throw createVerificationError('select', result, selector);
+    }
+
+    return { success: true, error: null, values: valueArray };
   }
 
-  private async focus(selector: string): Promise<{ focused: true }> {
+  private async focus(selector: string): Promise<ActionResult> {
     const element = this.getElement(selector);
 
     if (element instanceof HTMLElement) {
       element.focus();
     }
 
-    return { focused: true };
+    return { success: true, error: null };
   }
 
-  private async blur(selector: string): Promise<{ blurred: true }> {
+  private async blur(selector: string): Promise<ActionResult> {
     const element = this.getElement(selector);
 
     if (element instanceof HTMLElement) {
       element.blur();
     }
 
-    return { blurred: true };
+    return { success: true, error: null };
   }
 
-  private async hover(selector: string): Promise<{ hovered: true }> {
+  private async hover(selector: string): Promise<ActionResult> {
     const element = this.getElement(selector);
 
     element.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
     element.dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
 
-    return { hovered: true };
+    return { success: true, error: null };
   }
 
   private async scroll(
     selector: string | undefined,
     options: { x?: number; y?: number; direction?: string; amount?: number }
-  ): Promise<{ scrolled: true }> {
+  ): Promise<ActionResult> {
     // Validate parameter combinations
     const hasXY = options.x !== undefined || options.y !== undefined;
     const hasDirection = options.direction !== undefined;
@@ -654,16 +719,16 @@ export class DOMActions {
       this.window.scrollBy(deltaX, deltaY);
     }
 
-    return { scrolled: true };
+    return { success: true, error: null };
   }
 
   private async scrollIntoView(
     selector: string,
     block: 'start' | 'center' | 'end' | 'nearest' = 'center'
-  ): Promise<{ scrolled: true }> {
+  ): Promise<ActionResult> {
     const element = this.getElement(selector);
     element.scrollIntoView({ behavior: 'smooth', block });
-    return { scrolled: true };
+    return { success: true, error: null };
   }
 
   private async snapshot(options: {
@@ -702,41 +767,43 @@ export class DOMActions {
     return snapshotData.tree;
   }
 
-  private async querySelector(selector: string): Promise<{ found: boolean; ref?: string }> {
+  private async querySelector(selector: string): Promise<ActionResult & { ref?: string }> {
     const element = this.queryElement(selector);
     if (!element) {
-      return { found: false };
+      return { success: false, error: `Element not found: ${selector}` };
     }
 
     const ref = this.refMap.generateRef(element);
-    return { found: true, ref };
+    return { success: true, error: null, ref };
   }
 
-  private async querySelectorAll(selector: string): Promise<{ count: number; refs: string[] }> {
+  private async querySelectorAll(selector: string): Promise<ActionResult & { count: number; refs: string[] }> {
     const elements = this.queryElements(selector);
     const refs = elements.map((el) => this.refMap.generateRef(el));
-    return { count: elements.length, refs };
+    return { success: true, error: null, count: elements.length, refs };
   }
 
-  private async getText(selector: string): Promise<{ text: string | null }> {
+  private async getText(selector: string): Promise<ActionResult & { text: string | null }> {
     const element = this.getElement(selector);
-    return { text: element.textContent };
+    return { success: true, error: null, text: element.textContent };
   }
 
-  private async getAttribute(selector: string, attribute: string): Promise<{ value: string | null }> {
+  private async getAttribute(selector: string, attribute: string): Promise<ActionResult & { value: string | null }> {
     const element = this.getElement(selector);
-    return { value: element.getAttribute(attribute) };
+    return { success: true, error: null, value: element.getAttribute(attribute) };
   }
 
-  private async getProperty(selector: string, property: string): Promise<{ value: unknown }> {
+  private async getProperty(selector: string, property: string): Promise<ActionResult & { value: unknown }> {
     const element = this.getElement(selector);
-    return { value: (element as unknown as Record<string, unknown>)[property] };
+    return { success: true, error: null, value: (element as unknown as Record<string, unknown>)[property] };
   }
 
-  private async getBoundingBox(selector: string): Promise<{ box: BoundingBox }> {
+  private async getBoundingBox(selector: string): Promise<ActionResult & { box: BoundingBox }> {
     const element = this.getElement(selector);
     const rect = element.getBoundingClientRect();
     return {
+      success: true,
+      error: null,
       box: {
         x: rect.x,
         y: rect.y,
@@ -746,10 +813,10 @@ export class DOMActions {
     };
   }
 
-  private async isVisible(selector: string): Promise<{ visible: boolean }> {
+  private async isVisible(selector: string): Promise<ActionResult & { visible: boolean }> {
     const element = this.queryElement(selector);
     if (!element || !(element instanceof HTMLElement)) {
-      return { visible: false };
+      return { success: true, error: null, visible: false };
     }
 
     const style = this.window.getComputedStyle(element);
@@ -758,26 +825,26 @@ export class DOMActions {
       style.visibility !== 'hidden' &&
       style.opacity !== '0';
 
-    return { visible };
+    return { success: true, error: null, visible };
   }
 
-  private async isEnabled(selector: string): Promise<{ enabled: boolean }> {
+  private async isEnabled(selector: string): Promise<ActionResult & { enabled: boolean }> {
     const element = this.getElement(selector);
     const enabled = !(element as HTMLInputElement).disabled;
-    return { enabled };
+    return { success: true, error: null, enabled };
   }
 
-  private async isChecked(selector: string): Promise<{ checked: boolean }> {
+  private async isChecked(selector: string): Promise<ActionResult & { checked: boolean }> {
     const element = this.getElement(selector);
     const checked = (element as HTMLInputElement).checked ?? false;
-    return { checked };
+    return { success: true, error: null, checked };
   }
 
   private async press(
     key: string,
     selector?: string,
     modifiers: Modifier[] = []
-  ): Promise<{ pressed: true }> {
+  ): Promise<ActionResult> {
     const target = selector
       ? this.getElement(selector)
       : this.document.activeElement || this.document.body;
@@ -797,30 +864,30 @@ export class DOMActions {
     target.dispatchEvent(new KeyboardEvent('keypress', eventInit));
     target.dispatchEvent(new KeyboardEvent('keyup', eventInit));
 
-    return { pressed: true };
+    return { success: true, error: null };
   }
 
-  private async keyDown(key: string): Promise<{ down: true }> {
+  private async keyDown(key: string): Promise<ActionResult> {
     const target = this.document.activeElement || this.document.body;
     target.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true }));
-    return { down: true };
+    return { success: true, error: null };
   }
 
-  private async keyUp(key: string): Promise<{ up: true }> {
+  private async keyUp(key: string): Promise<ActionResult> {
     const target = this.document.activeElement || this.document.body;
     target.dispatchEvent(new KeyboardEvent('keyup', { key, bubbles: true }));
-    return { up: true };
+    return { success: true, error: null };
   }
 
   private async wait(
     selector?: string,
     options: { state?: string; timeout?: number } = {}
-  ): Promise<{ waited: true }> {
+  ): Promise<ActionResult> {
     const { state = 'visible', timeout = 5000 } = options;
 
     if (!selector) {
       await this.sleep(timeout);
-      return { waited: true };
+      return { success: true, error: null };
     }
 
     const startTime = Date.now();
@@ -873,7 +940,7 @@ export class DOMActions {
       }
 
       if (conditionMet) {
-        return { waited: true };
+        return { success: true, error: null };
       }
 
       await this.sleep(100);
@@ -883,10 +950,10 @@ export class DOMActions {
     throw createTimeoutError(selector, state, lastState);
   }
 
-  private async evaluate(script: string, args?: unknown[]): Promise<{ result: unknown }> {
+  private async evaluate(script: string, args?: unknown[]): Promise<ActionResult & { result: unknown }> {
     const fn = new Function(...(args?.map((_, i) => `arg${i}`) || []), `return (${script})`);
     const result = fn.call(this.window, ...(args || []));
-    return { result };
+    return { success: true, error: null, result };
   }
 
   /**
@@ -1004,7 +1071,7 @@ export class DOMActions {
   /**
    * Display visual overlay labels for interactive elements
    */
-  private async highlight(): Promise<{ highlighted: number }> {
+  private async highlight(): Promise<ActionResult & { count: number }> {
     // Verify snapshot exists
     if (!this.lastSnapshotData || !this.lastSnapshotData.refs) {
       throw new Error('No snapshot data available. Please run snapshot() command first.');
@@ -1114,7 +1181,7 @@ export class DOMActions {
     // Use passive listener for better scroll performance
     this.window.addEventListener('scroll', this.scrollListener, { passive: true });
 
-    return { highlighted: highlightedCount };
+    return { success: true, error: null, count: highlightedCount };
   }
 
   /**
@@ -1189,9 +1256,9 @@ export class DOMActions {
   /**
    * Remove visual overlay labels
    */
-  private async clearHighlight(): Promise<{ cleared: true }> {
+  private async clearHighlight(): Promise<ActionResult> {
     this.clearExistingOverlay();
-    return { cleared: true };
+    return { success: true, error: null };
   }
 
   /**
