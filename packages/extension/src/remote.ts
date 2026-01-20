@@ -305,27 +305,27 @@ export function getBrowserToolDefinitions(): BTCPToolDefinition[] {
     // Wait tools
     {
       name: 'browser_wait',
-      description: 'Wait for a specified duration or condition',
+      description: 'Wait for a selector to appear on the page',
       inputSchema: {
         type: 'object',
         properties: {
-          ms: { type: 'number', description: 'Milliseconds to wait' },
-          selector: { type: 'string', description: 'Wait for this selector to appear' },
-          timeout: { type: 'number', description: 'Max wait time for selector (default: 30000)' },
+          selector: { type: 'string', description: 'CSS selector to wait for' },
+          timeout: { type: 'number', description: 'Max wait time in ms (default: 30000)' },
         },
+        required: ['selector'],
       },
     },
 
     // Evaluate tool
     {
       name: 'browser_evaluate',
-      description: 'Evaluate JavaScript expression in the page context and return the result',
+      description: 'Evaluate JavaScript in the page context and return the result',
       inputSchema: {
         type: 'object',
         properties: {
-          expression: { type: 'string', description: 'JavaScript expression to evaluate' },
+          script: { type: 'string', description: 'JavaScript code to evaluate' },
         },
-        required: ['expression'],
+        required: ['script'],
       },
     },
   ];
