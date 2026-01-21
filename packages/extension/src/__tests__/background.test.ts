@@ -26,7 +26,7 @@ const mockChrome = {
   tabGroups: {
     get: vi.fn(),
     update: vi.fn(),
-    query: vi.fn(),
+    query: vi.fn().mockResolvedValue([]),
   },
   windows: {
     get: vi.fn(),
@@ -63,20 +63,28 @@ describe('BackgroundAgent', () => {
     mockChrome.runtime.lastError = null;
 
     // Default mock implementations
-    mockChrome.tabs.query.mockImplementation((_query, callback) => {
-      callback([{ id: 1, url: 'https://example.com', title: 'Example', active: true, groupId: 100 }]);
+    mockChrome.tabs.query.mockImplementation((_query, callback?) => {
+      const tabs = [{ id: 1, url: 'https://example.com', title: 'Example', active: true, groupId: 100, windowId: 1 }];
+      if (callback) {
+        callback(tabs);
+      }
+      return Promise.resolve(tabs);
     });
 
     mockChrome.tabs.get.mockImplementation((tabId, callback) => {
+      const tab = { id: tabId, url: 'https://example.com', status: 'complete', groupId: 100, windowId: 1 };
       if (callback) {
-        callback({ id: tabId, url: 'https://example.com', status: 'complete', groupId: 100 });
+        callback(tab);
       }
-      return Promise.resolve({ id: tabId, url: 'https://example.com', status: 'complete', groupId: 100 });
+      return Promise.resolve(tab);
     });
 
-    mockChrome.tabs.create.mockImplementation((options, callback) => {
-      const tab = { id: 2, url: options?.url || 'about:blank', active: options?.active ?? true };
-      callback(tab);
+    mockChrome.tabs.create.mockImplementation((options, callback?) => {
+      const tab = { id: 2, url: options?.url || 'about:blank', active: options?.active ?? true, windowId: 1 };
+      if (callback) {
+        callback(tab);
+      }
+      return Promise.resolve(tab);
     });
 
     mockChrome.tabs.update.mockImplementation((_tabId, _updateProps, callback) => {
@@ -99,7 +107,7 @@ describe('BackgroundAgent', () => {
       if (callback) callback();
     });
 
-    mockChrome.tabs.group.mockImplementation((_options, callback) => {
+    mockChrome.tabs.group.mockImplementation((_options, callback?) => {
       if (callback) callback(100);
       return Promise.resolve(100);
     });
@@ -113,6 +121,9 @@ describe('BackgroundAgent', () => {
     });
 
     mockChrome.tabGroups.update.mockResolvedValue({});
+
+    // Default: return empty array for tab groups query
+    mockChrome.tabGroups.query.mockResolvedValue([]);
 
     mockChrome.windows.get.mockResolvedValue({ type: 'normal', id: 1 });
 
@@ -160,23 +171,49 @@ describe('BackgroundAgent', () => {
   });
 
   describe('listTabs', () => {
-    it('should return error when no active session', async () => {
+    it('should auto-create session when no active session exists', async () => {
       // Simulate no active session
       mockChrome.storage.session.get.mockResolvedValue({});
+      mockChrome.tabGroups.query.mockResolvedValue([]);
+
+      // Mock successful session creation
+      mockChrome.tabs.create.mockImplementation((options, callback?) => {
+        const tab = { id: 1, url: options?.url || 'about:blank', active: true, windowId: 1 };
+        if (callback) callback(tab);
+        return Promise.resolve(tab);
+      });
+      mockChrome.tabs.group.mockResolvedValue(100);
+      mockChrome.tabs.query.mockImplementation((_query, callback?) => {
+        const tabs = [{ id: 1, url: 'about:blank', title: 'New Tab', active: true, index: 0, groupId: 100, windowId: 1 }];
+        if (callback) callback(tabs);
+        return Promise.resolve(tabs);
+      });
+
       const newAgent = new BackgroundAgent();
 
       // Wait for initialization
-      await new Promise(resolve => setTimeout(resolve, 10));
+      await new Promise(resolve => setTimeout(resolve, 50));
 
-      await expect(newAgent.listTabs()).rejects.toThrow('No active session');
+      // listTabs should work now because session is auto-created
+      const tabs = await newAgent.listTabs();
+      expect(Array.isArray(tabs)).toBe(true);
     });
   });
 
   describe('closeTab', () => {
-    it('should throw error when no tab to close', async () => {
+    it('should close tab in session', async () => {
+      agent.setActiveTabId(1);
+      await agent.closeTab();
+      expect(mockChrome.tabs.remove).toHaveBeenCalledWith(1, expect.any(Function));
+    });
+
+    it('should throw error when no explicit tab ID and no activeTabId set', async () => {
+      // Create agent without setting activeTabId
       const newAgent = new BackgroundAgent();
-      // Wait for initialization
-      await new Promise(resolve => setTimeout(resolve, 10));
+      await new Promise(resolve => setTimeout(resolve, 50));
+
+      // Clear the active tab ID
+      newAgent.setActiveTabId(null as unknown as number);
 
       await expect(newAgent.closeTab()).rejects.toThrow('No tab to close');
     });
@@ -189,18 +226,28 @@ describe('BackgroundAgent', () => {
       expect(mockChrome.tabs.goBack).toHaveBeenCalledWith(1, expect.any(Function));
     });
 
-    it('should throw when no active tab', async () => {
-      const newAgent = new BackgroundAgent();
-      // Set null active tab
-      newAgent.setActiveTabId(null as unknown as number);
-
-      // Mock no active session/tab
-      mockChrome.tabs.query.mockImplementation((_query, callback) => {
-        callback([]);
-      });
+    it('should auto-create session when no active tab', async () => {
+      // Mock session auto-creation
       mockChrome.storage.session.get.mockResolvedValue({});
+      mockChrome.tabGroups.query.mockResolvedValue([]);
+      mockChrome.tabs.create.mockImplementation((options, callback?) => {
+        const tab = { id: 1, url: options?.url || 'about:blank', active: true, windowId: 1 };
+        if (callback) callback(tab);
+        return Promise.resolve(tab);
+      });
+      mockChrome.tabs.group.mockResolvedValue(100);
+      mockChrome.tabs.query.mockImplementation((_query, callback?) => {
+        const tabs = [{ id: 1, url: 'about:blank', active: true, groupId: 100, windowId: 1 }];
+        if (callback) callback(tabs);
+        return Promise.resolve(tabs);
+      });
 
-      await expect(newAgent.back()).rejects.toThrow('No active tab');
+      const newAgent = new BackgroundAgent();
+      await new Promise(resolve => setTimeout(resolve, 50));
+
+      // Back should now work because session is auto-created
+      await newAgent.back();
+      expect(mockChrome.tabs.goBack).toHaveBeenCalled();
     });
   });
 
@@ -258,21 +305,26 @@ describe('BackgroundAgent', () => {
   });
 
   describe('execute', () => {
-    it('should handle navigate command - requires active session', async () => {
-      // Navigate requires an active session
+    it('should handle navigate command - calls chrome.tabs.update', async () => {
+      // Test that navigate calls chrome.tabs.update with the correct URL
+      // The full navigation flow (waiting for load/idle) is tested separately
       agent.setActiveTabId(1);
 
-      // Without active session, navigate throws error (the execute method's
-      // try/catch doesn't await the Promise, so errors propagate)
-      try {
-        await agent.execute({ action: 'navigate', url: 'https://example.com' });
-        // If we get here without error, it means the test setup is different
-        expect(true).toBe(true); // Pass if no error
-      } catch (error) {
-        // Expected: error about missing session
-        expect(error).toBeInstanceOf(Error);
-        expect((error as Error).message).toContain('No active session');
-      }
+      // Start navigate but don't await it fully - just verify tabs.update is called
+      void agent.navigate('https://example.com');
+
+      // Give it a moment to start
+      await new Promise(resolve => setTimeout(resolve, 10));
+
+      // Verify tabs.update was called with the URL
+      expect(mockChrome.tabs.update).toHaveBeenCalledWith(
+        1,
+        { url: 'https://example.com' },
+        expect.any(Function)
+      );
+
+      // Clean up - don't wait for full completion since mocks aren't complete
+      // The test passes if update was called correctly
     });
 
     it('should handle back command', async () => {
@@ -300,6 +352,15 @@ describe('BackgroundAgent', () => {
     });
 
     it('should handle getUrl command', async () => {
+      // Set up mock for the session/tab
+      agent.setActiveTabId(1);
+      mockChrome.tabGroups.query.mockResolvedValue([{ id: 100, title: 'BTCP Session 1' }]);
+      mockChrome.tabs.query.mockImplementation((_query, callback?) => {
+        const tabs = [{ id: 1, url: 'https://example.com', active: true, groupId: 100, windowId: 1 }];
+        if (callback) callback(tabs);
+        return Promise.resolve(tabs);
+      });
+
       const response = await agent.execute({ action: 'getUrl' });
       expect(response.success).toBe(true);
       if (response.success) {
@@ -308,6 +369,15 @@ describe('BackgroundAgent', () => {
     });
 
     it('should handle getTitle command', async () => {
+      // Set up mock for the session/tab
+      agent.setActiveTabId(1);
+      mockChrome.tabGroups.query.mockResolvedValue([{ id: 100, title: 'BTCP Session 1' }]);
+      mockChrome.tabs.query.mockImplementation((_query, callback?) => {
+        const tabs = [{ id: 1, title: 'Example', active: true, groupId: 100, windowId: 1 }];
+        if (callback) callback(tabs);
+        return Promise.resolve(tabs);
+      });
+
       const response = await agent.execute({ action: 'getTitle' });
       expect(response.success).toBe(true);
       if (response.success) {
@@ -330,14 +400,16 @@ describe('BackgroundAgent', () => {
     it('should handle tabList command', async () => {
       // Need active session for tabList
       mockChrome.storage.session.get.mockResolvedValue({ btcp_active_session: { groupId: 100 } });
+      mockChrome.tabs.query.mockImplementation((_options, callback?) => {
+        const tabs = [
+          { id: 1, url: 'https://example.com', title: 'Example', active: true, index: 0, groupId: 100, windowId: 1 },
+        ];
+        if (callback) callback(tabs);
+        return Promise.resolve(tabs);
+      });
+
       const newAgent = new BackgroundAgent();
       await new Promise(resolve => setTimeout(resolve, 50));
-
-      mockChrome.tabs.query.mockImplementation((_options, callback) => {
-        callback([
-          { id: 1, url: 'https://example.com', title: 'Example', active: true, index: 0 },
-        ]);
-      });
 
       const response = await newAgent.execute({ action: 'tabList' });
       expect(response.success).toBe(true);
@@ -362,20 +434,34 @@ describe('BackgroundAgent', () => {
       expect(response.success).toBe(true);
     });
 
-    it('should return error for no active tab on DOM commands', async () => {
-      const newAgent = new BackgroundAgent();
-      // Mock no active session/tab
-      mockChrome.tabs.query.mockImplementation((_query, callback) => {
-        callback([]);
-      });
+    it('should auto-create session for DOM commands when no session exists', async () => {
+      // Mock session auto-creation
       mockChrome.storage.session.get.mockResolvedValue({});
-      await new Promise(resolve => setTimeout(resolve, 10));
+      mockChrome.tabGroups.query.mockResolvedValue([]);
+      mockChrome.tabs.create.mockImplementation((options, callback?) => {
+        const tab = { id: 1, url: options?.url || 'about:blank', active: true, windowId: 1 };
+        if (callback) callback(tab);
+        return Promise.resolve(tab);
+      });
+      mockChrome.tabs.group.mockResolvedValue(100);
+      mockChrome.tabs.query.mockImplementation((_query, callback?) => {
+        const tabs = [{ id: 1, url: 'about:blank', active: true, groupId: 100, windowId: 1 }];
+        if (callback) callback(tabs);
+        return Promise.resolve(tabs);
+      });
+      mockChrome.tabs.sendMessage.mockImplementation((_tabId, _msg, _options, callback) => {
+        callback({
+          type: 'btcp:response',
+          response: { id: 'test', success: true, data: 'snapshot tree' },
+        });
+      });
 
+      const newAgent = new BackgroundAgent();
+      await new Promise(resolve => setTimeout(resolve, 50));
+
+      // DOM commands should now work because session is auto-created
       const response = await newAgent.execute({ action: 'snapshot' });
-      expect(response.success).toBe(false);
-      if (!response.success) {
-        expect(response.error).toContain('No active tab');
-      }
+      expect(response.success).toBe(true);
     });
   });
 

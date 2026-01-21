@@ -469,6 +469,10 @@ describe('SessionManager', () => {
       mockChrome.storage.session.get.mockResolvedValue({
         btcp_active_session: { groupId: 100, sessionCounter: 1, timestamp: Date.now() },
       });
+      // Mock tabGroups.query to return a BTCP group
+      mockChrome.tabGroups.query.mockResolvedValue([
+        { id: 100, title: 'BTCP Session 1', color: 'blue', collapsed: false, windowId: 1 },
+      ]);
 
       manager = new SessionManager();
       await new Promise(resolve => setTimeout(resolve, 50));

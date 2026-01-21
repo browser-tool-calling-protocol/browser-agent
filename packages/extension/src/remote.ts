@@ -323,74 +323,6 @@ export function createRemoteAgent(config: RemoteAgentConfig): RemoteAgent {
   }
 
   /**
-   * Ensure a session exists, creating one if needed
-   *
-   * This checks in order:
-   * 1. Current active session
-   * 2. Persistent session from storage (reconnects if found)
-   * 3. Existing BTCP tab groups (reconnects to first one found)
-   * 4. Creates a new session if none found (respects maxSession limit)
-   */
-  async function ensureSession(): Promise<void> {
-    // 1. Check if there's an active session
-    const sessionResult = await backgroundAgent.execute({ action: 'sessionGetCurrent' });
-
-    if (sessionResult.success && sessionResult.data) {
-      const session = (sessionResult.data as { session?: { groupId?: number } }).session;
-      if (session?.groupId) {
-        log('Active session found:', session.groupId);
-        return; // Session already exists
-      }
-    }
-
-    // 2. Try to reconnect via popup initialize (handles persistent session check)
-    log('No active session, trying to reconnect to existing session...');
-    const initResult = await backgroundAgent.execute({ action: 'popupInitialize' });
-
-    if (initResult.success && initResult.data) {
-      const initData = initResult.data as { reconnected?: boolean };
-      if (initData.reconnected) {
-        log('Reconnected to existing session');
-        return;
-      }
-    }
-
-    // 3. Check for existing BTCP tab groups and try to use one
-    const groupsResult = await backgroundAgent.execute({ action: 'groupList' });
-    if (groupsResult.success && groupsResult.data) {
-      const groups = groupsResult.data as Array<{ id: number; title?: string }>;
-      const btcpGroup = groups.find(g => g.title?.startsWith('BTCP'));
-
-      if (btcpGroup) {
-        log('Found existing BTCP tab group, setting it as active session:', btcpGroup.id);
-        const useResult = await backgroundAgent.execute({
-          action: 'sessionUseGroup',
-          groupId: btcpGroup.id,
-        });
-        if (useResult.success) {
-          log('Successfully using existing BTCP group as session');
-          return;
-        }
-        log('Failed to use existing BTCP group:', useResult.error);
-      }
-    }
-
-    // 4. Create a new session (will fail if maxSession limit reached)
-    log('No existing session found, creating one automatically...');
-    const groupResult = await backgroundAgent.execute({
-      action: 'groupCreate',
-      // Don't specify title - let SessionManager generate proper numbered title
-      color: 'blue',
-    });
-
-    if (!groupResult.success) {
-      throw new Error(`Failed to create session: ${groupResult.error}`);
-    }
-
-    log('Session created:', groupResult.data);
-  }
-
-  /**
    * Handle incoming tool call request
    */
   async function handleToolCall(request: {
@@ -404,10 +336,7 @@ export function createRemoteAgent(config: RemoteAgentConfig): RemoteAgent {
     emit('toolCall', name, args);
 
     try {
-      // Auto-ensure session for all browser tools (session management is internal)
-      await ensureSession();
-
-      // Map tool to command and execute
+      // Map tool to command and execute (session auto-ensured by BackgroundAgent)
       const command = mapToolToCommand(name, args);
       const response = await backgroundAgent.execute(command);
 

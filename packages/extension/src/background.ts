@@ -195,41 +195,20 @@ export class BackgroundAgent {
   // ============================================================================
 
   /**
-   * Get the currently active tab (only if in session)
+   * Get the currently active tab (ensures session exists, creates if needed)
+   * This is the core "get or create" method that enables automatic session management.
    */
-  async getActiveTab(): Promise<ChromeTab | null> {
-    const sessionGroupId = this.sessionManager.getActiveSessionGroupId();
-
-    // If no session, return null
-    if (sessionGroupId === null) {
-      return null;
-    }
-
-    // Get active tab and verify it's in the session
-    return new Promise((resolve) => {
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        const activeTab = tabs[0];
-        // Only return if it's in the session group
-        if (activeTab && activeTab.groupId === sessionGroupId) {
-          resolve(activeTab);
-        } else {
-          resolve(null);
-        }
-      });
-    });
+  async getActiveTab(): Promise<ChromeTab> {
+    const tabId = await this.sessionManager.getSessionTab();
+    return chrome.tabs.get(tabId);
   }
 
   /**
-   * List all tabs (only in session group)
+   * List all tabs in session (ensures session exists, creates if needed)
    */
   async listTabs(): Promise<TabInfo[]> {
-    // Get active session group ID
-    const sessionGroupId = this.sessionManager.getActiveSessionGroupId();
-
-    // Session is required
-    if (sessionGroupId === null) {
-      throw new Error('No active session. Create a session first to manage tabs.');
-    }
+    // Ensure session exists (creates if needed)
+    const sessionGroupId = await this.sessionManager.ensureSession();
 
     // Only return tabs in the session group
     const tabs = await new Promise<ChromeTab[]>((resolve) => {
@@ -246,14 +225,11 @@ export class BackgroundAgent {
   }
 
   /**
-   * Create a new tab (only in session group)
+   * Create a new tab in session (ensures session exists, creates if needed)
    */
   async newTab(options?: { url?: string; active?: boolean }): Promise<TabInfo> {
-    // Require active session
-    const sessionGroupId = this.sessionManager.getActiveSessionGroupId();
-    if (sessionGroupId === null) {
-      throw new Error('No active session. Create a session first to manage tabs.');
-    }
+    // Ensure session exists (creates if needed)
+    await this.sessionManager.ensureSession();
 
     const tab = await new Promise<ChromeTab>((resolve) => {
       chrome.tabs.create(
@@ -290,15 +266,11 @@ export class BackgroundAgent {
   }
 
   /**
-   * Check if a tab is in the active session
+   * Check if a tab is in the active session (ensures session exists, creates if needed)
    */
   private async isTabInSession(tabId: number): Promise<boolean> {
-    const sessionGroupId = this.sessionManager.getActiveSessionGroupId();
-
-    // Session is required - no operations allowed without it
-    if (sessionGroupId === null) {
-      throw new Error('No active session. Create a session first to manage tabs.');
-    }
+    // Ensure session exists (creates if needed)
+    const sessionGroupId = await this.sessionManager.ensureSession();
 
     // Check if tab is in the session group
     const tab = await chrome.tabs.get(tabId);
@@ -350,19 +322,13 @@ export class BackgroundAgent {
   // ============================================================================
 
   /**
-   * Navigate to a URL (only in session tabs)
+   * Navigate to a URL (session auto-created if needed)
    * Always waits for page to be idle before returning.
    * Verifies navigation completed to the expected origin.
    */
   async navigate(url: string, _options?: { waitUntil?: 'load' | 'domcontentloaded' }): Promise<void> {
-    const tabId = this.activeTabId ?? (await this.getActiveTab())?.id;
-    if (!tabId) throw new Error('No active tab');
-
-    // Validate tab is in session
-    const inSession = await this.isTabInSession(tabId);
-    if (!inSession) {
-      throw new Error('Cannot navigate: tab is not in the active session');
-    }
+    // getActiveTab() ensures session exists and always returns a valid tab
+    const tabId = this.activeTabId ?? (await this.getActiveTab()).id!;
 
     await new Promise<void>((resolve) => {
       chrome.tabs.update(tabId, { url }, () => resolve());
@@ -406,11 +372,10 @@ export class BackgroundAgent {
   }
 
   /**
-   * Go back in history
+   * Go back in history (session auto-created if needed)
    */
   async back(): Promise<void> {
-    const tabId = this.activeTabId ?? (await this.getActiveTab())?.id;
-    if (!tabId) throw new Error('No active tab');
+    const tabId = this.activeTabId ?? (await this.getActiveTab()).id!;
 
     await new Promise<void>((resolve) => {
       chrome.tabs.goBack(tabId, () => resolve());
@@ -418,11 +383,10 @@ export class BackgroundAgent {
   }
 
   /**
-   * Go forward in history
+   * Go forward in history (session auto-created if needed)
    */
   async forward(): Promise<void> {
-    const tabId = this.activeTabId ?? (await this.getActiveTab())?.id;
-    if (!tabId) throw new Error('No active tab');
+    const tabId = this.activeTabId ?? (await this.getActiveTab()).id!;
 
     await new Promise<void>((resolve) => {
       chrome.tabs.goForward(tabId, () => resolve());
@@ -430,11 +394,10 @@ export class BackgroundAgent {
   }
 
   /**
-   * Reload the current page
+   * Reload the current page (session auto-created if needed)
    */
   async reload(options?: { bypassCache?: boolean }): Promise<void> {
-    const tabId = this.activeTabId ?? (await this.getActiveTab())?.id;
-    if (!tabId) throw new Error('No active tab');
+    const tabId = this.activeTabId ?? (await this.getActiveTab()).id!;
 
     await new Promise<void>((resolve) => {
       chrome.tabs.reload(tabId, { bypassCache: options?.bypassCache }, () => resolve());
@@ -444,19 +407,19 @@ export class BackgroundAgent {
   }
 
   /**
-   * Get the current URL
+   * Get the current URL (session auto-created if needed)
    */
   async getUrl(): Promise<string> {
     const tab = await this.getActiveTab();
-    return tab?.url || '';
+    return tab.url || '';
   }
 
   /**
-   * Get the page title
+   * Get the page title (session auto-created if needed)
    */
   async getTitle(): Promise<string> {
     const tab = await this.getActiveTab();
-    return tab?.title || '';
+    return tab.title || '';
   }
 
   // ============================================================================
@@ -536,20 +499,15 @@ export class BackgroundAgent {
 
   /**
    * Send a command to the ContentAgent in a specific tab
+   * Session is automatically created if it doesn't exist.
    */
   async sendToContentAgent(command: Command, tabId?: number): Promise<Response> {
     // Ensure command has an ID for internal use
     const id = command.id || generateBgCommandId();
     const internalCmd = { ...command, id } as Command & { id: string };
-    const targetTabId = tabId ?? this.activeTabId ?? (await this.getActiveTab())?.id;
 
-    if (!targetTabId) {
-      return {
-        id,
-        success: false,
-        error: 'No active tab for DOM command',
-      };
-    }
+    // getActiveTab() ensures session exists and always returns a valid tab
+    const targetTabId = tabId ?? this.activeTabId ?? (await this.getActiveTab()).id!;
 
     // Try sending with automatic retry and recovery
     return this.sendMessageWithRetry(targetTabId, internalCmd);
@@ -822,7 +780,7 @@ export class BackgroundAgent {
         console.log('[BackgroundAgent] Popup initializing, checking for session reconnection...');
 
         // Check if we have a stored session but no active connection
-        const sessionGroupId = this.sessionManager.getActiveSessionGroupId();
+        const sessionGroupId = await this.sessionManager.getActiveSessionGroupIdAsync();
 
         if (sessionGroupId === null) {
           // Try to reconnect from storage

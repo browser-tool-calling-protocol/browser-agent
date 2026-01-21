@@ -332,7 +332,14 @@ describe('createRemoteAgent', () => {
     });
 
     mockChrome.storage.session.get.mockResolvedValue({});
-    mockChrome.tabs.query.mockImplementation((_, callback) => {
+    mockChrome.tabs.query.mockImplementation((queryInfo, callback) => {
+      // If querying for a group, return a mock tab (needed for getSessionTab)
+      if (queryInfo?.groupId) {
+        const tabs = [{ id: 1, windowId: 1, status: 'complete' }];
+        if (callback) callback(tabs);
+        return Promise.resolve(tabs);
+      }
+      // Otherwise return empty array
       if (callback) callback([]);
       return Promise.resolve([]);
     });

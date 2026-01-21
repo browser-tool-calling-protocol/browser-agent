@@ -62,7 +62,7 @@ export class SessionManager {
   /**
    * Wait for SessionManager to finish initialization
    */
-  private async waitForInitialization(): Promise<void> {
+  public async waitForInitialization(): Promise<void> {
     await this.initializationPromise;
   }
 
@@ -255,6 +255,8 @@ export class SessionManager {
    * Used when popup detects a stored session that isn't currently active
    */
   async reconnectSession(groupId: number): Promise<boolean> {
+    await this.waitForInitialization();
+
     try {
       console.log('[SessionManager] Attempting to reconnect to session group:', groupId);
 
@@ -269,6 +271,9 @@ export class SessionManager {
       // Restore session state
       this.activeSessionGroupId = groupId;
       this.sessionCounter = data?.sessionCounter ?? this.sessionCounter;
+
+      // Persist session state after reconnecting
+      await this.persistSession();
 
       console.log('[SessionManager] Session reconnected successfully');
       return true;
@@ -444,6 +449,8 @@ export class SessionManager {
    * Get current active session info
    */
   async getCurrentSession(): Promise<SessionInfo | null> {
+    await this.waitForInitialization();
+
     if (this.activeSessionGroupId === null) {
       return null;
     }
@@ -477,6 +484,14 @@ export class SessionManager {
   }
 
   /**
+   * Get the active session group ID (async version that ensures initialization is complete)
+   */
+  async getActiveSessionGroupIdAsync(): Promise<number | null> {
+    await this.waitForInitialization();
+    return this.activeSessionGroupId;
+  }
+
+  /**
    * Get the maximum number of sessions allowed
    */
   getMaxSession(): number {
@@ -495,6 +510,8 @@ export class SessionManager {
    * Closes oldest tabs if the limit is exceeded
    */
   async enforceTabLimit(): Promise<void> {
+    await this.waitForInitialization();
+
     if (this.activeSessionGroupId === null) {
       return;
     }
@@ -610,10 +627,74 @@ export class SessionManager {
   }
 
   /**
+   * Ensure a session exists - restore from storage, use existing, or create new
+   * Returns the session group ID (creates if needed)
+   */
+  async ensureSession(): Promise<number> {
+    await this.waitForInitialization();
+
+    // Step 1: Already have active session
+    if (this.activeSessionGroupId !== null) {
+      // Verify it still exists
+      try {
+        await chrome.tabGroups.get(this.activeSessionGroupId);
+        return this.activeSessionGroupId;
+      } catch {
+        // Group no longer exists, continue to restore/create
+        this.activeSessionGroupId = null;
+      }
+    }
+
+    // Step 2: Try to restore from storage
+    const result = await chrome.storage.session.get(SESSION_STORAGE_KEY);
+    const stored = result[SESSION_STORAGE_KEY] as StoredSessionData | undefined;
+
+    if (stored?.groupId) {
+      const reconnected = await this.reconnectSession(stored.groupId);
+      if (reconnected && this.activeSessionGroupId !== null) {
+        return this.activeSessionGroupId;
+      }
+    }
+
+    // Step 3: Find existing BTCP group
+    const groups = await chrome.tabGroups.query({});
+    const btcpGroup = groups.find(g => g.title?.startsWith('BTCP'));
+
+    if (btcpGroup) {
+      const used = await this.useExistingGroupAsSession(btcpGroup.id);
+      if (used && this.activeSessionGroupId !== null) {
+        return this.activeSessionGroupId;
+      }
+    }
+
+    // Step 4: Create new session
+    console.log('[SessionManager] No existing session found, creating new one...');
+    const newGroup = await this.createGroup({ color: 'blue' });
+    return newGroup.id;
+  }
+
+  /**
+   * Get the primary tab in session (ensures session exists first)
+   * Returns the first tab in the session group
+   */
+  async getSessionTab(): Promise<number> {
+    const groupId = await this.ensureSession();
+
+    const tabs = await chrome.tabs.query({ groupId });
+    if (tabs.length === 0 || tabs[0].id === undefined) {
+      throw new Error('Session exists but has no tabs');
+    }
+
+    return tabs[0].id;
+  }
+
+  /**
    * Add a tab to the active session (if one exists)
    * Automatically enforces the tab limit after adding
    */
   async addTabToActiveSession(tabId: number): Promise<boolean> {
+    await this.waitForInitialization();
+
     if (this.activeSessionGroupId === null) {
       return false;
     }
