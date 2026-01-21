@@ -40,12 +40,9 @@
  * ```
  */
 
-import type {
-  Command,
-  ExtensionMessage,
-  ExtensionResponse,
-  Response,
-} from './types.js';
+import type { Command, Response } from './types.js';
+import type { Transport } from './transport/types.js';
+import { ChromeExtensionTransport } from './transport/chrome-extension.js';
 
 // Import for local use (and re-export below)
 import {
@@ -102,6 +99,9 @@ export type {
   BoundingBox,
   Modifier,
 } from '../../core/dist/index.js';
+
+// Re-export transport module
+export * from './transport/index.js';
 
 /**
  * Client for sending commands to the extension background script
@@ -207,6 +207,25 @@ export interface Client {
   evaluate(expression: string): Promise<unknown>;
 }
 
+/**
+ * Options for creating a client
+ */
+export interface CreateClientOptions {
+  /**
+   * Transport to use for sending commands.
+   * Defaults to ChromeExtensionTransport.
+   *
+   * @example Using direct transport in background script:
+   * ```typescript
+   * import { createClient, createDirectTransport, getBackgroundAgent } from '@btcp/browser-agent/extension';
+   *
+   * const transport = createDirectTransport({ agent: getBackgroundAgent() });
+   * const client = createClient({ transport });
+   * ```
+   */
+  transport?: Transport;
+}
+
 let commandIdCounter = 0;
 
 /**
@@ -217,84 +236,41 @@ export function generateCommandId(): string {
 }
 
 /**
- * Check if we're running in a background/service worker context
- */
-function isBackgroundContext(): boolean {
-  // In Manifest V3, background scripts run as service workers
-  return typeof ServiceWorkerGlobalScope !== 'undefined' && self instanceof ServiceWorkerGlobalScope;
-}
-
-/**
  * Create a client for communicating with the extension
  *
- * This function works in both popup/content scripts and background scripts:
- * - In popup/content scripts: Uses chrome.runtime.sendMessage to communicate with background
- * - In background scripts: Uses BackgroundAgent directly for better performance
+ * By default uses ChromeExtensionTransport for popup/content script contexts.
+ * Pass a custom transport for different communication mechanisms.
  *
- * @example Popup usage:
+ * @example Default (Chrome Extension):
  * ```typescript
  * import { createClient } from '@btcp/browser-agent/extension';
  * const client = createClient();
  * await client.navigate('https://example.com');
  * ```
  *
- * @example Background script usage:
+ * @example With explicit transport:
  * ```typescript
- * import { createClient } from '@btcp/browser-agent/extension';
- * const client = createClient();
- * // Works the same way - commands go directly to BackgroundAgent
- * await client.navigate('https://example.com');
+ * import { createClient, createChromeExtensionTransport } from '@btcp/browser-agent/extension';
+ *
+ * const transport = createChromeExtensionTransport({ debug: true });
+ * const client = createClient({ transport });
+ * ```
+ *
+ * @example Direct transport (background script):
+ * ```typescript
+ * import { createClient, createDirectTransport, getBackgroundAgent } from '@btcp/browser-agent/extension';
+ *
+ * const transport = createDirectTransport({ agent: getBackgroundAgent() });
+ * const client = createClient({ transport });
  * ```
  */
-export function createClient(): Client {
-  // Detect if we're in background context
-  const inBackground = isBackgroundContext();
-
-  // Lazily get the background agent to avoid circular dependency issues
-  let bgAgent: _BackgroundAgent | null = null;
-
-  function getAgent(): _BackgroundAgent {
-    if (!bgAgent) {
-      // Use the singleton getter from background.js
-      bgAgent = _getBackgroundAgent();
-    }
-    return bgAgent;
-  }
+export function createClient(options: CreateClientOptions = {}): Client {
+  // Default to Chrome extension transport
+  const transport = options.transport ?? new ChromeExtensionTransport();
 
   async function sendCommand(command: Command): Promise<Response> {
-    // In background context, use BackgroundAgent directly
-    if (inBackground) {
-      return getAgent().execute(command);
-    }
-
-    // In popup/content context, use message passing
     const id = command.id || generateCommandId();
-    return new Promise((resolve) => {
-      chrome.runtime.sendMessage(
-        { type: 'btcp:command', command: { ...command, id } } satisfies ExtensionMessage,
-        (response) => {
-          if (chrome.runtime.lastError) {
-            resolve({
-              id,
-              success: false,
-              error: chrome.runtime.lastError.message || 'Unknown error',
-            });
-          } else {
-            const resp = response as ExtensionResponse;
-            if (resp.type === 'btcp:response') {
-              resolve(resp.response);
-            } else {
-              // Unexpected pong response
-              resolve({
-                id,
-                success: false,
-                error: 'Unexpected response type',
-              });
-            }
-          }
-        }
-      );
-    });
+    return transport.send({ ...command, id });
   }
 
   function assertSuccess(response: Response): asserts response is Response & { success: true } {
