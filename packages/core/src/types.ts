@@ -158,7 +158,7 @@ export interface GrepOptions {
 /**
  * Snapshot mode determines what content to capture
  */
-export type SnapshotMode = 'interactive' | 'outline' | 'content';
+export type SnapshotMode = 'interactive' | 'outline' | 'content' | 'head';
 
 /**
  * Snapshot output format
@@ -179,6 +179,7 @@ export interface SnapshotCommand extends BaseCommand {
   baseSnapshot?: SnapshotData;
   /**
    * Snapshot mode:
+   * - 'head': Lightweight page overview (URL, title, element counts, status)
    * - 'interactive': Find clickable elements (default)
    * - 'outline': Understand page structure with xpaths + metadata
    * - 'content': Extract text content from sections

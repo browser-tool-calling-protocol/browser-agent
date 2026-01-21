@@ -815,7 +815,7 @@ export class DOMActions {
     maxDepth?: number;
     includeHidden?: boolean;
     compact?: boolean;
-    mode?: 'interactive' | 'outline' | 'content';
+    mode?: 'interactive' | 'outline' | 'content' | 'head';
     format?: 'tree' | 'html' | 'markdown';
     grep?: string | { pattern: string; ignoreCase?: boolean; invert?: boolean; fixedStrings?: boolean };
     maxLength?: number;

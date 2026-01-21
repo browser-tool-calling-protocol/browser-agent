@@ -51,6 +51,7 @@ export class SessionManager {
   private initializationPromise: Promise<void>;
   private maxSession: number;
   private maxOpenTab: number;
+  private ensureSessionPromise: Promise<number> | null = null;
 
   constructor(options: SessionManagerOptions = {}) {
     this.maxSession = options.maxSession ?? 1;
@@ -287,21 +288,25 @@ export class SessionManager {
 
   /**
    * Create a new tab group
+   * @param options Group creation options
+   * @param internal If true, bypasses session limit check (used by ensureSession)
    */
-  async createGroup(options: GroupCreateOptions = {}): Promise<GroupInfo> {
+  async createGroup(options: GroupCreateOptions = {}, internal = false): Promise<GroupInfo> {
     // Wait for initialization to complete first
     await this.waitForInitialization();
 
-    console.log('[SessionManager] createGroup called with options:', options);
+    console.log('[SessionManager] createGroup called with options:', options, 'internal:', internal);
 
-    // Check if we can create a new session
-    const canCreate = await this.canCreateSession();
-    if (!canCreate) {
-      const count = await this.getSessionCount();
-      throw new Error(
-        `Maximum session limit reached (${count}/${this.maxSession}). ` +
-        `Close an existing session before creating a new one.`
-      );
+    // Check if we can create a new session (skip if internal call from ensureSession)
+    if (!internal) {
+      const canCreate = await this.canCreateSession();
+      if (!canCreate) {
+        const count = await this.getSessionCount();
+        throw new Error(
+          `Maximum session limit reached (${count}/${this.maxSession}). ` +
+          `Close an existing session before creating a new one.`
+        );
+      }
     }
 
     const {
@@ -629,18 +634,44 @@ export class SessionManager {
   /**
    * Ensure a session exists - restore from storage, use existing, or create new
    * Returns the session group ID (creates if needed)
+   *
+   * This method is atomic - concurrent calls will wait for the same promise
    */
   async ensureSession(): Promise<number> {
+    // Return existing promise if already in progress
+    if (this.ensureSessionPromise) {
+      console.log('[SessionManager] ensureSession already in progress, waiting...');
+      return this.ensureSessionPromise;
+    }
+
+    // Create new promise and store it
+    this.ensureSessionPromise = this._doEnsureSession();
+
+    try {
+      return await this.ensureSessionPromise;
+    } finally {
+      // Clear promise when done
+      this.ensureSessionPromise = null;
+    }
+  }
+
+  /**
+   * Internal implementation of ensureSession
+   */
+  private async _doEnsureSession(): Promise<number> {
     await this.waitForInitialization();
+    console.log('[SessionManager] Starting ensureSession...');
 
     // Step 1: Already have active session
     if (this.activeSessionGroupId !== null) {
       // Verify it still exists
       try {
         await chrome.tabGroups.get(this.activeSessionGroupId);
+        console.log('[SessionManager] Active session still valid:', this.activeSessionGroupId);
         return this.activeSessionGroupId;
       } catch {
         // Group no longer exists, continue to restore/create
+        console.log('[SessionManager] Active session no longer exists');
         this.activeSessionGroupId = null;
       }
     }
@@ -650,26 +681,35 @@ export class SessionManager {
     const stored = result[SESSION_STORAGE_KEY] as StoredSessionData | undefined;
 
     if (stored?.groupId) {
+      console.log('[SessionManager] Step 2: Attempting to reconnect to stored session:', stored.groupId);
       const reconnected = await this.reconnectSession(stored.groupId);
       if (reconnected && this.activeSessionGroupId !== null) {
+        console.log('[SessionManager] Reconnected to stored session:', this.activeSessionGroupId);
         return this.activeSessionGroupId;
       }
     }
 
     // Step 3: Find existing BTCP group
+    console.log('[SessionManager] Step 3: Looking for existing BTCP groups...');
     const groups = await chrome.tabGroups.query({});
+    console.log('[SessionManager] Found tab groups:', groups.map(g => ({ id: g.id, title: g.title })));
     const btcpGroup = groups.find(g => g.title?.startsWith('BTCP'));
 
     if (btcpGroup) {
+      console.log('[SessionManager] Found existing BTCP group:', btcpGroup.id, btcpGroup.title);
       const used = await this.useExistingGroupAsSession(btcpGroup.id);
       if (used && this.activeSessionGroupId !== null) {
+        console.log('[SessionManager] Successfully reused existing session:', this.activeSessionGroupId);
         return this.activeSessionGroupId;
       }
+    } else {
+      console.log('[SessionManager] No existing BTCP groups found');
     }
 
-    // Step 4: Create new session
+    // Step 4: Create new session (bypass limit check since we already tried to reuse)
     console.log('[SessionManager] No existing session found, creating new one...');
-    const newGroup = await this.createGroup({ color: 'blue' });
+    const newGroup = await this.createGroup({ color: 'blue' }, true); // internal=true bypasses limit
+    console.log('[SessionManager] Created new session:', newGroup.id);
     return newGroup.id;
   }
 

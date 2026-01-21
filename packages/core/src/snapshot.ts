@@ -836,6 +836,60 @@ function getSectionName(element: Element): string {
 }
 
 /**
+ * Create head snapshot - lightweight HTTP HEAD-style page overview
+ * Returns page metadata without DOM traversal for fast verification
+ */
+function createHeadSnapshot(
+  document: Document,
+  _refMap: RefMap,
+  options: SnapshotOptions
+): SnapshotData {
+  const { root = document.body } = options;
+  const win = document.defaultView || window;
+
+  // Count elements (lightweight - no deep traversal)
+  const allElements = root.querySelectorAll('*');
+  const interactiveSelector = 'button, a[href], input, textarea, select, [role="button"], [tabindex]:not([tabindex="-1"])';
+  const interactiveElements = root.querySelectorAll(interactiveSelector);
+
+  // Page status detection
+  const viewportArea = win.innerWidth * win.innerHeight;
+  const hasInteractive = interactiveElements.length > 0;
+  const isComplete = document.readyState === 'complete';
+
+  let status = 'loading';
+  if (viewportArea === 0) {
+    status = 'loading';
+  } else if (!hasInteractive) {
+    status = 'empty';
+  } else if (isComplete) {
+    status = 'ready';
+  } else {
+    status = 'interactive';
+  }
+
+  // Build output
+  const output = [
+    `URL: ${document.location?.href || 'about:blank'}`,
+    `TITLE: ${document.title || 'Untitled'}`,
+    `VIEWPORT: ${win.innerWidth}x${win.innerHeight}`,
+    `STATUS: ${status}`,
+    `ELEMENTS: total=${allElements.length} interactive=${interactiveElements.length}`,
+    `READY_STATE: ${document.readyState}`
+  ].join('\n');
+
+  return {
+    tree: output,
+    refs: {},  // No refs in head mode
+    metadata: {
+      totalInteractiveElements: interactiveElements.length,
+      capturedElements: 0,
+      quality: 'high'
+    }
+  };
+}
+
+/**
  * Create outline snapshot - structural overview with metadata
  */
 function createOutlineSnapshot(
@@ -1463,6 +1517,10 @@ export function createSnapshot(
 
   // Dispatch based on mode
   const effectiveMode = mode;
+
+  if (effectiveMode === 'head') {
+    return createHeadSnapshot(document, refMap, { ...options, root });
+  }
 
   if (effectiveMode === 'outline') {
     return createOutlineSnapshot(document, refMap, { ...options, root });

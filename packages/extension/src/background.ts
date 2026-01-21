@@ -545,7 +545,7 @@ export class BackgroundAgent {
             resolve({
               id: command.id,
               success: false,
-              error: chrome.runtime.lastError.message || 'Failed to send message to tab',
+              error: chrome.runtime.lastError?.message || 'Failed to send message to tab',
             });
           } else if (!response) {
             // Response is undefined but no lastError - return success with empty data
