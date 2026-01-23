@@ -25,7 +25,35 @@ import type { Command, Response, RefMap } from './types.js';
 export * from './types.js';
 export * from './errors.js';
 export * from './assertions.js';
-export { createSnapshot } from './snapshot.js';
+
+// Snapshot module - new Unix-style API
+export {
+  // Primary functions
+  snapshotHead,
+  snapshotInteractive,
+  snapshotStructure,
+  snapshotOutline,
+  snapshotContent,
+  snapshotAll,
+  // Backward compatibility
+  createSnapshot,
+  // Types
+  type HeadOptions,
+  type InteractiveOptions,
+  type StructureOptions,
+  type OutlineOptions,
+  type ContentOptions,
+  type AllOptions,
+  type GrepOptions,
+  type GrepResult,
+  SnapshotConfigError,
+  // Utilities (for advanced use)
+  inspect,
+  filter,
+  traverse,
+  format,
+} from './snapshot/index.js';
+
 export { createRefMap, createSimpleRefMap } from './ref-map.js';
 export { DOMActions, generateCommandId } from './actions.js';
 

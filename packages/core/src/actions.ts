@@ -14,7 +14,7 @@ import type {
   ValidateElementResponse,
   ValidateRefsResponse,
 } from './types.js';
-import { createSnapshot } from './snapshot.js';
+import { createSnapshot } from './snapshot/index.js';
 import {
   DetailedError,
   createElementNotFoundError,
