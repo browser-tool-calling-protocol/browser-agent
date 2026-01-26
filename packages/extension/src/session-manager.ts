@@ -662,6 +662,12 @@ export class SessionManager {
     await this.waitForInitialization();
     console.log('[SessionManager] Starting ensureSession...');
 
+    // Step 0: Clean up any duplicate sessions first (ensures only one BTCP session exists)
+    const cleanupResult = await this.cleanupDuplicateSessions();
+    if (cleanupResult.removed > 0) {
+      console.log(`[SessionManager] Cleaned up ${cleanupResult.removed} duplicate session(s), kept 1`);
+    }
+
     // Step 1: Already have active session
     if (this.activeSessionGroupId !== null) {
       // Verify it still exists
@@ -755,8 +761,13 @@ export class SessionManager {
    * Generate a session name
    */
   private generateSessionName(): string {
-    this.sessionCounter++;
-    return `BTCP Session ${this.sessionCounter}`;
+    // Only increment counter if we allow multiple sessions
+    // For single session mode (maxSession === 1), always use the same name
+    if (this.maxSession > 1) {
+      this.sessionCounter++;
+      return `BTCP Session ${this.sessionCounter}`;
+    }
+    return 'BTCP';
   }
 
   /**

@@ -83,21 +83,13 @@ export interface TabHandle {
 export class BackgroundAgent {
   private activeTabId: number | null = null;
   private sessionManager: SessionManager;
-  private heartbeatInterval: number | null = null;
-  private readonly HEARTBEAT_INTERVAL = 30000; // 30 seconds
 
   constructor() {
     this.sessionManager = new SessionManager();
-    // Initialize active tab on creation
-    this.initActiveTab();
-    // Start heartbeat to keep session tabs alive
-    this.startHeartbeat();
+    // Don't auto-initialize - let first operation trigger session creation
+    // Session will be created lazily on first tool call
   }
 
-  private async initActiveTab(): Promise<void> {
-    const tab = await this.getActiveTab();
-    this.activeTabId = tab?.id ?? null;
-  }
 
   /**
    * Get the current active tab ID
@@ -597,56 +589,8 @@ export class BackgroundAgent {
     }
   }
 
-  /**
-   * Start heartbeat to monitor session tabs
-   */
-  private startHeartbeat(): void {
-    this.heartbeatInterval = setInterval(() => {
-      this.pingSessionTabs();
-    }, this.HEARTBEAT_INTERVAL) as unknown as number;
-  }
 
-  /**
-   * Stop heartbeat (for cleanup)
-   * Note: Currently not called as service workers are terminated by Chrome
-   * Could be used if explicit cleanup is needed in the future
-   */
-  // @ts-expect-error - Unused but kept for potential future use
-  private _stopHeartbeat(): void {
-    if (this.heartbeatInterval) {
-      clearInterval(this.heartbeatInterval);
-      this.heartbeatInterval = null;
-    }
-  }
 
-  /**
-   * Ping all session tabs to check health
-   */
-  private async pingSessionTabs(): Promise<void> {
-    try {
-      const tabs = await this.listTabs().catch(() => []);
-
-      for (const tab of tabs) {
-        chrome.tabs.sendMessage(
-          tab.id,
-          { type: 'btcp:ping' } satisfies ExtensionMessage,
-          { frameId: 0 }, // Target only the main frame, not iframes
-          (response) => {
-            if (chrome.runtime.lastError) {
-              console.log(`[Heartbeat] Tab ${tab.id} unresponsive, will re-inject on next command`);
-            } else {
-              const resp = response as ExtensionResponse;
-              if (resp.type === 'btcp:pong' && !resp.ready) {
-                console.log(`[Heartbeat] Tab ${tab.id} content script not ready`);
-              }
-            }
-          }
-        );
-      }
-    } catch (error) {
-      // Silently ignore errors during heartbeat (e.g., no active session)
-    }
-  }
 
   // ============================================================================
   // PRIVATE HELPERS

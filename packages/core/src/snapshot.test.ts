@@ -320,6 +320,286 @@ describe('createSnapshot', () => {
       expect(snapshot.tree).toContain('PAGE:');
       expect(snapshot.tree).not.toContain('Click');
     });
+
+    it('should match all lines with plain .* pattern', () => {
+      document.body.innerHTML = `
+        <button>Submit</button>
+        <button>Cancel</button>
+        <a href="/home">Home</a>
+      `;
+
+      const refMap = createRefMap();
+      const snapshot = createSnapshot(document, refMap, {
+        grep: '.*',
+      });
+
+      // Plain .* should match everything
+      expect(snapshot.tree).toContain('Submit');
+      expect(snapshot.tree).toContain('Cancel');
+      expect(snapshot.tree).toContain('Home');
+      expect(snapshot.tree).toContain('matches=3');
+    });
+
+    it('should support regex wildcard patterns (.*)', () => {
+      document.body.innerHTML = `
+        <button>Submit Form</button>
+        <button>Submit Data</button>
+        <button>Cancel</button>
+      `;
+
+      const refMap = createRefMap();
+      const snapshot = createSnapshot(document, refMap, {
+        grep: 'Submit.*',
+      });
+
+      expect(snapshot.tree).toContain('Submit Form');
+      expect(snapshot.tree).toContain('Submit Data');
+      expect(snapshot.tree).not.toContain('Cancel');
+    });
+
+    it('should support wildcard at beginning (.*pattern)', () => {
+      document.body.innerHTML = `
+        <button>Click Submit</button>
+        <button>Press Submit</button>
+        <button>Cancel</button>
+      `;
+
+      const refMap = createRefMap();
+      const snapshot = createSnapshot(document, refMap, {
+        grep: '.*Submit',
+      });
+
+      expect(snapshot.tree).toContain('Click Submit');
+      expect(snapshot.tree).toContain('Press Submit');
+      expect(snapshot.tree).not.toContain('Cancel');
+    });
+
+    it('should support wildcard in middle (prefix.*suffix)', () => {
+      document.body.innerHTML = `
+        <button>Submit Form Now</button>
+        <button>Submit Data Now</button>
+        <button>Submit Later</button>
+        <button>Cancel</button>
+      `;
+
+      const refMap = createRefMap();
+      const snapshot = createSnapshot(document, refMap, {
+        grep: 'Submit.*Now',
+      });
+
+      expect(snapshot.tree).toContain('Submit Form Now');
+      expect(snapshot.tree).toContain('Submit Data Now');
+      expect(snapshot.tree).not.toContain('Submit Later');
+      expect(snapshot.tree).not.toContain('Cancel');
+    });
+
+    it('should support single character wildcard (.)', () => {
+      document.body.innerHTML = `
+        <button>Submit1</button>
+        <button>Submit2</button>
+        <button>Cancel</button>
+      `;
+
+      const refMap = createRefMap();
+      const snapshot = createSnapshot(document, refMap, {
+        grep: '"Submit."',
+      });
+
+      expect(snapshot.tree).toContain('Submit1');
+      expect(snapshot.tree).toContain('Submit2');
+      expect(snapshot.tree).not.toContain('Cancel');
+    });
+
+    it('should support alternation patterns (a|b)', () => {
+      document.body.innerHTML = `
+        <button>Submit</button>
+        <button>Cancel</button>
+        <button>Delete</button>
+      `;
+
+      const refMap = createRefMap();
+      const snapshot = createSnapshot(document, refMap, {
+        grep: 'Submit|Cancel',
+      });
+
+      expect(snapshot.tree).toContain('Submit');
+      expect(snapshot.tree).toContain('Cancel');
+      expect(snapshot.tree).not.toContain('Delete');
+    });
+
+    it('should support character classes ([abc])', () => {
+      document.body.innerHTML = `
+        <button>Button1</button>
+        <button>Button2</button>
+        <button>Button5</button>
+        <button>ButtonX</button>
+      `;
+
+      const refMap = createRefMap();
+      const snapshot = createSnapshot(document, refMap, {
+        grep: 'Button[12]',
+      });
+
+      expect(snapshot.tree).toContain('Button1');
+      expect(snapshot.tree).toContain('Button2');
+      expect(snapshot.tree).not.toContain('Button5');
+      expect(snapshot.tree).not.toContain('ButtonX');
+    });
+
+    it('should support negative character classes ([^abc])', () => {
+      document.body.innerHTML = `
+        <button>Button1</button>
+        <button>Button2</button>
+        <button>ButtonX</button>
+      `;
+
+      const refMap = createRefMap();
+      const snapshot = createSnapshot(document, refMap, {
+        grep: 'Button[^12]',
+      });
+
+      expect(snapshot.tree).toContain('ButtonX');
+      expect(snapshot.tree).not.toContain('Button1');
+      expect(snapshot.tree).not.toContain('Button2');
+    });
+
+    it('should support quantifiers (+, *, ?)', () => {
+      document.body.innerHTML = `
+        <button>Color</button>
+        <button>Colour</button>
+        <button>Colur</button>
+      `;
+
+      const refMap = createRefMap();
+      const snapshot = createSnapshot(document, refMap, {
+        grep: 'Colou?r',
+      });
+
+      expect(snapshot.tree).toContain('Color');
+      expect(snapshot.tree).toContain('Colour');
+      expect(snapshot.tree).not.toContain('Colur');
+    });
+
+    it('should support word boundaries (\\b)', () => {
+      document.body.innerHTML = `
+        <button>Submit</button>
+        <button>Submittal</button>
+        <button>Resubmit</button>
+      `;
+
+      const refMap = createRefMap();
+      const snapshot = createSnapshot(document, refMap, {
+        grep: '\\bSubmit\\b',
+      });
+
+      expect(snapshot.tree).toContain('Submit');
+      expect(snapshot.tree).not.toContain('Submittal');
+      expect(snapshot.tree).not.toContain('Resubmit');
+    });
+
+    it('should combine wildcard with case-insensitive flag', () => {
+      document.body.innerHTML = `
+        <button>SUBMIT FORM</button>
+        <button>submit data</button>
+        <button>Cancel</button>
+      `;
+
+      const refMap = createRefMap();
+      const snapshot = createSnapshot(document, refMap, {
+        grep: { pattern: 'submit.*', ignoreCase: true },
+      });
+
+      expect(snapshot.tree).toContain('SUBMIT FORM');
+      expect(snapshot.tree).toContain('submit data');
+      expect(snapshot.tree).not.toContain('Cancel');
+    });
+
+    it('should combine wildcard with invert flag', () => {
+      document.body.innerHTML = `
+        <button>Submit Form</button>
+        <button>Submit Data</button>
+        <a href="/home">Home</a>
+        <a href="/about">About</a>
+      `;
+
+      const refMap = createRefMap();
+      const snapshot = createSnapshot(document, refMap, {
+        grep: { pattern: 'Submit.*', invert: true },
+      });
+
+      expect(snapshot.tree).not.toContain('Submit Form');
+      expect(snapshot.tree).not.toContain('Submit Data');
+      expect(snapshot.tree).toContain('Home');
+      expect(snapshot.tree).toContain('About');
+    });
+
+    it('should handle complex regex patterns', () => {
+      document.body.innerHTML = `
+        <button>Save Document</button>
+        <button>Save File</button>
+        <button>Delete Document</button>
+        <button>Export Data</button>
+      `;
+
+      const refMap = createRefMap();
+      const snapshot = createSnapshot(document, refMap, {
+        grep: '(Save|Delete)\\s+(Document|File)',
+      });
+
+      expect(snapshot.tree).toContain('Save Document');
+      expect(snapshot.tree).toContain('Save File');
+      expect(snapshot.tree).toContain('Delete Document');
+      expect(snapshot.tree).not.toContain('Export Data');
+    });
+
+    it('should handle regex special characters with fixed strings', () => {
+      document.body.innerHTML = `
+        <button>Price: $10.00</button>
+        <button>Price: $20.00</button>
+        <button>Total: 100</button>
+      `;
+
+      const refMap = createRefMap();
+      const snapshot = createSnapshot(document, refMap, {
+        grep: { pattern: '$', fixedStrings: true },
+      });
+
+      expect(snapshot.tree).toContain('$10.00');
+      expect(snapshot.tree).toContain('$20.00');
+      expect(snapshot.tree).not.toContain('Total: 100');
+    });
+
+    it('should match across role and name in line', () => {
+      document.body.innerHTML = `
+        <button>Submit</button>
+        <input type="text" placeholder="Email">
+        <a href="/home">Home</a>
+      `;
+
+      const refMap = createRefMap();
+      const snapshot = createSnapshot(document, refMap, {
+        grep: 'BUTTON.*Submit',
+      });
+
+      expect(snapshot.tree).toContain('Submit');
+      expect(snapshot.tree).not.toContain('Email');
+      expect(snapshot.tree).not.toContain('Home');
+    });
+
+    it('should handle invalid regex gracefully with fallback', () => {
+      document.body.innerHTML = `
+        <button>Submit</button>
+        <button>Cancel</button>
+      `;
+
+      const refMap = createRefMap();
+      const snapshot = createSnapshot(document, refMap, {
+        grep: '[invalid(',
+      });
+
+      // Should fallback to string matching
+      expect(snapshot.tree).toBeDefined();
+    });
   });
 
   describe('selector filtering', () => {
