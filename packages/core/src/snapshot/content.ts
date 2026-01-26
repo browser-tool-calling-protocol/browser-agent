@@ -2,13 +2,13 @@
  * @btcp/core - snapshotContent
  *
  * Extract text content from sections.
- * Supports tree and markdown output formats.
+ * Returns tree format (structure) - use extract() for markdown/HTML output.
  *
- * Unix philosophy: Do one thing well - extract readable content.
+ * Unix philosophy: Do one thing well - capture content structure as tree.
  */
 
 import type { ContentOptions, SnapshotData, RefMap } from './types.js';
-import { validateRoot, validateContentOptions } from './types.js';
+import { validateRoot } from './types.js';
 import {
   getRole,
   isVisible,
@@ -22,7 +22,6 @@ import {
   countWords,
   getCleanTextContent,
   getListItems,
-  detectCodeLanguage,
   type ElementSearchData,
 } from './utils/filter.js';
 import {
@@ -31,11 +30,6 @@ import {
   buildContentSectionHeader,
   buildCodeBlockOutput,
   buildListOutput,
-  buildMarkdownHeading,
-  buildMarkdownListItem,
-  buildMarkdownCodeBlock,
-  buildMarkdownBlockquote,
-  buildMarkdownImage,
 } from './utils/format.js';
 
 /**
@@ -53,14 +47,14 @@ interface ContentSection {
  * Create a content snapshot extracting text from sections
  *
  * Extracts text content from landmarks, articles, and named sections.
- * Supports tree format (default) or markdown format.
+ * Always returns tree format (use extract() for markdown/HTML).
  *
  * @param document - The document to snapshot
  * @param refMap - Reference map (optional, refs generated for sections)
  * @param options - Optional configuration
  * @returns SnapshotData with extracted content
  *
- * @example Tree format
+ * @example
  * ```typescript
  * const snapshot = snapshotContent(document, refMap);
  * // SECTION /main#content [500 words]
@@ -70,16 +64,6 @@ interface ContentSection {
  * //     - "First item"
  * //     - "Second item"
  * ```
- *
- * @example Markdown format
- * ```typescript
- * const snapshot = snapshotContent(document, refMap, { format: 'markdown' });
- * // <!-- source: https://example.com -->
- * // # Welcome
- * // This is the introduction...
- * // - First item
- * // - Second item
- * ```
  */
 export function snapshotContent(
   document: Document,
@@ -87,16 +71,12 @@ export function snapshotContent(
   options: ContentOptions = {}
 ): SnapshotData {
   const root = validateRoot(options.root, document);
-  validateContentOptions(options);
 
   const {
     maxDepth = 50,
     includeHidden = false,
-    format = 'tree',
     grep: grepPattern,
     maxLength = 2000,
-    includeLinks = true,
-    includeImages = false
   } = options;
 
   refMap.clear();
@@ -174,16 +154,7 @@ export function snapshotContent(
     };
   }
 
-  // Generate output based on format
-  if (format === 'markdown') {
-    return generateMarkdownContent(document, filteredSections, refs, {
-      maxLength,
-      includeLinks,
-      includeImages
-    });
-  }
-
-  // Tree format (default for content mode)
+  // Tree format output
   const lines: string[] = [];
   let totalWords = 0;
 
@@ -269,146 +240,5 @@ function extractContentLines(
   // Recurse into other elements
   for (const child of element.children) {
     extractContentLines(child, lines, indent, maxLength);
-  }
-}
-
-/**
- * Generate markdown content output
- */
-function generateMarkdownContent(
-  document: Document,
-  sections: ContentSection[],
-  refs: SnapshotData['refs'],
-  options: {
-    maxLength: number;
-    includeLinks: boolean;
-    includeImages: boolean;
-  }
-): SnapshotData {
-  const { maxLength, includeLinks, includeImages } = options;
-  const lines: string[] = [];
-  let totalWords = 0;
-
-  // Source comment
-  lines.push(`<!-- source: ${document.location?.href || 'about:blank'} -->`);
-
-  for (const section of sections) {
-    const sectionWords = countWords(section.element.textContent || '');
-    totalWords += sectionWords;
-
-    // Section xpath comment
-    lines.push(`<!-- xpath: ${section.xpath} -->`);
-    lines.push('');
-
-    // Extract markdown content
-    extractMarkdownContent(section.element, lines, maxLength, includeLinks, includeImages);
-    lines.push('');
-  }
-
-  // End comment
-  lines.push(`<!-- end: ${totalWords} words extracted -->`);
-
-  const output = lines.join('\n');
-
-  return {
-    tree: output,
-    refs,
-    metadata: {
-      totalInteractiveElements: sections.length,
-      capturedElements: Object.keys(refs).length,
-      quality: 'high'
-    }
-  };
-}
-
-/**
- * Extract markdown content from element
- */
-function extractMarkdownContent(
-  element: Element,
-  lines: string[],
-  maxLength: number,
-  includeLinks: boolean,
-  includeImages: boolean
-): void {
-  const tagName = element.tagName;
-  const role = getRole(element);
-
-  // Headings
-  if (role?.startsWith('heading')) {
-    const level = parseInt(tagName[1]);
-    const text = getCleanTextContent(element, 100);
-    lines.push(buildMarkdownHeading(level, text));
-    lines.push('');
-    return;
-  }
-
-  // Paragraphs
-  if (tagName === 'P') {
-    const text = getCleanTextContent(element, maxLength);
-    if (text) {
-      lines.push(text);
-      lines.push('');
-    }
-    return;
-  }
-
-  // Unordered lists
-  if (tagName === 'UL') {
-    const items = element.querySelectorAll(':scope > li');
-    for (const item of items) {
-      const text = getCleanTextContent(item as Element, 200);
-      if (text) lines.push(buildMarkdownListItem(text));
-    }
-    lines.push('');
-    return;
-  }
-
-  // Ordered lists
-  if (tagName === 'OL') {
-    const items = element.querySelectorAll(':scope > li');
-    let i = 1;
-    for (const item of items) {
-      const text = getCleanTextContent(item as Element, 200);
-      if (text) lines.push(buildMarkdownListItem(text, true, i));
-      i++;
-    }
-    lines.push('');
-    return;
-  }
-
-  // Code blocks
-  if (tagName === 'PRE') {
-    const lang = detectCodeLanguage(element) || '';
-    const code = (element.textContent || '').trim();
-    const codeLines = buildMarkdownCodeBlock(code, lang);
-    lines.push(...codeLines);
-    lines.push('');
-    return;
-  }
-
-  // Blockquotes
-  if (tagName === 'BLOCKQUOTE') {
-    const text = getCleanTextContent(element, maxLength);
-    if (text) {
-      const quotedLines = buildMarkdownBlockquote(text);
-      lines.push(...quotedLines);
-      lines.push('');
-    }
-    return;
-  }
-
-  // Images (if requested)
-  if (includeImages && tagName === 'IMG') {
-    const alt = element.getAttribute('alt') || 'image';
-    const src = element.getAttribute('src') || '';
-    lines.push(buildMarkdownImage(alt, src));
-    lines.push('');
-    return;
-  }
-
-  // Recurse into other elements
-  for (const child of element.children) {
-    extractMarkdownContent(child, lines, maxLength, includeLinks, includeImages);
   }
 }

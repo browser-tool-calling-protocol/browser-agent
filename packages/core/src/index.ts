@@ -35,6 +35,9 @@ export {
   snapshotOutline,
   snapshotContent,
   snapshotAll,
+  // Content extraction
+  extract,
+  type ExtractOptions,
   // Backward compatibility
   createSnapshot,
   // Types

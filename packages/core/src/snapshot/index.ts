@@ -8,8 +8,11 @@
  * - snapshotInteractive() - Find clickable elements (default for AI agents)
  * - snapshotStructure() - Page structure with line budget
  * - snapshotOutline() - Structural overview with metadata
- * - snapshotContent() - Extract text content
+ * - snapshotContent() - Extract text content (tree format)
  * - snapshotAll() - Comprehensive view with all elements
+ *
+ * Content extraction:
+ * - extract() - Transform content to HTML or Markdown
  *
  * Utilities (for advanced use):
  * - traverse.* - DOM traversal generators
@@ -28,6 +31,12 @@ export { snapshotStructure } from './structure.js';
 export { snapshotOutline } from './outline.js';
 export { snapshotContent } from './content.js';
 export { snapshotAll } from './all.js';
+
+// ============================================================================
+// Content Extraction
+// ============================================================================
+
+export { extract, type ExtractOptions } from './extract.js';
 
 // ============================================================================
 // Backward Compatibility
@@ -66,7 +75,7 @@ export type {
   SnapshotErrorCode,
 } from './types.js';
 
-export { SnapshotConfigError, validateContentOptions, validateRoot } from './types.js';
+export { SnapshotConfigError, validateRoot } from './types.js';
 
 // ============================================================================
 // Utilities (Advanced Use)

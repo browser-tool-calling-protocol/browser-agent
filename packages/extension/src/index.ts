@@ -148,14 +148,29 @@ export interface Client {
 
   /**
    * Take a snapshot of the page
+   * @deprecated Use extract() for markdown/HTML format conversion
    */
   snapshot(options?: {
     selector?: string;
     maxDepth?: number;
     mode?: 'interactive' | 'outline' | 'content';
     compact?: boolean;
+    /** @deprecated Use extract() for format conversion */
     format?: 'tree' | 'html' | 'markdown';
     grep?: string;
+    maxLength?: number;
+  }): Promise<string>;
+
+  /**
+   * Extract content as HTML or Markdown
+   *
+   * Use this instead of snapshot with format option.
+   */
+  extract(options?: {
+    selector?: string;
+    format?: 'html' | 'markdown';
+    maxDepth?: number;
+    includeHidden?: boolean;
     maxLength?: number;
     includeLinks?: boolean;
     includeImages?: boolean;
@@ -331,6 +346,20 @@ export function createClient(options: CreateClientOptions = {}): Client {
         compact: options?.compact,
         format: options?.format,
         grep: options?.grep,
+        maxLength: options?.maxLength,
+      });
+      assertSuccess(response);
+      return response.data as string;
+    },
+
+    async extract(options) {
+      const response = await sendCommand({
+        id: generateCommandId(),
+        action: 'extract',
+        selector: options?.selector,
+        format: options?.format,
+        maxDepth: options?.maxDepth,
+        includeHidden: options?.includeHidden,
         maxLength: options?.maxLength,
         includeLinks: options?.includeLinks,
         includeImages: options?.includeImages,

@@ -14,7 +14,7 @@ import type {
   ValidateElementResponse,
   ValidateRefsResponse,
 } from './types.js';
-import { createSnapshot } from './snapshot/index.js';
+import { createSnapshot, extract } from './snapshot/index.js';
 import {
   DetailedError,
   createElementNotFoundError,
@@ -154,6 +154,15 @@ export class DOMActions {
           mode: command.mode,
           format: command.format,
           grep: command.grep,
+          maxLength: command.maxLength,
+        });
+
+      case 'extract':
+        return this.extract({
+          selector: command.selector,
+          format: command.format,
+          maxDepth: command.maxDepth,
+          includeHidden: command.includeHidden,
           maxLength: command.maxLength,
           includeLinks: command.includeLinks,
           includeImages: command.includeImages,
@@ -819,8 +828,6 @@ export class DOMActions {
     format?: 'tree' | 'html' | 'markdown';
     grep?: string | { pattern: string; ignoreCase?: boolean; invert?: boolean; fixedStrings?: boolean };
     maxLength?: number;
-    includeLinks?: boolean;
-    includeImages?: boolean;
   }): Promise<string> {
     const root = options.selector
       ? this.getElement(options.selector)
@@ -835,8 +842,6 @@ export class DOMActions {
       format: options.format,
       grep: options.grep,
       maxLength: options.maxLength,
-      includeLinks: options.includeLinks,
-      includeImages: options.includeImages,
     });
 
     // Store snapshot data for highlight command (preserve refs internally)
@@ -844,6 +849,33 @@ export class DOMActions {
 
     // Return only the tree string
     return snapshotData.tree;
+  }
+
+  /**
+   * Extract content as HTML or Markdown
+   */
+  private async extract(options: {
+    selector?: string;
+    format?: 'html' | 'markdown';
+    maxDepth?: number;
+    includeHidden?: boolean;
+    maxLength?: number;
+    includeLinks?: boolean;
+    includeImages?: boolean;
+  }): Promise<string> {
+    const root = options.selector
+      ? this.getElement(options.selector)
+      : undefined;
+
+    return extract(this.document, {
+      root,
+      format: options.format,
+      maxDepth: options.maxDepth,
+      includeHidden: options.includeHidden,
+      maxLength: options.maxLength,
+      includeLinks: options.includeLinks,
+      includeImages: options.includeImages,
+    });
   }
 
   private async querySelector(selector: string): Promise<ActionResult & { ref?: string }> {

@@ -11,6 +11,7 @@
  * - snapshotOutline() for structural overview
  * - snapshotContent() for text extraction
  * - snapshotAll() for comprehensive view
+ * - extract() for markdown/HTML format conversion
  */
 
 import type { LegacySnapshotOptions, SnapshotData, RefMap } from './types.js';
@@ -20,6 +21,7 @@ import { snapshotStructure } from './structure.js';
 import { snapshotOutline } from './outline.js';
 import { snapshotContent } from './content.js';
 import { snapshotAll } from './all.js';
+import { extract } from './extract.js';
 
 /**
  * Generate flat snapshot of the DOM (Legacy API)
@@ -98,15 +100,34 @@ export function createSnapshot(
       });
 
     case 'content':
+      // Handle deprecated format option for backward compatibility
+      if (format === 'markdown') {
+        // Use extract() for markdown format (deprecated path)
+        const markdown = extract(document, {
+          root,
+          format: 'markdown',
+          maxDepth,
+          includeHidden,
+          maxLength,
+          includeLinks,
+          includeImages,
+        });
+        return {
+          tree: markdown,
+          refs: {},
+          metadata: {
+            quality: 'high',
+            warnings: ['Using deprecated format option. Use extract() for markdown conversion.']
+          }
+        };
+      }
+      // Default: use snapshotContent for tree format
       return snapshotContent(document, refMap, {
         root,
         maxDepth,
         includeHidden,
-        format: format === 'markdown' ? 'markdown' : 'tree',
         grep,
         maxLength,
-        includeLinks,
-        includeImages,
       });
 
     case 'all':

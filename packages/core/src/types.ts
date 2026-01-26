@@ -22,6 +22,7 @@ export type CoreAction =
   | 'scrollIntoView'
   // DOM reading
   | 'snapshot'
+  | 'extract'
   | 'querySelector'
   | 'querySelectorAll'
   | 'getText'
@@ -182,25 +183,64 @@ export interface SnapshotCommand extends BaseCommand {
    * - 'head': Lightweight page overview (URL, title, element counts, status)
    * - 'interactive': Find clickable elements (default)
    * - 'outline': Understand page structure with xpaths + metadata
-   * - 'content': Extract text content from sections
+   * - 'content': Extract text content from sections (tree format)
    * - 'all': All elements (interactive + structural + content)
    * - 'structure': Pattern-collapsed view with representative samples (collapses repetitive elements)
    */
   mode?: SnapshotMode;
   /**
-   * Output format:
+   * Output format (legacy - use extract action for markdown/HTML conversion):
    * - 'tree': Flat accessibility tree (default)
-   * - 'html': Raw HTML
-   * - 'markdown': Markdown formatted content
+   * @deprecated Use extract action for format conversion
    */
   format?: SnapshotFormat;
   /** Filter output lines - simple string or full grep options */
   grep?: string | GrepOptions;
   /** Max chars per section in content mode */
   maxLength?: number;
-  /** Include links as [text](url) in markdown format */
+}
+
+/**
+ * Extract content as HTML or Markdown
+ *
+ * Transforms DOM content to target format.
+ * Use this when you want formatted content output rather than DOM state.
+ *
+ * @example Extract markdown content
+ * ```typescript
+ * const markdown = await agent.execute({
+ *   action: 'extract',
+ *   format: 'markdown',
+ *   selector: 'article'
+ * });
+ * // Returns: "# Article Title\n\nFirst paragraph..."
+ * ```
+ *
+ * @example Extract HTML content
+ * ```typescript
+ * const html = await agent.execute({
+ *   action: 'extract',
+ *   format: 'html',
+ *   selector: 'main'
+ * });
+ * // Returns: "<main><h1>Title</h1><p>Content</p></main>"
+ * ```
+ */
+export interface ExtractCommand extends BaseCommand {
+  action: 'extract';
+  /** CSS selector to extract from */
+  selector?: Selector;
+  /** Output format: 'html' or 'markdown' (default: 'markdown') */
+  format?: 'html' | 'markdown';
+  /** Maximum depth to traverse (default: 50) */
+  maxDepth?: number;
+  /** Include hidden elements (default: false) */
+  includeHidden?: boolean;
+  /** Maximum content length (default: unlimited) */
+  maxLength?: number;
+  /** Include links as [text](url) - markdown only (default: true) */
   includeLinks?: boolean;
-  /** Include images as ![alt](src) in markdown format */
+  /** Include images as ![alt](src) (default: false) */
   includeImages?: boolean;
 }
 
@@ -410,6 +450,7 @@ export type Command =
   | ScrollCommand
   | ScrollIntoViewCommand
   | SnapshotCommand
+  | ExtractCommand
   | QuerySelectorCommand
   | QuerySelectorAllCommand
   | GetTextCommand

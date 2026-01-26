@@ -137,18 +137,13 @@ export interface OutlineOptions extends BaseTraverseOptions {
  * Options for snapshotContent()
  *
  * Extract text content from sections.
+ * Always returns tree format (use extract() for markdown/HTML).
  */
 export interface ContentOptions extends BaseTraverseOptions {
-  /** Output format */
-  format?: 'tree' | 'markdown';
   /** Filter sections by grep pattern (matches xpath) */
   grep?: string | GrepOptions;
   /** Maximum characters per section (default: 2000) */
   maxLength?: number;
-  /** Include links as [text](url) in markdown format (default: true) */
-  includeLinks?: boolean;
-  /** Include images as ![alt](src) in markdown format (default: false) */
-  includeImages?: boolean;
 }
 
 /**
@@ -184,6 +179,7 @@ export type SnapshotFormat = 'tree' | 'html' | 'markdown';
  * - OutlineOptions for snapshotOutline()
  * - ContentOptions for snapshotContent()
  * - AllOptions for snapshotAll()
+ * - Use extract() for format conversion to markdown/HTML
  */
 export interface LegacySnapshotOptions {
   root?: Element;
@@ -191,10 +187,13 @@ export interface LegacySnapshotOptions {
   includeHidden?: boolean;
   compact?: boolean;
   mode?: SnapshotMode;
+  /** @deprecated Use extract() for format conversion */
   format?: SnapshotFormat;
   grep?: string | GrepOptions;
   maxLength?: number;
+  /** @deprecated Use extract() with includeLinks option */
   includeLinks?: boolean;
+  /** @deprecated Use extract() with includeImages option */
   includeImages?: boolean;
   maxLines?: number;
 }
@@ -230,27 +229,6 @@ export class SnapshotConfigError extends Error {
 // ============================================================================
 // Validation Functions
 // ============================================================================
-
-/**
- * Validate that includeLinks is only used with markdown format
- */
-export function validateContentOptions(options: ContentOptions): void {
-  if (options.includeLinks !== undefined && options.format !== 'markdown') {
-    throw new SnapshotConfigError(
-      'includeLinks option requires format: "markdown"',
-      'INVALID_OPTIONS',
-      { option: 'includeLinks', format: options.format }
-    );
-  }
-
-  if (options.includeImages !== undefined && options.format !== 'markdown') {
-    throw new SnapshotConfigError(
-      'includeImages option requires format: "markdown"',
-      'INVALID_OPTIONS',
-      { option: 'includeImages', format: options.format }
-    );
-  }
-}
 
 /**
  * Validate that root element exists
