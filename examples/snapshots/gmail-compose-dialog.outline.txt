@@ -1,0 +1,5 @@
+PAGE: http://localhost/ | Gmail Compose Dialog Snapshot | viewport=1024x768
+OUTLINE: landmarks=1 sections=1 headings=1 words=56
+
+HEADING level=2 "Compose: New Message" /body/table/tr/div/h2
+REGION "New Message" @ref:0 [51 words, 7 links] /body/div[4]

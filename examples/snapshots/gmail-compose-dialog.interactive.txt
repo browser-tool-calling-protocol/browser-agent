@@ -1,0 +1,57 @@
+PAGE: http://localhost/ | Gmail Compose Dialog Snapshot | viewport=1024x768
+SNAPSHOT: elements=478 refs=54
+
+LINK "To - Select contacts" @ref:0 /body/td[2]/form/div[1]/table/tr[1]/span
+LISTBOX "Search Field" @ref:1 /body/form/div[1]/table/tr[1]/div/div[1]
+COMBOBOX "To recipients" @ref:2 /body/div[1]/table/tr[1]/div/div[1]/input
+LINK "Add Cc recipients ‪(Ctrl-Shift-C)‬" @ref:3 /body/form/div[1]/table/tr[1]/div/span[1]
+LINK "Add Bcc recipients ‪(Ctrl-Shift-B)‬" @ref:4 /body/form/div[1]/table/tr[1]/div/span[2]
+LINK "Cc - Select contacts" @ref:5 /body/td[2]/form/div[1]/table/tr[2]/span
+LINK "Bcc - Select contacts" @ref:6 /body/td[2]/form/div[1]/table/tr[3]/span
+LISTBOX "Possible addition suggestions" @ref:7 /body/td[2]/form/div[1]/table/tr[4]/div[1]
+LISTBOX "Possible replacement suggestions" @ref:8 /body/td[2]/form/div[1]/table/tr[4]/div[1]
+TEXTBOX "Subject" @ref:9 /body/div[4]/table/td[2]/form/div[3]/input
+LINK "Check Spelling" @ref:10 /body/div/div[2]/div[2]/div[3]/table/span[1]
+LINK "Resume Editing" @ref:11 /body/div/div[2]/div[2]/div[3]/table/span[3]
+TEXTBOX "Message Body" @ref:12 /body/div[2]/div[2]/div[3]/table#undefined/div#undefined[1]/textarea
+TEXTBOX "Message Body" @ref:13 /body/div[2]/div[2]/div[3]/table#undefined/div[2]/div[1]
+LINK "ncc.asia/" @ref:14 /body/table#undefined/div[2]/div[1]/table[1]/table/a
+LINK "luk.mink@gmail.com" @ref:15 /body/table#undefined/div[2]/div[1]/table[1]/table/a
+LINK "minh" @ref:16 /body/table#undefined/div[2]/div[1]/table[2]/table/a
+LINK "minhlucvan" @ref:17 /body/table#undefined/div[2]/div[1]/table[2]/table/a
+LINK "minhlucvan" @ref:18 /body/table#undefined/div[2]/div[1]/table[2]/table/a
+LINK "minh luc van 2880b5113" @ref:19 /body/table#undefined/div[2]/div[1]/table[2]/table/a
+LINK "minhlv" @ref:20 /body/table#undefined/div[2]/div[1]/table[2]/table/a
+BUTTON "Undo ‪(Ctrl-Z)‬" @ref:21 /body/div/div[2]/div[2]/div/div[1]/div[1]
+BUTTON "Redo ‪(Ctrl-Y)‬" @ref:22 /body/div/div[2]/div[2]/div/div[1]/div[2]
+LISTBOX "Font ‪(Ctrl-Shift-5, Ctrl-Shift-6)‬" @ref:23 /body/div/div[2]/div[2]/div/div[1]/div[4]
+OPTION "Sans Serif" @ref:24 (selected) /body/div[2]/div[2]/div/div[1]/div[4]/div[1]
+BUTTON "Size ‪(Ctrl-Shift--, Ctrl-Shift-+)‬" @ref:25 /body/div/div[2]/div[2]/div/div[1]/div[6]
+BUTTON "Bold ‪(Ctrl-B)‬" @ref:26 /body/div/div[2]/div[2]/div/div[1]/div[8]
+BUTTON "Italic ‪(Ctrl-I)‬" @ref:27 /body/div/div[2]/div[2]/div/div[1]/div[9]
+BUTTON "Underline ‪(Ctrl-U)‬" @ref:28 /body/div/div[2]/div[2]/div/div[1]/div[10]
+BUTTON "Text color" @ref:29 /body/div/div[2]/div[2]/div/div[1]/div[11]
+BUTTON "Align" @ref:30 /body/div/div[2]/div[2]/div/div[1]/div[13]
+BUTTON "Numbered list ‪(Ctrl-Shift-7)‬" @ref:31 /body/div/div[2]/div[2]/div/div[1]/div[14]
+BUTTON "Bulleted list ‪(Ctrl-Shift-8)‬" @ref:32 /body/div/div[2]/div[2]/div/div[1]/div[15]
+BUTTON "Indent less ‪(Ctrl-[)‬" @ref:33 /body/div/div[2]/div[2]/div/div[1]/div[16]
+BUTTON "Indent more ‪(Ctrl-])‬" @ref:34 /body/div/div[2]/div[2]/div/div[1]/div[17]
+BUTTON "More formatting options" @ref:35 /body/div/div[2]/div[2]/div/div[1]/div[19]
+LINK "Switch to rich text." @ref:36 /body/div/div[2]/div[2]/div/div[2]/span[2]
+BUTTON "Recheck" @ref:37 /body/table/div/div/div[3]/div[1]/div[1]
+BUTTON "Language" @ref:38 /body/table/div/div/div[3]/div[1]/div[2]
+BUTTON "Close spell check" @ref:39 /body/table/div/div/div[3]/div[1]/div[3]
+BUTTON "Send ‪(Ctrl-Enter)‬" @ref:40 /body/table/div/div/table/div/div[1]
+BUTTON "More send options" @ref:41 /body/table/div/div/table/div/div[2]
+BUTTON @ref:42 (expanded) /body/table/div/div/table/td[2]/div
+BUTTON "Attach files" @ref:43 /body/table/div/div/table/td[4]/div[1]
+BUTTON "Insert link ‪(Ctrl-K)‬" @ref:44 /body/table/div/div/table/td[4]/div[2]
+BUTTON "Insert emoji ‪(Ctrl-Shift-2)‬" @ref:45 /body/table/div/div/table/td[4]/div[3]
+BUTTON "Insert files using Drive" @ref:46 /body/table/div/div/table/td[4]/div[4]
+BUTTON "Insert photo" @ref:47 /body/table/div/div/table/td[4]/div[5]
+BUTTON "Toggle confidential mode" @ref:48 /body/table/div/div/table/td[4]/div[6]
+BUTTON "Insert signature" @ref:49 /body/table/div/div/table/td[4]/div[7]
+BUTTON "More options" @ref:50 /body/table/div/div/table/td[5]/div[2]
+BUTTON "Discard draft ‪(Ctrl-Shift-D)‬" @ref:51 /body/table/div/div/table/td[6]/div
+MENUITEM "Schedule send" @ref:52 /body/div#sbddm[6]/div
+MENUITEM "cleardot" @ref:53 /body/div#sbddm[6]/div

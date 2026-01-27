@@ -110,6 +110,8 @@ export function getRole(element: Element): string | null {
   // Special handling for inputs
   if (tagName === 'INPUT') {
     const type = (element as HTMLInputElement).type || 'text';
+    // Hidden inputs are not interactive and should not have a role
+    if (type === 'hidden') return null;
     return INPUT_ROLES[type] || 'textbox';
   }
 
@@ -164,6 +166,9 @@ export function isInteractive(element: Element): boolean {
 /**
  * Check if element or any of its ancestors are hidden
  * This checks the full ancestor chain for proper visibility detection
+ *
+ * Note: Only checks explicit hiding (inline styles and hidden attribute).
+ * Computed styles are unreliable in JSDOM environments without CSS.
  */
 export function isVisible(element: Element, checkAncestors: boolean = true): boolean {
   const win = element.ownerDocument.defaultView;
@@ -172,25 +177,9 @@ export function isVisible(element: Element, checkAncestors: boolean = true): boo
   const HTMLElementConstructor = win.HTMLElement;
   if (!(element instanceof HTMLElementConstructor)) return true;
 
-  // Check inline styles first for performance
-  const inlineDisplay = element.style.display;
-  const inlineVisibility = element.style.visibility;
-  if (inlineDisplay === 'none') return false;
-  if (inlineVisibility === 'hidden') return false;
-
-  // Check computed styles (but be defensive about failures)
-  try {
-    const style = win.getComputedStyle(element);
-    if (style) {
-      if (style.display === 'none') return false;
-      if (style.visibility === 'hidden') return false;
-      if (style.opacity === '0') return false;
-    }
-  } catch {
-    // If getComputedStyle fails (e.g., on intermediate pages), assume visible
-    // This is safer than assuming hidden
-  }
-
+  // Only check explicit hiding - inline styles and hidden attribute
+  if (element.style.display === 'none') return false;
+  if (element.style.visibility === 'hidden') return false;
   if (element.hidden) return false;
 
   // Check ancestors if requested (for proper visibility detection)

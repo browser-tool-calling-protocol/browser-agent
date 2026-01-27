@@ -1,0 +1,6 @@
+URL: http://localhost/
+TITLE: Gmail Compose Dialog Snapshot
+VIEWPORT: 1024x768
+STATUS: interactive
+ELEMENTS: total=512 interactive=96
+READY_STATE: loading

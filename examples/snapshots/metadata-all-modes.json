@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-01-26T23:04:29.268Z",
+  "generatedAt": "2026-01-27T10:28:42.162Z",
   "modes": [
     {
       "mode": "head",
@@ -39,94 +39,94 @@
   ],
   "files": [
     {
-      "filename": "google-search-suggestion",
-      "outputFile": "google-search-suggestion.head.txt",
+      "filename": "gmail-compose-dialog",
+      "outputFile": "gmail-compose-dialog.head.txt",
       "mode": "head",
       "format": "tree",
       "stats": {
-        "outputSize": 133,
+        "outputSize": 154,
         "lineCount": 6,
         "refCount": 0,
-        "wordCount": 13,
-        "generationTime": 11
+        "wordCount": 16,
+        "generationTime": 29
       }
     },
     {
-      "filename": "google-search-suggestion",
-      "outputFile": "google-search-suggestion.all.txt",
+      "filename": "gmail-compose-dialog",
+      "outputFile": "gmail-compose-dialog.all.txt",
       "mode": "all",
       "format": "tree",
       "stats": {
-        "outputSize": 6340,
-        "lineCount": 98,
-        "refCount": 95,
-        "wordCount": 550,
-        "generationTime": 75
+        "outputSize": 12945,
+        "lineCount": 164,
+        "refCount": 161,
+        "wordCount": 942,
+        "generationTime": 54
       }
     },
     {
-      "filename": "google-search-suggestion",
-      "outputFile": "google-search-suggestion.structure.txt",
+      "filename": "gmail-compose-dialog",
+      "outputFile": "gmail-compose-dialog.structure.txt",
       "mode": "structure",
       "format": "tree",
       "stats": {
-        "outputSize": 485,
-        "lineCount": 7,
+        "outputSize": 343,
+        "lineCount": 6,
         "refCount": 0,
-        "wordCount": 60,
-        "generationTime": 102
+        "wordCount": 43,
+        "generationTime": 13
       }
     },
     {
-      "filename": "google-search-suggestion",
-      "outputFile": "google-search-suggestion.interactive.txt",
+      "filename": "gmail-compose-dialog",
+      "outputFile": "gmail-compose-dialog.interactive.txt",
       "mode": "interactive",
       "format": "tree",
       "stats": {
-        "outputSize": 2906,
-        "lineCount": 50,
-        "refCount": 47,
-        "wordCount": 256,
-        "generationTime": 66
+        "outputSize": 4336,
+        "lineCount": 57,
+        "refCount": 54,
+        "wordCount": 302,
+        "generationTime": 17
       }
     },
     {
-      "filename": "google-search-suggestion",
-      "outputFile": "google-search-suggestion.outline.txt",
+      "filename": "gmail-compose-dialog",
+      "outputFile": "gmail-compose-dialog.outline.txt",
       "mode": "outline",
       "format": "tree",
       "stats": {
-        "outputSize": 448,
-        "lineCount": 9,
-        "refCount": 3,
-        "wordCount": 50,
-        "generationTime": 61
+        "outputSize": 250,
+        "lineCount": 5,
+        "refCount": 1,
+        "wordCount": 29,
+        "generationTime": 21
       }
     },
     {
-      "filename": "google-search-suggestion",
-      "outputFile": "google-search-suggestion.content.txt",
+      "filename": "gmail-compose-dialog",
+      "outputFile": "gmail-compose-dialog.content.txt",
       "mode": "content",
       "format": "tree",
       "stats": {
-        "outputSize": 658,
-        "lineCount": 20,
+        "outputSize": 235,
+        "lineCount": 9,
         "refCount": 0,
-        "wordCount": 97,
-        "generationTime": 51
+        "wordCount": 22,
+        "generationTime": 81
       }
     },
     {
-      "filename": "google-search-suggestion",
-      "outputFile": "google-search-suggestion.content-markdown.txt",
+      "filename": "gmail-compose-dialog",
+      "outputFile": "gmail-compose-dialog.content-markdown.txt",
       "mode": "content",
       "format": "markdown",
       "stats": {
-        "outputSize": 689,
-        "lineCount": 24,
+        "outputSize": 2854,
+        "lineCount": 77,
         "refCount": 0,
-        "wordCount": 98,
-        "generationTime": 47
+        "wordCount": 73,
+        "generationTime": 119
       }
     }
   ]

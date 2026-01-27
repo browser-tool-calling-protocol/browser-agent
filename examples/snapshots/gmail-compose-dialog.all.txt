@@ -1,0 +1,164 @@
+PAGE: http://localhost/ | Gmail Compose Dialog Snapshot | viewport=1024x768
+ALL: elements=161 refs=161
+
+DIALOG "Compose: New Message" @ref:0 /body/div
+TABLE "Compose: New Message" @ref:1 /body/table
+ROWGROUP "Compose: New Message" @ref:2 /body/table
+ROW "Compose: New Message" @ref:3 /body/table/tr
+CELL "Compose: New Message" @ref:4 /body/table/tr
+HEADING LEVEL=2 "Compose: New Message" @ref:5 /body/table/tr/div/h2
+CELL @ref:6 /body/table/tr
+IMG "Minimize" @ref:7 /body/table/tr/img[1]
+IMG "Full screen (Shift for pop-out)" @ref:8 /body/table/tr/img[2]
+IMG "Save & close" @ref:9 /body/table/tr/img[3]
+REGION "New Message" @ref:10 /body/div[4]
+PRESENTATION "To CcBcc Cc Bcc Recipients Loading… Loading... ..." @ref:11 /body/div[4]/table
+ROWGROUP "To CcBcc Cc Bcc Recipients Loading… Loading... ..." @ref:12 /body/div[4]/table
+ROW "To CcBcc Cc Bcc Recipients Loading… Loading... ..." @ref:13 /body/div[4]/table
+CELL @ref:14 /body/div[4]/table
+CELL "To CcBcc Cc Bcc Recipients Loading… Loading... ..." @ref:15 /body/div[4]/table/td[2]
+FORM "To CcBcc Cc Bcc Recipients" @ref:16 /body/div[4]/table/td[2]/form
+TABLE "To CcBcc Cc Bcc" @ref:17 /body/div[4]/table/td[2]/form/div[1]/table
+ROWGROUP "To CcBcc Cc Bcc" @ref:18 /body/div[4]/table/td[2]/form/div[1]/table
+ROW "To CcBcc" @ref:19 /body/table/td[2]/form/div[1]/table/tr[1]
+CELL "To" @ref:20 /body/table/td[2]/form/div[1]/table/tr[1]
+LINK "To - Select contacts" @ref:21 /body/td[2]/form/div[1]/table/tr[1]/span
+CELL "CcBcc" @ref:22 /body/table/td[2]/form/div[1]/table/tr[1]
+LISTBOX "Search Field" @ref:23 /body/form/div[1]/table/tr[1]/div/div[1]
+PRESENTATION @ref:24 /body/form/div[1]/table/tr[1]/div/div[1]
+COMBOBOX "To recipients" @ref:25 /body/div[1]/table/tr[1]/div/div[1]/input
+LINK "Add Cc recipients ‪(Ctrl-Shift-C)‬" @ref:26 /body/form/div[1]/table/tr[1]/div/span[1]
+LINK "Add Bcc recipients ‪(Ctrl-Shift-B)‬" @ref:27 /body/form/div[1]/table/tr[1]/div/span[2]
+CELL "Cc" @ref:28 /body/table/td[2]/form/div[1]/table/tr[2]
+LINK "Cc - Select contacts" @ref:29 /body/td[2]/form/div[1]/table/tr[2]/span
+CELL @ref:30 /body/table/td[2]/form/div[1]/table/tr[2]
+CELL "Bcc" @ref:31 /body/table/td[2]/form/div[1]/table/tr[3]
+LINK "Bcc - Select contacts" @ref:32 /body/td[2]/form/div[1]/table/tr[3]/span
+CELL @ref:33 /body/table/td[2]/form/div[1]/table/tr[3]
+CELL @ref:34 /body/table/td[2]/form/div[1]/table/tr[4]
+CELL @ref:35 /body/table/td[2]/form/div[1]/table/tr[4]
+LISTBOX "Possible addition suggestions" @ref:36 /body/td[2]/form/div[1]/table/tr[4]/div[1]
+LISTBOX "Possible replacement suggestions" @ref:37 /body/td[2]/form/div[1]/table/tr[4]/div[1]
+TEXTBOX "Subject" @ref:38 /body/div[4]/table/td[2]/form/div[3]/input
+TABLE "Loading… Loading... Loading rich text... « Plai..." @ref:39 /body/div[4]/table/td[2]/table
+ROWGROUP "Loading… Loading... Loading rich text... « Plai..." @ref:40 /body/div[4]/table/td[2]/table
+ROW "Loading… Loading... Loading rich text... « Plai..." @ref:41 /body/div[4]/table/td[2]/table
+CELL "Loading… Loading... Loading rich text... « Plai..." @ref:42 /body/div[4]/table/td[2]/table/td
+TABLE "Loading rich text... « Plain Text Check Spellin..." @ref:43 /body/td/div/div[2]/div[2]/div[3]/table
+ROWGROUP "Loading rich text... « Plain Text Check Spellin..." @ref:44 /body/td/div/div[2]/div[2]/div[3]/table
+ROW "Loading rich text... « Plain Text Check Spellin..." @ref:45 /body/td/div/div[2]/div[2]/div[3]/table
+CELL "Loading rich text... « Plain Text" @ref:46 /body/td/div/div[2]/div[2]/div[3]/table
+IMG "cleardot" @ref:47 /body/td/div/div[2]/div[2]/div[3]/table
+CELL "Check Spelling Resume Editing" @ref:48 /body/td/div/div[2]/div[2]/div[3]/table
+LINK "Check Spelling" @ref:49 /body/div/div[2]/div[2]/div[3]/table/span[1]
+MENU @ref:50 /body/div/div[2]/div[2]/div[3]/table/span[2]
+IMG "Change language" @ref:51 /body/div/div[2]/div[2]/div[3]/table/span[2]
+LINK "Resume Editing" @ref:52 /body/div/div[2]/div[2]/div[3]/table/span[3]
+ALERT @ref:53 /body/td/div/div[2]/div[2]/div[3]/div#undefined
+TABLE "-- ncc.asia/ Minh LucSenior DeveloperNCCPLUS (+..." @ref:54 /body/td/div/div[2]/div[2]/div[3]/table#undefined
+ROWGROUP "-- ncc.asia/ Minh LucSenior DeveloperNCCPLUS (+..." @ref:55 /body/td/div/div[2]/div[2]/div[3]/table#undefined
+ROW "-- ncc.asia/ Minh LucSenior DeveloperNCCPLUS (+..." @ref:56 /body/td/div/div[2]/div[2]/div[3]/table#undefined
+CELL @ref:57 /body/td/div/div[2]/div[2]/div[3]/table#undefined
+CELL "-- ncc.asia/ Minh LucSenior DeveloperNCCPLUS (+..." @ref:58 /body/td/div/div[2]/div[2]/div[3]/table#undefined
+TEXTBOX "Message Body" @ref:59 /body/div[2]/div[2]/div[3]/table#undefined/div#undefined[1]/textarea
+TEXTBOX "Message Body" @ref:60 /body/div[2]/div[2]/div[3]/table#undefined/div[2]/div[1]
+TABLE "ncc.asia/ Minh LucSenior DeveloperNCCPLUS (+84)..." @ref:61 /body/div[2]/div[3]/table#undefined/div[2]/div[1]/table[1]
+ROWGROUP "ncc.asia/ Minh LucSenior DeveloperNCCPLUS (+84)..." @ref:62 /body/div[2]/div[3]/table#undefined/div[2]/div[1]/table[1]
+ROW "ncc.asia/ Minh LucSenior DeveloperNCCPLUS (+84)..." @ref:63 /body/div[2]/div[3]/table#undefined/div[2]/div[1]/table[1]
+CELL "ncc.asia/" @ref:64 /body/div[2]/div[3]/table#undefined/div[2]/div[1]/table[1]
+TABLE "ncc.asia/" @ref:65 /body/div[3]/table#undefined/div[2]/div[1]/table[1]/table
+ROWGROUP "ncc.asia/" @ref:66 /body/div[3]/table#undefined/div[2]/div[1]/table[1]/table
+ROW @ref:67 /body/div[3]/table#undefined/div[2]/div[1]/table[1]/table
+CELL @ref:68 /body/div[3]/table#undefined/div[2]/div[1]/table[1]/table
+IMG "Photo" @ref:69 /body/div[3]/table#undefined/div[2]/div[1]/table[1]/table
+ROW @ref:70 /body/div[3]/table#undefined/div[2]/div[1]/table[1]/table
+CELL @ref:71 /body/div[3]/table#undefined/div[2]/div[1]/table[1]/table
+ROW "ncc.asia/" @ref:72 /body/div[3]/table#undefined/div[2]/div[1]/table[1]/table
+CELL "ncc.asia/" @ref:73 /body/div[3]/table#undefined/div[2]/div[1]/table[1]/table
+LINK "ncc.asia/" @ref:74 /body/table#undefined/div[2]/div[1]/table[1]/table/a
+CELL @ref:75 /body/div[2]/div[3]/table#undefined/div[2]/div[1]/table[1]
+CELL "Minh LucSenior DeveloperNCCPLUS (+84) 070396480..." @ref:76 /body/div[2]/div[3]/table#undefined/div[2]/div[1]/table[1]
+TABLE "Minh LucSenior DeveloperNCCPLUS (+84) 070396480..." @ref:77 /body/div[3]/table#undefined/div[2]/div[1]/table[1]/table
+ROWGROUP "Minh LucSenior DeveloperNCCPLUS (+84) 070396480..." @ref:78 /body/div[3]/table#undefined/div[2]/div[1]/table[1]/table
+ROW "Minh LucSenior DeveloperNCCPLUS" @ref:79 /body/div[3]/table#undefined/div[2]/div[1]/table[1]/table
+CELL "Minh LucSenior DeveloperNCCPLUS" @ref:80 /body/div[3]/table#undefined/div[2]/div[1]/table[1]/table
+ROW "(+84) 0703964802" @ref:81 /body/div[3]/table#undefined/div[2]/div[1]/table[1]/table
+CELL "(+84) 0703964802" @ref:82 /body/div[3]/table#undefined/div[2]/div[1]/table[1]/table
+ROW "luk.mink@gmail.com" @ref:83 /body/div[3]/table#undefined/div[2]/div[1]/table[1]/table
+CELL "luk.mink@gmail.com" @ref:84 /body/div[3]/table#undefined/div[2]/div[1]/table[1]/table
+LINK "luk.mink@gmail.com" @ref:85 /body/table#undefined/div[2]/div[1]/table[1]/table/a
+ROW "Hai Chau, Danang, 50000, Vietnam" @ref:86 /body/div[3]/table#undefined/div[2]/div[1]/table[1]/table
+CELL "Hai Chau, Danang, 50000, Vietnam" @ref:87 /body/div[3]/table#undefined/div[2]/div[1]/table[1]/table
+TABLE "Stay green - don't print this e-mail!" @ref:88 /body/div[2]/div[3]/table#undefined/div[2]/div[1]/table[2]
+ROWGROUP "Stay green - don't print this e-mail!" @ref:89 /body/div[2]/div[3]/table#undefined/div[2]/div[1]/table[2]
+ROW "Stay green - don't print this e-mail!" @ref:90 /body/div[2]/div[3]/table#undefined/div[2]/div[1]/table[2]
+CELL "Stay green - don't print this e-mail!" @ref:91 /body/div[2]/div[3]/table#undefined/div[2]/div[1]/table[2]
+TABLE "Stay green - don't print this e-mail!" @ref:92 /body/div[3]/table#undefined/div[2]/div[1]/table[2]/table
+ROWGROUP "Stay green - don't print this e-mail!" @ref:93 /body/div[3]/table#undefined/div[2]/div[1]/table[2]/table
+ROW "Stay green - don't print this e-mail!" @ref:94 /body/div[3]/table#undefined/div[2]/div[1]/table[2]/table
+CELL @ref:95 /body/div[3]/table#undefined/div[2]/div[1]/table[2]/table
+IMG "phone-icon" @ref:96 /body/div[3]/table#undefined/div[2]/div[1]/table[2]/table
+CELL "Stay green - don't print this e-mail!" @ref:97 /body/div[3]/table#undefined/div[2]/div[1]/table[2]/table
+CELL @ref:98 /body/div[3]/table#undefined/div[2]/div[1]/table[2]/table
+LINK "minh" @ref:99 /body/table#undefined/div[2]/div[1]/table[2]/table/a
+IMG "facebook icon" @ref:100 /body/table#undefined/div[2]/div[1]/table[2]/table/a
+LINK "minhlucvan" @ref:101 /body/table#undefined/div[2]/div[1]/table[2]/table/a
+IMG "twitter icon" @ref:102 /body/table#undefined/div[2]/div[1]/table[2]/table/a
+LINK "minhlucvan" @ref:103 /body/table#undefined/div[2]/div[1]/table[2]/table/a
+IMG "youtube icon" @ref:104 /body/table#undefined/div[2]/div[1]/table[2]/table/a
+LINK "minh luc van 2880b5113" @ref:105 /body/table#undefined/div[2]/div[1]/table[2]/table/a
+IMG "linkedin icon" @ref:106 /body/table#undefined/div[2]/div[1]/table[2]/table/a
+LINK "minhlv" @ref:107 /body/table#undefined/div[2]/div[1]/table[2]/table/a
+IMG "instagram icon" @ref:108 /body/table#undefined/div[2]/div[1]/table[2]/table/a
+CELL @ref:109 /body/div[2]/div[3]/table#undefined/div[2]/div[1]/table[2]
+CELL @ref:110 /body/div[2]/div[3]/table#undefined/div[2]/div[1]/table[2]
+CELL @ref:111 /body/td/div/div[2]/div[2]/div[3]/table#undefined
+IMG "cleardot" @ref:112 /body/td/div/div[2]/div[2]/div[5]/div
+ROW "Sans Serif Currently in plain text mode. Switch..." @ref:113 /body/div[4]/table/td[2]/table
+CELL "Sans Serif Currently in plain text mode. Switch..." @ref:114 /body/div[4]/table/td[2]/table
+TOOLBAR "Formatting options" @ref:115 /body/div/div/div[2]/div[2]/div/div[1]
+BUTTON "Undo ‪(Ctrl-Z)‬" @ref:116 /body/div/div[2]/div[2]/div/div[1]/div[1]
+BUTTON "Redo ‪(Ctrl-Y)‬" @ref:117 /body/div/div[2]/div[2]/div/div[1]/div[2]
+LISTBOX "Font ‪(Ctrl-Shift-5, Ctrl-Shift-6)‬" @ref:118 /body/div/div[2]/div[2]/div/div[1]/div[4]
+OPTION "Sans Serif" @ref:119 /body/div[2]/div[2]/div/div[1]/div[4]/div[1]
+BUTTON "Size ‪(Ctrl-Shift--, Ctrl-Shift-+)‬" @ref:120 /body/div/div[2]/div[2]/div/div[1]/div[6]
+BUTTON "Bold ‪(Ctrl-B)‬" @ref:121 /body/div/div[2]/div[2]/div/div[1]/div[8]
+BUTTON "Italic ‪(Ctrl-I)‬" @ref:122 /body/div/div[2]/div[2]/div/div[1]/div[9]
+BUTTON "Underline ‪(Ctrl-U)‬" @ref:123 /body/div/div[2]/div[2]/div/div[1]/div[10]
+BUTTON "Text color" @ref:124 /body/div/div[2]/div[2]/div/div[1]/div[11]
+BUTTON "Align" @ref:125 /body/div/div[2]/div[2]/div/div[1]/div[13]
+BUTTON "Numbered list ‪(Ctrl-Shift-7)‬" @ref:126 /body/div/div[2]/div[2]/div/div[1]/div[14]
+BUTTON "Bulleted list ‪(Ctrl-Shift-8)‬" @ref:127 /body/div/div[2]/div[2]/div/div[1]/div[15]
+BUTTON "Indent less ‪(Ctrl-[)‬" @ref:128 /body/div/div[2]/div[2]/div/div[1]/div[16]
+BUTTON "Indent more ‪(Ctrl-])‬" @ref:129 /body/div/div[2]/div[2]/div/div[1]/div[17]
+BUTTON "More formatting options" @ref:130 /body/div/div[2]/div[2]/div/div[1]/div[19]
+LINK "Switch to rich text." @ref:131 /body/div/div[2]/div[2]/div/div[2]/span[2]
+BUTTON "Recheck" @ref:132 /body/table/div/div/div[3]/div[1]/div[1]
+BUTTON "Language" @ref:133 /body/table/div/div/div[3]/div[1]/div[2]
+IMG "cleardot" @ref:134 /body/table/div/div/div[3]/div[1]/div[2]
+BUTTON "Close spell check" @ref:135 /body/table/div/div/div[3]/div[1]/div[3]
+IMG "cleardot" @ref:136 /body/table/div/div/div[3]/div[1]/div[3]
+GROUP "Send" @ref:137 /body/table/td[2]/table/div/div/table
+ROWGROUP "Send" @ref:138 /body/table/td[2]/table/div/div/table
+ROW "Send" @ref:139 /body/table/td[2]/table/div/div/table
+CELL "Send" @ref:140 /body/table/td[2]/table/div/div/table
+BUTTON "Send ‪(Ctrl-Enter)‬" @ref:141 /body/table/div/div/table/div/div[1]
+BUTTON "More send options" @ref:142 /body/table/div/div/table/div/div[2]
+CELL @ref:143 /body/td[2]/table/div/div/table/td[2]
+BUTTON @ref:144 /body/table/div/div/table/td[2]/div
+CELL @ref:145 /body/table/td[2]/table/div/div/table
+CELL @ref:146 /body/td[2]/table/div/div/table/td[4]
+BUTTON "Attach files" @ref:147 /body/table/div/div/table/td[4]/div[1]
+BUTTON "Insert link ‪(Ctrl-K)‬" @ref:148 /body/table/div/div/table/td[4]/div[2]
+BUTTON "Insert emoji ‪(Ctrl-Shift-2)‬" @ref:149 /body/table/div/div/table/td[4]/div[3]
+BUTTON "Insert files using Drive" @ref:150 /body/table/div/div/table/td[4]/div[4]
+BUTTON "Insert photo" @ref:151 /body/table/div/div/table/td[4]/div[5]
+BUTTON "Toggle confidential mode" @ref:152 /body/table/div/div/table/td[4]/div[6]
+BUTTON "Insert signature" @ref:153 /body/table/div/div/table/td[4]/div[7]
+CELL @ref:154 /body/td[2]/table/div/div/table/td[5]
+BUTTON "More options" @ref:155 /body/table/div/div/table/td[5]/div[2]
+IMG "cleardot" @ref:156 /body/table/div/div/table/td[5]/div[2]
+CELL @ref:157 /body/td[2]/table/div/div/table/td[6]
+BUTTON "Discard draft ‪(Ctrl-Shift-D)‬" @ref:158 /body/table/div/div/table/td[6]/div
+MENUITEM "Schedule send" @ref:159 /body/div#sbddm[6]/div
+MENUITEM "cleardot" @ref:160 /body/div#sbddm[6]/div

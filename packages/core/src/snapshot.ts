@@ -162,6 +162,8 @@ function getRole(element: Element): string | null {
   // Special handling for inputs
   if (tagName === 'INPUT') {
     const type = (element as HTMLInputElement).type || 'text';
+    // Hidden inputs are not interactive and should not have a role
+    if (type === 'hidden') return null;
     return INPUT_ROLES[type] || 'textbox';
   }
 
@@ -436,6 +438,9 @@ function getAccessibleName(element: Element): string {
 /**
  * Check if element or any of its ancestors are hidden
  * This checks the full ancestor chain for proper visibility detection
+ *
+ * Note: Only checks explicit hiding (inline styles and hidden attribute).
+ * Computed styles are unreliable in JSDOM environments without CSS.
  */
 function isVisible(element: Element, checkAncestors: boolean = true): boolean {
   const win = element.ownerDocument.defaultView;
@@ -444,25 +449,9 @@ function isVisible(element: Element, checkAncestors: boolean = true): boolean {
   const HTMLElementConstructor = win.HTMLElement;
   if (!(element instanceof HTMLElementConstructor)) return true;
 
-  // Check inline styles first for performance
-  const inlineDisplay = element.style.display;
-  const inlineVisibility = element.style.visibility;
-  if (inlineDisplay === 'none') return false;
-  if (inlineVisibility === 'hidden') return false;
-
-  // Check computed styles (but be defensive about failures)
-  try {
-    const style = win.getComputedStyle(element);
-    if (style) {
-      if (style.display === 'none') return false;
-      if (style.visibility === 'hidden') return false;
-      if (style.opacity === '0') return false;
-    }
-  } catch (e) {
-    // If getComputedStyle fails (e.g., on intermediate pages), assume visible
-    // This is safer than assuming hidden
-  }
-
+  // Only check explicit hiding - inline styles and hidden attribute
+  if (element.style.display === 'none') return false;
+  if (element.style.visibility === 'hidden') return false;
   if (element.hidden) return false;
 
   // Check ancestors if requested (for proper visibility detection)
@@ -854,14 +843,22 @@ function createAllSnapshot(
   const refs: SnapshotData['refs'] = {};
 
   // Collect all elements
+  // Note: We always traverse all children to find nested elements, even inside
+  // hidden containers. Elements are filtered by visibility when adding to the list.
+  // This handles cases where containers may have display:none but we still want
+  // to capture the semantic structure.
   const elements: Element[] = [];
 
   function collectElements(element: Element, depth: number): void {
     if (depth > maxDepth) return;
-    if (!includeHidden && !isVisible(element, false)) return;
 
-    elements.push(element);
+    // Add element if visible (or if includeHidden is true)
+    const visible = isVisible(element, false);
+    if (includeHidden || visible) {
+      elements.push(element);
+    }
 
+    // Always traverse children to find nested elements
     for (const child of element.children) {
       collectElements(child, depth + 1);
     }
@@ -1188,9 +1185,13 @@ function createOutlineSnapshot(
   let totalWords = 0;
 
   // Recursive function to build outline with indentation
+  // Note: We always traverse children even for hidden elements to find nested content
   function buildOutline(element: Element, depth: number, indent: number): void {
     if (depth > maxDepth) return;
-    if (!includeHidden && !isVisible(element, false)) return;
+
+    // Check visibility but continue traversing children regardless
+    const visible = isVisible(element, false);
+    const skipOutput = !includeHidden && !visible;
 
     const role = getRole(element);
     const tagName = element.tagName;
@@ -1317,12 +1318,14 @@ function createOutlineSnapshot(
       line += ` ${xpath}`;
     }
 
-    if (shouldInclude && line) {
+    // Output line if element should be included and is visible
+    if (shouldInclude && line && !skipOutput) {
       lines.push(line);
     }
 
     // Recurse into children (increase indent if we included this element)
-    const nextIndent = shouldInclude ? indent + 1 : indent;
+    // Always traverse children to find nested content, even for hidden elements
+    const nextIndent = (shouldInclude && !skipOutput) ? indent + 1 : indent;
     for (const child of element.children) {
       buildOutline(child, depth + 1, nextIndent);
     }
@@ -1421,11 +1424,15 @@ function createContentSnapshot(
   let refCounter = 0;
 
   // Collect content sections based on grep pattern
+  // Note: We always traverse children even for hidden elements to find nested content
   const sections: ContentSection[] = [];
 
   function collectSections(element: Element, depth: number): void {
     if (depth > maxDepth) return;
-    if (!includeHidden && !isVisible(element, false)) return;
+
+    // Check visibility but continue traversing children regardless
+    const visible = isVisible(element, false);
+    const skipOutput = !includeHidden && !visible;
 
     const xpath = buildSemanticXPath(element);
     const role = getRole(element);
@@ -1448,7 +1455,8 @@ function createContentSnapshot(
       if (wordCount > 30) isSection = true;
     }
 
-    if (isSection) {
+    // Add section if it qualifies and is visible
+    if (isSection && !skipOutput) {
       // Get first heading in section
       const heading = element.querySelector('h1, h2, h3, h4, h5, h6');
       sections.push({
@@ -1459,7 +1467,7 @@ function createContentSnapshot(
       });
     }
 
-    // Recurse into children
+    // Always recurse into children to find nested content
     for (const child of element.children) {
       collectSections(child, depth + 1);
     }
@@ -1835,15 +1843,20 @@ export function createSnapshot(
   let refCounter = 0;
 
   // Collect all elements
+  // Note: We always traverse all children to find nested elements, even inside
+  // hidden containers. Elements are filtered by visibility when adding to the list.
   const elements: Element[] = [];
 
   function collectElements(element: Element, depth: number): void {
     if (depth > maxDepth) return;
-    // Only check element-level visibility, not ancestors (we're already traversing the tree)
-    if (!includeHidden && !isVisible(element, false)) return;
 
-    elements.push(element);
+    // Add element if visible (or if includeHidden is true)
+    const visible = isVisible(element, false);
+    if (includeHidden || visible) {
+      elements.push(element);
+    }
 
+    // Always traverse children to find nested elements
     for (const child of element.children) {
       collectElements(child, depth + 1);
     }

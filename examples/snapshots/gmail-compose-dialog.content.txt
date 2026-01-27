@@ -1,0 +1,8 @@
+PAGE: http://localhost/ | Gmail Compose Dialog Snapshot
+CONTENT: sections=3 words=114
+
+SECTION /body/div[4] [51 words]
+
+SECTION /body/div[4]/table/td[2]/table/td/div [32 words]
+
+SECTION /body/table/td[2]/table/td/div/div[2] [31 words]

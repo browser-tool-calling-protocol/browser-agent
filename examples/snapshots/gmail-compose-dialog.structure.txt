@@ -1,0 +1,6 @@
+PAGE: http://localhost/ | Gmail Compose Dialog Snapshot | viewport=1024x768
+STRUCTURE: elements=3 maxLines=100
+
+REGION "New Message" [28 buttons, 15 links, 4 inputs, 5 other] /body/div[4]
+  FORM "To CcBcc Cc Bcc Recipients" [5 links, 2 inputs, 3 other] /body/div[4]/table/td[2]/form
+HEADING LEVEL=2 "Compose: New Message" /body/table/tr/div/h2

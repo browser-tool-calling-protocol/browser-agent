@@ -1,0 +1,77 @@
+<!-- source: http://localhost/ -->
+<!-- xpath: /body/div[4] -->
+
+![image](//ssl.gstatic.com/ui/v1/icons/mail/images/cleardot.gif)
+
+![Change language](images/cleardot.gif)
+
+![Photo](https://www.kryptohub.co/assets/image/img-team/blockchain-developers-minh.jpg)
+
+![phone-icon](https://www.mail-signatures.com/signature-generator/img/templates/csr/icon.png)
+
+![facebook icon](https://www.mail-signatures.com/signature-generator/img/templates/csr/fb.png)
+
+![twitter icon](https://www.mail-signatures.com/signature-generator/img/templates/csr/tt.png)
+
+![youtube icon](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)
+
+![linkedin icon](https://www.mail-signatures.com/signature-generator/img/templates/csr/ln.png)
+
+![instagram icon](https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-1/254000/18-512.png)
+
+![image](//ssl.gstatic.com/ui/v1/icons/mail/images/cleardot.gif)
+
+![image](images/cleardot.gif)
+
+![image](images/cleardot.gif)
+
+![image](images/cleardot.gif)
+
+
+<!-- xpath: /body/div[4]/table/td[2]/table/td/div -->
+
+![image](//ssl.gstatic.com/ui/v1/icons/mail/images/cleardot.gif)
+
+![Change language](images/cleardot.gif)
+
+![Photo](https://www.kryptohub.co/assets/image/img-team/blockchain-developers-minh.jpg)
+
+![phone-icon](https://www.mail-signatures.com/signature-generator/img/templates/csr/icon.png)
+
+![facebook icon](https://www.mail-signatures.com/signature-generator/img/templates/csr/fb.png)
+
+![twitter icon](https://www.mail-signatures.com/signature-generator/img/templates/csr/tt.png)
+
+![youtube icon](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)
+
+![linkedin icon](https://www.mail-signatures.com/signature-generator/img/templates/csr/ln.png)
+
+![instagram icon](https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-1/254000/18-512.png)
+
+![image](//ssl.gstatic.com/ui/v1/icons/mail/images/cleardot.gif)
+
+
+<!-- xpath: /body/table/td[2]/table/td/div/div[2] -->
+
+![image](//ssl.gstatic.com/ui/v1/icons/mail/images/cleardot.gif)
+
+![Change language](images/cleardot.gif)
+
+![Photo](https://www.kryptohub.co/assets/image/img-team/blockchain-developers-minh.jpg)
+
+![phone-icon](https://www.mail-signatures.com/signature-generator/img/templates/csr/icon.png)
+
+![facebook icon](https://www.mail-signatures.com/signature-generator/img/templates/csr/fb.png)
+
+![twitter icon](https://www.mail-signatures.com/signature-generator/img/templates/csr/tt.png)
+
+![youtube icon](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)
+
+![linkedin icon](https://www.mail-signatures.com/signature-generator/img/templates/csr/ln.png)
+
+![instagram icon](https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-1/254000/18-512.png)
+
+![image](//ssl.gstatic.com/ui/v1/icons/mail/images/cleardot.gif)
+
+
+<!-- end: 114 words extracted -->
