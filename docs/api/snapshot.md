@@ -41,7 +41,7 @@ interface SnapshotOptions {
   includeHidden?: boolean;
   mode?: SnapshotMode;
   format?: SnapshotFormat;
-  grep?: string | GrepOptions;
+  grep?: string;
   maxLength?: number;
   includeLinks?: boolean;
   includeImages?: boolean;
@@ -56,7 +56,7 @@ interface SnapshotOptions {
 | `includeHidden` | `boolean` | `false` | Include hidden elements in output |
 | `mode` | `SnapshotMode` | `'interactive'` | Snapshot mode (see below) |
 | `format` | `SnapshotFormat` | `'tree'` | Output format (see below) |
-| `grep` | `string \| GrepOptions` | - | Filter pattern for output |
+| `grep` | `string` | - | Filter pattern for output (case-insensitive regex) |
 | `maxLength` | `number` | `2000` | Max chars per section (content mode) |
 | `includeLinks` | `boolean` | `true` | Include links in markdown output |
 | `includeImages` | `boolean` | `false` | Include images in markdown output |
@@ -263,45 +263,51 @@ Available in `content` mode. Converts page content to markdown with optional lin
 
 ## Grep Filtering
 
-Filter snapshot output using grep-like patterns.
+Filter snapshot output using simple string patterns. Grep filtering is **case-insensitive by default** and supports wildcard patterns.
 
-### Simple Pattern
+### Pattern Matching
+
+The grep parameter accepts a string pattern that is matched against element text, roles, names, and attributes.
 
 ```typescript
 createSnapshot(document, refMap, {
-  grep: 'button'
+  grep: 'button'  // Matches any element containing "button" (case-insensitive)
 })
 ```
 
-### GrepOptions Object
+### Wildcard Support
+
+Use `*` for wildcard matching:
 
 ```typescript
-interface GrepOptions {
-  pattern: string;       // Pattern to search for
-  ignoreCase?: boolean;  // Case-insensitive matching (grep -i)
-  invert?: boolean;      // Invert match (grep -v)
-  fixedStrings?: boolean; // Literal string, not regex (grep -F)
-}
+// Match any button with "submit" prefix
+createSnapshot(document, refMap, {
+  grep: 'submit*'
+})
+
+// Match elements with "nav" anywhere in the text
+createSnapshot(document, refMap, {
+  grep: '*nav*'
+})
 ```
 
-**Examples:**
+### Regex Patterns
+
+The grep parameter supports regular expressions:
 
 ```typescript
-// Case-insensitive search
+// Match "button" or "link"
 createSnapshot(document, refMap, {
-  grep: { pattern: 'submit', ignoreCase: true }
+  grep: 'button|link'
 })
 
-// Exclude disabled elements
+// Match email-like patterns
 createSnapshot(document, refMap, {
-  grep: { pattern: 'disabled', invert: true }
-})
-
-// Fixed string match (no regex interpretation)
-createSnapshot(document, refMap, {
-  grep: { pattern: 'user@example.com', fixedStrings: true }
+  grep: '\\w+@\\w+\\.com'
 })
 ```
+
+**Note:** Grep filtering is always case-insensitive. If the regex pattern is invalid, it falls back to simple string matching.
 
 ---
 
@@ -401,7 +407,7 @@ const snapshot = createSnapshot(document, refMap, {
 ```typescript
 const snapshot = createSnapshot(document, refMap, {
   mode: 'content',
-  grep: { pattern: 'main', ignoreCase: true },
+  grep: 'main',  // Case-insensitive by default
   maxLength: 1000
 });
 
